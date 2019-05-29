@@ -1,0 +1,21 @@
+```
+<template>
+  <q-input v-model="value" label="Icon" clearable>
+    <template v-slot:append>
+      <q-icon name="extension" class="cursor-pointer">
+        <q-popup-proxy v-model="showIconPicker">
+
+          <q-icon-picker
+            v-model="value"
+            :filter="value"
+            icon-set="material-icons"
+            style="height: 300px; width: 300px;"
+            v-close-popup
+          />
+
+        </q-popup-proxy>
+      </q-icon>
+    </template>
+  </q-input>
+</template>
+```

@@ -1,0 +1,110 @@
+<template>
+  <q-card style="width: 100%; max-width: 600px;">
+    <q-card-section>
+      <div class="text-h6">QIconPicker Example</div>
+      <div class="text-subtitle2">{{ title }}</div>
+      <div>
+        <q-select v-model="name" :options="iconSets" label="Icon Set" emit-value />
+        <q-input v-model="filter" label="Filter" clearable />
+        <div class="q-mt-md"><strong>Selected:</strong> <q-icon :name="value" style="font-size: 28px;"/> {{ value }}</div>
+      </div>
+    </q-card-section>
+    <q-separator />
+    <q-card-section>
+      <q-icon-picker
+        v-model="value"
+        :icon-set="name"
+        :filter="filter"
+        :tooltips="tooltips"
+        :color="color"
+        :background-color="backgroundColor"
+        :selectedColor="selectedColor"
+        :selectedBackground-color="selectedBackgroundColor"
+        :font-size="fontSize"
+        style="height: 300px;"
+      />
+    </q-card-section>
+  </q-card>
+</template>
+
+<script>
+export default {
+  name: 'IconCard',
+
+  data () {
+    return {
+      value: '',
+      name: '',
+      filter: '',
+      iconSets: [
+        { label: 'Eva Icons', value: 'eva-icons' },
+        { label: 'Fontawesome Icons', value: 'fontawesome-v5' },
+        { label: 'Ion Icons', value: 'ionicons-v4' },
+        { label: 'Material Icons', value: 'material-icons' },
+        { label: 'MDI Icons', value: 'mdi-v3' },
+        { label: 'Themify Icons', value: 'themify' }
+      ],
+      selectedIconSet: {}
+    }
+  },
+
+  props: {
+    tooltips: Boolean,
+    color: String,
+    backgroundColor: String,
+    selectedColor: String,
+    selectedBackgroundColor: String,
+    fontSize: {
+      type: String,
+      default: 'inherit'
+    }
+  },
+
+  mounted () {
+    this.setIconSet('material-icons')
+  },
+
+  computed: {
+    title () {
+      if (this.selectedIconSet && 'label' in this.selectedIconSet) {
+        return this.selectedIconSet.label
+      }
+      return ''
+    }
+  },
+
+  watch: {
+    name (val) {
+      this.setIconSet(val)
+    }
+  },
+
+  methods: {
+    setIconSet (val) {
+      this.value = ''
+      this.name = val
+      this.selectedIconSet = {}
+      if (val) {
+        for (let i = 0; i < this.iconSets.length; ++i) {
+          if (val === this.iconSets[i].value) {
+            this.selectedIconSet = this.iconSets[i]
+            break
+          }
+        }
+      }
+    },
+    onMove (data) {
+
+    },
+    prev () {
+
+    },
+    next () {
+
+    }
+  }
+}
+</script>
+
+<style>
+</style>
