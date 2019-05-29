@@ -13,9 +13,9 @@
         </q-btn>
 
         <q-toolbar-title v-if="$q.screen.width > 500">
-          QQIconPicker
+          QIconPicker
           <q-tooltip v-if="$q.screen.width < 1077">
-            QQIconPicker
+            QIconPicker
           </q-tooltip>
         </q-toolbar-title>
 
@@ -115,7 +115,7 @@
             <q-item-label caption>Documentation</q-item-label>
           </q-item-section>
         </q-item>
-        <!-- <q-item clickable to="/demo">
+        <q-item clickable to="/demo">
           <q-item-section avatar>
             <q-icon name="calendar_today" />
           </q-item-section>
@@ -123,7 +123,7 @@
             <q-item-label>QIconPicker demo</q-item-label>
             <q-item-label caption>Interactively play with properties</q-item-label>
           </q-item-section>
-        </q-item> -->
+        </q-item>
         <q-item clickable to="/examples">
           <q-item-section avatar>
             <q-icon name="calendar_today" />
