@@ -3,12 +3,18 @@ export default {
     value: String,
     iconSet: {
       type: String,
-      validator: v => ['material-icons', 'ionicons-v4', 'mdi-v3', 'fontawesome-v5', 'eva-icons', 'themify', ''].includes(v)
+      validator: v => ['material-icons', 'ionicons-v4', 'mdi-v3', 'fontawesome-v5', 'eva-icons', 'themify', ''].includes(v),
+      default: ''
     },
     icons: Array,
     filter: String,
     dense: Boolean,
     tooltips: Boolean,
+    noFooter: Boolean,
+    fontSize: {
+      type: String,
+      default: 'inherit'
+    },
     selectedColor: {
       type: String,
       default: 'grey-1'
@@ -17,11 +23,8 @@ export default {
       type: String,
       default: 'primary'
     },
-    // displayCount: [Number, String],
-    // startIndex: [Number, String]
-    fontSize: {
-      type: String,
-      default: 'inherit'
-    }
+    paginationColor: String,
+    paginationBackgroundColor: String,
+    pagination: Object
   }
 }
