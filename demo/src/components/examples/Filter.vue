@@ -39,7 +39,8 @@
       v-model="value"
       icon-set="material-icons"
       :filter="filter"
-      style="height: 400px;"
+      :pagination.sync="pagination"
+      style="height: 220px;"
     />
 
   </div>
@@ -56,7 +57,11 @@ export default {
       template: template,
       script: script,
       value: '',
-      filter: ''
+      filter: '',
+      pagination: {
+        itemsPerPage: 60,
+        page: 0
+      }
     }
   }
 }

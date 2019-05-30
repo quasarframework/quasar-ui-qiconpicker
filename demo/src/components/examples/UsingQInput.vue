@@ -44,8 +44,9 @@
                 v-model="value"
                 :filter="value"
                 icon-set="material-icons"
+                tooltips
+                :pagination.sync="pagination"
                 style="height: 300px; width: 300px;"
-                v-close-popup
               />
 
             </q-popup-proxy>
@@ -68,7 +69,16 @@ export default {
       template: template,
       script: script,
       value: '',
-      showIconPicker: false
+      showIconPicker: false,
+      pagination: {
+        itemsPerPage: 35,
+        page: 0
+      }
+    }
+  },
+  watch: {
+    value () {
+      this.showIconPicker = false
     }
   }
 }

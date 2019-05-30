@@ -37,7 +37,8 @@
       v-model="value"
       icon-set="material-icons"
       font-size="30px"
-      style="height: 400px;"
+      :pagination.sync="pagination"
+      style="height: 360px;"
     />
 
   </div>
@@ -53,7 +54,11 @@ export default {
       tab: 'template',
       template: template,
       script: script,
-      value: ''
+      value: '',
+      pagination: {
+        itemsPerPage: 32,
+        page: 0
+      }
     }
   }
 }

@@ -36,7 +36,8 @@
     <q-icon-picker
       v-model="value"
       icon-set="material-icons"
-      style="height: 400px;"
+      :pagination.sync="pagination"
+      style="height: 220px;"
     />
 
   </div>
@@ -52,7 +53,11 @@ export default {
       tab: 'template',
       template: template,
       script: script,
-      value: ''
+      value: '',
+      pagination: {
+        itemsPerPage: 60,
+        page: 0
+      }
     }
   }
 }

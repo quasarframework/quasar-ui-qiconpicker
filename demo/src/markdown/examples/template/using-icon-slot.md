@@ -3,6 +3,7 @@
     <q-icon-picker
       v-model="value"
       icon-set="material-icons"
+      :pagination.sync="pagination"
       style="height: 400px;"
     >
       <template #icon="name">

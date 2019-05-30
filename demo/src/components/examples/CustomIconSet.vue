@@ -40,7 +40,7 @@
     <q-icon-picker
       v-model="value"
       :icons="icons"
-      style="height: 400px;"
+      style="height: 100px;"
     />
 
   </div>
@@ -64,7 +64,11 @@ export default {
         { name: 'eva-camera' },
         { name: 'mdi-camera' },
         { name: 'ti-camera' }
-      ]
+      ],
+      pagination: {
+        itemsPerPage: 60,
+        page: 0
+      }
     }
   }
 }

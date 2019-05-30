@@ -17,11 +17,11 @@ In order to work properly, QIconPicker needs a specified height in it's style (o
 # Uninstall
 To remove this App Extension from your Quasar application, run the following (in your Quasar app folder):
 ```
-quasar ext remove @quasar/qcalendar
+quasar ext remove @quasar/qiconpicker
 ```
 
 # Describe
-You can use `quasar describe QIconPicker` (to be implemented before QCalendar v1 release)
+You can use `quasar describe QIconPicker` (to be implemented before QIconPicker v1 release)
 
 # Docs
 Can be found [here](https://quasarframework.github.io/app-extension-qiconpicker).
@@ -55,11 +55,13 @@ Most icon sets are very large which may cause performance issues.
 | filter | String | Icons will be filtered by the passed string |
 | dense | Boolean | Dense mode |
 | tooltips | Boolan | Show tooltips |
+| no-footer | Boolan | Set to `true` to hide footer when `pagination` is enabled |
 | color | String | This can be any CSS color value or Quasar color |
 | background-color | String | This can be any CSS color value or Quasar color |
 | selected-color | String | This can be any CSS color value or Quasar color |
 | selected-background-color | String | This can be any CSS color value or Quasar color |
 | font-size | String | The font-size to use for the icons. Any acceptable CSS size can be used.<br>Examples: 1.85rem, 30px |
+| pagination | Object | For pagination purposes. Use `paginatin.sync` to synchronize the data.<br>`:pagination.sync="pagination"`<br>Where the object looks like this: `{ page: #, itemsPerPage: #, totalPage: # }`. You can use `page` and `itemsPerPage` to control the pagination. QIconPicker will set `totalPage` depending on `icon-set` or `icons` properties.<br>If using a `filter` the page will automatically be reset to 1 |
 
 All colors can be from the [Quasar Color Pallete](https://quasar.dev/style/color-palette) or a CSS color (#, rgb, rgba, hls, etc).
 

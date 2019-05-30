@@ -7,7 +7,8 @@
     <q-icon-picker
       v-model="value"
       :icons="icons"
-      style="height: 400px;"
+      :pagination.sync="pagination"
+      style="height: 100px;"
     />
   </div>
 </template>

@@ -9,8 +9,9 @@
             v-model="value"
             :filter="value"
             icon-set="material-icons"
+            tooltips
+            :pagination.sync="pagination"
             style="height: 300px; width: 300px;"
-            v-close-popup
           />
 
         </q-popup-proxy>

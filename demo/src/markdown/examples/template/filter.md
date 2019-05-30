@@ -6,7 +6,8 @@
       v-model="value"
       icon-set="material-icons"
       :filter="filter"
-      style="height: 400px;"
+      :pagination.sync="pagination"
+      style="height: 220px;"
     />
   </div>
 </template>

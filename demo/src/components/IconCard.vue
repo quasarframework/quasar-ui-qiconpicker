@@ -21,6 +21,7 @@
         :selectedColor="selectedColor"
         :selectedBackground-color="selectedBackgroundColor"
         :font-size="fontSize"
+        :pagination.sync="pagination"
         style="height: 300px;"
       />
     </q-card-section>
@@ -34,7 +35,7 @@ export default {
   data () {
     return {
       value: '',
-      name: '',
+      name: 'material-icons',
       filter: '',
       iconSets: [
         { label: 'Eva Icons', value: 'eva-icons' },
@@ -57,7 +58,8 @@ export default {
     fontSize: {
       type: String,
       default: 'inherit'
-    }
+    },
+    pagination: Object
   },
 
   mounted () {

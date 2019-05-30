@@ -1,6 +1,11 @@
 <template>
   <hero>
     <div class="q-markdown">
+
+<div class="q-markdown--note q-markdown--note--danger"><p class="q-markdown--note-title">WARNING</p>
+<p>Icon sets contain hundreds, even thousands of icons. This page utilizes several examples and would grind to a halt if measures were not taken. For this reason, most of the examples below are using the pagination property.</p>
+</div>
+
       <example-title title="Basic" />
       <example-card title="Default" name="Default" />
       <example-card title="Size" name="Size" />

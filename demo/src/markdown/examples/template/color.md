@@ -5,7 +5,8 @@
     icon-set="material-icons"
     color="green-8"
     background-color="yellow-8"
-    style="height: 400px;"
+    :pagination.sync="pagination"
+    style="height: 220px;"
   />
 </template>
 ```

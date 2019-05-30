@@ -3,7 +3,11 @@
 export default {
   data () {
     return {
-      value: ''
+      value: '',
+      pagination: {
+        itemsPerPage: 32,
+        page: 0
+      }
     }
   }
 }
