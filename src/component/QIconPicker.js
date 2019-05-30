@@ -120,6 +120,14 @@ export default Vue.extend({
       }
     },
 
+    'pagination.itemsPerPage' () {
+      this.updatePagination()
+    },
+
+    'pagination.page' () {
+      this.updatePagination()
+    },
+
     filter () {
       // whenever the filter changes, it resets pagination page to page 1
       this.setPagination({ page: 1 })
