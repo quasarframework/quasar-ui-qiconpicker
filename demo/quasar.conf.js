@@ -52,7 +52,8 @@ module.exports = function (ctx) {
         'QTab',
         'QTabPanels',
         'QTabPanel',
-        'QTooltip'
+        'QTooltip',
+        'QToggle'
       ],
 
       directives: [

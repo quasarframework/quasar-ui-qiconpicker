@@ -19,15 +19,14 @@
             :icon-set="name"
             :filter="filter"
             :pagination.sync="pagination"
+            :tooltips="tooltips"
+            :dense="dense"
+            :no-footer="noFooter"
             pagination-color="black"
             style="height: 300px;"
           />
         </q-card-section>
       </q-card>
-
-      <!-- <icon-card
-        :tooltips="true"
-      /> -->
 
       <q-card style="width: 100%; max-width: 350px;">
         <q-card-section>
@@ -43,10 +42,11 @@
                   <q-icon-picker
                     v-model="value"
                     :filter="value"
-                    :tooltips="true"
                     icon-set="material-icons"
+                    :tooltips="tooltips"
+                    :dense="dense"
+                    :no-footer="noFooter"
                     style="height: 300px; width: 300px;"
-                    v-close-popup
                   />
 
                 </q-popup-proxy>
@@ -60,43 +60,6 @@
         </q-card-section>
       </q-card>
 
-      <!-- <icon-card
-        name="eva-icons"
-        title="Eva Icons"
-        :tooltips="true"
-      />
-
-      <icon-card
-        name="themify"
-        title="Themify Icons"
-      />
-
-      <icon-card
-        name="ionicons-v4"
-        title="Ion Icons"
-      />
-
-      <icon-card
-        name="mdi-v3"
-        title="MDI Icons"
-        color="blue-grey-9"
-        background-color="orange-1"
-      />
-
-      <icon-card
-        name="fontawesome-v5"
-        title="Fontawesome Icons"
-        :tooltips="true"
-        color="primary"
-        background-color="rgba(255,255,0,.05)"
-      />
-
-      <icon-card
-        name="material-icons"
-        title="Material Icons"
-        :tooltips="true"
-      /> -->
-
     </div>
   </q-page>
 </template>
@@ -105,6 +68,8 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'IconPicker',
 
@@ -133,11 +98,23 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      tooltips: 'iconpicker/tooltips',
+      dense: 'iconpicker/dense',
+      noFooter: 'iconpicker/noFooter'
+    }),
+
     title () {
       if (this.selectedIconSet && 'label' in this.selectedIconSet) {
         return this.selectedIconSet.label
       }
       return ''
+    }
+  },
+
+  watch: {
+    dense (va) {
+      this.pagination.itemsPerPage = (this.dense ? 136 : 60)
     }
   }
 }
