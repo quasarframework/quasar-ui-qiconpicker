@@ -24,7 +24,6 @@ export default {
       default: 'primary'
     },
     paginationColor: String,
-    paginationBackgroundColor: String,
     pagination: Object
   }
 }
