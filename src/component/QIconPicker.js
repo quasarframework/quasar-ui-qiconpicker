@@ -239,7 +239,7 @@ export default Vue.extend({
           value: page,
           max: totalPages,
           input: true,
-          textColor: this.paginationColor
+          color: this.paginationColor
         },
         on: {
           'input': v => {
