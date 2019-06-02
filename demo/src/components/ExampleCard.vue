@@ -2,7 +2,20 @@
   <section :id="slugifiedTitle" class="q-pa-md">
     <q-card flat bordered class="no-shadow">
       <q-toolbar>
-        <q-toolbar-title class="example-title" @click="copyHeading(slugifiedTitle)">{{ title }}</q-toolbar-title>
+        <q-ribbon
+          position="left"
+          color="rgba(0,0,0,.58)"
+          background-color="#c0c0c0"
+          leaf-color="#a0a0a0"
+          leaf-position="bottom"
+          decoration="rounded-out"
+          class="fit"
+        >
+          <q-toolbar-title
+          class="example-title"
+          style="padding: 5px 20px;"
+          @click="copyHeading(slugifiedTitle)">{{ title }}</q-toolbar-title>
+        </q-ribbon>
       </q-toolbar>
       <q-separator />
       <component v-bind:is="name" />
@@ -25,7 +38,9 @@ export default {
     Filter2: () => import('./examples/Filter'),
     CustomIconSet: () => import('./examples/CustomIconSet'),
     UsingQInput: () => import('./examples/UsingQInput'),
-    UsingIconSlot: () => import('./examples/UsingIconSlot')
+    UsingIconSlot: () => import('./examples/UsingIconSlot'),
+    Pagination: () => import('./examples/Pagination'),
+    PaginationColor: () => import('./examples/PaginationColor')
   },
 
   props: {
