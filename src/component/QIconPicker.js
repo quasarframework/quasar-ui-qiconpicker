@@ -44,6 +44,7 @@ export default Vue.extend({
   },
 
   computed: {
+    // the icons to display after filtering and then pagination
     displayedIcons () {
       let icons = []
       if (this.iconsList) {
@@ -69,24 +70,29 @@ export default Vue.extend({
       })
     },
 
+    // the number of items
     computedItemsNumber () {
       return this.iconsList.length
     },
 
+    // index of first item on a page
     firstItemIndex () {
       const { page, itemsPerPage } = this.computedPagination
       return (page - 1) * itemsPerPage
     },
 
+    // index of last item on a page
     lastItemIndex () {
       const { page, itemsPerPage } = this.computedPagination
       return page * itemsPerPage
     },
 
+    // returns true if on first page
     isFirstPage () {
       return this.computedPagination.page === 1
     },
 
+    // the number of pages available based on itemsPerPage
     pagesNumber () {
       return Math.max(
         1,
@@ -94,6 +100,7 @@ export default Vue.extend({
       )
     },
 
+    // returns true if on last page
     isLastPage () {
       return this.lastItemIndex === 0
         ? true
@@ -158,6 +165,8 @@ export default Vue.extend({
       return p
     },
 
+    // returns true of the pagination is the same,
+    // otherwise returns false if it has changed
     samePagination (oldPag, newPag) {
       for (let prop in newPag) {
         if (newPag[prop] !== oldPag[prop]) {
@@ -180,6 +189,7 @@ export default Vue.extend({
       }
     },
 
+    // public function - goes to previous page
     prevPage () {
       const { page } = this.computedPagination
       if (page > 1) {
@@ -187,6 +197,7 @@ export default Vue.extend({
       }
     },
 
+    // public function - goes to next page
     nextPage () {
       const { page, itemsPerPage } = this.computedPagination
       if (this.lastItemIndex > 0 && page * itemsPerPage < this.computedItemsNumber) {
