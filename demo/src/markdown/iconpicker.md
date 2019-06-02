@@ -51,7 +51,7 @@ Most icon sets are very large which may cause performance issues.
 | --- | --- | --- |
 | value | String | `v-model` data |
 | icon-set | String | Acceptable strings are: `material-icons`, `ionicons-v4`, `mdi-v3`, `fontawesome-v5`, `eva-icons`, and `themify` |
-| icons | Array | Dat should look like this: `[ { name="extension" }, ... ]` |
+| icons | Array | Data should look like this: `[ { name="extension" }, ... ]` |
 | filter | String | Icons will be filtered by the passed string |
 | dense | Boolean | Dense mode |
 | tooltips | Boolan | Show tooltips |
