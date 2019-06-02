@@ -222,24 +222,20 @@ export default Vue.extend({
       const slot = this.$scopedSlots.pagination
       const { page, totalPages } = this.computedPagination
 
-      if (slot) {
-        return slot
-      } else {
-        return h(QPagination, this.setBothColors(this.color, this.backgroundColor, {
-          staticClass: 'q-icon-picker__pagination',
-          props: {
-            value: page,
-            max: totalPages,
-            input: true,
-            textColor: this.paginationColor
-          },
-          on: {
-            'input': v => {
-              this.setPagination({ page: v })
-            }
+      return slot || h(QPagination, this.setBothColors(this.color, this.backgroundColor, {
+        staticClass: 'q-icon-picker__pagination',
+        props: {
+          value: page,
+          max: totalPages,
+          input: true,
+          textColor: this.paginationColor
+        },
+        on: {
+          'input': v => {
+            this.setPagination({ page: v })
           }
-        }))
-      }
+        }
+      }))
     },
 
     __renderScrollArea (h) {
