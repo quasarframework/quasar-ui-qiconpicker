@@ -20,6 +20,8 @@
       <example-card title="Custom Icon Set" name="CustomIconSet" />
       <example-card title="Using QInput" name="UsingQInput" />
       <example-card title="Using Icon Slot" name="UsingIconSlot" />
+      <example-card title="Pagination" name="Pagination" />
+      <example-card title="Pagination Color" name="PaginationColor" />
     </div>
   </hero>
 </template>
@@ -61,6 +63,8 @@ export default {
     this.addToToc('Custom Icon Set', 2)
     this.addToToc('Using QInput', 2)
     this.addToToc('Using Icon Slot', 2)
+    this.addToToc('Pagination', 2)
+    this.addToToc('Pagination Color', 2)
 
     this.toc = this.tempToc
   },
