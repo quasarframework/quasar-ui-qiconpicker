@@ -34,6 +34,8 @@ You can use `quasar describe QIconPicker` (TBD)
 # Demo Project
 Can be found [here](https://github.com/quasarframework/app-extension-qiconpicker/tree/master/demo).
 
+# Demo
+Can be found [here](https://quasarframework.github.io/app-extension-qiconpicker/demo).
+
 # Documentation
 Can be found [here](https://quasarframework.github.io/app-extension-qiconpicker).
-
