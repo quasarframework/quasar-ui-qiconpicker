@@ -13,6 +13,8 @@ QIconPicker is an `UI App Extension` for [Quasar Framework v1](https://quasar.de
 
 This work is currently in `alpha` and there are expected changes while things get worked out. Your help with testing is greatly appreciated.
 
+![QIconPicker example](https://raw.githubusercontent.com/quasarframework/app-extension-qiconpicker/dev/demo/src/statics/q-icon-picker.png)
+
 # QIconPicker
 Please check out the [documentation](https://quasarframework.github.io/app-extension-qiconpicker/).
 
