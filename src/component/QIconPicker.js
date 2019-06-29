@@ -24,7 +24,7 @@ export default Vue.extend({
       iconsList: [],
       innerPagination: {
         page: 1,
-        itemsPerPage: 60,
+        itemsPerPage: 0,
         totalPages: 0
       }
     }
@@ -56,7 +56,7 @@ export default Vue.extend({
         }
 
         // should the icons be paged?
-        if (this.pagination) {
+        if (this.pagination && this.pagination.itemsPerPage !== 0) {
           icons = icons.slice(this.firstItemIndex, this.lastItemIndex)
         }
       }
@@ -225,11 +225,13 @@ export default Vue.extend({
       return h('div', {
         staticClass: 'q-icon-picker__footer flex flex-center'
       }, [
-        slot || this.__renderPagination(h)
+        slot ? slot(this.computedPagination) : this.__renderPagination(h)
       ])
     },
 
     __renderPagination (h) {
+      if (this.pagination && this.pagination.itemsPerPage === 0) return ''
+
       const slot = this.$scopedSlots.pagination
       const { page, totalPages } = this.computedPagination
 
