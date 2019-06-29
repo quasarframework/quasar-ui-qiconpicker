@@ -4,3 +4,4 @@ docs
 .editorconfig
 .eslintrc.js
 .eslintignore
+_redirects
