@@ -76,5 +76,8 @@ All colors can be from the [Quasar Color Pallete](https://quasar.dev/style/color
 | --- | --- | --- |
 | icon | String (icon name) | Change the way the icon data is displayed |
 
+# Donate
+If you appreciate the work that went into this App Extension, please consider [donating to Quasar](https://donate.quasar.dev).
+
 ---
 This page created with [QMarkdown](https://quasarframework.github.io/app-extension-qmarkdown), another great Quasar App Extension.
