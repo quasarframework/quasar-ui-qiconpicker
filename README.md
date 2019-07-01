@@ -41,3 +41,6 @@ Can be found [here](https://quasarframework.github.io/app-extension-qiconpicker/
 
 # Documentation
 Can be found [here](https://quasarframework.github.io/app-extension-qiconpicker).
+
+# Donate
+If you appreciate the work that went into this App Extension, please consider [donating to Quasar](https://donate.quasar.dev).
