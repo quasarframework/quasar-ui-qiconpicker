@@ -73,10 +73,6 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'IconPicker',
 
-  components: {
-    // 'icon-card': () => import('../components/IconCard')
-  },
-
   data () {
     return {
       value: '',
