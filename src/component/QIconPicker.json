@@ -1,0 +1,115 @@
+{
+  "type": "component",
+  "props": {
+    "value": {
+      "type": "String",
+      "desc": "Vue v-model value",
+      "default": "",
+      "examples": [
+        "calendar-today",
+        "bolt"
+      ]
+    },
+    "icon-set": {
+      "type": "String",
+      "desc": "The name of a Quasar icon set",
+      "values": [
+        "material-icons",
+        "ionicons-v4",
+        "mdi-v3",
+        "fontawesome-v5",
+        "eva-icons",
+        "themify"
+      ]
+    },
+    "icons": {
+      "type": "Array",
+      "desc": "An array of objects containing icon information. The object must contain the key 'name' with the value being the icon name (ie: { name: 'bolt' }). Note: the icons used must already be loaded.",
+      "definition": {
+        "name": {
+          "type": "String",
+          "desc": "The icon name",
+          "examples": [
+            "calendar-today",
+            "bolt"
+          ]
+        }
+      }
+    },
+    "filter": {
+      "type": "String",
+      "desc": "Icons will be filtered by the passed string"
+    },
+    "dense": {
+      "type": "Boolean",
+      "desc": "Use less of a foot print for the component"
+    },
+    "tooltips": {
+      "type": "Boolean",
+      "desc": "Turns tooltips on for each displayed icon (shows the icon name)"
+    },
+    "no-footer": {
+      "type": "Boolean",
+      "desc": "hides the footer area that contains the pagination"
+    },
+    "color": {
+      "type": "String",
+      "desc": "This can be any CSS color value or Quasar color",
+      "examples": [
+        "orange-8",
+        "#c8c8c8"
+      ]
+    },
+    "background-color": {
+      "type": "String",
+      "desc": "This can be any CSS color value or Quasar color",
+      "examples": [
+        "orange-8",
+        "#c8c8c8"
+      ]
+    },
+    "selected-color": {
+      "type": "String",
+      "desc": "This can be any CSS color value or Quasar color",
+      "examples": [
+        "orange-8",
+        "#c8c8c8"
+      ]
+    },
+    "selected-background-color": {
+      "type": "String",
+      "desc": "This can be any CSS color value or Quasar color",
+      "examples": [
+        "orange-8",
+        "#c8c8c8"
+      ]
+    },
+    "font-size": {
+      "type": "String",
+      "desc": "The font-size to use for the icons. Any acceptable CSS size can be used",
+      "examples": [
+        "3rem",
+        "24px"
+      ]
+    },
+    "pagination": {
+      "type": "Object",
+      "desc": "For pagination purposes uses Quasar's pagination component. Use `pagination.sync` to synchronize the data. You can use `page` and `itemsPerPage` to control the pagination. QIconPicker will set `totalPages` depending on `icon-set` or `icons` properties. If using a `filter` the page will automatically be reset to 1",
+      "examples": [
+        ":pagination.sync=\"pagination\""
+      ]
+    }
+  },
+  "events": {
+    "input": {
+      "type": "String",
+      "desc": "Value from when the selection changes"
+    }
+  },
+  "scopedSlots": {
+    "icon": {
+      "type": "String",
+      "desc": "Slot for re-displaying icon"
+    }
+  }
+}
