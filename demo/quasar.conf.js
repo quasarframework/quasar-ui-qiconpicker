@@ -25,45 +25,50 @@ module.exports = function (ctx) {
       // all: true, // --- includes everything; for dev only!
 
       components: [
-        'QLayout',
-        'QHeader',
-        'QDrawer',
-        'QPageContainer',
-        'QPage',
-        'QToolbar',
-        'QToolbarTitle',
         'QBtn',
-        'QIcon',
-        'QList',
-        'QItem',
-        'QItemSection',
-        'QItemLabel',
         'QCard',
         'QCardSection',
-        'QSeparator',
-        'QInput',
-        'QSelect',
-        'QPopupProxy',
-        'QMenu',
         'QDialog',
+        'QDrawer',
         'QExpansionItem',
+        'QHeader',
+        'QIcon',
+        'QInput',
+        'QItem',
+        'QItemLabel',
+        'QItemSection',
+        'QLayout',
+        'QList',
+        'QMenu',
+        'QPage',
+        'QPageContainer',
+        'QPageScroller',
+        'QPopupProxy',
         'QScrollArea',
-        'QTabs',
+        'QSelect',
+        'QSeparator',
         'QTab',
-        'QTabPanels',
         'QTabPanel',
-        'QTooltip',
-        'QToggle'
+        'QTabPanels',
+        'QTabs',
+        'QToggle',
+        'QToolbar',
+        'QToolbarTitle',
+        'QTooltip'
       ],
 
       directives: [
+        'ClosePopup',
         'Ripple',
-        'ClosePopup'
+        'Scroll'
       ],
 
       // Quasar plugins
       plugins: [
-        'Notify'
+        'Dialog',
+        'Notify',
+        'Platform',
+        'Screen'
       ]
 
       // iconSet: 'ionicons-v4'

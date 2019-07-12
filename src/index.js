@@ -20,10 +20,10 @@ const extendQuasarConf = function (conf) {
 
 module.exports = function (api) {
   // quasar compatibility check
-  api.compatibleWith('@quasar/app', '^1.0.0-beta.24')
+  api.compatibleWith('@quasar/app', '^1.0.0')
 
   // register JSON api
-  // api.registerDescribeApi('QIconPicker', './component/QIconPicker.json')
+  api.registerDescribeApi('QIconPicker', './component/QIconPicker.json')
 
   // extend quasar.conf
   api.extendQuasarConf(extendQuasarConf)

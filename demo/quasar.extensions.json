@@ -1,5 +1,9 @@
 {
   "@quasar/qmarkdown": {},
   "@quasar/qiconpicker": {},
-  "qribbon": {}
+  "@quasar/qribbon": {},
+  "qautomate": {
+    "quasarConfFixMode": "automatic",
+    "sort": true
+  }
 }

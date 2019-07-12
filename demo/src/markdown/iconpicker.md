@@ -51,7 +51,7 @@ Most icon sets are very large which may cause performance issues.
 | --- | --- | --- |
 | value | String | `v-model` data |
 | icon-set | String | Acceptable strings are: `material-icons`, `ionicons-v4`, `mdi-v3`, `fontawesome-v5`, `eva-icons`, and `themify` |
-| icons | Array | Data should look like this: `[ { name="extension" }, ... ]` |
+| icons | Array | Data should look like this: `[ { name="icon name" }, ... ]`. Note: the icons used must already be loaded. |
 | filter | String | Icons will be filtered by the passed string |
 | dense | Boolean | Dense mode |
 | tooltips | Boolan | Show tooltips |
@@ -61,7 +61,7 @@ Most icon sets are very large which may cause performance issues.
 | selected-color | String | This can be any CSS color value or Quasar color |
 | selected-background-color | String | This can be any CSS color value or Quasar color |
 | font-size | String | The font-size to use for the icons. Any acceptable CSS size can be used.<br>Examples: 1.85rem, 30px |
-| pagination | Object | For pagination purposes. Use `paginatin.sync` to synchronize the data.<br>`:pagination.sync="pagination"`<br>Where the object looks like this: `{ page: #, itemsPerPage: #, totalPage: # }`. You can use `page` and `itemsPerPage` to control the pagination. QIconPicker will set `totalPage` depending on `icon-set` or `icons` properties.<br>If using a `filter` the page will automatically be reset to 1 |
+| pagination | Object | For pagination purposes. Use `pagination.sync` to synchronize the data.<br>`:pagination.sync="pagination"`<br>Where the object looks like this: `{ page: #, itemsPerPage: #, totalPage: # }`. You can use `page` and `itemsPerPage` to control the pagination. QIconPicker will set `totalPages` depending on `icon-set` or `icons` properties.<br>If using a `filter` the page will automatically be reset to 1 |
 
 All colors can be from the [Quasar Color Pallete](https://quasar.dev/style/color-palette) or a CSS color (#, rgb, rgba, hls, etc).
 
@@ -69,7 +69,7 @@ All colors can be from the [Quasar Color Pallete](https://quasar.dev/style/color
 ## Vue Events
 | Vue Event | Args | Description |
 | --- | --- | --- |
-| input | - | v-model syncronization |
+| input | value | @input -> function(value) syncronization |
 
 ## Vue Slots
 | Vue Method | Data | Description |
