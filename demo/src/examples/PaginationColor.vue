@@ -1,4 +1,3 @@
-```
 <template>
   <div>
     <div class="row justify-center q-ma-md">
@@ -17,4 +16,18 @@
     />
   </div>
 </template>
-```
+
+<script>
+export default {
+  data () {
+    return {
+      value: '',
+      pagination: {
+        itemsPerPage: 60,
+        page: 0
+      },
+      paginationColor: 'orange-10'
+    }
+  }
+}
+</script>

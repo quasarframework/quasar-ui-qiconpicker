@@ -1,10 +1,17 @@
-```
+<template>
+  <q-icon-picker
+    v-model="value"
+    icon-set="material-icons"
+    :pagination.sync="pagination"
+    style="height: 220px;"
+  />
+</template>
+
 <script>
 export default {
   data () {
     return {
       value: '',
-      filter: '',
       pagination: {
         itemsPerPage: 60,
         page: 0
@@ -13,4 +20,3 @@ export default {
   }
 }
 </script>
-```
