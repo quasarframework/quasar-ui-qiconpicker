@@ -51,7 +51,7 @@ In order to work properly, QIconPicker needs a specified height in it's style (o
 | Vue Property | Type | Description |
 | --- | --- | --- |
 | value | String | `v-model` data |
-| icon-set | String | Acceptable strings are: `material-icons`, `ionicons-v4`, `mdi-v3`, `fontawesome-v5`, `eva-icons`, and `themify` |
+| icon-set | String | Acceptable strings are: `material-icons`, `material-icons-outlined`, `material-icons-round`, `material-icons-sharp`, `ionicons-v4`, `mdi-v3`, `fontawesome-v5`, `eva-icons`, and `themify`. Which ever icon set or sets you use must be pre-loaded in your `quasar.conf.js` |
 | icons | Array | Data should look like this: `[ { name="icon name" }, ... ]`. Note: the icons used must already be loaded. |
 | filter | String | Icons will be filtered by the passed string |
 | dense | Boolean | Dense mode |

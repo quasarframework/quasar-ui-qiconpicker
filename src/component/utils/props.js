@@ -3,7 +3,17 @@ export default {
     value: String,
     iconSet: {
       type: String,
-      validator: v => ['material-icons', 'ionicons-v4', 'mdi-v3', 'fontawesome-v5', 'eva-icons', 'themify', ''].includes(v),
+      validator: v => [
+        'material-icons',
+        'material-icons-outlined',
+        'material-icons-round',
+        'material-icons-sharp',
+        'ionicons-v4',
+        'mdi-v3',
+        'fontawesome-v5',
+        'eva-icons',
+        'themify',
+        ''].includes(v),
       default: ''
     },
     icons: Array,
