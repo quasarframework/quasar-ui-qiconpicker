@@ -112,8 +112,10 @@ export default Vue.extend({
     iconSet (val) {
       this.loadIconSet(val)
       this.updatePagination()
-      // whenever the icon set changes, it resets pagination page to page 1
-      this.setPagination({ page: 1 })
+      this.$nextTick(() => {
+        // whenever the icon set changes, it resets pagination page to page 1
+        this.setPagination({ page: 1 })
+      })
     },
 
     icons (val) {
@@ -121,8 +123,10 @@ export default Vue.extend({
         this.iconsList = this.icons
       }
       this.updatePagination()
-      // whenever the icons changes, it resets pagination page to page 1
-      this.setPagination({ page: 1 })
+      this.$nextTick(() => {
+        // whenever the icon set changes, it resets pagination page to page 1
+        this.setPagination({ page: 1 })
+      })
     },
 
     pagination (newVal, oldVal) {
