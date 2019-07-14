@@ -118,6 +118,8 @@ export default Vue.extend({
         // whenever the icon set changes, it resets pagination page to page 1
         this.setPagination({ page: 1 })
       })
+      // scroll to top of QScrollArea, if applicable
+      this.$refs.scrollArea.setScrollPosition(0)
     },
 
     icons (val) {
@@ -129,6 +131,8 @@ export default Vue.extend({
         // whenever the icon set changes, it resets pagination page to page 1
         this.setPagination({ page: 1 })
       })
+      // scroll to top of QScrollArea, if applicable
+      this.$refs.scrollArea.setScrollPosition(0)
     },
 
     pagination (newVal, oldVal) {
