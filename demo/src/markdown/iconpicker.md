@@ -7,9 +7,7 @@ QIconPicker
 [![GitHub repo size in bytes](https://img.shields.io/github/repo-size/quasarframework/app-extension-qiconpicker.svg)]()
 [![npm](https://img.shields.io/npm/dt/@quasar/quasar-app-extension-qiconpicker.svg)](https://www.npmjs.com/package/@quasar/quasar-app-extension-qiconpicker)
 
-QIconPicker is a [Quasar App Extension](https://quasar.dev/app-extensions/introduction). It allows you to select an icon from a specified [Quasar Icon Set](https://quasar.dev/options/quasar-icon-sets) or pass in an array of objects defining the icons to be displayed.
-
-QIconPicker is a [Quasar App Extension](https://quasar.dev/app-extensions/introduction). It is a powerful component that plugs right into your Quasar application and allows you to have an icon selector embedded in your app.
+QIconPicker is a [Quasar App Extension](https://quasar.dev/app-extensions/introduction). It allows you to have an icon selector embedded in your app. It uses a [Quasar Icon Set](https://quasar.dev/options/quasar-icon-sets) or you can pass in an array of objects defining the icons to be displayed.
 
 # Install
 To add this App Extension to your Quasar application, run the following (in your Quasar app folder):
