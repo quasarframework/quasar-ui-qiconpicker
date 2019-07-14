@@ -30,8 +30,10 @@ export default Vue.extend({
     }
   },
 
-  created () {
-    this.$emit('update:pagination', { ...this.computedPagination })
+  beforeMount () {
+    if (this.pagination) {
+      this.$emit('update:pagination', { ...this.computedPagination })
+    }
   },
 
   mounted () {
