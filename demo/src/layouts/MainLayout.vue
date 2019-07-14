@@ -40,7 +40,8 @@
       content-style="background-color: #f8f8ff"
     >
       <q-list>
-        <q-item-label header>Essential Links</q-item-label>
+        <q-item-label header>
+          <q-icon name="fas fa-link" size="1.5em" class="q-mr-md" /><span style="font-size: 1.5em">Essential Links</span></q-item-label>
       </q-list>
       <essential-links />
     </q-drawer>
@@ -93,14 +94,6 @@ export default {
       activeToc: 0
     }
   },
-  beforeDestroy () {
-    clearTimeout(this.scrollTimer)
-  },
-  computed: {
-    ...mapGetters({
-      toc: 'common/toc'
-    })
-  },
   mounted () {
     // code to handle anchor link on refresh/new page, etc
     if (location.hash !== '') {
@@ -110,26 +103,23 @@ export default {
       }, 200)
     }
   },
+  computed: {
+    ...mapGetters({
+      toc: 'common/toc'
+    })
+  },
   methods: {
     scrollTo (id) {
       this.activeToc = id
       const el = document.getElementById(id)
-      clearTimeout(this.scrollTimer)
 
       if (el) {
         this.scrollPage(el)
       }
     },
     scrollPage (el) {
-      const
-        target = scroll.getScrollTarget(el),
-        offset = el.offsetTop - el.scrollHeight
-
-      this.scrollingPage = true
-      this.scrollTimer = setTimeout(() => {
-        this.scrollingPage = false
-      }, 510)
-      scroll.setScrollPosition(target, offset, 500)
+      const offset = el.offsetTop - 50
+      scroll.setScrollPosition(window, offset, 500)
     }
   }
 }
