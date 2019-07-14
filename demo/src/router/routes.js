@@ -12,6 +12,13 @@ const routes = [
     ]
   },
   {
+    path: '/icons',
+    component: () => import('layouts/IconsLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/Icons.vue') }
+    ]
+  },
+  {
     path: '/examples',
     component: () => import('layouts/MainLayout.vue'),
     children: [

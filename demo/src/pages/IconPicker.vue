@@ -56,7 +56,6 @@
         </q-card-section>
         <q-card-section>
           <p>You can use the QInput as a bit of a filter, by typing part of an icon, then clicking on the icon button. The results will then be filtered to show only matching icons. Clear the text before selecting a new icon to see all of them.</p>
-          <p>Note: This example is using Material Icons.</p>
         </q-card-section>
       </q-card>
 
@@ -78,17 +77,6 @@ export default {
       value: '',
       name: 'material-icons',
       filter: '',
-      iconSets: [
-        { label: 'Eva Icons', value: 'eva-icons' },
-        { label: 'Fontawesome Icons', value: 'fontawesome-v5' },
-        { label: 'Ion Icons', value: 'ionicons-v4' },
-        { label: 'Material Icons', value: 'material-icons' },
-        { label: 'Material Icons Outlined', value: 'material-icons-outlined' },
-        { label: 'Material Icons Round', value: 'material-icons-round' },
-        { label: 'Material Icons Sharp', value: 'material-icons-sharp' },
-        { label: 'MDI Icons', value: 'mdi-v3' },
-        { label: 'Themify Icons', value: 'themify' }
-      ],
       showIconPicker: false,
       pagination: {
         itemsPerPage: 60,
@@ -100,7 +88,8 @@ export default {
     ...mapGetters({
       tooltips: 'iconpicker/tooltips',
       dense: 'iconpicker/dense',
-      noFooter: 'iconpicker/noFooter'
+      noFooter: 'iconpicker/noFooter',
+      iconSets: 'common/iconSets'
     }),
 
     title () {

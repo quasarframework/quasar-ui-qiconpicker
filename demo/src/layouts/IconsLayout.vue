@@ -21,16 +21,6 @@
 
         <div>Quasar v{{ $q.version }}</div>
 
-        <q-btn
-          flat
-          dense
-          round
-          @click="rightDrawerOpen = !rightDrawerOpen"
-          aria-label="Table of Contents"
-        >
-          <q-icon name="menu" />
-        </q-btn>
-
       </q-toolbar>
     </q-header>
 
@@ -44,32 +34,6 @@
           <q-icon name="fas fa-link" size="1.5em" class="q-mr-md" /><span style="font-size: 1.5em">Essential Links</span></q-item-label>
       </q-list>
       <essential-links />
-    </q-drawer>
-
-    <q-drawer
-      v-model="rightDrawerOpen"
-      side="right"
-      bordered
-      content-style="background-color: #f8f8ff"
-    >
-      <q-scroll-area class="fit">
-        <q-list dense>
-          <q-item
-            v-for="item in toc"
-            :key="item.id"
-            clickable
-            v-ripple
-            dense
-            @click="scrollTo(item.id)"
-            :active="activeToc === item.id"
-          >
-          <q-item-section v-if="item.level > 1" side> • </q-item-section>
-            <q-item-section
-              :class="`toc-item toc-level-${item.level}`"
-            >{{ item.label }}</q-item-section>
-          </q-item>
-        </q-list>
-      </q-scroll-area>
     </q-drawer>
 
     <q-page-container>
@@ -89,9 +53,7 @@ export default {
   },
   data () {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop,
-      rightDrawerOpen: this.$q.platform.is.desktop,
-      activeToc: 0
+      leftDrawerOpen: this.$q.platform.is.desktop
     }
   },
   mounted () {
