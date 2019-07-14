@@ -3,6 +3,7 @@
     v-model="value"
     :icons="icons"
     style="height: 100px;"
+    tooltips
   />
 </template>
 
@@ -13,6 +14,9 @@ export default {
       value: '',
       icons: [
         { name: 'camera' },
+        { name: 'o_camera' },
+        { name: 'r_camera' },
+        { name: 's_camera' },
         { name: 'ion-ios-camera' },
         { name: 'fas fa-camera' },
         { name: 'eva-camera' },
