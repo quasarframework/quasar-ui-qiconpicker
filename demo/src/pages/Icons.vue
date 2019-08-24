@@ -9,10 +9,13 @@
       <q-separator vertical inset />
       <q-icon :name="name" size="3em" />
       <q-separator v-if="name && name.length > 0" vertical inset />
+      <q-space />
+      <q-input v-model="filter" label="Filter" outlined clearable class="q-ma-md" />
     </div>
     <q-separator style="width: 100%;"/>
     <q-icon-picker
       v-model="name"
+      :filter="filter"
       :icon-set="iconSet"
       font-size="3em"
       tooltips
@@ -31,6 +34,7 @@ export default {
   data () {
     return {
       name: '',
+      filter: '',
       pagination: {
         itemsPerPage: 0,
         page: 0,
