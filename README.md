@@ -31,7 +31,7 @@ quasar ext remove @quasar/qiconpicker
 ```
 
 # Describe
-You can use `quasar describe QIconPicker` (TBD)
+You can use `quasar describe QIconPicker`
 
 # Donate
 If you appreciate the work that went into this App Extension, please consider [donating to Quasar](https://donate.quasar.dev).
