@@ -2,7 +2,7 @@
   "name": "@quasar/quasar-app-extension-qiconpicker",
   "version": "1.0.1",
   "description": "QIconPicker - Quasar App Extension",
-  "author": "Hawkeye64 <jeff@quasar.dev>",
+  "author": "Jeff Galbraith <jeff@quasar.dev>",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
@@ -40,8 +40,11 @@
   "devDependencies": {
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.2",
-    "eslint": "^6.0.1",
-    "eslint-loader": "^2.1.2",
+    "eslint": "^6.2.2",
+    "eslint-loader": "^3.0.0",
     "eslint-plugin-vue": "^5.2.3"
+  },
+  "dependencies": {
+    "quasar-mixin-colorize": "^1.0.0-alpha.9"
   }
 }
