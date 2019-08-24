@@ -9,9 +9,9 @@ Icon sets contain hundreds, even thousands of icons. This page utilizes several 
       <example-title title="Basic" />
       <example-card title="Default" name="Default" :tag-parts="getTagParts(require('!!raw-loader!../examples/Default.vue').default)" />
       <example-card title="Size" name="Size" :tag-parts="getTagParts(require('!!raw-loader!../examples/Size.vue').default)" />
-      <example-card title="Tooltips" name="Tooltips" :tag-parts="getTagParts(require('!!raw-loader!../examples/Size.vue').default)" />
-      <example-card title="Color" name="Color" :tag-parts="getTagParts(require('!!raw-loader!../examples/Size.vue').default)" />
-      <example-card title="Selected Color" name="SelectedColor" :tag-parts="getTagParts(require('!!raw-loader!../examples/Size.vue').default)" />
+      <example-card title="Tooltips" name="Tooltips" :tag-parts="getTagParts(require('!!raw-loader!../examples/Tooltips.vue').default)" />
+      <example-card title="Color" name="Color" :tag-parts="getTagParts(require('!!raw-loader!../examples/Color.vue').default)" />
+      <example-card title="Selected Color" name="SelectedColor" :tag-parts="getTagParts(require('!!raw-loader!../examples/SelectedColor.vue').default)" />
 
       <example-title title="Advanced" />
       <q-markdown>

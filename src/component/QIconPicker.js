@@ -4,7 +4,7 @@ import Vue from 'vue'
 import './icon-picker.styl'
 
 // Mixins
-import Colorize from './mixins/colorize'
+import { Colorize } from 'quasar-mixin-colorize'
 
 // Util
 import props from './utils/props'
@@ -159,7 +159,7 @@ export default Vue.extend({
     loadIconSet (set) {
       if (set) {
         try {
-          let icons = require(`./utils/${set}.json`)
+          let icons = require(`./utils/${set}.js`).default
           this.iconsList = icons
           return
         } catch (e) {
@@ -182,6 +182,7 @@ export default Vue.extend({
     // returns true of the pagination is the same,
     // otherwise returns false if it has changed
     samePagination (oldPag, newPag) {
+      // eslint-disable-next-line no-unused-vars
       for (let prop in newPag) {
         if (newPag[prop] !== oldPag[prop]) {
           return false
