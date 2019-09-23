@@ -1,5 +1,7 @@
 demo
 docs
+build
+.vscode
 .git
 .editorconfig
 .eslintrc.js

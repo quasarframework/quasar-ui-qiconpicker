@@ -157,16 +157,15 @@ export default Vue.extend({
 
   methods: {
     loadIconSet (set) {
+      this.iconsList = []
       if (set) {
         try {
           let icons = require(`./utils/${set}.js`).default
           this.iconsList = icons
-          return
         } catch (e) {
           console.error(`QIconPicker: no icon set found called: ${set}`)
         }
       }
-      this.iconsList = []
     },
 
     fixPagination (p) {
