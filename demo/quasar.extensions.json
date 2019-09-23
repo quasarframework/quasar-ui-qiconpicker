@@ -6,5 +6,6 @@
     "quasarConfFixMode": "automatic",
     "sort": true
   },
-  "@quasar/qpublish": {}
+  "@quasar/qpublish": {},
+  "@quasar/colorize": {}
 }
