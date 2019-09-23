@@ -18,7 +18,7 @@ module.exports = function (ctx) {
       'material-icons-round',
       'material-icons-sharp',
       'ionicons-v4',
-      'mdi-v3',
+      'mdi-v4',
       'fontawesome-v5',
       'eva-icons',
       'themify'

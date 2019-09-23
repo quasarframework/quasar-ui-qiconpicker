@@ -1,5 +1,4 @@
-const fonts = [
-  { name: 'ion-alert' },
+export default [
   { name: 'ion-ios-add' },
   { name: 'ion-ios-add-circle' },
   { name: 'ion-ios-add-circle-outline' },
@@ -164,6 +163,9 @@ const fonts = [
   { name: 'ion-ios-image' },
   { name: 'ion-ios-images' },
   { name: 'ion-ios-infinite' },
+  { name: 'ion-ios-information' },
+  { name: 'ion-ios-information-circle' },
+  { name: 'ion-ios-information-circle-outline' },
   { name: 'ion-ios-jet' },
   { name: 'ion-ios-journal' },
   { name: 'ion-ios-key' },
@@ -694,4 +696,3 @@ const fonts = [
   { name: 'ion-md-wine' },
   { name: 'ion-md-woman' }
 ]
-export default fonts
