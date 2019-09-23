@@ -1,6 +1,6 @@
 {
   "name": "@quasar/quasar-app-extension-qiconpicker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "QIconPicker - Quasar App Extension",
   "author": "Jeff Galbraith <jeff@quasar.dev>",
   "main": "src/index.js",
