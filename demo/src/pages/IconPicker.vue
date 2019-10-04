@@ -42,7 +42,7 @@
                   <q-icon-picker
                     v-model="value"
                     :filter="value"
-                    icon-set="material-icons"
+                    :icon-set="name"
                     :tooltips="tooltips"
                     :dense="dense"
                     :no-footer="noFooter"
