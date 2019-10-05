@@ -1,9 +1,11 @@
-# Quasar App Extension qiconpicker
+# Quasar App Extension QIconPicker
 
-> Add a short description of your App Extension. What does it do? How is it beneficial? Why would someone want to use it?
+The **QIconPicker App Extension** allows you to seamlessly add the [QIconPicker](../ui) component into your Quasar application. It manages the boot file file and all other configuration for you.
 
 [![npm](https://img.shields.io/npm/v/@quasar/quasar-app-extension-qiconpicker.svg?label=@quasar/quasar-app-extension-qiconpicker)](https://www.npmjs.com/package/quasar-app-extension-qiconpicker)
 [![npm](https://img.shields.io/npm/dt/@quasar/quasar-app-extension-qiconpicker.svg)](https://www.npmjs.com/package/@quasar/quasar-app-extension-qiconpicker)
+
+![QIconPicker](https://raw.githubusercontent.com/quasarframework/quasar-ui-qiconpicker/dev/demo/src/statics/q-icon-picker.png)
 
 # Install
 ```bash
@@ -11,20 +13,10 @@ quasar ext add @quasar/qiconpicker
 ```
 Quasar CLI will retrieve it from NPM and install the extension.
 
-## Prompts
-
-> If your app extension uses prompts, explain them here, otherwise remove this section.
-
 # Uninstall
 ```bash
 quasar ext remove @quasar/qiconpicker
 ```
-
-# Info
-> Add longer information here that will help the user of your app extension.
-
-# Other Info
-> Add other information that's not as important to know
 
 # Donate
 If you appreciate the work that went into this App Extension, please consider [donating to Quasar](https://donate.quasar.dev).
