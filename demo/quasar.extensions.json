@@ -2,10 +2,6 @@
   "@quasar/qmarkdown": {},
   "@quasar/qiconpicker": {},
   "@quasar/qribbon": {},
-  "qautomate": {
-    "quasarConfFixMode": "automatic",
-    "sort": true
-  },
   "@quasar/qpublish": {},
   "@quasar/colorize": {}
 }
