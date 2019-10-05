@@ -1,8 +1,8 @@
 {
-  "name": "quasar-ui-qiconpicker",
+  "name": "@quasar/quasar-ui-qiconpicker",
   "version": "1.0.0",
   "author": "Jeff Galbraith <jeff@quasar.dev>",
-  "description": "My awesome component",
+  "description": "QIconPicker - Quasar component",
   "license": "MIT",
   "module": "dist/index.esm.js",
   "main": "dist/index.common.js",

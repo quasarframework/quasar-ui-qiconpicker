@@ -1,21 +1,30 @@
 {
   "name": "quasar-app-extension-qiconpicker",
-  "version": "1.0.4",
-  "description": "A Quasar App Extension",
+  "version": "1.0.5",
+  "description": "QIconPicker - A Quasar App Extension",
   "author": "Jeff Galbraith <jeff@quasar.dev>",
   "license": "MIT",
   "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint --ext .js,.vue src",
+    "lint-fix": "eslint --ext .js,.vue src --fix"
+  },
   "publishConfig": {
     "access": "public"
   },
-  "bugs": "https://github.com/quasarframework/app-extension-qiconpicker/issues",
+  "bugs": "https://github.com/quasarframework/quasar-ui-qiconpicker/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/quasarframework/app-extension-qiconpicker.git"
+    "url": "git+https://github.com/quasarframework/quasar-ui-qiconpicker.git"
   },
-  "homepage": "https://github.com/quasarframework/app-extension-qiconpicker",
+  "homepage": "https://github.com/quasarframework/quasar-ui-qiconpicker",
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.6.0",
+    "yarn": ">= 1.6.0"
+  },
   "dependencies": {
-    "quasar-ui-qiconpicker": "latest"
+    "@quasar/quasar-ui-qiconpicker": "latest"
   },
   "devDependencies": {
     "@vue/eslint-config-standard": "^4.0.0",
@@ -23,10 +32,5 @@
     "eslint": "^6.4.0",
     "eslint-loader": "^3.0.2",
     "eslint-plugin-vue": "^5.2.3"
-  },
-  "engines": {
-    "node": ">= 8.9.0",
-    "npm": ">= 5.6.0",
-    "yarn": ">= 1.6.0"
   }
 }
