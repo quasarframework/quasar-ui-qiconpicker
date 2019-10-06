@@ -4,7 +4,7 @@ QIconPicker
 [![npm](https://img.shields.io/npm/v/@quasar/quasar-ui-qiconpicker.svg?label=@quasar/quasar-ui-qiconpicker)](https://www.npmjs.com/package/@quasar/quasar-ui-qiconpicker)
 [![npm](https://img.shields.io/npm/dt/@quasar/quasar-ui-qiconpicker.svg)](https://www.npmjs.com/package/@quasar/quasar-ui-qiconpicker)
 
-QCalendar is a [Quasar](https://quasar.dev) component. It gives an Icon Picker for your apps.
+QIconPicker is a [Quasar](https://quasar.dev) component. It gives an Icon Picker for your apps.
 
 ![QIconPicker](https://raw.githubusercontent.com/quasarframework/quasar-ui-qiconpicker/dev/demo/src/statics/q-icon-picker.png)
 
@@ -231,6 +231,8 @@ Choices are:
   </body>
 </html>
 ```
+
+# Codepen
 
 [UMD Example on Codepen](https://codepen.io/Hawkeye64/pen/vYYYewG)
 

@@ -128,7 +128,7 @@ export default {
 
 ## UMD variant
 
-Exports `window.QCalendar`.
+Exports `window.QIconPicker`.
 
 Add the following tag(s) after the Quasar ones:
 
@@ -168,7 +168,7 @@ Choices are:
 8. mdi-v4-outlined.umd.js
 9. themify.umd.js
 
-
+# Codepen
 [UMD Example on Codepen](https://codepen.io/Hawkeye64/pen/vYYYewG)
 
 # Docs
