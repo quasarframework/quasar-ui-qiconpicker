@@ -2,7 +2,7 @@
 import { QColorizeMixin } from 'q-colorize-mixin'
 
 // Util
-import props from './utils/props'
+import props from './utils/props.js'
 
 // Quasar
 import { QBtn, QScrollArea, QTooltip, QPagination } from 'quasar'
