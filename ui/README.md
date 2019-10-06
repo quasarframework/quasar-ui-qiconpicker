@@ -71,6 +71,40 @@ export default {
 </script>
 ```
 
+### Caching
+
+If you would like to pre-load one or more icon sets, so they are cached, you can load the UMD variant.
+
+You can do this by adding to your **App.vue** file:
+
+```html
+<template>
+  <div id="q-app">
+    <router-view />
+  </div>
+</template>
+
+<script>
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/eva-icons.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/fontawesome-v5.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/ionicons-v4.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-outlined.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-round.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-sharp.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/mdi-v4.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/themify.umd.js'
+export default {
+  name: 'App'
+}
+</script>
+
+<style>
+</style>
+```
+
+Don't add them all (unless you have this requirement). Remove the ones from above you won't be needing.
+
 ## UMD variant
 
 Exports `window.QIconPicker`.
