@@ -73,9 +73,9 @@ export default {
 
 ### Caching
 
-If you would like to pre-load one or more icon sets, so they are cached, you can load the UMD variant.
+If you are using a large icon set and find it is taking too long to load, you can pre-cache the UMD variant.
 
-You can do this by adding to your **App.vue** file:
+You can do this by adding to your **App.vue** (or, any other appropriate) file:
 
 ```html
 <template>
