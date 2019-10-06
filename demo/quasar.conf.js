@@ -84,7 +84,7 @@ module.exports = function (ctx) {
     build: {
       scopeHoisting: true,
       vueRouterMode: 'history',
-      publicPath: 'app-extension-qiconpicker',
+      publicPath: 'quasar-ui-qiconpicker',
       // vueCompiler: true,
       // gzip: true,
       // analyze: true,
