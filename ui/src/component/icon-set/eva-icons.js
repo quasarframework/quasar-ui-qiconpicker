@@ -1,5 +1,5 @@
 export default {
-  name: eva-icons,
+  name: 'eva-icons',
   icons: [
     { name: 'eva-activity' },
     { name: 'eva-activity-outline' },

@@ -155,8 +155,8 @@ export default {
       this.iconsList = []
       if (set) {
         // detect if UMD version is installed
-        const name = set.replace(/-([a-z])/g, g => g[1].toUpperCase())
         if (window.QIconPicker) {
+          const name = set.replace(/-([a-z])/g, g => g[1].toUpperCase())
           if (window.QIconPicker.iconSet && window.QIconPicker.iconSet[name]) {
             const iconsSet = window.QIconPicker.iconSet[name]
             this.iconsList = iconsSet.icons
@@ -168,10 +168,26 @@ export default {
         }
         else {
           try {
-            const iconsSet = require(`./icon-set/${set}.js`).default
+            const iconsSet = require(`@quasar/quasar-ui-qiconpicker/src/component/icon-set/${set}.js`).default
             this.iconsList = iconsSet.icons
-          } catch (e) {
-            console.error(`QIconPicker: no icon set found called '${set}'`)
+          }
+          catch (e) {
+            // console.error(`Not found: @quasar/quasar-ui-qiconpicker/src/component/icon-set/${set}.js`)
+            try {
+              const iconsSet = require(`../src/component/icon-set/${set}.js`).default
+              this.iconsList = iconsSet.icons
+            }
+            catch (e) {
+              // console.error(`Not found: ../src/component/icon-set/${set}.js`)
+              try {
+                const iconsSet = require(`./icon-set/${set}.js`).default
+                this.iconsList = iconsSet.icons
+              }
+              catch (e) {
+                // console.error(`Not found: ./icon-set/${set}.js`)
+                console.error(`QIconPicker: no icon set found called '${set}'`)
+              }
+            }
           }
         }
       }
@@ -187,7 +203,7 @@ export default {
       return p
     },
 
-    // returns true of the pagination is the same,
+    // returns true if the pagination is the same,
     // otherwise returns false if it has changed
     samePagination (oldPag, newPag) {
       // eslint-disable-next-line no-unused-vars

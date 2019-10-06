@@ -4,7 +4,7 @@
     "value": {
       "type": "String",
       "desc": "`v-model`; The selected icon",
-      "default": "",
+      "default": "''",
       "examples": [
         "v-model=\"calendar-today\"",
         "v-model=\"bolt\""

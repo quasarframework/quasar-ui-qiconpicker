@@ -5,12 +5,13 @@
   be parsing. So, we open the old fontawesome-v5.js file (which was
   made for web, not node), read it in, make adjustments, and eval it
   (yeah I know, eval bad). Then we make a map of fonts and the
-  prefixes to we can add the prefix back. If it's a new font, we make
+  prefixes so we can add the prefix back. If it's a new font, we make
   the prefix '---' so we can search the file for it and hand-curate
-  the prefix manually. Then, we have a fiished file.
+  the prefix manually. Then, we have a finished file.
 */
-const fs = require('fs')
 const path = require('path')
+const { green, blue } = require('chalk')
+const { readFile, writeFile } = require('../utils')
 
 const name = 'fontawesome-v5'
 const inputLocation = `../../src/component/icon-set/${name}.js`
@@ -21,7 +22,7 @@ let blacklisted = [
   'fa-font-awesome-logo-full'
 ]
 
-let fa = fs.readFileSync(path.resolve(__dirname, inputLocation), 'utf8')
+let fa = readFile(path.resolve(__dirname, inputLocation))
 fa = fa.split('\n')
 fa.shift()
 fa.shift()
@@ -38,7 +39,7 @@ fa.forEach(f => {
 })
 
 const location = require.resolve('@quasar/extras/fontawesome-v5/fontawesome-v5.css')
-const fileContents = fs.readFileSync(location, 'utf8')
+const fileContents = readFile(location)
 
 fileContents
   .split('\n')
@@ -58,16 +59,16 @@ fileContents
     }
   })
 
-  let output = 'export default {\n'
-  output += `  name: ${name},\n`
-  output += '  icons: [\n'
+let output = 'export default {\n'
+output += `  name: '${name}',\n`
+output += '  icons: [\n'
 
-  icons.forEach((icon, index) => {
-    output += `    { name: '${icon}' },\n`
-  })
+icons.forEach((icon, index) => {
+  output += `    { name: '${icon}' },\n`
+})
 
-  output += '  ]\n'
-  output += '}\n'
+output += '  ]\n'
+output += '}\n'
 
-fs.writeFileSync(path.resolve(__dirname, outputLocation), output, 'utf8')
-console.log(`Fontawesome v5 Icons generation: Done - count: ${icons.length}`)
+writeFile(path.resolve(__dirname, outputLocation), output)
+console.log(`${blue('[icon]')} ${green(name + ':')} ${icons.length} generated`)

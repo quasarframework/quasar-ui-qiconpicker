@@ -1,5 +1,5 @@
 export default {
-  name: ionicons-v4,
+  name: 'ionicons-v4',
   icons: [
     { name: 'ion-ios-add' },
     { name: 'ion-ios-add-circle' },

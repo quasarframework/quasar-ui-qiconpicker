@@ -92,18 +92,24 @@ If you need the RTL variant of the CSS, then go for the following (instead of th
 <link href="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker/dist/index.rtl.min.css" rel="stylesheet" type="text/css">
 ```
 
-For UMD variants, there is also a couple of caveats:
-1. You must load the Quasar icon set you would like to use:
+For **UMD** variants only, there is also a caveat:
 
-```html
-  <script src="https://cdn.jsdelivr.net/npm/quasar@^1.0.0/dist/icon-set/material-icons.umd.min.js"></script>
-```
-
-2. You must also load, in conjunction, the QIconPicker icon set that matches the Quasar icon set:
+You must **also** load the QIconPicker icon set for the icon font(s) that you have loaded:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons.umd.js"></script>
 ```
+
+Choices are:
+1. eva-icons.umd.js
+2. fontawesome-v5.umd.js
+3. ionicons-v4.umd.js
+4. material-icons-outlined.umd.js
+5. material-icons-round.umd.js
+6. material-icons-sharp.umd.js
+7. material-icons.umd.js
+8. mdi-v4-outlined.umd.js
+9. themify.umd.js
 
 ### UMD Example
 ```html
@@ -192,7 +198,7 @@ For UMD variants, there is also a couple of caveats:
 </html>
 ```
 
-TBD: [UMD example on Codepen](https://codepen.io/Hawkeye64/pen/RwwwKQL)
+[UMD Example on Codepen](https://codepen.io/Hawkeye64/pen/vYYYewG)
 
 # Building the Projects
 

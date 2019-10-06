@@ -13,6 +13,8 @@ require('./script.clean.js')
 console.log(` 📦 Building ${green('v' + require('../package.json').version)}...${parallel ? blue(' [multi-threaded]') : ''}\n`)
 
 createFolder('dist')
+createFolder('dist/icon-set')
 
+runJob(join(__dirname, './icons/build.all.js'))
 runJob(join(__dirname, './script.javascript'))
 runJob(join(__dirname, './script.css'))

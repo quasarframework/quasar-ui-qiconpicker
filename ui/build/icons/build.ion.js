@@ -1,5 +1,6 @@
-const fs = require('fs')
 const path = require('path')
+const { green, blue } = require('chalk')
+const { readFile, writeFile } = require('../utils')
 
 const name = 'ionicons-v4'
 const outputLocation = `../../src/component/icon-set/${name}.js`
@@ -9,7 +10,7 @@ let blacklisted = [
 ]
 
 const location = require.resolve('@quasar/extras/ionicons-v4/ionicons-v4.css')
-const fileContents = fs.readFileSync(location, 'utf8')
+const fileContents = readFile(location)
 
 fileContents
   .split('\n')
@@ -26,7 +27,7 @@ fileContents
   })
 
 let output = 'export default {\n'
-output += `  name: ${name},\n`
+output += `  name: '${name}',\n`
 output += '  icons: [\n'
 
 icons.forEach((icon, index) => {
@@ -36,5 +37,5 @@ icons.forEach((icon, index) => {
 output += '  ]\n'
 output += '}\n'
 
-fs.writeFileSync(path.resolve(__dirname, outputLocation), output, 'utf8')
-console.log(`Ion Icons generation: Done - count: ${icons.length}`)
+writeFile(path.resolve(__dirname, outputLocation), output)
+console.log(`${blue('[icon]')} ${green(name + ':')} ${icons.length} generated`)
