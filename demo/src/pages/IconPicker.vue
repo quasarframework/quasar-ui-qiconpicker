@@ -5,7 +5,6 @@
       <q-card style="width: 100%; max-width: 600px;">
         <q-card-section>
           <div class="text-h6">QIconPicker Example</div>
-          <div class="text-subtitle2">{{ title }}</div>
           <div>
             <q-select v-model="name" :options="iconSets" label="Icon Set" emit-value />
             <q-input v-model="filter" label="Filter" clearable />
@@ -37,15 +36,16 @@
           <q-input v-model="value" label="Icon" clearable >
             <template v-slot:append>
               <q-icon name="extension" class="cursor-pointer">
-                <q-popup-proxy v-model="showIconPicker">
+                <q-popup-proxy>
 
                   <q-icon-picker
                     v-model="value"
-                    :filter="value"
                     :icon-set="name"
+                    :filter="value"
                     :tooltips="tooltips"
                     :dense="dense"
                     :no-footer="noFooter"
+                    :pagination.sync="pagination"
                     style="height: 300px; width: 300px;"
                   />
 
@@ -90,14 +90,7 @@ export default {
       dense: 'iconpicker/dense',
       noFooter: 'iconpicker/noFooter',
       iconSets: 'common/iconSets'
-    }),
-
-    title () {
-      if (this.selectedIconSet && 'label' in this.selectedIconSet) {
-        return this.selectedIconSet.label
-      }
-      return ''
-    }
+    })
   },
 
   watch: {

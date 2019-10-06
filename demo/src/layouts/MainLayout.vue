@@ -12,11 +12,8 @@
           <q-icon name="menu" />
         </q-btn>
 
-        <q-toolbar-title v-if="$q.screen.width > 500">
-          QIconPicker
-          <q-tooltip v-if="$q.screen.width < 1077">
-            QIconPicker
-          </q-tooltip>
+        <q-toolbar-title>
+          QIconPicker <span class="text-subtitle2">v{{ version }}</span>
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
@@ -81,6 +78,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { scroll } from 'quasar'
+import { version } from '@quasar/quasar-ui-qiconpicker'
 
 export default {
   name: 'MyLayout',
@@ -89,6 +87,7 @@ export default {
   },
   data () {
     return {
+      version,
       leftDrawerOpen: this.$q.platform.is.desktop,
       rightDrawerOpen: this.$q.platform.is.desktop,
       activeToc: 0

@@ -4,7 +4,7 @@
       <div class="text-h1 project-name">QIconPicker</div>
       <div class="text-h2 project-tagline"></div>
       <div class="byline">Created and maintained by Jeff Galbraith</div>
-      <div class="quasar">A Quasar Framework App Extension</div>
+      <div class="quasar">A Quasar Framework Component and App Extension</div>
       <q-btn type="a" href="https://github.com/quasarframework/app-extension-qiconpicker" target="_blank" class="btn" label="View on GitHub" no-caps flat/>
       <q-btn to="/icons" class="btn" label="Icons" no-caps flat/>
       <q-btn to="/docs" class="btn" label="Docs" no-caps flat/>
