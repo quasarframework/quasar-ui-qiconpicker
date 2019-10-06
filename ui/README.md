@@ -71,6 +71,40 @@ export default {
 </script>
 ```
 
+### Caching
+
+If you are using a large icon set and find it is taking too long to load, you can pre-cache the UMD variant.
+
+You can do this by adding to your **App.vue** (or, any other appropriate) file:
+
+```html
+<template>
+  <div id="q-app">
+    <router-view />
+  </div>
+</template>
+
+<script>
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/eva-icons.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/fontawesome-v5.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/ionicons-v4.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-outlined.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-round.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-sharp.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/mdi-v4.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/themify.umd.js'
+export default {
+  name: 'App'
+}
+</script>
+
+<style>
+</style>
+```
+
+Don't add them all (unless you have this requirement). Remove the ones from above you won't be needing.
+
 ## UMD variant
 
 Exports `window.QIconPicker`.
@@ -92,18 +126,24 @@ If you need the RTL variant of the CSS, then go for the following (instead of th
 <link href="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker/dist/index.rtl.min.css" rel="stylesheet" type="text/css">
 ```
 
-For UMD variants, there is also a couple of caveats:
-1. You must load the Quasar icon set you would like to use:
+For **UMD** variants only, there is also a caveat:
 
-```html
-  <script src="https://cdn.jsdelivr.net/npm/quasar@^1.0.0/dist/icon-set/material-icons.umd.min.js"></script>
-```
-
-2. You must also load, in conjunction, the QIconPicker icon set that matches the Quasar icon set:
+You must **also** load the QIconPicker icon set for the icon font(s) that you have loaded:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons.umd.js"></script>
 ```
+
+Choices are:
+1. eva-icons.umd.js
+2. fontawesome-v5.umd.js
+3. ionicons-v4.umd.js
+4. material-icons-outlined.umd.js
+5. material-icons-round.umd.js
+6. material-icons-sharp.umd.js
+7. material-icons.umd.js
+8. mdi-v4-outlined.umd.js
+9. themify.umd.js
 
 ### UMD Example
 ```html
@@ -192,7 +232,7 @@ For UMD variants, there is also a couple of caveats:
 </html>
 ```
 
-TBD: [UMD example on Codepen](https://codepen.io/Hawkeye64/pen/RwwwKQL)
+[UMD Example on Codepen](https://codepen.io/Hawkeye64/pen/vYYYewG)
 
 # Building the Projects
 
@@ -234,7 +274,7 @@ $ yarn build
 ```
 
 # Donate
-If you appreciate the work that went into this, please consider [donating to Quasar](https://donate.quasar.dev).
+If you appreciate the work that went into this project, please consider [donating to Quasar](https://donate.quasar.dev).
 
 # License
 MIT (c) Jeff Galbraith <jeff@quasar.dev>

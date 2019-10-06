@@ -1,5 +1,5 @@
 export default {
-  name: fontawesome-v5,
+  name: 'fontawesome-v5',
   icons: [
     { name: 'fab fa-500px' },
     { name: 'fab fa-accessible-icon' },

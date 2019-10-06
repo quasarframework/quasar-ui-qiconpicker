@@ -1,5 +1,5 @@
 export default {
-  name: mdi-v4,
+  name: 'mdi-v4',
   icons: [
     { name: 'mdi-ab-testing' },
     { name: 'mdi-access-point' },

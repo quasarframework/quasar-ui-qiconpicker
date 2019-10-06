@@ -25,9 +25,6 @@ export default {
         page: 0
       }
     }
-  },
-  mounted () {
-    console.log(window)
   }
 }
 </script>

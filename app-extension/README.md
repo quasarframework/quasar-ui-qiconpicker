@@ -19,7 +19,7 @@ quasar ext remove @quasar/qiconpicker
 ```
 
 # Donate
-If you appreciate the work that went into this App Extension, please consider [donating to Quasar](https://donate.quasar.dev).
+If you appreciate the work that went into this project, please consider [donating to Quasar](https://donate.quasar.dev).
 
 # License
 MIT (c) Jeff Galbraith <jeff@quasar.dev>

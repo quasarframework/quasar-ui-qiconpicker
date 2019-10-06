@@ -13,13 +13,8 @@
           <q-icon name="menu" />
         </q-btn>
 
-        <q-icon name="bolt" class="q-ml-md" size="1.5rem"></q-icon>
-
-        <q-toolbar-title v-if="$q.screen.width > 500">
-          QIconPicker
-          <q-tooltip v-if="$q.screen.width < 1077">
-            QIconPicker
-          </q-tooltip>
+        <q-toolbar-title>
+          QIconPicker <span class="text-subtitle2">v{{ version }}</span>
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
@@ -62,7 +57,7 @@
 </template>
 
 <script>
-import { openURL } from 'quasar'
+import { version } from '@quasar/quasar-ui-qiconpicker'
 
 export default {
   name: 'IconPickerLayout',
@@ -72,11 +67,9 @@ export default {
   },
   data () {
     return {
+      version,
       leftDrawerOpen: this.$q.platform.is.desktop
     }
-  },
-  methods: {
-    openURL
   }
 }
 </script>

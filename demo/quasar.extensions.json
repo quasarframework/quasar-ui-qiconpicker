@@ -1,7 +1,7 @@
 {
   "@quasar/qmarkdown": {},
-  "@quasar/qiconpicker": {},
   "@quasar/qribbon": {},
   "@quasar/qpublish": {},
-  "@quasar/colorize": {}
+  "@quasar/colorize": {},
+  "@quasar/qiconpicker": {}
 }

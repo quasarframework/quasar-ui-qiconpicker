@@ -7,7 +7,7 @@
     />
     <q-markdown>
 # Donate
-If you appreciate the work that went into this App Extension, please consider [donating to Quasar](https://donate.quasar.dev).
+If you appreciate the work that went into this project, please consider [donating to Quasar](https://donate.quasar.dev).
 
 ---
 This page created with [QMarkdown](https://quasarframework.github.io/app-extension-qmarkdown), another great Quasar App Extension.
@@ -21,7 +21,7 @@ This page created with [QMarkdown](https://quasarframework.github.io/app-extensi
 <script>
 import Hero from '../components/Hero'
 import markdown from '../markdown/iconpicker.md'
-import json from '@quasar/quasar-app-extension-qiconpicker/src/component/QIconPicker.json'
+import json from '@quasar/quasar-ui-qiconpicker/src/component/QIconPicker.json'
 
 export default {
   name: 'PageIndex',
