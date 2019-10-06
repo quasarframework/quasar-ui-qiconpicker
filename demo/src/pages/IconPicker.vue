@@ -55,7 +55,7 @@
           </q-input>
         </q-card-section>
         <q-card-section>
-          <p>You can use the QInput as a bit of a filter, by typing part of an icon, then clicking on the icon button. The results will then be filtered to show only matching icons. Clear the text before selecting a new icon to see all of them.</p>
+          <p>You can use the QInput as a filter, by typing part of an icon, then clicking on the icon button. The results will then be filtered to show only matching icons. Clear the text before selecting a new icon to see all of them.</p>
         </q-card-section>
       </q-card>
 
