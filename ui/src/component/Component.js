@@ -91,10 +91,12 @@ export default {
 
     // the number of pages available based on itemsPerPage
     pagesNumber () {
-      return Math.max(
-        1,
-        Math.ceil(this.filteredIcons.length / this.computedPagination.itemsPerPage)
-      )
+      return this.computedPagination.itemsPerPage === 0
+        ? 1
+        : Math.max(
+          1,
+          Math.ceil(this.filteredIcons.length / this.computedPagination.itemsPerPage)
+        )
     },
 
     // returns true if on last page

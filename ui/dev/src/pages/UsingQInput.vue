@@ -12,7 +12,7 @@
                 icon-set="material-icons"
                 tooltips
                 :pagination.sync="pagination"
-                style="height: 300px; width: 300px;"
+                style="height: 300px; width: 300px; background-color: white;"
               ></q-icon-picker>
 
             </q-popup-proxy>
