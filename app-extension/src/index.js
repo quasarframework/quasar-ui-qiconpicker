@@ -25,7 +25,7 @@ module.exports = function (api) {
   api.compatibleWith('@quasar/app', '^1.1.4') // needed for describe to work properly
 
   // Uncomment the line below if you provide a JSON API for your component
-  api.registerDescribeApi('QIconPicker', '~@quasar/quasar-ui-qiconpicker/src/component/QIconPicker.json')
+  api.registerDescribeApi('QIconPicker', '~@quasar/quasar-ui-qiconpicker/dist/api/QIconPicker.json')
 
   // We extend /quasar.conf.js
   api.extendQuasarConf(extendConf)
