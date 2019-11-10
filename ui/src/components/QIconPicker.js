@@ -12,7 +12,9 @@ export default {
 
   mixins: [QColorizeMixin],
 
-  props: props.base,
+  props: {
+    ...props.base
+  },
 
   data () {
     return {
@@ -33,11 +35,11 @@ export default {
 
   mounted () {
     if (this.iconSet) {
-      this.loadIconSet(this.iconSet)
+      this.__loadIconSet(this.iconSet)
     } else if (this.icons !== void 0 && this.icons.length > 0) {
       this.iconsList = this.icons
     }
-    this.updatePagination()
+    this.__updatePagination()
   },
 
   computed: {
@@ -66,7 +68,7 @@ export default {
     },
 
     computedPagination () {
-      return this.fixPagination({
+      return this.__fixPagination({
         ...this.innerPagination,
         ...this.pagination
       })
@@ -109,11 +111,11 @@ export default {
 
   watch: {
     iconSet (val) {
-      this.loadIconSet(val)
-      this.updatePagination()
+      this.__loadIconSet(val)
+      this.__updatePagination()
       this.$nextTick(() => {
         // whenever the icon set changes, it resets pagination page to page 1
-        this.setPagination({ page: 1 })
+        this.__setPagination({ page: 1 })
       })
       // scroll to top of QScrollArea, if applicable
       this.$refs.scrollArea.setScrollPosition(0)
@@ -123,37 +125,37 @@ export default {
       if (this.icons !== void 0 && this.icons.length > 0) {
         this.iconsList = this.icons
       }
-      this.updatePagination()
+      this.__updatePagination()
       this.$nextTick(() => {
         // whenever the icon set changes, it resets pagination page to page 1
-        this.setPagination({ page: 1 })
+        this.__setPagination({ page: 1 })
       })
       // scroll to top of QScrollArea, if applicable
       this.$refs.scrollArea.setScrollPosition(0)
     },
 
     pagination (newVal, oldVal) {
-      if (!this.samePagination(oldVal, newVal)) {
-        this.updatePagination()
+      if (!this.__samePagination(oldVal, newVal)) {
+        this.__updatePagination()
       }
     },
 
     'pagination.itemsPerPage' () {
-      this.updatePagination()
+      this.__updatePagination()
     },
 
     'pagination.page' () {
-      this.updatePagination()
+      this.__updatePagination()
     },
 
     filter () {
       // whenever the filter changes, it resets pagination page to page 1
-      this.setPagination({ page: 1, totalPages: this.pagesNumber })
+      this.__setPagination({ page: 1, totalPages: this.pagesNumber })
     }
   },
 
   methods: {
-    loadIconSet (set) {
+    __loadIconSet (set) {
       this.iconsList = []
       if (set) {
         // detect if UMD version is installed
@@ -170,17 +172,17 @@ export default {
         }
         else {
           try {
-            const iconsSet = require(`@quasar/quasar-ui-qiconpicker/src/component/icon-set/${set}.js`).default
+            const iconsSet = require(`@quasar/quasar-ui-qiconpicker/src/components/icon-set/${set}.js`).default
             this.iconsList = iconsSet.icons
           }
           catch (e) {
-            // console.error(`Not found: @quasar/quasar-ui-qiconpicker/src/component/icon-set/${set}.js`)
+            console.error(`Not found: @quasar/quasar-ui-qiconpicker/src/components/icon-set/${set}.js`)
             try {
-              const iconsSet = require(`../src/component/icon-set/${set}.js`).default
+              const iconsSet = require(`../src/components/icon-set/${set}.js`).default
               this.iconsList = iconsSet.icons
             }
             catch (e) {
-              // console.error(`Not found: ../src/component/icon-set/${set}.js`)
+              console.error(`Not found: ../src/components/icon-set/${set}.js`)
               try {
                 const iconsSet = require(`./icon-set/${set}.js`).default
                 this.iconsList = iconsSet.icons
@@ -195,7 +197,7 @@ export default {
       }
     },
 
-    fixPagination (p) {
+    __fixPagination (p) {
       if (p.page < 1) {
         p.page = 1
       }
@@ -207,7 +209,7 @@ export default {
 
     // returns true if the pagination is the same,
     // otherwise returns false if it has changed
-    samePagination (oldPag, newPag) {
+    __samePagination (oldPag, newPag) {
       // eslint-disable-next-line no-unused-vars
       for (let prop in newPag) {
         if (newPag[prop] !== oldPag[prop]) {
@@ -217,8 +219,8 @@ export default {
       return true
     },
 
-    setPagination (val) {
-      const newPagination = this.fixPagination({
+    __setPagination (val) {
+      const newPagination = this.__fixPagination({
         ...this.computedPagination,
         ...val
       })
@@ -230,11 +232,17 @@ export default {
       }
     },
 
+    __updatePagination () {
+      if (this.pagination !== void 0) {
+        this.__setPagination({ total: this.filteredIcons.length, totalPages: this.pagesNumber })
+      }
+    },
+
     // public function - goes to previous page
     prevPage () {
       const { page } = this.computedPagination
       if (page > 1) {
-        this.setPagination({ page: page - 1 })
+        this.__setPagination({ page: page - 1 })
       }
     },
 
@@ -242,13 +250,7 @@ export default {
     nextPage () {
       const { page, itemsPerPage } = this.computedPagination
       if (this.lastItemIndex > 0 && page * itemsPerPage < this.filteredIcons.length) {
-        this.setPagination({ page: page + 1 })
-      }
-    },
-
-    updatePagination () {
-      if (this.pagination !== void 0) {
-        this.setPagination({ total: this.filteredIcons.length, totalPages: this.pagesNumber })
+        this.__setPagination({ page: page + 1 })
       }
     },
 
@@ -286,7 +288,7 @@ export default {
         },
         on: {
           'input': v => {
-            this.setPagination({ page: v })
+            this.__setPagination({ page: v })
           }
         }
       }))

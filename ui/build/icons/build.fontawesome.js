@@ -14,8 +14,8 @@ const { green, blue } = require('chalk')
 const { readFile, writeFile } = require('../utils')
 
 const name = 'fontawesome-v5'
-const inputLocation = `../../src/component/icon-set/${name}.js`
-const outputLocation = `../../src/component/icon-set/${name}.js`
+const inputLocation = `../../src/components/icon-set/${name}.js`
+const outputLocation = `../../src/components/icon-set/${name}.js`
 let oldIcons = {}
 let icons = []
 let blacklisted = [

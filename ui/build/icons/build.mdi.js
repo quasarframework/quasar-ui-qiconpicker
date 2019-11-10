@@ -3,7 +3,7 @@ const { green, blue } = require('chalk')
 const { readFile, writeFile } = require('../utils')
 
 const name = 'mdi-v4'
-const outputLocation = `../../src/component/icon-set/${name}.js`
+const outputLocation = `../../src/components/icon-set/${name}.js`
 let icons = []
 let blacklisted = [
   'md',
