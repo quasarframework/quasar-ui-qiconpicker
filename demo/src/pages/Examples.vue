@@ -23,9 +23,9 @@ The `icons` property allows you to use a customized set of icons.
       </q-markdown>
       <example-card title="Custom Icon Set" name="CustomIconSet" :tag-parts="getTagParts(require('!!raw-loader!../examples/CustomIconSet.vue').default)" />
       <example-card title="Using QInput" name="UsingQInput" :tag-parts="getTagParts(require('!!raw-loader!../examples/UsingQInput.vue').default)" />
-      <example-card title="Using Icon Slot" name="UsingIconSlot" :tag-parts="getTagParts(require('!!raw-loader!../examples/UsingIconSlot.vue').default)" />
       <example-card title="Pagination" name="Pagination" :tag-parts="getTagParts(require('!!raw-loader!../examples/Pagination.vue').default)" />
       <example-card title="Pagination Color" name="PaginationColor" :tag-parts="getTagParts(require('!!raw-loader!../examples/PaginationColor.vue').default)" />
+      <example-card title="Using Icon Slot" name="UsingIconSlot" :tag-parts="getTagParts(require('!!raw-loader!../examples/UsingIconSlot.vue').default)" />
     </div>
     <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
       <q-btn fab icon="keyboard_arrow_up" color="primary" />
@@ -70,9 +70,9 @@ export default {
     this.addToToc('Filter', 2)
     this.addToToc('Custom Icon Set', 2)
     this.addToToc('Using QInput', 2)
-    this.addToToc('Using Icon Slot', 2)
     this.addToToc('Pagination', 2)
     this.addToToc('Pagination Color', 2)
+    this.addToToc('Using Icon Slot', 2)
 
     this.toc = this.tempToc
   },
