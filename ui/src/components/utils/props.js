@@ -33,7 +33,13 @@ export default {
       type: String,
       default: 'primary'
     },
-    paginationColor: String,
+    paginationProps: {
+      type: Object,
+      default: () => ({
+        maxPages: 5,
+        input: true
+      })
+    },
     pagination: Object
   }
 }

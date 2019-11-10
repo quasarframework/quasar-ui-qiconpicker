@@ -281,10 +281,9 @@ export default {
       return slot || h(QPagination, this.setBothColors(this.color, this.backgroundColor, {
         staticClass: 'q-icon-picker__pagination',
         props: {
+          ...this.paginationProps,
           value: page,
-          max: totalPages,
-          input: true,
-          color: this.paginationColor
+          max: totalPages
         },
         on: {
           'input': v => {
