@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { version } from '@quasar/quasar-ui-qiconpicker'
+import { version } from 'ui'
 
 export default {
   name: 'IconPickerLayout',

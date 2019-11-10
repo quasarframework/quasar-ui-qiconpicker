@@ -76,6 +76,9 @@ const builds = [
 addAssets(builds, 'icon-set', 'iconSet')
 
 build(builds)
+  .then(() => {
+    require('./build.api')
+  })
 
 /**
  * Helpers
@@ -87,7 +90,7 @@ function resolve (_path) {
 
 function addAssets (builds, type, injectName) {
   const
-    files = fs.readdirSync(resolve('../../ui/src/component/' + type)),
+    files = fs.readdirSync(resolve('../../ui/src/components/' + type)),
     plugins = [ buble(bubleConfig) ],
     outputDir = resolve(`../dist/${type}`)
 
@@ -100,7 +103,7 @@ function addAssets (builds, type, injectName) {
       builds.push({
         rollup: {
           input: {
-            input: resolve(`../src/component/${type}/${file}`),
+            input: resolve(`../src/components/${type}/${file}`),
             plugins
           },
           output: {

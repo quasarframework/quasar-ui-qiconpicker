@@ -42,7 +42,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { scroll } from 'quasar'
-import { version } from '@quasar/quasar-ui-qiconpicker'
+import { version } from 'ui'
 
 export default {
   name: 'MyLayout',

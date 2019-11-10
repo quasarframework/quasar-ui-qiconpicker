@@ -1,5 +1,5 @@
 import { version } from '../package.json'
-import Component from './component/Component'
+import Component from './components/QIconPicker'
 
 export {
   version,

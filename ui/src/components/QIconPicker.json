@@ -1,0 +1,156 @@
+{
+  "props": {
+    "value": {
+      "type": "String",
+      "desc": "`v-model`; The selected icon",
+      "default": "''",
+      "category": "model",
+      "examples": [
+        "v-model=\"calendar-today\"",
+        "v-model=\"bolt\""
+      ]
+    },
+    "icon-set": {
+      "type": "String",
+      "desc": "The name of a Quasar icon set",
+      "category": "model",
+      "values": [
+        "material-icons",
+        "material-icons-outlined",
+        "material-icons-round",
+        "material-icons-sharp",
+        "ionicons-v4",
+        "mdi-v4",
+        "fontawesome-v5",
+        "eva-icons",
+        "themify"
+      ],
+      "examples": [
+        "icon-set=\"material-icons\"",
+        "icon-set=\"fontawesome-v5\""
+      ]
+    },
+    "icons": {
+      "type": "Array",
+      "desc": "An array of objects containing icon information. The object must contain the key `name` with the value being the icon name (ie: `{ name: 'bolt' }`). _**Note:** the icons used must already be loaded by Quasar._",
+      "category": "model",
+      "examples": [
+        ":icons=\"[{ name: 'calendar-today' }, { name: 'bolt' }]\""
+      ],
+      "definition": {
+        "name": {
+          "type": "String",
+          "desc": "The icon name",
+          "__exemption": [ "examples" ]
+        }
+      }
+    },
+    "filter": {
+      "type": "String",
+      "desc": "Icons will be filtered by the passed string",
+      "category": "behavior",
+      "examples": [
+        ":filter=\"myFilter\""
+      ]
+    },
+    "dense": {
+      "type": "Boolean",
+      "desc": "Use less of a foot print for the component",
+      "category": "style"
+    },
+    "tooltips": {
+      "type": "Boolean",
+      "desc": "Turns tooltips on for each displayed icon (shows the icon name)",
+      "category": "behavior"
+    },
+    "no-footer": {
+      "type": "Boolean",
+      "desc": "hides the footer area when `pagination` is enabled",
+      "category": "style"
+    },
+    "color": {
+      "type": "String",
+      "desc": "Any color from the [Quasar Color Pallete](https://quasar.dev/style/color-palette) or a CSS color (#, rgb, rgba, hls, etc)",
+      "category": "style",
+      "examples": [
+        "color=\"orange-8\"",
+        "color=\"#c8c8c8\""
+      ]
+    },
+    "background-color": {
+      "type": "String",
+      "desc": "Any color from the [Quasar Color Pallete](https://quasar.dev/style/color-palette) or a CSS color (#, rgb, rgba, hls, etc)",
+      "category": "style",
+      "examples": [
+        "background-color=\"orange-8\"",
+        "background-color=\"#c8c8c8\""
+      ]
+    },
+    "selected-color": {
+      "type": "String",
+      "desc": "Any color from the [Quasar Color Pallete](https://quasar.dev/style/color-palette) or a CSS color (#, rgb, rgba, hls, etc)",
+      "category": "style",
+      "examples": [
+        "selected-color=\"orange-8\"",
+        "selected-color=\"#c8c8c8\""
+      ]
+    },
+    "selected-background-color": {
+      "type": "String",
+      "desc": "Any color from the [Quasar Color Pallete](https://quasar.dev/style/color-palette) or a CSS color (#, rgb, rgba, hls, etc)",
+      "category": "style",
+      "examples": [
+        "selected-background-color=\"orange-8\"",
+        "selected-background-color=\"#c8c8c8\""
+      ]
+    },
+    "font-size": {
+      "type": "String",
+      "desc": "The font-size to use for the icons. Any acceptable CSS size can be used",
+      "category": "style",
+      "examples": [
+        "font-size=\"3rem\"",
+        "font-size=\"24px\""
+      ]
+    },
+    "pagination": {
+      "type": "Object",
+      "sync": true,
+      "desc": "For pagination purposes uses Quasar's pagination component. Use `pagination.sync` to synchronize the data. You can use `page` and `itemsPerPage` to control the pagination. QIconPicker will set `totalPages` depending on `icon-set` or `icons` properties. If using a `filter` the page will automatically be reset to 1",
+      "category": "behavior",
+      "examples": [
+        ":pagination.sync=\"myPagination\""
+      ]
+    }
+  },
+  "events": {
+    "input": {
+      "type": "String",
+      "desc": "`v-model`; Value from when the selection changes"
+    }
+  },
+  "scopedSlots": {
+    "icon": {
+      "desc": "Slot for changing the display of the icon",
+      "scope": {
+        "name": {
+          "type": "String",
+          "desc": "The name of the slotted icon",
+          "examples": [
+            "bolt",
+            "calendar",
+            "<template #icon=\"name\"><q-btn :name=\"name\" :label=\"name\" no-caps /></template>"
+          ]
+        }
+      }
+    }
+  },
+  "methods": {
+    "prevPage": {
+      "desc": "If paginated, will go to previous page if not on 1st page"
+    },
+    "nextPage": {
+      "desc": "If paginated, will go to next page, if not on last page"
+    }
+  }
+}

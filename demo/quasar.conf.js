@@ -1,14 +1,18 @@
 // Configuration for your app
 
+const path = require('path')
+
 module.exports = function (ctx) {
   return {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     boot: [
+      'components',
+      'qiconpicker'
     ],
 
     css: [
-      'app.styl'
+      'app.sass'
     ],
 
     extras: [
@@ -95,6 +99,14 @@ module.exports = function (ctx) {
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /node_modules/
+        })
+      },
+
+      chainWebpack (chain) {
+        chain.resolve.alias.merge({
+          'ui': path.resolve(__dirname, '../ui/src/index.js'),
+          'q-icon-picker': path.resolve(__dirname, '../ui/src'),
+          'api': path.resolve(__dirname, '../ui/dist/api/QIconPicker.json')
         })
       }
     },

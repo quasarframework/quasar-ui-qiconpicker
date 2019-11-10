@@ -3,7 +3,7 @@ const { green, blue } = require('chalk')
 const { readFile, writeFile } = require('../utils')
 
 const name = 'ionicons-v4'
-const outputLocation = `../../src/component/icon-set/${name}.js`
+const outputLocation = `../../src/components/icon-set/${name}.js`
 let icons = []
 let blacklisted = [
   'ionicons'
@@ -31,10 +31,14 @@ output += `  name: '${name}',\n`
 output += '  icons: [\n'
 
 icons.forEach((icon, index) => {
-  output += `    { name: '${icon}' },\n`
+  if (index !== 0) {
+    output += ',\n'
+  }
+
+  output += `    { name: '${icon}' }`
 })
 
-output += '  ]\n'
+output += '\n  ]\n'
 output += '}\n'
 
 writeFile(path.resolve(__dirname, outputLocation), output)

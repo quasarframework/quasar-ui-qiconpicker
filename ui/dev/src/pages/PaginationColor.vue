@@ -14,7 +14,11 @@
         v-model="value"
         icon-set="material-icons"
         :pagination.sync="pagination"
-        :paginationColor="paginationColor"
+        :paginationProps="{
+          maxPages: 5,
+          input: true,
+          color: paginationColor
+        }"
         style="height: 220px;"
       ></q-icon-picker>
     </div>
