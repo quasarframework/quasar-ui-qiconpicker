@@ -14,7 +14,7 @@ QIconPicker (Vue Plugin, UMD and Quasar App Extension)
 * [/demo](demo) - demo and examples
 
 # Donate
-If you appreciate the work that went into this project, please consider [donating to Quasar](https://donate.quasar.dev).
+If you appreciate the work that went into this, please consider donating to [Quasar](https://donate.quasar.dev) or [Jeff](https://github.com/sponsors/hawkeye64).
 
 # License
 MIT (c) Jeff Galbraith <jeff@quasar.dev>
