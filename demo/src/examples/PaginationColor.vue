@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-markdown class="q-ma-md">
-`QPagination` is used for the pagination. You can pass it any of it's props via the `pagination-props` property.
+`QPagination` is used for the pagination. You can pass any of it's props to it via the `pagination-props` property which takes an object filled with properties.
 
 Enter colors only from the Quasar color palette (ex: "orange-8")
 
