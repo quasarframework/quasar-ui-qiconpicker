@@ -341,6 +341,7 @@ export default {
         props: {
           unelevated: true,
           dense: this.dense,
+          noWrap: true,
           icon: icon.name
         },
         on: {
