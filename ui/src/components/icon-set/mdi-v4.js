@@ -4595,6 +4595,6 @@ export default {
     { name: 'mdi-zodiac-sagittarius' },
     { name: 'mdi-zodiac-scorpio' },
     { name: 'mdi-zodiac-taurus' },
-    { name: 'mdi-zodiac-virgo' },
+    { name: 'mdi-zodiac-virgo' }
   ]
 }

@@ -50,10 +50,14 @@ fileContents
   output += '  icons: [\n'
 
   icons.forEach((icon, index) => {
-    output += `    { name: '${icon}' },\n`
+    if (index !== 0) {
+      output += ',\n'
+    }
+
+    output += `    { name: '${icon}' }`
   })
 
-  output += '  ]\n'
+  output += '\n  ]\n'
   output += '}\n'
 
   writeFile(path.resolve(__dirname, outputLocation), output)

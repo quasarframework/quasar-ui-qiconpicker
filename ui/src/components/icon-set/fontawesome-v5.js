@@ -1393,6 +1393,6 @@ export default {
     { name: 'fab fa-yoast' },
     { name: 'fab fa-youtube' },
     { name: 'fab fa-youtube-square' },
-    { name: 'fab fa-zhihu' },
+    { name: 'fab fa-zhihu' }
   ]
 }
