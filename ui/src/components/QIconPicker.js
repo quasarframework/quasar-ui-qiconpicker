@@ -304,7 +304,7 @@ export default {
 
     __renderContainer (h) {
       return h('div', {
-        staticClass: 'q-icon-picker__container'
+        staticClass: 'q-icon-picker__container row'
       }, [
         ...this.__renderIcons(h)
       ])
