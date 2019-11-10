@@ -331,7 +331,7 @@ export default {
       const backgroundColor = isSelected ? this.selectedBackgroundColor : ''
 
       return h(QBtn, this.setBothColors(color, backgroundColor, {
-        staticClass: 'q-icon-picker__icon',
+        staticClass: 'q-icon-picker__icon' + (isSelected ? ' q-icon-picker__active' : ''),
         style: {
           'font-size': this.fontSize
         },
