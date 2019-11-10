@@ -164,32 +164,29 @@ export default {
           if (window.QIconPicker.iconSet && window.QIconPicker.iconSet[name]) {
             const iconsSet = window.QIconPicker.iconSet[name]
             this.iconsList = iconsSet.icons
-          }
-          else {
+          } else {
             console.error(`QIconPicker: no icon set loaded called '${set}'`)
             console.error('Be sure to load the UMD version of the icon set in a script tag before using with UMD')
           }
-        }
-        else {
+        } else {
           try {
             const iconsSet = require(`@quasar/quasar-ui-qiconpicker/src/components/icon-set/${set}.js`).default
             this.iconsList = iconsSet.icons
-          }
-          catch (e) {
-            console.error(`Not found: @quasar/quasar-ui-qiconpicker/src/components/icon-set/${set}.js`)
+          } catch (e) {
             try {
               const iconsSet = require(`../src/components/icon-set/${set}.js`).default
               this.iconsList = iconsSet.icons
-            }
-            catch (e) {
-              console.error(`Not found: ../src/components/icon-set/${set}.js`)
+            } catch (e) {
               try {
                 const iconsSet = require(`./icon-set/${set}.js`).default
                 this.iconsList = iconsSet.icons
-              }
-              catch (e) {
-                // console.error(`Not found: ./icon-set/${set}.js`)
-                console.error(`QIconPicker: no icon set found called '${set}'`)
+              } catch (e) {
+                try {
+                  const iconsSet = require(`q-icon-picker/components/icon-set/${set}.js`).default
+                  this.iconsList = iconsSet.icons
+                } catch (e) {
+                  console.error(`QIconPicker: cannot find icon set found called '${set}'`)
+                }
               }
             }
           }
