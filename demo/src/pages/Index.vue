@@ -21,7 +21,7 @@ This page created with [QMarkdown](https://quasarframework.github.io/app-extensi
 <script>
 import Hero from '../components/Hero'
 import markdown from '../markdown/iconpicker.md'
-import json from '@quasar/quasar-ui-qiconpicker/src/component/QIconPicker.json'
+import json from 'api'
 
 export default {
   name: 'PageIndex',
