@@ -173,22 +173,7 @@ export default {
             const iconsSet = require(`@quasar/quasar-ui-qiconpicker/src/components/icon-set/${set}.js`).default
             this.iconsList = iconsSet.icons
           } catch (e) {
-            try {
-              const iconsSet = require(`../src/components/icon-set/${set}.js`).default
-              this.iconsList = iconsSet.icons
-            } catch (e) {
-              try {
-                const iconsSet = require(`./icon-set/${set}.js`).default
-                this.iconsList = iconsSet.icons
-              } catch (e) {
-                try {
-                  const iconsSet = require(`q-icon-picker/components/icon-set/${set}.js`).default
-                  this.iconsList = iconsSet.icons
-                } catch (e) {
-                  console.error(`QIconPicker: cannot find icon set found called '${set}'`)
-                }
-              }
-            }
+            console.error(`QIconPicker: cannot find icon set found called '${set}'`)
           }
         }
       }
