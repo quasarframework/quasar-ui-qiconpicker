@@ -104,8 +104,9 @@ module.exports = function (ctx) {
 
       chainWebpack (chain) {
         chain.resolve.alias.merge({
+          '@quasar/quasar-ui-qiconpicker': path.resolve(__dirname, '../ui'),
           'ui': path.resolve(__dirname, '../ui/src/index.js'),
-          'q-icon-picker': path.resolve(__dirname, '../ui/src'),
+          'sass': path.resolve(__dirname, '../ui/src/index.sass'),
           'api': path.resolve(__dirname, '../ui/dist/api/QIconPicker.json')
         })
       }
