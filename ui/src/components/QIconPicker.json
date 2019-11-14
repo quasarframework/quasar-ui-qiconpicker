@@ -53,6 +53,15 @@
         ":filter=\"myFilter\""
       ]
     },
+    "tag": {
+      "type": "String",
+      "desc": "An string (or partial string) for filtering by tags",
+      "category": "behavior",
+      "examples": [
+        ":tag=\"'accessibility'\"",
+        ":tag=\"'media'\""
+      ]
+    },
     "dense": {
       "type": "Boolean",
       "desc": "Use less of a foot print for the component",
@@ -151,6 +160,26 @@
     },
     "nextPage": {
       "desc": "If paginated, will go to next page, if not on last page"
+    },
+    "getTags": {
+      "desc": "Returns an array of tags associated with the passed in icon name",
+      "params": {
+        "name": {
+          "type": "String",
+          "desc": "Th ename of the icon",
+          "examples": [
+            "bolt",
+            "calendar"
+          ]
+        }
+      },
+      "returns": {
+        "type": "Array",
+        "desc": "An array of tags",
+        "examples": [
+          "['accessibility', 'media']"
+        ]
+      }
     }
   }
 }
