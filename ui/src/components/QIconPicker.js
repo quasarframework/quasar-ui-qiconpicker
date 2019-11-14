@@ -47,7 +47,19 @@ export default {
       let icons = this.iconsList
       if (this.iconsList) {
         if (this.filter !== void 0 && this.filter !== '' && this.filter !== null) {
-          icons = this.iconsList.filter(icon => icon.name.includes(this.filter))
+          icons = icons.filter(icon => icon.name.includes(this.filter))
+        }
+        if (this.tag !== void 0 && this.tag !== '' && this.tag !== null) {
+          icons = icons.filter(icon => {
+            const t = icon.tags.forEach(tag => {
+              if (tag.toLowerCase.indexOf(this.tag.toLowerCase) > -1) {
+                return tag
+              }
+            })
+            if (t.length > 0) {
+              return icon
+            }
+          })
         }
       }
       return icons
@@ -234,6 +246,10 @@ export default {
       if (this.lastItemIndex > 0 && page * itemsPerPage < this.filteredIcons.length) {
         this.__setPagination({ page: page + 1 })
       }
+    },
+
+    getTags (name) {
+      return []
     },
 
     __renderBody (h) {
