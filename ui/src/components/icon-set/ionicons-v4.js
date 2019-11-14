@@ -696,6 +696,6 @@ export default {
     { name: 'ion-md-water', tags: [] },
     { name: 'ion-md-wifi', tags: [] },
     { name: 'ion-md-wine', tags: [] },
-    { name: 'ion-md-woman' }
+    { name: 'ion-md-woman', tags: [] }
   ]
 }

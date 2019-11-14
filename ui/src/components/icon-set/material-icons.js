@@ -932,6 +932,6 @@ export default {
     { name: 'youtube_searched_for', tags: [] },
     { name: 'zoom_in', tags: [] },
     { name: 'zoom_out', tags: [] },
-    { name: 'zoom_out_map' }
+    { name: 'zoom_out_map', tags: [] }
   ]
 }

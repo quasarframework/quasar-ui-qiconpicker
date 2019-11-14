@@ -352,6 +352,6 @@ export default {
     { name: 'ti-youtube', tags: [] },
     { name: 'ti-zip', tags: [] },
     { name: 'ti-zoom-in', tags: [] },
-    { name: 'ti-zoom-out' }
+    { name: 'ti-zoom-out', tags: [] }
   ]
 }

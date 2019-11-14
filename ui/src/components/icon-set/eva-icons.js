@@ -488,6 +488,6 @@ export default {
     { name: 'eva-wifi', tags: [] },
     { name: 'eva-wifi-off', tags: [] },
     { name: 'eva-wifi-off-outline', tags: [] },
-    { name: 'eva-wifi-outline' }
+    { name: 'eva-wifi-outline', tags: [] }
   ]
 }
