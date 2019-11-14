@@ -3,7 +3,9 @@ const { green, blue } = require('chalk')
 const { readFile, writeFile } = require('../utils')
 
 const name = 'mdi-v4'
+const inputLocation = `../../src/components/icon-set/${name}.js`
 const outputLocation = `../../src/components/icon-set/${name}.js`
+let oldIcons = {}
 let icons = []
 let blacklisted = [
   'md',
@@ -27,6 +29,23 @@ let blacklisted = [
   'mdi-spi'
 ]
 
+let fa = readFile(path.resolve(__dirname, inputLocation))
+fa = fa.split('\n')
+fa.shift()
+fa.shift()
+fa.shift()
+fa.pop()
+fa.pop()
+fa.pop()
+fa = '[\n' + fa.join(',\n') + '\n]\n'
+// eslint-disable-next-line no-eval
+fa = eval(fa)
+fa.forEach(f => {
+  const name = f.name
+  const tags = f.tags
+  oldIcons[name] = { tags: Array(tags).join(',') }
+})
+
 const location = require.resolve('@quasar/extras/mdi-v4/mdi-v4.css')
 const fileContents = readFile(location)
 
@@ -38,8 +57,15 @@ fileContents
       if (pos > 0) {
         line = line.slice(1, pos - 1)
         if (blacklisted.includes(line) === false) {
-          // console.log(`${line}`)
-          icons.push(line)
+          if (oldIcons[line]) {
+            const tags = oldIcons[line].tags.split(',').map(tag => {
+              if (tag === '') return tag
+              return "'" + tag + "'"
+            }).join(',')
+            icons.push(`{ name: '${line}', tags: [${tags}] }`)
+          } else {
+            icons.push(`{ name: '${line}', tags: [] }`)
+          }
         }
       }
     }
@@ -54,7 +80,7 @@ fileContents
       output += ',\n'
     }
 
-    output += `    { name: '${icon}' }`
+    output += `    ${icon}`
   })
 
   output += '\n  ]\n'

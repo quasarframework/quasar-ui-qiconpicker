@@ -34,8 +34,9 @@ fa = '[\n' + fa.join(',\n') + '\n]\n'
 // eslint-disable-next-line no-eval
 fa = eval(fa)
 fa.forEach(f => {
-  let names = f.name.split(' ')
-  oldIcons[names[1]] = names[0]
+  const names = f.name.split(' ')
+  const tags = f.tags
+  oldIcons[names[1]] = { type: names[0], tags: Array(tags).join(',') }
 })
 
 const location = require.resolve('@quasar/extras/fontawesome-v5/fontawesome-v5.css')
@@ -50,9 +51,13 @@ fileContents
         line = line.slice(1, pos)
         if (blacklisted.includes(line) === false) {
           if (oldIcons[line]) {
-            icons.push(oldIcons[line] + ' ' + line)
+            const tags = oldIcons[line].tags.split(',').map(tag => {
+              if (tag === '') return tag
+              return "'" + tag + "'"
+            }).join(',')
+            icons.push(`{ name: '${oldIcons[line].type} ${line}', tags: [${tags}] }`)
           } else {
-            icons.push('--- ' + line)
+            icons.push(`{ name: '--- + ${line}', tags: [] }`)
           }
         }
       }
@@ -68,7 +73,7 @@ icons.forEach((icon, index) => {
     output += ',\n'
   }
 
-  output += `    { name: '${icon}' }`
+  output += `    ${icon}`
 })
 
 output += '\n  ]\n'
