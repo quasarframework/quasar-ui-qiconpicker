@@ -9,6 +9,42 @@ function getSize (code) {
   return (code.length / 1024).toFixed(2) + 'kb'
 }
 
+/*
+  Keep valid tags short - no plural
+  Try to keep list short
+  For instance, Fontawesome 'Fruits & Vegetables'
+  can go into the 'food' tag. 'Currency' and 'Finance'
+  can go into into 'money' tag. 'Hotel' can go into
+  the 'travel' tag. 'Audio & Video' can go into the
+  'media' tag, etc.
+*/
+module.exports.validateTags = function (tags) {
+  const validTags = [
+    'accessibility',
+    'animal',
+    'arrow',
+    'auto',
+    'brand',
+    'datetime',
+    'editor',
+    'file',
+    'food',
+    'map',
+    'media',
+    'money',
+    'people',
+    'travel',
+    'weather'
+  ]
+  tags.forEach(tag => {
+    if (validTags.includes(tag) !== true) {
+      console.error('\n' + red('[Error]'), `Invalid tag type found: ${tag}`)
+      console.log()
+      proccess.exit(1)
+    }
+  })
+}
+
 module.exports.createFolder = function (folder) {
   const dir = path.join(__dirname, '..', folder)
   if (!fs.existsSync(dir)) {
