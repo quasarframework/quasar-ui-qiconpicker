@@ -69,6 +69,6 @@
     "last 1 version, not dead, ie >= 11"
   ],
   "dependencies": {
-    "q-colorize-mixin": "^1.0.0"
+    "q-colorize-mixin": "^1.0.3"
   }
 }
