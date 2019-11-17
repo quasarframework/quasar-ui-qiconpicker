@@ -13,15 +13,38 @@
       <q-input v-model="filter" label="Filter" outlined clearable class="q-ma-md" />
     </div>
     <q-separator style="width: 100%;"/>
-    <q-icon-picker
-      v-model="name"
-      :filter="filter"
-      :icon-set="iconSet"
-      font-size="3em"
-      tooltips
-      :pagination.sync="pagination"
-      style="height: calc(100vh - 140px)"
-    />
+    <div class="row full-width full-height">
+      <div class="column col full-height" style="min-width: 100px; max-width: 100px;">
+        <q-list bordered separator>
+          <q-item v-for="cat in categories" clickable v-ripple :key="cat">
+            <q-item-section>
+              {{ cat }}
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </div>
+      <div class="column col-grow">
+        <div class="row">
+          <div class="column col" style="min-width: 10px; max-width: 10px;">
+            <q-separator vertical inset class="full-height"/>
+          </div>
+          <div class="column col-grow">
+            <q-icon-picker
+              ref="icons"
+              v-model="name"
+              :filter="filter"
+              :icon-set="iconSet"
+              :tag="tag"
+              font-size="3em"
+              tooltips
+              :pagination.sync="pagination"
+              @loaded="onLoaded"
+              style="height: calc(100vh - 140px)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </q-page>
 </template>
 
@@ -35,6 +58,7 @@ export default {
     return {
       name: '',
       filter: '',
+      tag: '',
       pagination: {
         itemsPerPage: 0,
         page: 0,
@@ -55,6 +79,18 @@ export default {
       set (b) {
         this.$store.commit('common/iconSet', b)
       }
+    },
+
+    categories () {
+      // get all unique categories and return them in an array
+      // also add 'all' in case some tags are empty
+      debugger
+      let cats = ['all']
+      if (this.$refs.icons) {
+        let tags = this.$refs.icons.getTags()
+        cats.cat(tags)
+      }
+      return cats
     }
   }
 }

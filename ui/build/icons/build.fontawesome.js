@@ -74,7 +74,7 @@ fileContents
               const tags = oldIcons[name].tags.map(tag => {
                 if (tag === '') return tag
                 return "'" + tag + "'"
-              }).join(',')
+              }).join(', ')
               icons.push(`{ name: '${name}', prefix: '${pfx}', tags: [${tags}] }`)
             })
           } else {

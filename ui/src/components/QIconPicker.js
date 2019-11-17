@@ -249,7 +249,16 @@ export default {
     },
 
     getTags (name) {
-      return []
+      let t = []
+      this.displayedIcons.forEach(icon => {
+        const tags = icon.tags
+        tags.forEach(tag => {
+          if (this.cats.includes(tag) !== true) {
+            this.cats.push(tag).sort()
+          }
+        })
+      })
+      return t
     },
 
     __renderBody (h) {
@@ -320,11 +329,13 @@ export default {
     __renderIcon (h, icon) {
       const slot = this.$scopedSlots.icon
 
+      const name = (icon.prefix !== void 0 ? `${icon.prefix} ${icon.name}` : icon.name)
+
       if (slot) {
-        return slot(icon.name)
+        return slot(name)
       }
 
-      const isSelected = icon.name === this.value
+      const isSelected = name === this.value
       const color = isSelected ? this.selectedColor : ''
       const backgroundColor = isSelected ? this.selectedBackgroundColor : ''
 
@@ -334,21 +345,21 @@ export default {
           'font-size': this.fontSize
         },
         domProps: {
-          id: icon.name
+          id: name
         },
         props: {
           unelevated: true,
           dense: this.dense,
           noWrap: true,
-          icon: icon.name
+          icon: name
         },
         on: {
           'click': () => {
-            this.$emit('input', icon.name)
+            this.$emit('input', name)
           }
         }
       }), [
-        this.tooltips === true && this.__renderTooltip(h, icon.name)
+        this.tooltips === true && this.__renderTooltip(h, name)
       ])
     }
   },
