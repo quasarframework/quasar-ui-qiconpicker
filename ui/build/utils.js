@@ -28,7 +28,6 @@ module.exports.validateTags = function (tags) {
     'alert',
     'animal',
     'arrow',
-    'auto',
     'brand',
     'datetime',
     'editor',
