@@ -42,6 +42,7 @@ module.exports.validateTags = function (tags) {
     'nature',
     'other',
     'people',
+    'sport',
     'travel',
     'weather',
     'web'
