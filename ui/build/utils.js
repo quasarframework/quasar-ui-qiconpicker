@@ -29,7 +29,7 @@ module.exports.validateTags = function (tags) {
     'animal',
     'arrow',
     'brand',
-    'datetime',
+    'calendar',
     'editor',
     'file',
     'food',
