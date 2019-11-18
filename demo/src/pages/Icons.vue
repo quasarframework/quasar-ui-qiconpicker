@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <div class="row q-pa-md q-gutter-sm items-center">
+    <div class="row q-mx-md q-gutter-sm items-center">
       <q-select v-model="iconSet" :options="iconSets" label="Icon Set" emit-value style="min-width: 200px;" />
       <q-separator vertical inset />
       <span>Count: {{ pagination.total }}</span>
@@ -12,29 +12,37 @@
       <q-space />
       <q-input v-model="filter" label="Filter" outlined clearable class="q-ma-md" />
     </div>
-    <q-separator style="width: 100%;"/>
-    <div class="row full-width full-height">
-      <div class="column col full-height" style="min-width: 100px; max-width: 100px;">
-        <q-list bordered separator>
+    <q-separator color="light-blue-2" style="width: 100%;"/>
+    <div class="row fit">
+
+      <div class="col-auto no-wrap text-grey-7 q-py-lg full-height">
+        <q-list separator>
+          <q-item-label class="text-center full-width q-pb-lg">Categories</q-item-label>
+          <q-separator />
           <q-item v-for="cat in categories" clickable v-ripple :key="cat">
             <q-item-section>
-              {{ cat }}
+               <q-checkbox v-model="selected[cat]" :label="cat" dense />
             </q-item-section>
+            <!-- <q-item-section>
+              {{ cat }}
+            </q-item-section> -->
           </q-item>
         </q-list>
       </div>
-      <div class="column col-grow">
+
+      <div class="column col" style="min-width: 1px; max-width: 1px;">
+        <q-separator vertical inset color="light-blue-2" class="full-height"/>
+      </div>
+
+      <div class="col">
         <div class="row">
-          <div class="column col" style="min-width: 10px; max-width: 10px;">
-            <q-separator vertical inset class="full-height"/>
-          </div>
           <div class="column col-grow">
             <q-icon-picker
               ref="icons"
               v-model="name"
               :filter="filter"
               :icon-set="iconSet"
-              :tag="tag"
+              :tags="tags"
               font-size="3em"
               tooltips
               :pagination.sync="pagination"
@@ -58,12 +66,15 @@ export default {
     return {
       name: '',
       filter: '',
-      tag: '',
+      tags: [],
       pagination: {
         itemsPerPage: 0,
         page: 0,
         total: 0
-      }
+      },
+      loaded: false,
+      categories: [],
+      selected: {}
     }
   },
 
@@ -79,18 +90,46 @@ export default {
       set (b) {
         this.$store.commit('common/iconSet', b)
       }
-    },
+    }
+  },
 
-    categories () {
-      // get all unique categories and return them in an array
-      // also add 'all' in case some tags are empty
-      debugger
-      let cats = ['all']
-      if (this.$refs.icons) {
-        let tags = this.$refs.icons.getTags()
-        cats.cat(tags)
+  watch: {
+    iconSet (val) {
+      this.loaded = false
+    },
+    filter (val) {
+      this.loaded = false
+    },
+    selected: {
+      handler (val) {
+        let tags = []
+        this.categories.forEach(cat => {
+          if (val[cat] === true) {
+            tags.push(cat)
+          }
+        })
+        this.tags.splice(0, this.tags.length, ...tags)
+        console.log(this.tags)
+      },
+      deep: true
+    }
+  },
+
+  methods: {
+    onLoaded () {
+      if (this.loaded !== true) {
+        let cats = []
+        if (this.$refs.icons) {
+          let tags = [ ...this.$refs.icons.getTags() ]
+          cats.splice(0, 0, ...tags)
+          this.loaded = true
+        }
+        this.categories.splice(0, this.categories.length, ...cats)
+        this.categories.concat(...cats)
+        this.categories.forEach(cat => {
+          this.$set(this.selected, cat, false)
+        })
       }
-      return cats
     }
   }
 }

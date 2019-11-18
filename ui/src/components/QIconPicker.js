@@ -45,17 +45,13 @@ export default {
   computed: {
     filteredIcons () {
       let icons = this.iconsList
-      if (this.iconsList) {
+      if (icons) {
         if (this.filter !== void 0 && this.filter !== '' && this.filter !== null) {
           icons = icons.filter(icon => icon.name.includes(this.filter))
         }
-        if (this.tag !== void 0 && this.tag !== '' && this.tag !== null) {
+        if (this.tags !== void 0 && this.tags !== '' && this.tags !== null && this.tags.length > 0) {
           icons = icons.filter(icon => {
-            const t = icon.tags.forEach(tag => {
-              if (tag.toLowerCase.indexOf(this.tag.toLowerCase) > -1) {
-                return tag
-              }
-            })
+            const t = icon.tags.filter(tag => this.tags.includes(tag))
             if (t.length > 0) {
               return icon
             }
@@ -163,6 +159,14 @@ export default {
     filter () {
       // whenever the filter changes, it resets pagination page to page 1
       this.__setPagination({ page: 1, totalPages: this.pagesNumber })
+      this.__updatePagination()
+    },
+
+    tags (val) {
+      console.log('tags changed:', val)
+      // whenever the tags change, it resets pagination page to page 1
+      this.__setPagination({ page: 1, totalPages: this.pagesNumber })
+      this.__updatePagination()
     }
   },
 
@@ -253,11 +257,12 @@ export default {
       this.displayedIcons.forEach(icon => {
         const tags = icon.tags
         tags.forEach(tag => {
-          if (this.cats.includes(tag) !== true) {
-            this.cats.push(tag).sort()
+          if (t.includes(tag) !== true) {
+            t.push(tag)
           }
         })
       })
+      t.sort()
       return t
     },
 
@@ -370,7 +375,8 @@ export default {
       staticClass: 'q-icon-picker flex'
     }), [
       this.__renderBody(h),
-      this.noFooter !== true && this.pagination !== void 0 && this.__renderFooter(h)
+      this.noFooter !== true && this.pagination !== void 0 && this.__renderFooter(h),
+      this.$emit('loaded') && void 0
     ])
   }
 }
