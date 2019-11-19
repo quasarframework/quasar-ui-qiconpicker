@@ -140,7 +140,7 @@
     },
     "tags": {
       "type": "Array",
-      "desc": "An array for categories (tags) for the selected icon set"
+      "desc": "An array of categories (tags) for the selected icon set"
     }
   },
   "scopedSlots": {
