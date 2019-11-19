@@ -24,7 +24,7 @@
     "yarn": ">= 1.6.0"
   },
   "dependencies": {
-    "@quasar/quasar-ui-qiconpicker": "^1.0.6"
+    "@quasar/quasar-ui-qiconpicker": "^1.0.7"
   },
   "devDependencies": {
     "@vue/eslint-config-standard": "^4.0.0",
