@@ -46,9 +46,6 @@ export default {
     filteredIcons () {
       let icons = this.iconsList
       if (icons) {
-        if (this.filter !== void 0 && this.filter !== '' && this.filter !== null) {
-          icons = icons.filter(icon => icon.name.includes(this.filter))
-        }
         if (this.tags !== void 0 && this.tags !== '' && this.tags !== null && this.tags.length > 0) {
           icons = icons.filter(icon => {
             const t = icon.tags.filter(tag => this.tags.includes(tag))
@@ -56,6 +53,9 @@ export default {
               return icon
             }
           })
+        }
+        if (this.filter !== void 0 && this.filter !== '' && this.filter !== null) {
+          icons = icons.filter(icon => icon.name.includes(this.filter))
         }
       }
       return icons

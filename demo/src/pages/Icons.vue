@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <div class="row q-mx-md q-gutter-sm items-center">
+    <div ref="infoBar" class="row q-mx-md q-gutter-sm items-center">
       <q-select v-model="iconSet" :options="iconSets" label="Icon Set" emit-value style="min-width: 200px;" />
       <q-separator vertical inset />
       <span>Count: {{ pagination.total }}</span>
@@ -16,18 +16,17 @@
     <div class="row fit">
 
       <div class="col-auto no-wrap text-grey-7 q-py-lg full-height">
-        <q-list separator>
-          <q-item-label class="text-center full-width q-pb-lg">Categories</q-item-label>
-          <q-separator />
-          <q-item v-for="cat in categories" clickable v-ripple :key="cat">
-            <q-item-section>
-               <q-checkbox v-model="selected[cat]" :label="cat" dense />
-            </q-item-section>
-            <!-- <q-item-section>
-              {{ cat }}
-            </q-item-section> -->
-          </q-item>
-        </q-list>
+        <q-scroll-area :style="scrollStyle">
+          <q-list separator>
+            <q-item-label class="text-center full-width q-pb-lg">Categories</q-item-label>
+            <q-separator />
+            <q-item v-for="cat in categories" clickable v-ripple :key="cat">
+              <q-item-section>
+                <q-checkbox v-model="selected[cat]" :label="cat" dense />
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-scroll-area>
       </div>
 
       <div class="column col" style="min-width: 1px; max-width: 1px;">
@@ -37,6 +36,7 @@
       <div class="col">
         <div class="row">
           <div class="column col-grow">
+            <q-resize-observer @resize="onResize" />
             <q-icon-picker
               ref="icons"
               v-model="name"
@@ -74,7 +74,8 @@ export default {
       },
       loaded: false,
       categories: [],
-      selected: {}
+      selected: {},
+      height: 600
     }
   },
 
@@ -89,6 +90,13 @@ export default {
       },
       set (b) {
         this.$store.commit('common/iconSet', b)
+      }
+    },
+
+    scrollStyle () {
+      return {
+        width: '130px',
+        height: this.height - 39 + 'px'
       }
     }
   },
@@ -130,6 +138,10 @@ export default {
           this.$set(this.selected, cat, false)
         })
       }
+    },
+
+    onResize (size) {
+      this.height = size.height
     }
   }
 }

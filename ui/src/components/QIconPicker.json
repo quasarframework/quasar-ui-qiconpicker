@@ -12,7 +12,7 @@
     },
     "icon-set": {
       "type": "String",
-      "desc": "The name of a Quasar icon set",
+      "desc": "The name of a [Quasar Icon Set](https://quasar.dev/options/quasar-icon-sets)",
       "category": "model",
       "values": [
         "material-icons",
@@ -55,7 +55,7 @@
     },
     "tags": {
       "type": "Array",
-      "addedIn": "1.0.7",
+      "addedIn": "v1.0.7",
       "desc": "An array of tags to be used to do filtering by category",
       "category": "behavior",
       "examples": [
@@ -166,11 +166,10 @@
       "desc": "Returns an array of tags associated with the passed in icon name",
       "params": {
         "name": {
-          "type": "String",
-          "desc": "Th ename of the icon",
+          "type": "Array",
+          "desc": "The categories associated with the current icon set",
           "examples": [
-            "bolt",
-            "calendar"
+            "[ 'file', 'food', 'nature', 'people' ]"
           ]
         }
       },
