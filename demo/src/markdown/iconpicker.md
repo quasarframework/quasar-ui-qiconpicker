@@ -279,3 +279,5 @@ This is all good and well, until you need to select a different icon-set. We can
 ```
 
 Notice in the above code, the ares where the guard is reset with `this.loaded = false`.
+
+You can see how this is handled on the **Icons** page. Remember, not all icon sets have been completed and PRs are very much welcomed.
