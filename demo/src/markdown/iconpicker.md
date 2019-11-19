@@ -257,9 +257,6 @@ This is all good and well, until you need to select a different icon-set. We can
       this.loaded = false
       this.tags.splice(0, this.tags.length)
     },
-    filter (val) {
-      this.loaded = false
-    },
     selected: {
       handler (val) {
         let tags = []
@@ -278,6 +275,6 @@ This is all good and well, until you need to select a different icon-set. We can
   },
 ```
 
-Notice in the above code, the ares where the guard is reset with `this.loaded = false`.
+Notice in the above code, the areas where the guard is reset with `this.loaded = false`.
 
 You can see how this is handled on the **Icons** page. Remember, not all icon sets have been completed and PRs are very much welcomed.
