@@ -47,7 +47,7 @@ fileContents
             const tags = oldIcons[line].tags.split(',').map(tag => {
               if (tag === '') return tag
               return "'" + tag + "'"
-            }).join(',')
+            }).join(', ')
             icons.push(`{ name: '${line}', tags: [${tags}] }`)
           } else {
             icons.push(`{ name: '${line}', tags: [] }`)

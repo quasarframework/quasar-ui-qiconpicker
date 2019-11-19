@@ -137,6 +137,10 @@
     "input": {
       "type": "String",
       "desc": "`v-model`; Value from when the selection changes"
+    },
+    "tags": {
+      "type": "Array",
+      "desc": "An array for categories (tags) for the selected icon set"
     }
   },
   "scopedSlots": {
@@ -161,25 +165,6 @@
     },
     "nextPage": {
       "desc": "If paginated, will go to next page, if not on last page"
-    },
-    "getTags": {
-      "desc": "Returns an array of tags associated with the passed in icon name",
-      "params": {
-        "name": {
-          "type": "Array",
-          "desc": "The categories associated with the current icon set",
-          "examples": [
-            "[ 'file', 'food', 'nature', 'people' ]"
-          ]
-        }
-      },
-      "returns": {
-        "type": "Array",
-        "desc": "An array of tags",
-        "examples": [
-          "['accessibility', 'media']"
-        ]
-      }
     }
   }
 }

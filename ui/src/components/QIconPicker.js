@@ -23,7 +23,8 @@ export default {
         page: 1,
         itemsPerPage: 0,
         totalPages: 0
-      }
+      },
+      categories: []
     }
   },
 
@@ -163,7 +164,6 @@ export default {
     },
 
     tags (val) {
-      console.log('tags changed:', val)
       // whenever the tags change, it resets pagination page to page 1
       this.__setPagination({ page: 1, totalPages: this.pagesNumber })
       this.__updatePagination()
@@ -181,7 +181,9 @@ export default {
             const iconsSet = window.QIconPicker.iconSet[name]
             this.iconsList = iconsSet.icons
           } else {
+            // eslint-disable-next-line no-console
             console.error(`QIconPicker: no icon set loaded called '${set}'`)
+            // eslint-disable-next-line no-console
             console.error('Be sure to load the UMD version of the icon set in a script tag before using with UMD')
           }
         } else {
@@ -189,6 +191,7 @@ export default {
             const iconsSet = require(`@quasar/quasar-ui-qiconpicker/src/components/icon-set/${set}.js`).default
             this.iconsList = iconsSet.icons
           } catch (e) {
+            // eslint-disable-next-line no-console
             console.error(`QIconPicker: cannot find icon set found called '${set}'`)
           }
         }
@@ -252,9 +255,9 @@ export default {
       }
     },
 
-    getTags (name) {
+    __getCategories () {
       let t = []
-      this.displayedIcons.forEach(icon => {
+      this.iconsList.forEach(icon => {
         const tags = icon.tags
         tags.forEach(tag => {
           if (t.includes(tag) !== true) {
@@ -263,7 +266,8 @@ export default {
         })
       })
       t.sort()
-      return t
+      this.categories = t
+      return true
     },
 
     __renderBody (h) {
@@ -370,13 +374,19 @@ export default {
   },
 
   render (h) {
-    return h('div', this.setBothColors(this.color, this.backgroundColor, {
+    const picker = h('div', this.setBothColors(this.color, this.backgroundColor, {
       ref: 'icon-picker',
       staticClass: 'q-icon-picker flex'
     }), [
       this.__renderBody(h),
-      this.noFooter !== true && this.pagination !== void 0 && this.__renderFooter(h),
-      this.$emit('loaded') && void 0
+      this.noFooter !== true && this.pagination !== void 0 && this.__renderFooter(h)
     ])
+
+    this.$nextTick(() => {
+      this.__getCategories()
+      this.$emit('tags', this.categories)
+    })
+
+    return picker
   }
 }

@@ -38,7 +38,6 @@
           <div class="column col-grow">
             <q-resize-observer @resize="onResize" />
             <q-icon-picker
-              ref="icons"
               v-model="name"
               :filter="filter"
               :icon-set="iconSet"
@@ -46,7 +45,7 @@
               font-size="3em"
               tooltips
               :pagination.sync="pagination"
-              @loaded="onLoaded"
+              @tags="onTags"
               style="height: calc(100vh - 140px)"
             />
           </div>
@@ -104,6 +103,7 @@ export default {
   watch: {
     iconSet (val) {
       this.loaded = false
+      this.tags.splice(0, this.tags.length)
     },
     filter (val) {
       this.loaded = false
@@ -117,26 +117,23 @@ export default {
           }
         })
         this.tags.splice(0, this.tags.length, ...tags)
-        console.log(this.tags)
       },
       deep: true
     }
   },
 
   methods: {
-    onLoaded () {
+    onTags (tags) {
       if (this.loaded !== true) {
         let cats = []
-        if (this.$refs.icons) {
-          let tags = [ ...this.$refs.icons.getTags() ]
-          cats.splice(0, 0, ...tags)
-          this.loaded = true
-        }
+        let t = [ ...tags ]
+        cats.splice(0, 0, ...t)
         this.categories.splice(0, this.categories.length, ...cats)
         this.categories.concat(...cats)
         this.categories.forEach(cat => {
           this.$set(this.selected, cat, false)
         })
+        this.loaded = true
       }
     },
 
