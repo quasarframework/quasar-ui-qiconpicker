@@ -18,6 +18,7 @@ export default {
     },
     icons: Array,
     filter: String,
+    tags: Array,
     dense: Boolean,
     tooltips: Boolean,
     noFooter: Boolean,

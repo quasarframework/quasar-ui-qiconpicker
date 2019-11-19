@@ -1,6 +1,6 @@
 /*
   This generator is a bit different from the rest. Fontawesome uses
-  a prefix (ex: 'fab', 'fas', etc) to determine which font file to
+  a prefix (ex: 'fab', 'fas', 'far', etc) to determine which font file to
   use. However, this information is not in the css file that we will
   be parsing. So, we open the old fontawesome-v5.js file (which was
   made for web, not node), read it in, make adjustments, and eval it
@@ -12,6 +12,7 @@
 const path = require('path')
 const { green, blue } = require('chalk')
 const { readFile, writeFile } = require('../utils')
+const { validateTags } = require('../utils')
 
 const name = 'fontawesome-v5'
 const inputLocation = `../../src/components/icon-set/${name}.js`
@@ -30,12 +31,23 @@ fa.shift()
 fa.pop()
 fa.pop()
 fa.pop()
-fa = '[\n' + fa.join(',\n') + '\n]\n'
+fa = '[\n' + fa.join('\n') + '\n]\n'
 // eslint-disable-next-line no-eval
 fa = eval(fa)
 fa.forEach(f => {
-  let names = f.name.split(' ')
-  oldIcons[names[1]] = names[0]
+  const name = f.name
+  const prefix = f.prefix
+  const tags = f.tags
+  if (oldIcons[name] !== void 0) {
+    oldIcons[name].prefix.push(prefix)
+  } else {
+    if (prefix === 'fab') {
+      if (tags.includes('brand') !== true) {
+        tags.push('brand')
+      }
+    }
+    oldIcons[name] = { prefix: Array(prefix), tags: tags.sort() }
+  }
 })
 
 const location = require.resolve('@quasar/extras/fontawesome-v5/fontawesome-v5.css')
@@ -47,12 +59,26 @@ fileContents
     if (line.startsWith('.')) {
       const pos = line.indexOf(':before')
       if (pos > 0) {
-        line = line.slice(1, pos)
-        if (blacklisted.includes(line) === false) {
-          if (oldIcons[line]) {
-            icons.push(oldIcons[line] + ' ' + line)
+        const name = line.slice(1, pos)
+        if (blacklisted.includes(name) !== true) {
+          if (oldIcons[name] !== void 0) {
+            oldIcons[name].prefix.forEach(pfx => {
+              // if type is 'fab' make sure it has brand
+              if (pfx === 'fab') {
+                if (oldIcons[name].tags.includes('brand') !== true) {
+                  oldIcons[name].tags.push('brand')
+                }
+              }
+              // validate tags
+              validateTags(oldIcons[name].tags)
+              const tags = oldIcons[name].tags.map(tag => {
+                if (tag === '') return tag
+                return "'" + tag + "'"
+              }).join(', ')
+              icons.push(`{ name: '${name}', prefix: '${pfx}', tags: [${tags}] }`)
+            })
           } else {
-            icons.push('--- ' + line)
+            icons.push(`{ name: '${name}', prefix: '---', tags: [] }`)
           }
         }
       }
@@ -68,7 +94,7 @@ icons.forEach((icon, index) => {
     output += ',\n'
   }
 
-  output += `    { name: '${icon}' }`
+  output += `    ${icon}`
 })
 
 output += '\n  ]\n'

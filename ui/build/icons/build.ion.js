@@ -3,11 +3,31 @@ const { green, blue } = require('chalk')
 const { readFile, writeFile } = require('../utils')
 
 const name = 'ionicons-v4'
+const inputLocation = `../../src/components/icon-set/${name}.js`
 const outputLocation = `../../src/components/icon-set/${name}.js`
+let oldIcons = {}
 let icons = []
 let blacklisted = [
+  'ionicon',
   'ionicons'
 ]
+
+let fa = readFile(path.resolve(__dirname, inputLocation))
+fa = fa.split('\n')
+fa.shift()
+fa.shift()
+fa.shift()
+fa.pop()
+fa.pop()
+fa.pop()
+fa = '[\n' + fa.join(',\n') + '\n]\n'
+// eslint-disable-next-line no-eval
+fa = eval(fa)
+fa.forEach(f => {
+  const name = f.name
+  const tags = f.tags
+  oldIcons[name] = { tags: Array(tags).join(',') }
+})
 
 const location = require.resolve('@quasar/extras/ionicons-v4/ionicons-v4.css')
 const fileContents = readFile(location)
@@ -20,7 +40,15 @@ fileContents
       if (pos > 0) {
         line = line.slice(1, pos)
         if (blacklisted.includes(line) === false) {
-          icons.push(line)
+          if (oldIcons[line]) {
+            const tags = oldIcons[line].tags.split(',').map(tag => {
+              if (tag === '') return tag
+              return "'" + tag + "'"
+            }).join(', ')
+            icons.push(`{ name: '${line}', tags: [${tags}] }`)
+          } else {
+            icons.push(`{ name: '${line}', tags: [] }`)
+          }
         }
       }
     }
@@ -35,7 +63,7 @@ icons.forEach((icon, index) => {
     output += ',\n'
   }
 
-  output += `    { name: '${icon}' }`
+  output += `    ${icon}`
 })
 
 output += '\n  ]\n'

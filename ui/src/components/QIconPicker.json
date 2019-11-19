@@ -6,13 +6,13 @@
       "default": "''",
       "category": "model",
       "examples": [
-        "v-model=\"calendar-today\"",
+        "v-model=\"calendar_today\"",
         "v-model=\"bolt\""
       ]
     },
     "icon-set": {
       "type": "String",
-      "desc": "The name of a Quasar icon set",
+      "desc": "The name of a [Quasar Icon Set](https://quasar.dev/options/quasar-icon-sets)",
       "category": "model",
       "values": [
         "material-icons",
@@ -51,6 +51,16 @@
       "category": "behavior",
       "examples": [
         ":filter=\"myFilter\""
+      ]
+    },
+    "tags": {
+      "type": "Array",
+      "addedIn": "v1.0.7",
+      "desc": "An array of tags to be used to do filtering by category",
+      "category": "behavior",
+      "examples": [
+        ":tags=\"['accessibility']\"",
+        ":tags=\"['media']\""
       ]
     },
     "dense": {
@@ -127,6 +137,10 @@
     "input": {
       "type": "String",
       "desc": "`v-model`; Value from when the selection changes"
+    },
+    "tags": {
+      "type": "Array",
+      "desc": "An array for categories (tags) for the selected icon set"
     }
   },
   "scopedSlots": {

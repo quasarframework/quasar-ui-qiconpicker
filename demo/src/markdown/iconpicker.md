@@ -64,7 +64,7 @@ export default {
 
 If you are using a large icon set and find it is taking too long to load, you can pre-cache the UMD variant.
 
-You can do this by adding to your **App.vue** (or, any other appropriate) file:
+You can do this by adding to your **App.vue** (or, any other appropriate) file, one or more of the UMD icon-set variants:
 
 :::
 ```html
@@ -195,3 +195,89 @@ Most icon sets are very large which may cause performance issues.
 ::: tip
 In order to work properly, QIconPicker needs a specified height in it's style (or parent style).
 :::
+
+# Categories (tags)
+Added in **v1.0.7**, you can now get categories (tags) for the associated loaded icon set.
+
+As of this writing, the **Eva** and **Material Design** icon sets are done. The **Fontawesome v5** icon set is partially done. If you need an icon set that **needs** to be completed and is not, PRs are welcomed or DM me on the Discord channel.
+
+You can get the tags viw the `tag` event.
+
+```html
+  <q-icon-picker
+    v-model="name"
+    :filter="filter"
+    :icon-set="iconSet"
+    :tags="tags"
+    font-size="3em"
+    tooltips
+    :pagination.sync="pagination"
+    @tags="onTags"
+    style="height: calc(100vh - 140px)"
+  />
+```
+
+Notice the `@tags="onTags"`. Capturing this is a bit tricky. You need to set a guard to stop potential end-less loop in your Vue code (depending on how you use it). In your `data ()` function set a guard variable; in this case `loaded`:
+
+```js
+  data () {
+    return {
+      loaded: false,  // guard var
+      tags: [],       // user selected tags to pass to QIconPicker
+      categories: [], // keep track of categories
+      selected: {}    // keep track of user selected categories
+    }
+```
+
+in your `methods` section, add the event handler, and put the guard in to stop potential recursion:
+
+```js
+  methods: {
+    onTags (tags) {
+      if (this.loaded !== true) {
+        let cats = []
+        let t = [ ...tags ]
+        cats.splice(0, 0, ...t)
+        this.categories.splice(0, this.categories.length, ...cats)
+        this.categories.concat(...cats)
+        this.categories.forEach(cat => {
+          this.$set(this.selected, cat, false)
+        })
+        this.loaded = true
+      }
+    }
+  }
+```
+
+This is all good and well, until you need to select a different icon-set. We can create the proper handlers in the `watch` section:
+
+```js
+  watch: {
+    iconSet (val) {
+      this.loaded = false
+      this.tags.splice(0, this.tags.length)
+    },
+    filter (val) {
+      this.loaded = false
+    },
+    selected: {
+      handler (val) {
+        let tags = []
+        this.categories.forEach(cat => {
+          // if user has selected this tag...
+          if (val[cat] === true) {
+            // ...then keep track of it
+            tags.push(cat)
+          }
+        })
+        // push all user selected tags to QIconPicker
+        this.tags.splice(0, this.tags.length, ...tags)
+      },
+      deep: true
+    }
+  },
+```
+
+Notice in the above code, the ares where the guard is reset with `this.loaded = false`.
+
+You can see how this is handled on the **Icons** page. Remember, not all icon sets have been completed and PRs are very much welcomed.
