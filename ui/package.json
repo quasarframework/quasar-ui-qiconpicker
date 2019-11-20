@@ -24,6 +24,10 @@
     "icons:fontawesome": "node build/icons/build.fontawesome.js",
     "icons:all": "node build/icons/build.all.js"
   },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/hawkeye64"
+  },
   "publishConfig": {
     "access": "public"
   },
