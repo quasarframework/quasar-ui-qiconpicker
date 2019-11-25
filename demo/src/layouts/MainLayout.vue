@@ -16,7 +16,10 @@
           QIconPicker <span class="text-subtitle2">v{{ version }}</span>
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <q-space />
+
+        <q-btn flat round @click="$q.dark.toggle()" :icon="$q.dark.isActive ? 'brightness_2' : 'brightness_5'" />
+        <div v-if="$q.screen.width > 500">Quasar v{{ $q.version }}</div>
 
         <q-btn
           flat
@@ -34,7 +37,6 @@
     <q-drawer
       v-model="leftDrawerOpen"
       bordered
-      content-style="background-color: #f8f8ff"
     >
       <q-list>
         <q-item-label header>
@@ -47,7 +49,6 @@
       v-model="rightDrawerOpen"
       side="right"
       bordered
-      content-style="background-color: #f8f8ff"
     >
       <q-scroll-area class="fit">
         <q-list dense>

@@ -28,7 +28,11 @@ The `icons` property allows you to use a customized set of icons.
       <example-card title="Using Icon Slot" name="UsingIconSlot" :tag-parts="getTagParts(require('!!raw-loader!../examples/UsingIconSlot.vue').default)" />
     </div>
     <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
-      <q-btn fab icon="keyboard_arrow_up" color="primary" />
+      <q-btn
+        fab
+        icon="keyboard_arrow_up"
+        :class="{ 'text-black bg-grey-4': $q.dark.isActive, 'text-white bg-primary': !$q.dark.isActive }"
+      />
     </q-page-scroller>
   </hero>
 </template>
@@ -38,7 +42,7 @@ import Hero from '../components/Hero'
 import ExampleTitle from '../components/ExampleTitle'
 import ExampleCard from '../components/ExampleCard'
 import { slugify } from 'assets/page-utils'
-import getTagParts from '@quasar/quasar-app-extension-qmarkdown/src/lib/getTagParts'
+import { getTagParts } from '@quasar/quasar-ui-qmarkdown'
 
 export default {
   name: 'Examples',
