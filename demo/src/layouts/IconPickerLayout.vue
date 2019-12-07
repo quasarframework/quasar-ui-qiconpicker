@@ -64,7 +64,7 @@ import { version } from 'ui'
 export default {
   name: 'IconPickerLayout',
   components: {
-    'playground': () => import('../components/Playground'),
+    playground: () => import('../components/Playground'),
     'essential-links': () => import('../components/EssentialLinks')
   },
   data () {

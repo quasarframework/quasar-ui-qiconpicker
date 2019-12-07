@@ -110,7 +110,7 @@ export default {
     },
     selected: {
       handler (val) {
-        let tags = []
+        const tags = []
         this.categories.forEach(cat => {
           if (val[cat] === true) {
             tags.push(cat)
@@ -125,8 +125,8 @@ export default {
   methods: {
     onTags (tags) {
       if (this.loaded !== true) {
-        let cats = []
-        let t = [ ...tags ]
+        const cats = []
+        const t = [...tags]
         cats.splice(0, 0, ...t)
         this.categories.splice(0, this.categories.length, ...cats)
         this.categories.concat(...cats)
