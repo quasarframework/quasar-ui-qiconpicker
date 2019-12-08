@@ -256,14 +256,16 @@ export default {
     },
 
     __getCategories () {
-      let t = []
+      const t = []
       this.iconsList.forEach(icon => {
         const tags = icon.tags
-        tags.forEach(tag => {
-          if (t.includes(tag) !== true) {
-            t.push(tag)
-          }
-        })
+        if (tags && tags.length > 0) {
+          tags.forEach(tag => {
+            if (t.includes(tag) !== true) {
+              t.push(tag)
+            }
+          })
+        }
       })
       t.sort()
       this.categories = t
