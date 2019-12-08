@@ -212,7 +212,7 @@ export default {
     // otherwise returns false if it has changed
     __samePagination (oldPag, newPag) {
       // eslint-disable-next-line no-unused-vars
-      for (let prop in newPag) {
+      for (const prop in newPag) {
         if (newPag[prop] !== oldPag[prop]) {
           return false
         }
@@ -256,14 +256,16 @@ export default {
     },
 
     __getCategories () {
-      let t = []
+      const t = []
       this.iconsList.forEach(icon => {
         const tags = icon.tags
-        tags.forEach(tag => {
-          if (t.includes(tag) !== true) {
-            t.push(tag)
-          }
-        })
+        if (tags && tags.length > 0) {
+          tags.forEach(tag => {
+            if (t.includes(tag) !== true) {
+              t.push(tag)
+            }
+          })
+        }
       })
       t.sort()
       this.categories = t
@@ -302,7 +304,7 @@ export default {
           max: totalPages
         },
         on: {
-          'input': v => {
+          input: v => {
             this.__setPagination({ page: v })
           }
         }
@@ -363,7 +365,7 @@ export default {
           icon: name
         },
         on: {
-          'click': () => {
+          click: () => {
             this.$emit('input', name)
           }
         }

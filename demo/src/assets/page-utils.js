@@ -15,7 +15,7 @@ export function copyHeading (id) {
     message: 'Anchor has been copied to clipboard.',
     color: 'primary',
     position: 'top',
-    actions: [ { icon: 'close', color: 'white' } ],
+    actions: [{ icon: 'close', color: 'white' }],
     timeout: 2000
   })
 }

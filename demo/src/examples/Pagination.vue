@@ -26,7 +26,7 @@ export default {
         itemsPerPage: 75,
         page: 0
       },
-      options: [ 25, 50, 75, 100 ]
+      options: [25, 50, 75, 100]
     }
   }
 }

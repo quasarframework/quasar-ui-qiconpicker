@@ -2,8 +2,8 @@ const
   fs = require('fs'),
   path = require('path'),
   zlib = require('zlib'),
-  { green, blue, red, cyan } = require('chalk'),
-  kebabRegex = /[A-Z\u00C0-\u00D6\u00D8-\u00DE]/g
+  { green, blue, red, cyan } = require('chalk')
+  // kebabRegex = /[A-Z\u00C0-\u00D6\u00D8-\u00DE]/g
 
 function getSize (code) {
   return (code.length / 1024).toFixed(2) + 'kb'
@@ -33,7 +33,7 @@ module.exports.validateTags = function (tags) {
     'editor',
     'file',
     'food',
-    'hardware',
+    'technology',
     'health',
     'map',
     'media',

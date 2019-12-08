@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "docsUrl": "https://quasarframework.github.io/quasar-ui-qiconpicker/docs"
+  },
+
   "props": {
     "value": {
       "type": "String",
