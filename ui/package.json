@@ -1,6 +1,6 @@
 {
   "name": "@quasar/quasar-ui-qiconpicker",
-  "version": "1.0.9",
+  "version": "1.0.14",
   "author": "Jeff Galbraith <jeff@quasar.dev>",
   "description": "QIconPicker - Quasar component",
   "license": "MIT",
