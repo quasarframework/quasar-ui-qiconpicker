@@ -1,5 +1,5 @@
 <template>
-  <div class="q-ma-md">
+  <div class="q-ma-md" style="max-width: 800px; width: 100%;">
     <q-input v-model="value" label="Icon" clearable>
       <template v-slot:append>
         <q-icon name="extension" class="cursor-pointer">

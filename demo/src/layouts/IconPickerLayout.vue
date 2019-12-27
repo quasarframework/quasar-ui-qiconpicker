@@ -38,6 +38,7 @@
           label="Playground"
           caption="Play with properties"
         >
+          <q-separator />
           <playground></playground>
         </q-expansion-item>
 
@@ -47,8 +48,10 @@
           icon="fas fa-link"
           label="Essential Links"
         >
+        <q-separator />
         <essential-links />
         </q-expansion-item>
+        <q-separator />
       </div>
     </q-drawer>
 

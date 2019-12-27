@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <q-markdown class="q-ma-md">
-Besides using the scopedSlot `icon`, which gives the `name` of the current icon, you can skin everything the way you wish.
-    </q-markdown>
+  <div style="max-width: 800px; width: 100%;">
     <div class="wrapper">
       <q-icon-picker
         v-model="value"

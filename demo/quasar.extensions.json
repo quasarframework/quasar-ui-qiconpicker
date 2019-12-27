@@ -4,5 +4,6 @@
     "import_vmd": true
   },
   "@quasar/qribbon": {},
-  "json-api-viewer": {}
+  "json-api-viewer": {},
+  "example-viewer": {}
 }

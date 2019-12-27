@@ -7,25 +7,43 @@ Icon sets contain hundreds, even thousands of icons. This page utilizes several 
 :::
       </q-markdown>
       <example-title title="Basic" />
-      <example-card title="Default" name="Default" :tag-parts="getTagParts(require('!!raw-loader!../examples/Default.vue').default)" />
-      <example-card title="Size" name="Size" :tag-parts="getTagParts(require('!!raw-loader!../examples/Size.vue').default)" />
-      <example-card title="Tooltips" name="Tooltips" :tag-parts="getTagParts(require('!!raw-loader!../examples/Tooltips.vue').default)" />
-      <example-card title="Color" name="Color" :tag-parts="getTagParts(require('!!raw-loader!../examples/Color.vue').default)" />
-      <example-card title="Selected Color" name="SelectedColor" :tag-parts="getTagParts(require('!!raw-loader!../examples/SelectedColor.vue').default)" />
+      <example-viewer title="Default" file="Default" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths" />
+      <example-viewer title="Size" file="Size" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths" />
+      <example-viewer title="Tooltips" file="Tooltips" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths" />
+      <example-viewer title="Color" file="Color" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths" />
+      <example-viewer title="Selected Color" file="SelectedColor" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths" />
 
       <example-title title="Advanced" />
-      <q-markdown>
+      <example-viewer title="Filter" file="Filter2" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths">
+        <q-markdown>
 Type in the `QInput` below to activate the filter.
-      </q-markdown>
-      <example-card title="Filter" name="Filter2" :tag-parts="getTagParts(require('!!raw-loader!../examples/Filter2.vue').default)" />
-      <q-markdown>
+        </q-markdown>
+      </example-viewer>
+      <example-viewer title="Custom Icon Set" file="CustomIconSet" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths">
+        <q-markdown>
 The `icons` property allows you to use a customized set of icons.
-      </q-markdown>
-      <example-card title="Custom Icon Set" name="CustomIconSet" :tag-parts="getTagParts(require('!!raw-loader!../examples/CustomIconSet.vue').default)" />
-      <example-card title="Using QInput" name="UsingQInput" :tag-parts="getTagParts(require('!!raw-loader!../examples/UsingQInput.vue').default)" />
-      <example-card title="Pagination" name="Pagination" :tag-parts="getTagParts(require('!!raw-loader!../examples/Pagination.vue').default)" />
-      <example-card title="Pagination Color" name="PaginationColor" :tag-parts="getTagParts(require('!!raw-loader!../examples/PaginationColor.vue').default)" />
-      <example-card title="Using Icon Slot" name="UsingIconSlot" :tag-parts="getTagParts(require('!!raw-loader!../examples/UsingIconSlot.vue').default)" />
+        </q-markdown>
+      </example-viewer>
+      <example-viewer title="Using QInput" file="UsingQInput" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths" />
+      <example-viewer title="Pagination" file="Pagination" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths">
+        <q-markdown class="q-ma-md">
+You can use the `pagination` property to control the number of icons displayed at one time. Don't forget to put the `.sync` modifier on the `pagination` property (ie: `:pagination.sync="pagination"`) so the data can flow both ways.
+
+        </q-markdown>
+      </example-viewer>
+      <example-viewer title="Pagination Color" file="PaginationColor" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths">
+        <q-markdown class="q-ma-md">
+`QPagination` is used for the pagination. You can pass any of it's props to it via the `pagination-props` property which takes an object filled with properties.
+
+Enter colors only from the Quasar color palette (ex: "orange-8")
+        </q-markdown>
+
+      </example-viewer>
+      <example-viewer title="Using Icon Slot" file="UsingIconSlot" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths">
+        <q-markdown class="q-ma-md">
+Besides using the scopedSlot `icon`, which gives the `name` of the current icon, you can skin everything the way you wish.
+        </q-markdown>
+      </example-viewer>
     </div>
     <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
       <q-btn
@@ -40,22 +58,43 @@ The `icons` property allows you to use a customized set of icons.
 <script>
 import Hero from '../components/Hero'
 import ExampleTitle from '../components/ExampleTitle'
-import ExampleCard from '../components/ExampleCard'
 import { slugify } from 'assets/page-utils'
-import { getTagParts } from '@quasar/quasar-ui-qmarkdown'
+import { version } from 'ui'
 
 export default {
   name: 'Examples',
 
   components: {
     Hero,
-    ExampleTitle,
-    ExampleCard
+    ExampleTitle
   },
 
   data () {
     return {
-      tempToc: []
+      tempToc: [],
+      locationUrl: 'https://github.com/quasarframework/quasar-ui-qiconpicker/tree/dev/demo/src/examples/',
+      jsPaths: [
+        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/index.umd.min.js`,
+        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/eva-icons.umd.js`,
+        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/fontawesome-v5.umd.js`,
+        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/ionicons-v4.umd.js`,
+        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/material-icons.umd.js`,
+        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/material-icons-outlined.umd.js`,
+        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/material-icons-round.umd.js`,
+        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/material-icons-sharp.umd.js`,
+        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/mdi-v4.umd.js`,
+        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/themify.umd.js`
+
+      ],
+      cssPaths: [
+        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/index.min.css`,
+        'https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp',
+        'https://cdn.jsdelivr.net/npm/@quasar/extras/fontawesome-v5/fontawesome-v5.css',
+        'https://cdn.jsdelivr.net/npm/@quasar/extras/ionicons-v4/ionicons-v4.css',
+        'https://cdn.jsdelivr.net/npm/@quasar/extras/mdi-v4/mdi-v4.css',
+        'https://cdn.jsdelivr.net/npm/@quasar/extras/themify/themify.css',
+        'https://cdn.jsdelivr.net/npm/@quasar/extras/eva-icons/eva-icons.css'
+      ]
     }
   },
 
@@ -94,9 +133,12 @@ export default {
   },
 
   methods: {
-    getTagParts,
     addToToc (name, level = 1) {
-      const slug = slugify(name)
+      let n = name
+      if (level > 1) {
+        n = 'example-' + n
+      }
+      const slug = slugify(n)
       this.tempToc.push({
         children: [],
         id: slug,

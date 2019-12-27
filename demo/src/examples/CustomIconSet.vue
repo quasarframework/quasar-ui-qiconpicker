@@ -1,10 +1,12 @@
 <template>
-  <q-icon-picker
-    v-model="value"
-    :icons="icons"
-    style="height: 100px;"
-    tooltips
-  />
+  <div style="max-width: 800px; width: 100%;">
+    <q-icon-picker
+      v-model="value"
+      :icons="icons"
+      style="height: 100px;"
+      tooltips
+    />
+  </div>
 </template>
 
 <script>
@@ -24,7 +26,7 @@ export default {
         { name: 'ti-camera' }
       ],
       pagination: {
-        itemsPerPage: 60,
+        itemsPerPage: 10,
         page: 0
       }
     }

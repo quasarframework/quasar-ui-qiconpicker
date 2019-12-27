@@ -1,11 +1,5 @@
 <template>
-  <div>
-    <q-markdown class="q-ma-md">
-`QPagination` is used for the pagination. You can pass any of it's props to it via the `pagination-props` property which takes an object filled with properties.
-
-Enter colors only from the Quasar color palette (ex: "orange-8")
-
-    </q-markdown>
+  <div style="max-width: 800px; width: 100%;">
     <div class="row justify-start q-ma-md">
       <q-input filled v-model="paginationColor" label="Pagination Color" />
     </div>
@@ -14,7 +8,7 @@ Enter colors only from the Quasar color palette (ex: "orange-8")
       v-model="value"
       icon-set="material-icons"
       :pagination.sync="pagination"
-      :paginationProps="{
+      :pagination-props="{
         maxPages: 5,
         input: true,
         color: paginationColor

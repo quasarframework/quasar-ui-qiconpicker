@@ -165,7 +165,7 @@ Choices are:
 5. material-icons-round.umd.js
 6. material-icons-sharp.umd.js
 7. material-icons.umd.js
-8. mdi-v4-outlined.umd.js
+8. mdi-v4.umd.js
 9. themify.umd.js
 
 # Codepen
@@ -201,7 +201,7 @@ Added in **v1.0.7**, you can now get categories (tags) for the associated loaded
 
 As of this writing, the **Eva** and **Material Design** icon sets are done. The **Fontawesome v5** icon set is partially done. If you need an icon set that **needs** to be completed and is not, PRs are welcomed or DM me on the Discord channel.
 
-You can get the tags viw the `tag` event.
+You can get the tags with the `tag` event.
 
 ```html
   <q-icon-picker

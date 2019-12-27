@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <q-markdown class="q-ma-md">
-You can use the `pagination` property to control the number of icons displayed at one time. Don't forget to put the `.sync` modifier on the `pagination` property (ie: `:pagination.sync="pagination"`) so the data can flow both ways.
-
-    </q-markdown>
+  <div style="max-width: 800px; width: 100%;">
     <div class="row justify-start q-ma-md">
       <q-select v-model="pagination.itemsPerPage" :options="options" label="Items Per Page" class="q-ma-sm col-4" />
     </div>
