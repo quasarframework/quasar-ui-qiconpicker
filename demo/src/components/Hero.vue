@@ -1,16 +1,18 @@
 <template>
   <div>
     <section class="page-header">
+      <div class="donate"><a :href="donateUrl" target="_blank" title="Donate"><i class="fas fa-heart" style="color: red"></i></a></div>
       <div class="text-h1 project-name">{{ title }}</div>
       <div class="text-h2 project-tagline">{{ tagline }}</div>
-      <div class="byline">{{ byline }}<a :href="bylineTwitter" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></div>
-      <div class="quasar">{{ quasarDesc }}</div>
-      <div class="donate"><a :href="donateUrl" target="_blank" title="Donate"><i class="fas fa-heart" style="color: red"></i></a></div>
       <q-btn type="a" :href="locationUrl" target="_blank" class="btn" label="View on GitHub" no-caps flat/>
       <q-btn to="/docs" class="btn" label="Docs" no-caps flat/>
       <q-btn to="/examples" class="btn" label="Examples" no-caps flat/>
-      <q-btn to="/demo" class="btn" label="Interactive Demo" no-caps flat/>
+      <q-btn v-if="hasInteractiveDemo" to="/demo" class="btn" label="Interactive Demo" no-caps flat/>
       <q-btn type="a" :href="donateUrl" target="_blank" class="btn" label="Donate" no-caps flat/>
+      <div class="row justify-evenly items-center q-ma-sm">
+        <div class="quasar">{{ quasarDesc }}</div>
+        <div class="byline">{{ byline }}<a :href="bylineTwitter" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></div>
+      </div>
     </section>
     <main class="flex flex-start justify-center inset-shadow">
       <div class="q-pa-md col-12-sm col-8-md col-6-lg inset-shadow" style="width: 100%; height: 3px;" />
@@ -33,7 +35,8 @@ export default {
       bylineTwitter: 'https://twitter.com/jgalbraith64',
       quasarDesc: 'A Quasar Framework Component and App Extension',
       locationUrl: 'https://github.com/quasarframework/quasar-ui-qiconpicker',
-      donateUrl: 'https://github.com/sponsors/hawkeye64'
+      donateUrl: 'https://github.com/sponsors/hawkeye64',
+      hasInteractiveDemo: true
     }
   }
 }
