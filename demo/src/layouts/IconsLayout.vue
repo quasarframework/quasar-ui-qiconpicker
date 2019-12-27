@@ -32,7 +32,9 @@
         <q-item-label header>
           <q-icon name="fas fa-link" size="1.5em" class="q-mr-md" /><span style="font-size: 1.5em">Essential Links</span></q-item-label>
       </q-list>
+      <q-separator />
       <essential-links />
+      <q-separator />
     </q-drawer>
 
     <q-page-container>
