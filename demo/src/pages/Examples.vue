@@ -88,12 +88,12 @@ export default {
       ],
       cssPaths: [
         `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/index.min.css`,
-        'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.0/css/all.css',
-        'https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp',
-        'https://unpkg.com/ionicons@latest/dist/css/ionicons.min.css',
-        'https://unpkg.com/@icon/themify-icons/themify-icons.css',
-        'https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css',
-        'https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/4.7.95/css/materialdesignicons.min.css'
+        'https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp',
+        'https://cdn.jsdelivr.net/npm/@quasar/extras/fontawesome-v5/fontawesome-v5.css',
+        'https://cdn.jsdelivr.net/npm/@quasar/extras/ionicons-v4/ionicons-v4.css',
+        'https://cdn.jsdelivr.net/npm/@quasar/extras/mdi-v4/mdi-v4.css',
+        'https://cdn.jsdelivr.net/npm/@quasar/extras/themify/themify.css',
+        'https://cdn.jsdelivr.net/npm/@quasar/extras/eva-icons/eva-icons.css'
       ]
     }
   },
