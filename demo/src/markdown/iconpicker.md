@@ -165,7 +165,7 @@ Choices are:
 5. material-icons-round.umd.js
 6. material-icons-sharp.umd.js
 7. material-icons.umd.js
-8. mdi-v4-outlined.umd.js
+8. mdi-v4.umd.js
 9. themify.umd.js
 
 # Codepen
