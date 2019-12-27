@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="max-width: 800px; width: 100%;">
     <q-input v-model="filter" label="Filter" outlined clearable class="q-ma-md" />
     <q-icon-picker
       v-model="value"

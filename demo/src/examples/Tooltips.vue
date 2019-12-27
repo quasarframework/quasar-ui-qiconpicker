@@ -1,11 +1,13 @@
 <template>
-  <q-icon-picker
-    v-model="value"
-    icon-set="material-icons"
-    tooltips
-    :pagination.sync="pagination"
-    style="height: 220px;"
-  />
+  <div style="max-width: 800px; width: 100%;">
+    <q-icon-picker
+      v-model="value"
+      icon-set="material-icons"
+      tooltips
+      :pagination.sync="pagination"
+      style="height: 220px;"
+    />
+  </div>
 </template>
 
 <script>
