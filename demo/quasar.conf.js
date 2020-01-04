@@ -29,6 +29,10 @@ module.exports = function (ctx) {
     ],
 
     framework: {
+      config: {
+        dark: 'auto'
+      },
+
       // all: true, // --- includes everything; for dev only!
 
       components: [
