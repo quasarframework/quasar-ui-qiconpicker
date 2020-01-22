@@ -52,6 +52,7 @@ const fileContents = readFile(location)
 fileContents
   .split('\n')
   .forEach(line => {
+    line = line.trim()
     if (line.startsWith('.')) {
       const pos = line.indexOf(':before')
       if (pos > 0) {
@@ -71,20 +72,25 @@ fileContents
     }
   })
 
-  let output = 'export default {\n'
-  output += `  name: '${name}',\n`
-  output += '  icons: [\n'
+if (icons.length === 0) {
+  console.log(`${red('[error]')}  Fontawesome parsed 0 icons...exiting`)
+  process.exit(1)
+}
 
-  icons.forEach((icon, index) => {
-    if (index !== 0) {
-      output += ',\n'
-    }
+let output = 'export default {\n'
+output += `  name: '${name}',\n`
+output += '  icons: [\n'
 
-    output += `    ${icon}`
-  })
+icons.forEach((icon, index) => {
+  if (index !== 0) {
+    output += ',\n'
+  }
 
-  output += '\n  ]\n'
-  output += '}\n'
+  output += `    ${icon}`
+})
 
-  writeFile(path.resolve(__dirname, outputLocation), output)
-  console.log(`${blue('[icon]')} ${green(name + ':')} ${icons.length} generated`)
+output += '\n  ]\n'
+output += '}\n'
+
+writeFile(path.resolve(__dirname, outputLocation), output)
+console.log(`${blue('[icon]')} ${green(name + ':')} ${icons.length} generated`)

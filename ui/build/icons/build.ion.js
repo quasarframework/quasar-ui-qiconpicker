@@ -35,6 +35,7 @@ const fileContents = readFile(location)
 fileContents
   .split('\n')
   .forEach(line => {
+    line = line.trim()
     if (line.startsWith('.')) {
       const pos = line.indexOf(':before')
       if (pos > 0) {
@@ -53,6 +54,11 @@ fileContents
       }
     }
   })
+
+if (icons.length === 0) {
+  console.log(`${red('[error]')}  Ionicons parsed 0 icons...exiting`)
+  process.exit(1)
+}
 
 let output = 'export default {\n'
 output += `  name: '${name}',\n`

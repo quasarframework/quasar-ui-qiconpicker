@@ -10,7 +10,7 @@
   the prefix manually. Then, we have a finished file.
 */
 const path = require('path')
-const { green, blue } = require('chalk')
+const { green, blue, red } = require('chalk')
 const { readFile, writeFile } = require('../utils')
 const { validateTags } = require('../utils')
 
@@ -56,10 +56,11 @@ const fileContents = readFile(location)
 fileContents
   .split('\n')
   .forEach(line => {
-    if (line.startsWith('.')) {
+    line = line.trim()
+    if (line.startsWith('.fa')) {
       const pos = line.indexOf(':before')
       if (pos > 0) {
-        const name = line.slice(1, pos)
+        let name = line.slice(1, pos)
         if (blacklisted.includes(name) !== true) {
           if (oldIcons[name] !== void 0) {
             oldIcons[name].prefix.forEach(pfx => {
@@ -84,6 +85,11 @@ fileContents
       }
     }
   })
+
+if (icons.length === 0) {
+  console.log(`${red('[error]')}  Fontawesome parsed 0 icons...exiting`)
+  process.exit(1)
+}
 
 let output = 'export default {\n'
 output += `  name: '${name}',\n`
