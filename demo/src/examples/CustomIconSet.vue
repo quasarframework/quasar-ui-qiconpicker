@@ -23,7 +23,8 @@ export default {
         { name: 'fas fa-camera' },
         { name: 'eva-camera' },
         { name: 'mdi-camera' },
-        { name: 'ti-camera' }
+        { name: 'ti-camera' },
+        { name: 'las la-camera' }
       ],
       pagination: {
         itemsPerPage: 10,
