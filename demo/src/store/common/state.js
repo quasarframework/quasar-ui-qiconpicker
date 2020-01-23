@@ -10,6 +10,7 @@ export default {
     { label: 'Material Icons Round', value: 'material-icons-round' },
     { label: 'Material Icons Sharp', value: 'material-icons-sharp' },
     { label: 'MDI Icons (v4)', value: 'mdi-v4' },
-    { label: 'Themify Icons', value: 'themify' }
+    { label: 'Themify Icons', value: 'themify' },
+    { label: 'Line-awesome Icons', value: 'line-awesome' }
   ]
 }

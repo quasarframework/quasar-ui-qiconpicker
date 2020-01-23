@@ -18,8 +18,8 @@
         :tooltips="tooltips"
         :color="color"
         :background-color="backgroundColor"
-        :selectedColor="selectedColor"
-        :selectedBackground-color="selectedBackgroundColor"
+        :selected-color="selectedColor"
+        :selected-background-color="selectedBackgroundColor"
         :font-size="fontSize"
         :pagination.sync="pagination"
         style="height: 300px;"
@@ -46,7 +46,8 @@ export default {
         { label: 'Material Icons Round', value: 'material-icons-round' },
         { label: 'Material Icons Sharp', value: 'material-icons-sharp' },
         { label: 'MDI Icons (v4)', value: 'mdi-v4' },
-        { label: 'Themify Icons', value: 'themify' }
+        { label: 'Themify Icons', value: 'themify' },
+        { label: 'Line-awesome Icons', value: 'line-awesome' }
       ],
       selectedIconSet: {}
     }

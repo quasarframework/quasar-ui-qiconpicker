@@ -13,6 +13,7 @@ export default {
         'fontawesome-v5',
         'eva-icons',
         'themify',
+        'line-awesome',
         ''].includes(v),
       default: ''
     },

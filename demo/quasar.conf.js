@@ -16,19 +16,27 @@ module.exports = function (ctx) {
     ],
 
     extras: [
-      'roboto-font',
-      'material-icons', // optional, you are not bound to it
-      'material-icons-outlined',
-      'material-icons-round',
-      'material-icons-sharp',
       'ionicons-v4',
       'mdi-v4',
       'fontawesome-v5',
       'eva-icons',
-      'themify'
+      'themify',
+      'material-icons-outlined',
+      'material-icons-round',
+      'material-icons-sharp',
+      'line-awesome',
+
+      // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
+
+      'roboto-font',
+      'material-icons' // optional, you are not bound to it
     ],
 
     framework: {
+      config: {
+        dark: 'auto'
+      },
+
       // all: true, // --- includes everything; for dev only!
 
       components: [

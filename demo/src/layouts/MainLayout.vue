@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="HHh LpR fFf">
+  <q-layout view="HHh LpR fFf" @scroll="onScroll">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -36,7 +36,10 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
+      show-if-above
       bordered
+      aria-label="Menu"
+      class="menu"
     >
       <q-list>
         <q-item-label header>
@@ -49,8 +52,11 @@
 
     <q-drawer
       v-model="rightDrawerOpen"
+      show-if-above
       side="right"
       bordered
+      aria-label="Table of Contents"
+      class="toc"
     >
       <q-scroll-area class="fit">
         <q-list dense>
@@ -81,6 +87,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { scroll } from 'quasar'
+const { setScrollPosition } = scroll
 import { version } from 'ui'
 
 export default {
@@ -116,12 +123,45 @@ export default {
       const el = document.getElementById(id)
 
       if (el) {
-        this.scrollPage(el)
+        setTimeout(() => {
+          this.scrollPage(el)
+        }, 200)
       }
     },
     scrollPage (el) {
+      // const target = getScrollTarget(el)
       const offset = el.offsetTop - 50
-      scroll.setScrollPosition(window, offset, 500)
+      // setScrollPosition(target, offset, 500)
+      setScrollPosition(window, offset, 500)
+    },
+    onScroll ({ position }) {
+      if (this.scrollingPage !== true) {
+        this.updateActiveToc(position)
+      }
+    },
+    updateActiveToc (position) {
+      const toc = this.toc
+      let last
+
+      for (const i in toc) {
+        const section = toc[i]
+        const item = document.getElementById(section.id)
+
+        if (item === null) {
+          continue
+        }
+
+        if (item.offsetTop >= position + 100) {
+          if (last === void 0) {
+            last = section.id
+          }
+          break
+        }
+      }
+
+      if (last !== void 0) {
+        this.activeToc = last
+      }
     }
   }
 }

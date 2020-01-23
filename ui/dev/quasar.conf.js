@@ -24,6 +24,7 @@ module.exports = function (ctx) {
       'material-icons-outlined',
       'material-icons-round',
       'material-icons-sharp',
+      'line-awesome',
 
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
