@@ -67,7 +67,7 @@
     "open": "^7.0.0",
     "postcss": "^7.0.26",
     "postcss-rtl": "^1.5.0",
-    "quasar": "^1.7.4",
+    "quasar": "^1.8.1",
     "quasar-json-api": "^0.0.19",
     "rimraf": "^3.0.0",
     "rollup": "^1.29.1",
