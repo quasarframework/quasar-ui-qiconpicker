@@ -56,7 +56,7 @@ fileContents
   })
 
 if (icons.length === 0) {
-  console.log(`${red('[error]')}  Ionicons parsed 0 icons...exiting`)
+  console.log(`${red('[error]')}  Ion icons parsed 0 icons...exiting`)
   process.exit(1)
 }
 

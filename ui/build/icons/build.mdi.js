@@ -73,7 +73,7 @@ fileContents
   })
 
 if (icons.length === 0) {
-  console.log(`${red('[error]')}  Fontawesome parsed 0 icons...exiting`)
+  console.log(`${red('[error]')}  MDI icons parsed 0 icons...exiting`)
   process.exit(1)
 }
 
