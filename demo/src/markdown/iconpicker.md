@@ -167,6 +167,7 @@ Choices are:
 7. material-icons.umd.js
 8. mdi-v4.umd.js
 9. themify.umd.js
+10. line-awesome.umd.js
 
 # Codepen
 [UMD Example on Codepen](https://codepen.io/Hawkeye64/pen/vYYYewG)

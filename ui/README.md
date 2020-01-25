@@ -144,6 +144,7 @@ Choices are:
 7. material-icons.umd.js
 8. mdi-v4.umd.js
 9. themify.umd.js
+10. line-awesome.umd.js
 
 ### UMD Example
 ```html
