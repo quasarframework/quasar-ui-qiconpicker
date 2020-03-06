@@ -16,6 +16,7 @@ console.log(` 📦 Building ${green('v' + require('../package.json').version)}..
 createFolder('dist')
 createFolder('dist/icon-set')
 createFolder('dist/api')
+createFolder('dist/vetur')
 
 runJob(join(__dirname, './icons/build.all.js'))
 runJob(join(__dirname, './script.javascript'))
