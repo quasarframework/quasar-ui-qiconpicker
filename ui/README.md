@@ -92,7 +92,7 @@ import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-outlined.umd.
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-round.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-sharp.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons.umd.js'
-import '@quasar/quasar-ui-qiconpicker/dist/icon-set/mdi-v4.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/mdi-v5.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/themify.umd.js'
 export default {
   name: 'App'
