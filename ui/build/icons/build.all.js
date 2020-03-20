@@ -1,4 +1,5 @@
-require('./build.mdi.js')
+require('./build.mdi-v4.js')
+require('./build.mdi-v5.js')
 require('./build.ion.js')
 require('./build.eva.js')
 require('./build.fontawesome.js')
