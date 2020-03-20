@@ -10,6 +10,7 @@ export default {
         'material-icons-sharp',
         'ionicons-v4',
         'mdi-v4',
+        'mdi-v5',
         'fontawesome-v5',
         'eva-icons',
         'themify',
