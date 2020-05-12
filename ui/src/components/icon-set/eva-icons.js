@@ -427,6 +427,8 @@ export default {
     { name: 'eva-slash-outline', tags: ['alert', 'web'] },
     { name: 'eva-smartphone', tags: ['technology'] },
     { name: 'eva-smartphone-outline', tags: ['technology'] },
+    { name: 'eva-smiling-face', tags: [] },
+    { name: 'eva-smiling-face-outline', tags: [] },
     { name: 'eva-speaker', tags: ['technology'] },
     { name: 'eva-speaker-outline', tags: ['technology'] },
     { name: 'eva-square', tags: ['other'] },
