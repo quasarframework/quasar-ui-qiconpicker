@@ -17,7 +17,7 @@ export default require.context('../examples', true, /^\.\/.*\.vue$/)
   .map(page => page.slice(2).replace('.vue', ''))
   .filter(page => page !== 'Index')
   .map(page => ({
-    file: page,
-    title: page + '.vue',
+    file: page + '.vue',
+    title: page,
     path: slugify(kebabCase(page))
   }))
