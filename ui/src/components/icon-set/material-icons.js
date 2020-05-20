@@ -769,7 +769,6 @@ export default {
     { name: 'scatter_plot', tags: ['editor'] },
     { name: 'schedule', tags: ['calendar'] },
     { name: 'school', tags: [] },
-    { name: 'schore', tags: ['sport'] },
     { name: 'score', tags: ['editor'] },
     { name: 'screen_lock_landscape', tags: [] },
     { name: 'screen_lock_portrait', tags: [] },
