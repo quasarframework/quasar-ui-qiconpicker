@@ -19,5 +19,5 @@ createFolder('dist/api')
 createFolder('dist/vetur')
 
 runJob(join(__dirname, './icons/build.all.js'))
-runJob(join(__dirname, './script.javascript'))
-runJob(join(__dirname, './script.css'))
+runJob(join(__dirname, './script.javascript.js'))
+runJob(join(__dirname, './script.css.js'))
