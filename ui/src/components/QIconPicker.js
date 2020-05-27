@@ -120,14 +120,16 @@ export default {
 
   watch: {
     iconSet (val) {
-      this.__loadIconSet(val)
-      this.__updatePagination()
-      this.$nextTick(() => {
-        // whenever the icon set changes, it resets pagination page to page 1
-        this.__setPagination({ page: 1 })
-      })
-      // scroll to top of QScrollArea, if applicable
-      this.$refs.scrollArea.setScrollPosition(0)
+      if (val) {
+        this.__loadIconSet(val)
+        this.__updatePagination()
+        this.$nextTick(() => {
+          // whenever the icon set changes, it resets pagination page to page 1
+          this.__setPagination({ page: 1 })
+        })
+        // scroll to top of QScrollArea, if applicable
+        this.$refs.scrollArea.setScrollPosition(0)
+      }
     },
 
     icons (val) {
@@ -181,10 +183,10 @@ export default {
             const iconsSet = window.QIconPicker.iconSet[name]
             this.iconsList = iconsSet.icons
           } else {
-            // eslint-disable-next-line no-console
+            /* eslint-disable */
             console.error(`QIconPicker: no icon set loaded called '${set}'`)
-            // eslint-disable-next-line no-console
             console.error('Be sure to load the UMD version of the icon set in a script tag before using with UMD')
+            /* eslint-enable */
           }
         } else {
           try {

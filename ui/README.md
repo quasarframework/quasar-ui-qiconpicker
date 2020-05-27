@@ -35,7 +35,7 @@ Vue.use(Plugin)
 <style src="@quasar/quasar-ui-qiconpicker/dist/index.css"></style>
 
 <script>
-import { Component as QIconPicker } from '@quasar/quasar-ui-qiconpicker'
+import { QIconPicker } from '@quasar/quasar-ui-qiconpicker'
 
 export default {
   components: {
@@ -61,7 +61,7 @@ Vue.use(Plugin)
 <style src="@quasar/quasar-ui-qiconpicker/dist/index.css"></style>
 
 <script>
-import { Component as QIconPicker } from '@quasar/quasar-ui-qiconpicker'
+import { QIconPicker } from '@quasar/quasar-ui-qiconpicker'
 
 export default {
   components: {
@@ -274,6 +274,9 @@ $ yarn dev:electron
 ## Building package
 ```bash
 $ yarn build
+
+# build just the JSON API
+$ yarn build:api
 ```
 
 # Donate

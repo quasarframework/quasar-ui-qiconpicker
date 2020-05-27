@@ -55,6 +55,15 @@
         <q-item-label caption>@quasar/qmarkdown</q-item-label>
       </q-item-section>
     </q-item>
+    <q-item clickable tag="a" target="_blank" href="https://twitter.com/jgalbraith64">
+      <q-item-section avatar>
+        <q-icon name="fab fa-twitter"></q-icon>
+      </q-item-section>
+      <q-item-section>
+        <q-item-label>Jeff's Twitter</q-item-label>
+        <q-item-label caption>@jgalbraith64</q-item-label>
+      </q-item-section>
+    </q-item>
     <q-separator />
     <q-item-label header>Quasar</q-item-label>
     <q-separator />
@@ -108,7 +117,7 @@
 
 <script>
 export default {
-  // name: 'ComponentName',
+  name: 'EssentialLinks',
   data () {
     return {}
   }

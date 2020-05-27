@@ -6,13 +6,18 @@ const uglify = require('uglify-es')
 const buble = require('@rollup/plugin-buble')
 const json = require('@rollup/plugin-json')
 const cjs = require('@rollup/plugin-commonjs')
-const nodeResolve = require('@rollup/plugin-node-resolve')
+const { nodeResolve } = require('@rollup/plugin-node-resolve')
 
 const buildConf = require('./config')
 const buildUtils = require('./utils')
 
 const bubleConfig = {
   objectAssign: 'Object.assign'
+}
+
+const nodeResolveConfig = {
+  extensions: ['.js'],
+  preferBuiltins: false
 }
 
 const cjsConfig = {
@@ -22,10 +27,7 @@ const cjsConfig = {
 }
 
 const rollupPlugins = [
-  nodeResolve({
-    extensions: ['.js'],
-    preferBuiltins: false
-  }),
+  nodeResolve(nodeResolveConfig),
   json(),
   cjs(cjsConfig),
   buble(bubleConfig)
@@ -35,10 +37,10 @@ const builds = [
   {
     rollup: {
       input: {
-        input: resolve(`entry/index.esm.js`)
+        input: resolve('entry/index.esm.js')
       },
       output: {
-        file: resolve(`../dist/index.esm.js`),
+        file: resolve('../dist/index.esm.js'),
         format: 'es'
       }
     },
@@ -50,10 +52,10 @@ const builds = [
   {
     rollup: {
       input: {
-        input: resolve(`entry/index.common.js`)
+        input: resolve('entry/index.common.js')
       },
       output: {
-        file: resolve(`../dist/index.common.js`),
+        file: resolve('../dist/index.common.js'),
         format: 'cjs'
       }
     },
@@ -65,11 +67,11 @@ const builds = [
   {
     rollup: {
       input: {
-        input: resolve(`entry/index.umd.js`)
+        input: resolve('entry/index.umd.js')
       },
       output: {
         name: 'QIconPicker',
-        file: resolve(`../dist/index.umd.js`),
+        file: resolve('../dist/index.umd.js'),
         format: 'umd'
       }
     },
@@ -81,6 +83,7 @@ const builds = [
   }
 ]
 
+// Add your asset folders here
 addAssets(builds, 'icon-set', 'iconSet')
 
 build(builds)
@@ -96,6 +99,7 @@ function resolve (_path) {
   return path.resolve(__dirname, _path)
 }
 
+// eslint-disable-next-line no-unused-vars
 function addAssets (builds, type, injectName) {
   const
     files = fs.readdirSync(resolve('../../ui/src/components/' + type)),
@@ -134,13 +138,9 @@ function build (builds) {
 }
 
 function genConfig (opts) {
-  // const { dependencies } = require(path.resolve(__dirname, '../package.json'))
-  // const external = Object.keys(dependencies || [])
-  const external = []
-
   Object.assign(opts.rollup.input, {
     plugins: rollupPlugins,
-    external: [ 'vue', 'quasar', ...external ]
+    external: [ 'vue', 'quasar' ]
   })
 
   Object.assign(opts.rollup.output, {
@@ -199,6 +199,7 @@ function buildEntry (config) {
 }
 
 function injectVueRequirement (code) {
+  // eslint-disable-next-line
   const index = code.indexOf(`Vue = Vue && Vue.hasOwnProperty('default') ? Vue['default'] : Vue`)
 
   if (index === -1) {
