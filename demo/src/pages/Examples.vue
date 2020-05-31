@@ -12,6 +12,11 @@ Icon sets contain hundreds, even thousands of icons. This page utilizes several 
       <example-viewer title="Tooltips" file="Tooltips" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths" />
       <example-viewer title="Color" file="Color" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths" />
       <example-viewer title="Selected Color" file="SelectedColor" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths" />
+      <example-viewer title="Transition" file="Transition" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths">
+        <q-markdown>
+To turn on transitions, use the `animated` property. To change the type of transition, use the `transition-prev` and `transition-next` properties.
+        </q-markdown>
+      </example-viewer>
 
       <example-title title="Advanced" />
       <example-viewer title="Filter" file="Filter2" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths">
@@ -28,17 +33,17 @@ The `icons` property allows you to use a customized set of icons.
       <example-viewer title="Pagination" file="Pagination" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths">
         <q-markdown class="q-ma-md">
 You can use the `pagination` property to control the number of icons displayed at one time. Don't forget to put the `.sync` modifier on the `pagination` property (ie: `:pagination.sync="pagination"`) so the data can flow both ways.
-
         </q-markdown>
       </example-viewer>
+
       <example-viewer title="Pagination Color" file="PaginationColor" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths">
         <q-markdown class="q-ma-md">
 `QPagination` is used for the pagination. You can pass any of it's props to it via the `pagination-props` property which takes an object filled with properties.
 
 Enter colors only from the Quasar color palette (ex: "orange-8")
         </q-markdown>
-
       </example-viewer>
+
       <example-viewer title="Using Icon Slot" file="UsingIconSlot" :location-url="locationUrl" :js-paths="jsPaths" :css-paths="cssPaths">
         <q-markdown class="q-ma-md">
 Besides using the scopedSlot `icon`, which gives the `name` of the current icon, you can skin everything the way you wish.
@@ -110,6 +115,7 @@ export default {
     this.addToToc('Tooltips', 2)
     this.addToToc('Color', 2)
     this.addToToc('Selected Color', 2)
+    this.addToToc('Transition', 2)
 
     this.addToToc('Advanced')
     this.addToToc('Filter', 2)

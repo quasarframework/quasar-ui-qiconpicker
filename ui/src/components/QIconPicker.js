@@ -323,11 +323,26 @@ export default {
     },
 
     __renderContainer (h) {
-      return h('div', {
+      const container = h('div', {
+        key: this.computedPagination.page,
         staticClass: 'q-icon-picker__container row'
       }, [
         ...this.__renderIcons(h)
       ])
+
+      if (this.animated === true) {
+        const transition = 'q-transition--' + (this.direction === 'prev' ? this.transitionPrev : this.transitionNext)
+        return h('transition', {
+          props: {
+            name: transition,
+            appear: true
+          }
+        }, [
+          container
+        ])
+      }
+
+      return container
     },
 
     __renderTooltip (h, name) {

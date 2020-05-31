@@ -136,6 +136,29 @@
       "examples": [
         ":pagination.sync=\"myPagination\""
       ]
+    },
+    "animated": {
+      "type": "Boolean",
+      "category": "behavior",
+      "desc": "Turns on animation"
+    },
+    "transition-prev": {
+      "type": "String",
+      "category": "behavior",
+      "desc": "When animated property is true, transition to use for previous paginated view",
+      "default": "slide-right",
+      "examples": [
+        "transition-prev=\"flip-right\""
+      ]
+    },
+    "transition-next": {
+      "type": "String",
+      "category": "behavior",
+      "desc": "When animated property is true, transition to use for next paginated view",
+      "default": "slide-left",
+      "examples": [
+        "transition-next=\"flip-left\""
+      ]
     }
   },
   "events": {
