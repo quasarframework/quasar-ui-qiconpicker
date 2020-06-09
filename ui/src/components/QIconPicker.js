@@ -5,7 +5,13 @@ import { QColorizeMixin } from 'q-colorize-mixin'
 import props from './utils/props.js'
 
 // Quasar
-import { QBtn, QScrollArea, QTooltip, QPagination } from 'quasar'
+import {
+  QBtn,
+  QScrollArea,
+  QTooltip,
+  QPagination,
+  QResizeObserver
+} from 'quasar'
 
 export default {
   name: 'QIconPicker',
@@ -24,7 +30,9 @@ export default {
         itemsPerPage: 0,
         totalPages: 0
       },
-      categories: []
+      categories: [],
+      width: '100%',
+      height: '100%'
     }
   },
 
@@ -274,11 +282,21 @@ export default {
       return true
     },
 
+    __onResize (size) {
+      this.width = size.width
+      this.height = size.height
+    },
+
     __renderBody (h) {
       return h('div', {
-        staticClass: 'q-icon-picker__body'
+        staticClass: 'q-icon-picker__body col column'
       }, [
-        this.__renderScrollArea(h)
+        this.__renderScrollArea(h),
+        h(QResizeObserver, {
+          on: {
+            resize: this.__onResize
+          }
+        })
       ])
     },
 
@@ -316,18 +334,37 @@ export default {
     __renderScrollArea (h) {
       return h(QScrollArea, {
         ref: 'scrollArea',
-        staticClass: 'q-icon-picker__scroll-area fit'
+        style: {
+          width: this.width + 'px',
+          height: this.height + 'px'
+        }
+        // staticClass: 'q-icon-picker__scroll-area col column'
       }, [
         this.__renderContainer(h)
       ])
     },
 
     __renderContainer (h) {
-      return h('div', {
-        staticClass: 'q-icon-picker__container row'
+      const container = h('div', {
+        key: this.computedPagination.page,
+        staticClass: 'q-icon-picker__container col'
       }, [
         ...this.__renderIcons(h)
       ])
+
+      if (this.animated === true) {
+        const transition = 'q-transition--' + (this.direction === 'prev' ? this.transitionPrev : this.transitionNext)
+        return h('transition', {
+          props: {
+            name: transition,
+            appear: true
+          }
+        }, [
+          container
+        ])
+      }
+
+      return container
     },
 
     __renderTooltip (h, name) {
@@ -379,8 +416,8 @@ export default {
 
   render (h) {
     const picker = h('div', this.setBothColors(this.color, this.backgroundColor, {
-      ref: 'icon-picker',
-      staticClass: 'q-icon-picker flex'
+      ref: 'picker',
+      staticClass: 'q-icon-picker column'
     }), [
       this.__renderBody(h),
       this.noFooter !== true && this.pagination !== void 0 && this.__renderFooter(h)

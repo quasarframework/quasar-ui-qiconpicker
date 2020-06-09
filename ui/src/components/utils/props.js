@@ -43,6 +43,15 @@ export default {
         input: true
       })
     },
-    pagination: Object
+    pagination: Object,
+    animated: Boolean,
+    transitionPrev: {
+      type: String,
+      default: 'slide-right'
+    },
+    transitionNext: {
+      type: String,
+      default: 'slide-left'
+    }
   }
 }
