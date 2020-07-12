@@ -6,7 +6,7 @@ QIconPicker
 
 QIconPicker is a [Quasar](https://quasar.dev) component. It gives an Icon Picker for your apps.
 
-![QIconPicker](https://raw.githubusercontent.com/quasarframework/quasar-ui-qiconpicker/dev/demo/src/statics/q-icon-picker.png)
+![QIconPicker](https://raw.githubusercontent.com/quasarframework/quasar-ui-qiconpicker/dev/demo/public/q-icon-picker.png)
 
 # Examples and Documentation
 Can be found [here](https://quasarframework.github.io/quasar-ui-qiconpicker)

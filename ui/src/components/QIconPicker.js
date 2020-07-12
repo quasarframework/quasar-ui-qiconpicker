@@ -181,28 +181,28 @@ export default {
   },
 
   methods: {
-    __loadIconSet (set) {
+    __loadIconSet (iconSet) {
       this.iconsList = []
-      if (set) {
+      if (iconSet) {
         // detect if UMD version is installed
         if (window.QIconPicker) {
-          const name = set.replace(/-([a-z])/g, g => g[1].toUpperCase())
+          const name = iconSet.replace(/-([a-z])/g, g => g[1].toUpperCase())
           if (window.QIconPicker.iconSet && window.QIconPicker.iconSet[name]) {
             const iconsSet = window.QIconPicker.iconSet[name]
             this.iconsList = iconsSet.icons
           } else {
             /* eslint-disable */
-            console.error(`QIconPicker: no icon set loaded called '${set}'`)
-            console.error('Be sure to load the UMD version of the icon set in a script tag before using with UMD')
+            console.error(`QIconPicker: no icon set loaded called '${iconSet}'`)
+            console.error('Be sure to load the UMD version of the icon set in a script tag before using QIconPicker UMD version')
             /* eslint-enable */
           }
         } else {
           try {
-            const iconsSet = require(`@quasar/quasar-ui-qiconpicker/src/components/icon-set/${set}.js`).default
+            const iconsSet = require(`@quasar/quasar-ui-qiconpicker/src/components/icon-set/${iconSet}.js`).default
             this.iconsList = iconsSet.icons
           } catch (e) {
             // eslint-disable-next-line no-console
-            console.error(`QIconPicker: cannot find icon set found called '${set}'`)
+            console.error(`QIconPicker: cannot find icon set found called '${iconSet}'`)
           }
         }
       }
