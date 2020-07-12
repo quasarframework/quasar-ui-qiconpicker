@@ -25,10 +25,10 @@ module.exports = {
   ],
 
   globals: {
-    'ga': true, // Google Analytics
-    'cordova': true,
-    '__statics': true,
-    'process': true
+    ga: true, // Google Analytics
+    cordova: true,
+    __statics: true,
+    process: true
   },
 
   // add your custom rules here
@@ -51,12 +51,13 @@ module.exports = {
 
     'import/no-webpack-loader-syntax': 'off',
 
-    'quasar/check-valid-props': 1,
-    'quasar/no-invalid-qfield-usage': 1,
+    'quasar/no-invalid-props': 'error',
+    'quasar/no-invalid-qfield-usage': 'error',
 
     'no-void': 'off',
     // allow console.log during development only
     // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': 'warn',
     // allow debugger during development only
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }
