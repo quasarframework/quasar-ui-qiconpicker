@@ -5,7 +5,7 @@ The **QIconPicker App Extension** allows you to seamlessly add the [QIconPicker]
 [![npm](https://img.shields.io/npm/v/@quasar/quasar-app-extension-qiconpicker.svg?label=@quasar/quasar-app-extension-qiconpicker)](https://www.npmjs.com/package/quasar-app-extension-qiconpicker)
 [![npm](https://img.shields.io/npm/dt/@quasar/quasar-app-extension-qiconpicker.svg)](https://www.npmjs.com/package/@quasar/quasar-app-extension-qiconpicker)
 
-![QIconPicker](https://raw.githubusercontent.com/quasarframework/quasar-ui-qiconpicker/dev/demo/src/statics/q-icon-picker.png)
+![QIconPicker](https://raw.githubusercontent.com/quasarframework/quasar-ui-qiconpicker/dev/demo/public/q-icon-picker.png)
 
 # Install
 ```bash
