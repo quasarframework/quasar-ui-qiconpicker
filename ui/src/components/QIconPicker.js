@@ -192,17 +192,17 @@ export default {
             this.iconsList = iconsSet.icons
           } else {
             /* eslint-disable */
-            console.error(`QIconPicker: no icon set loaded called '${iconSet}'`)
+            console.error('QIconPicker: no icon set loaded called ' + iconSet +'\'')
             console.error('Be sure to load the UMD version of the icon set in a script tag before using QIconPicker UMD version')
             /* eslint-enable */
           }
         } else {
           try {
-            const iconsSet = require(`@quasar/quasar-ui-qiconpicker/src/components/icon-set/${iconSet}.js`).default
+            const iconsSet = require('@quasar/quasar-ui-qiconpicker/src/components/icon-set/' + iconSet + '.js').default
             this.iconsList = iconsSet.icons
           } catch (e) {
             // eslint-disable-next-line no-console
-            console.error(`QIconPicker: cannot find icon set found called '${iconSet}'`)
+            console.error('QIconPicker: cannot find icon set found called ' + iconSet + '\'')
           }
         }
       }
@@ -379,7 +379,7 @@ export default {
     __renderIcon (h, icon) {
       const slot = this.$scopedSlots.icon
 
-      const name = (icon.prefix !== void 0 ? `${icon.prefix} ${icon.name}` : icon.name)
+      const name = (icon.prefix !== void 0 ? icon.prefix + ' ' + icon.name : icon.name)
 
       if (slot) {
         return slot(name)
