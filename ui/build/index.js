@@ -2,6 +2,7 @@ process.env.NODE_ENV = 'production'
 
 const parallel = require('os').cpus().length > 1
 const runJob = parallel ? require('child_process').fork : require
+// const runJob = require
 const { join } = require('path')
 const { createFolder } = require('./utils')
 const { green, blue } = require('chalk')

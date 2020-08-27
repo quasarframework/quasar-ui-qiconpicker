@@ -8,7 +8,7 @@
           <div>
             <q-select v-model="name" :options="iconSets" label="Icon Set" emit-value />
             <q-input v-model="filter" label="Filter" clearable />
-            <div class="q-mt-md"><strong>Selected:</strong> <q-icon :name="value" style="font-size: 28px;"/> {{ value }}</div>
+            <div class="q-mt-md"><strong>Selected:</strong><span v-if="value" class="q-pl-md"><q-icon :name="value" class="q-pr-sm" style="font-size: 28px;"/> {{ value }}</span></div>
           </div>
         </q-card-section>
         <q-separator />
@@ -45,7 +45,7 @@
                     :tooltips="tooltips"
                     :dense="dense"
                     :no-footer="noFooter"
-                    :pagination.sync="pagination"
+                    :pagination.sync="pagination2"
                     style="height: 300px; width: 300px; background-color: white;"
                   />
 
@@ -79,7 +79,11 @@ export default {
       filter: '',
       showIconPicker: false,
       pagination: {
-        itemsPerPage: 60,
+        itemsPerPage: 70,
+        page: 0
+      },
+      pagination2: {
+        itemsPerPage: 35,
         page: 0
       }
     }
@@ -95,7 +99,12 @@ export default {
 
   watch: {
     dense (va) {
-      this.pagination.itemsPerPage = (this.dense ? 136 : 60)
+      this.pagination.itemsPerPage = (this.dense ? 136 : 70)
+      this.pagination2.itemsPerPage = (this.dense ? 35 : 60)
+    },
+
+    name () {
+      this.value = null
     }
   }
 }

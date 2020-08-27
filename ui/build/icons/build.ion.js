@@ -1,13 +1,13 @@
 const path = require('path')
-const { green, blue } = require('chalk')
+const { green, blue, red } = require('chalk')
 const { readFile, writeFile } = require('../utils')
 
 const name = 'ionicons-v4'
 const inputLocation = `../../src/components/icon-set/${name}.js`
 const outputLocation = `../../src/components/icon-set/${name}.js`
-let oldIcons = {}
-let icons = []
-let blacklisted = [
+const oldIcons = {}
+const icons = []
+const blacklisted = [
   'ionicon',
   'ionicons'
 ]
@@ -56,7 +56,7 @@ fileContents
   })
 
 if (icons.length === 0) {
-  console.log(`${red('[error]')}  Ion icons parsed 0 icons...exiting`)
+  console.log(`${red('[error]')}  ${name} icons parsed 0 icons...exiting`)
   process.exit(1)
 }
 

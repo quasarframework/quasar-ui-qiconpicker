@@ -3,16 +3,16 @@
   actual font info and then rebuilds the output with tags.
 */
 const path = require('path')
-const { green, blue } = require('chalk')
+const { green, blue, red } = require('chalk')
 const { readFile, writeFile } = require('../utils')
 
 const name = 'eva-icons'
 const inputLocation = `../../src/components/icon-set/${name}.js`
 const outputLocation = `../../src/components/icon-set/${name}.js`
-let oldIcons = {}
-let icons = []
+const oldIcons = {}
+const icons = []
 // no blacklisted items (yet)
-let blacklisted = [
+const blacklisted = [
 ]
 
 let fa = readFile(path.resolve(__dirname, inputLocation))
@@ -59,7 +59,7 @@ fileContents
   })
 
 if (icons.length === 0) {
-  console.log(`${red('[error]')}  Eva icons parsed 0 icons...exiting`)
+  console.log(`${red('[error]')}  ${name} icons parsed 0 icons...exiting`)
   process.exit(1)
 }
 

@@ -17,9 +17,9 @@ const { validateTags } = require('../utils')
 const name = 'fontawesome-v5'
 const inputLocation = `../../src/components/icon-set/${name}.js`
 const outputLocation = `../../src/components/icon-set/${name}.js`
-let oldIcons = {}
-let icons = []
-let blacklisted = [
+const oldIcons = {}
+const icons = []
+const blacklisted = [
   'fa-font-awesome-logo-full'
 ]
 
@@ -87,7 +87,7 @@ fileContents
   })
 
 if (icons.length === 0) {
-  console.log(`${red('[error]')}  Fontawesome parsed 0 icons...exiting`)
+  console.log(`${red('[error]')}  ${name} icons parsed 0 icons...exiting`)
   process.exit(1)
 }
 

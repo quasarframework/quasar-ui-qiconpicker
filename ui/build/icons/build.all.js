@@ -1,3 +1,4 @@
+require('./build.google.material-icons.js')
 require('./build.mdi-v4.js')
 require('./build.mdi-v5.js')
 require('./build.ion.js')
