@@ -10,16 +10,16 @@
   the prefix manually. Then, we have a finished file.
 */
 const path = require('path')
-const { green, blue } = require('chalk')
+const { green, blue, red } = require('chalk')
 const { readFile, writeFile } = require('../utils')
 const { validateTags } = require('../utils')
 
 const name = 'line-awesome'
 const inputLocation = `../../src/components/icon-set/${name}.js`
 const outputLocation = `../../src/components/icon-set/${name}.js`
-let oldIcons = {}
-let icons = []
-let blacklisted = [
+const oldIcons = {}
+const icons = []
+const blacklisted = [
   'la-font-awesome-logo-full'
 ]
 
@@ -89,7 +89,7 @@ fileContents
   })
 
 if (icons.length === 0) {
-  console.log(`${red('[error]')}  Line-awesome parsed 0 icons...exiting`)
+  console.log(`${red('[error]')}  ${name} icons parsed 0 icons...exiting`)
   process.exit(1)
 }
 
