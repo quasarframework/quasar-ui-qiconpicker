@@ -90,7 +90,6 @@ export default {
         `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/mdi-v5.umd.js`,
         `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/themify.umd.js`,
         `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/line-awesome.umd.js`
-
       ],
       cssPaths: [
         `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/index.min.css`,
