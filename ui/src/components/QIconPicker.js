@@ -45,7 +45,8 @@ export default {
   mounted () {
     if (this.iconSet) {
       this.__loadIconSet(this.iconSet)
-    } else if (this.icons !== void 0 && this.icons.length > 0) {
+    }
+    else if (this.icons !== void 0 && this.icons.length > 0) {
       this.iconsList = this.icons
     }
     this.__updatePagination()
@@ -190,17 +191,20 @@ export default {
           if (window.QIconPicker.iconSet && window.QIconPicker.iconSet[name]) {
             const iconsSet = window.QIconPicker.iconSet[name]
             this.iconsList = iconsSet.icons
-          } else {
+          }
+          else {
             /* eslint-disable */
             console.error('QIconPicker: no icon set loaded called ' + iconSet +'\'')
             console.error('Be sure to load the UMD version of the icon set in a script tag before using QIconPicker UMD version')
             /* eslint-enable */
           }
-        } else {
+        }
+        else {
           try {
             const iconsSet = require('@quasar/quasar-ui-qiconpicker/src/components/icon-set/' + iconSet + '.js').default
             this.iconsList = iconsSet.icons
-          } catch (e) {
+          }
+          catch (e) {
             // eslint-disable-next-line no-console
             console.error('QIconPicker: cannot find icon set found called ' + iconSet + '\'')
           }
@@ -238,7 +242,8 @@ export default {
 
       if (this.pagination) {
         this.$emit('update:pagination', newPagination)
-      } else {
+      }
+      else {
         this.innerPagination = newPagination
       }
     },
