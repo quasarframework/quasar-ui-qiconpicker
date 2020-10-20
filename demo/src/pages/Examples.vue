@@ -142,7 +142,10 @@ export default {
   methods: {
     addToToc (name, level = 1) {
       let n = name
-      if (level > 1) {
+      if (level === 1) {
+        n = 'title-' + n
+      }
+      else {
         n = 'example-' + n
       }
       const slug = slugify(n)
