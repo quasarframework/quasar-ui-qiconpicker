@@ -38,21 +38,22 @@ export default {
 
   beforeMount () {
     if (this.pagination) {
-      this.$emit('update:pagination', { ...this.computedPagination })
+      this.$emit('update:pagination', { ...this.__computedPagination })
     }
   },
 
   mounted () {
     if (this.iconSet) {
       this.__loadIconSet(this.iconSet)
-    } else if (this.icons !== void 0 && this.icons.length > 0) {
+    }
+    else if (this.icons !== void 0 && this.icons.length > 0) {
       this.iconsList = this.icons
     }
     this.__updatePagination()
   },
 
   computed: {
-    filteredIcons () {
+    __filteredIcons () {
       let icons = this.iconsList
       if (icons) {
         if (this.tags !== void 0 && this.tags !== '' && this.tags !== null && this.tags.length > 0) {
@@ -71,20 +72,20 @@ export default {
     },
 
     // the icons to display after filtering and then pagination
-    displayedIcons () {
+    __displayedIcons () {
       let icons = []
       if (this.iconsList) {
-        icons = this.filteredIcons
+        icons = this.__filteredIcons
 
         // should the icons be paged?
         if (this.pagination && this.pagination.itemsPerPage !== 0) {
-          icons = icons.slice(this.firstItemIndex, this.lastItemIndex)
+          icons = icons.slice(this.__firstItemIndex, this.__lastItemIndex)
         }
       }
       return icons
     },
 
-    computedPagination () {
+    __computedPagination () {
       return this.__fixPagination({
         ...this.innerPagination,
         ...this.pagination
@@ -92,37 +93,37 @@ export default {
     },
 
     // index of first item on a page
-    firstItemIndex () {
-      const { page, itemsPerPage } = this.computedPagination
+    __firstItemIndex () {
+      const { page, itemsPerPage } = this.__computedPagination
       return (page - 1) * itemsPerPage
     },
 
     // index of last item on a page
-    lastItemIndex () {
-      const { page, itemsPerPage } = this.computedPagination
+    __lastItemIndex () {
+      const { page, itemsPerPage } = this.__computedPagination
       return page * itemsPerPage
     },
 
     // returns true if on first page
-    isFirstPage () {
-      return this.computedPagination.page === 1
+    __isFirstPage () {
+      return this.__computedPagination.page === 1
     },
 
     // the number of pages available based on itemsPerPage
-    pagesNumber () {
-      return this.computedPagination.itemsPerPage === 0
+    __pagesNumber () {
+      return this.__computedPagination.itemsPerPage === 0
         ? 1
         : Math.max(
           1,
-          Math.ceil(this.filteredIcons.length / this.computedPagination.itemsPerPage)
+          Math.ceil(this.__filteredIcons.length / this.__computedPagination.itemsPerPage)
         )
     },
 
     // returns true if on last page
-    isLastPage () {
-      return this.lastItemIndex === 0
+    __isLastPage () {
+      return this.__lastItemIndex === 0
         ? true
-        : this.computedPagination.page >= this.pagesNumber
+        : this.__computedPagination.page >= this.__pagesNumber
     }
   },
 
@@ -169,13 +170,13 @@ export default {
 
     filter () {
       // whenever the filter changes, it resets pagination page to page 1
-      this.__setPagination({ page: 1, totalPages: this.pagesNumber })
+      this.__setPagination({ page: 1, totalPages: this.__pagesNumber })
       this.__updatePagination()
     },
 
     tags (val) {
       // whenever the tags change, it resets pagination page to page 1
-      this.__setPagination({ page: 1, totalPages: this.pagesNumber })
+      this.__setPagination({ page: 1, totalPages: this.__pagesNumber })
       this.__updatePagination()
     }
   },
@@ -190,17 +191,20 @@ export default {
           if (window.QIconPicker.iconSet && window.QIconPicker.iconSet[name]) {
             const iconsSet = window.QIconPicker.iconSet[name]
             this.iconsList = iconsSet.icons
-          } else {
+          }
+          else {
             /* eslint-disable */
             console.error('QIconPicker: no icon set loaded called ' + iconSet +'\'')
             console.error('Be sure to load the UMD version of the icon set in a script tag before using QIconPicker UMD version')
             /* eslint-enable */
           }
-        } else {
+        }
+        else {
           try {
             const iconsSet = require('@quasar/quasar-ui-qiconpicker/src/components/icon-set/' + iconSet + '.js').default
             this.iconsList = iconsSet.icons
-          } catch (e) {
+          }
+          catch (e) {
             // eslint-disable-next-line no-console
             console.error('QIconPicker: cannot find icon set found called ' + iconSet + '\'')
           }
@@ -232,26 +236,27 @@ export default {
 
     __setPagination (val) {
       const newPagination = this.__fixPagination({
-        ...this.computedPagination,
+        ...this.__computedPagination,
         ...val
       })
 
       if (this.pagination) {
         this.$emit('update:pagination', newPagination)
-      } else {
+      }
+      else {
         this.innerPagination = newPagination
       }
     },
 
     __updatePagination () {
       if (this.pagination !== void 0) {
-        this.__setPagination({ total: this.filteredIcons.length, totalPages: this.pagesNumber })
+        this.__setPagination({ total: this.__filteredIcons.length, totalPages: this.__pagesNumber })
       }
     },
 
     // public function - goes to previous page
     prevPage () {
-      const { page } = this.computedPagination
+      const { page } = this.__computedPagination
       if (page > 1) {
         this.__setPagination({ page: page - 1 })
       }
@@ -259,8 +264,8 @@ export default {
 
     // public function - goes to next page
     nextPage () {
-      const { page, itemsPerPage } = this.computedPagination
-      if (this.lastItemIndex > 0 && page * itemsPerPage < this.filteredIcons.length) {
+      const { page, itemsPerPage } = this.__computedPagination
+      if (this.__lastItemIndex > 0 && page * itemsPerPage < this.__filteredIcons.length) {
         this.__setPagination({ page: page + 1 })
       }
     },
@@ -306,7 +311,7 @@ export default {
       return h('div', {
         staticClass: 'q-icon-picker__footer flex flex-center'
       }, [
-        slot ? slot(this.computedPagination) : this.__renderPagination(h)
+        slot ? slot(this.__computedPagination) : this.__renderPagination(h)
       ])
     },
 
@@ -314,7 +319,7 @@ export default {
       if (this.pagination && this.pagination.itemsPerPage === 0) return ''
 
       const slot = this.$scopedSlots.pagination
-      const { page, totalPages } = this.computedPagination
+      const { page, totalPages } = this.__computedPagination
 
       return slot || h(QPagination, this.setBothColors(this.color, this.backgroundColor, {
         staticClass: 'q-icon-picker__pagination',
@@ -346,7 +351,7 @@ export default {
 
     __renderContainer (h) {
       const container = h('div', {
-        key: this.computedPagination.page,
+        key: this.__computedPagination.page,
         staticClass: 'q-icon-picker__container col'
       }, [
         ...this.__renderIcons(h)
@@ -373,7 +378,7 @@ export default {
     },
 
     __renderIcons (h) {
-      return this.displayedIcons.map(icon => this.__renderIcon(h, icon))
+      return this.__displayedIcons.map(icon => this.__renderIcon(h, icon))
     },
 
     __renderIcon (h, icon) {
