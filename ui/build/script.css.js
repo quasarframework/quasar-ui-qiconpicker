@@ -1,8 +1,9 @@
+/* eslint-disable array-bracket-spacing */
 const path = require('path')
-const sass = require('node-sass')
+const sass = require('sass')
 const postcss = require('postcss')
 const cssnano = require('cssnano')
-const rtl = require('postcss-rtl')
+const rtl = require('rtlcss')
 const autoprefixer = require('autoprefixer')
 
 const buildConf = require('./config')
@@ -24,7 +25,7 @@ const nano = postcss([
 
 Promise
   .all([
-    generate('src/index.sass', `dist/index`)
+    generate('src/index.sass', 'dist/index')
   ])
   .catch(e => {
     console.error(e)
@@ -53,19 +54,19 @@ function generate (src, dest) {
       resolve(result.css)
     })
   })
-  .then(code => buildConf.banner + code)
-  .then(code => postCssCompiler.process(code, { from: void 0 }))
-  .then(code => {
-    code.warnings().forEach(warn => {
-      console.warn(warn.toString())
+    .then(code => buildConf.banner + code)
+    .then(code => postCssCompiler.process(code, { from: void 0 }))
+    .then(code => {
+      code.warnings().forEach(warn => {
+        console.warn(warn.toString())
+      })
+      return code.css
     })
-    return code.css
-  })
-  .then(code => Promise.all([
-    generateUMD(dest, code),
-    postCssRtlCompiler.process(code, { from: void 0 })
-      .then(code => generateUMD(dest, code.css, '.rtl'))
-  ]))
+    .then(code => Promise.all([
+      generateUMD(dest, code),
+      postCssRtlCompiler.process(code, { from: void 0 })
+        .then(code => generateUMD(dest, code.css, '.rtl'))
+    ]))
 }
 
 function generateUMD (dest, code, ext = '') {
