@@ -11,7 +11,7 @@
       <q-btn type="a" :href="donateUrl" target="_blank" class="btn" label="Donate" no-caps flat/>
       <div class="row justify-evenly items-center q-ma-sm">
         <div class="quasar">{{ quasarDesc }}</div>
-        <div class="byline">{{ byline }}<a :href="bylineTwitter" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></div>
+        <div class="byline">{{ byline }} <a :href="bylineTwitter" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></div>
       </div>
     </section>
     <main class="flex flex-start justify-center inset-shadow">
@@ -30,7 +30,7 @@ export default {
   data () {
     return {
       title: 'QIconPicker',
-      tagline: 'Icon picker for your Quasar apps',
+      tagline: 'Icon picker for your Quasar App',
       byline: 'Created and maintained by Jeff Galbraith',
       bylineTwitter: 'https://twitter.com/jgalbraith64',
       quasarDesc: 'A Quasar Framework Component and App Extension',
