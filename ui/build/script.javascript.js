@@ -5,7 +5,6 @@ const rollup = require('rollup')
 const uglify = require('uglify-es')
 const buble = require('@rollup/plugin-buble')
 const json = require('@rollup/plugin-json')
-const cjs = require('@rollup/plugin-commonjs')
 const { nodeResolve } = require('@rollup/plugin-node-resolve')
 
 const buildConf = require('./config')
@@ -20,16 +19,9 @@ const nodeResolveConfig = {
   preferBuiltins: false
 }
 
-const cjsConfig = {
-  include: [
-    /node_modules/
-  ]
-}
-
 const rollupPlugins = [
   nodeResolve(nodeResolveConfig),
   json(),
-  cjs(cjsConfig),
   buble(bubleConfig)
 ]
 
@@ -37,10 +29,10 @@ const builds = [
   {
     rollup: {
       input: {
-        input: resolve('entry/index.esm.js')
+        input: pathResolve('entry/index.esm.js')
       },
       output: {
-        file: resolve('../dist/index.esm.js'),
+        file: pathResolve('../dist/index.esm.js'),
         format: 'es'
       }
     },
@@ -52,10 +44,10 @@ const builds = [
   {
     rollup: {
       input: {
-        input: resolve('entry/index.common.js')
+        input: pathResolve('entry/index.common.js')
       },
       output: {
-        file: resolve('../dist/index.common.js'),
+        file: pathResolve('../dist/index.common.js'),
         format: 'cjs',
         exports: 'auto'
       }
@@ -68,11 +60,11 @@ const builds = [
   {
     rollup: {
       input: {
-        input: resolve('entry/index.umd.js')
+        input: pathResolve('entry/index.umd.js')
       },
       output: {
         name: 'QIconPicker',
-        file: resolve('../dist/index.umd.js'),
+        file: pathResolve('../dist/index.umd.js'),
         format: 'umd'
       }
     },
@@ -88,24 +80,21 @@ const builds = [
 addAssets(builds, 'icon-set', 'iconSet')
 
 build(builds)
-  .then(() => {
-    require('./build.api')
-  })
 
 /**
  * Helpers
  */
 
-function resolve (_path) {
+function pathResolve (_path) {
   return path.resolve(__dirname, _path)
 }
 
 // eslint-disable-next-line no-unused-vars
 function addAssets (builds, type, injectName) {
   const
-    files = fs.readdirSync(resolve('../../ui/src/components/' + type)),
+    files = fs.readdirSync(pathResolve('../../ui/src/components/' + type)),
     plugins = [buble(bubleConfig)],
-    outputDir = resolve(`../dist/${type}`)
+    outputDir = pathResolve(`../dist/${type}`)
 
   fse.mkdirp(outputDir)
 
@@ -116,11 +105,11 @@ function addAssets (builds, type, injectName) {
       builds.push({
         rollup: {
           input: {
-            input: resolve(`../src/components/${type}/${file}`),
+            input: pathResolve(`../src/components/${type}/${file}`),
             plugins
           },
           output: {
-            file: addExtension(resolve(`../dist/${type}/${file}`), 'umd'),
+            file: addExtension(pathResolve(`../dist/${type}/${file}`), 'umd'),
             format: 'umd',
             name: `QIconPicker.${injectName}.${name}`
           }
@@ -200,7 +189,7 @@ function buildEntry (config) {
 }
 
 function injectVueRequirement (code) {
-  // eslint-disable-next-line
+  // eslint-disable-next-line quotes
   const index = code.indexOf(`Vue = Vue && Vue.hasOwnProperty('default') ? Vue['default'] : Vue`)
 
   if (index === -1) {

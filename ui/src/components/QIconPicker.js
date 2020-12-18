@@ -58,10 +58,7 @@ export default {
       if (icons) {
         if (this.tags !== void 0 && this.tags !== '' && this.tags !== null && this.tags.length > 0) {
           icons = icons.filter(icon => {
-            const t = icon.tags.filter(tag => this.tags.includes(tag))
-            if (t.length > 0) {
-              return icon
-            }
+            return icon.tags.filter(tag => this.tags.includes(tag)).length > 0
           })
         }
         if (this.filter !== void 0 && this.filter !== '' && this.filter !== null) {

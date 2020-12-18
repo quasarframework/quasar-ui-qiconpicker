@@ -1,5 +1,5 @@
 <template>
-  <q-list>
+  <q-list class="menu">
     <q-item clickable to="/docs">
       <q-item-section avatar>
         <q-icon name="bolt" />
@@ -39,7 +39,7 @@
     <q-separator />
     <q-item clickable tag="a" target="_blank" href="https://github.com/quasarframework/quasar-ui-qiconpicker">
       <q-item-section avatar>
-        <q-icon name="extension" />
+        <q-icon name="home" />
       </q-item-section>
       <q-item-section>
         <q-item-label>QIconPicker home</q-item-label>
@@ -123,6 +123,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>

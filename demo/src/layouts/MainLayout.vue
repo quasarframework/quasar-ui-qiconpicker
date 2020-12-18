@@ -39,11 +39,11 @@
     >
       <q-list>
         <q-item-label header>
-          <q-icon name="fas fa-link" size="1.5em" class="q-mr-md" /><span style="font-size: 1.5em">Essential Links</span></q-item-label>
+          <q-icon name="fas fa-link" size="1.5em" class="q-mr-md" /><span style="font-size: 1.5em">Essential Links</span>
+        </q-item-label>
+        <q-separator />
       </q-list>
-      <q-separator />
       <essential-links />
-      <q-separator />
     </q-drawer>
 
     <q-drawer
@@ -75,7 +75,9 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <transition name="fade">
+        <router-view />
+      </transition>
     </q-page-container>
   </q-layout>
 </template>
@@ -87,7 +89,7 @@ const { setScrollPosition } = scroll
 import { version } from 'ui'
 
 export default {
-  name: 'MyLayout',
+  name: 'MainLayout',
   components: {
     'essential-links': () => import('../components/EssentialLinks')
   },
@@ -147,15 +149,15 @@ export default {
           continue
         }
 
-        if (item.offsetTop >= position + 100) {
-          if (last === void 0) {
+        if (item.offsetTop >= position + 50) {
+          if (last === undefined) {
             last = section.id
           }
           break
         }
       }
 
-      if (last !== void 0) {
+      if (last !== undefined) {
         this.activeToc = last
       }
     }
