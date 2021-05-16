@@ -28,7 +28,8 @@
         "mdi-v5",
         "fontawesome-v5",
         "eva-icons",
-        "themify"
+        "themify",
+        "bootstrap-icons"
       ],
       "examples": [
         "icon-set=\"material-icons\"",

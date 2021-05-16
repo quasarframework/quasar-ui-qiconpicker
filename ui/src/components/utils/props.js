@@ -15,6 +15,7 @@ export default {
         'eva-icons',
         'themify',
         'line-awesome',
+        'bootstrap-icons',
         ''].includes(v),
       default: ''
     },

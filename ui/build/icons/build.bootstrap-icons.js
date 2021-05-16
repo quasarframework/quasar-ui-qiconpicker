@@ -2,7 +2,7 @@ const path = require('path')
 const { green, blue, red } = require('chalk')
 const { readFile, writeFile } = require('../utils')
 
-const name = 'themify'
+const name = 'bootstrap-icons'
 const inputLocation = `../../src/components/icon-set/${name}.js`
 const outputLocation = `../../src/components/icon-set/${name}.js`
 const oldIcons = {}
@@ -27,7 +27,7 @@ fa.forEach(f => {
   oldIcons[name] = { tags: Array(tags).join(',') }
 })
 
-const location = require.resolve('@quasar/extras/themify/themify.css')
+const location = require.resolve('@quasar/extras/bootstrap-icons/bootstrap-icons.css')
 const fileContents = readFile(location)
 
 fileContents
@@ -45,8 +45,7 @@ fileContents
               return "'" + tag + "'"
             }).join(', ')
             icons.push(`{ name: '${line}', tags: [${tags}] }`)
-          }
-          else {
+          } else {
             icons.push(`{ name: '${line}', tags: [] }`)
           }
         }
