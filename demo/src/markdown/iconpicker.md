@@ -85,6 +85,7 @@ import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/mdi-v5.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/themify.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/lineawesome.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/bootstrap-icons.umd.js'
 export default {
   name: 'App'
 }
@@ -170,6 +171,7 @@ Choices are:
 9. mdi-v5.umd.js
 10. themify.umd.js
 11. line-awesome.umd.js
+12. bootstrap-icons.umd.js
 
 ``` warning
 You can only use one of `mdi-v4` or `mdi-v5`

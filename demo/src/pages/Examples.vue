@@ -89,7 +89,8 @@ export default {
         `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/material-icons-sharp.umd.js`,
         `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/mdi-v5.umd.js`,
         `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/themify.umd.js`,
-        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/line-awesome.umd.js`
+        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/line-awesome.umd.js`,
+        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/bootstrap-icons.umd.js`
       ],
       cssPaths: [
         `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/index.min.css`,
@@ -99,7 +100,8 @@ export default {
         'https://cdn.jsdelivr.net/npm/@quasar/extras/mdi-v5/mdi-v5.css',
         'https://cdn.jsdelivr.net/npm/@quasar/extras/themify/themify.css',
         'https://cdn.jsdelivr.net/npm/@quasar/extras/eva-icons/eva-icons.css',
-        'https://cdn.jsdelivr.net/npm/@quasar/extras/line-awesome/line-awesome.css'
+        'https://cdn.jsdelivr.net/npm/@quasar/extras/line-awesome/line-awesome.css',
+        'https://cdn.jsdelivr.net/npm/@quasar/extras/bootstrap-icons/bootstrap-icons.css'
       ]
     }
   },

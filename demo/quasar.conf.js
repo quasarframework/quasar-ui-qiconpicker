@@ -40,6 +40,7 @@ module.exports = function (/* ctx */) {
       'material-icons-round',
       'material-icons-sharp',
       'line-awesome',
+      'bootstrap-icons',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
       'roboto-font', // optional, you are not bound to it
