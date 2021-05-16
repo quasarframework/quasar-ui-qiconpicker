@@ -36,9 +36,9 @@
   "devDependencies": {
     "@vue/eslint-config-standard": "^6.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.19.0",
+    "eslint": "^7.26.0",
     "eslint-loader": "^4.0.2",
-    "eslint-plugin-vue": "^7.5.0"
+    "eslint-plugin-vue": "^7.9.0"
   },
   "engines": {
     "node": ">= 10.0.0",
