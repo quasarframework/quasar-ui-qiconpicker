@@ -40,7 +40,8 @@ fa.forEach(f => {
   const tags = f.tags
   if (oldIcons[name] !== void 0) {
     oldIcons[name].prefix.push(prefix)
-  } else {
+  }
+  else {
     if (prefix === 'fab') {
       if (tags.includes('brand') !== true) {
         tags.push('brand')
@@ -60,7 +61,7 @@ fileContents
     if (line.startsWith('.fa')) {
       const pos = line.indexOf(':before')
       if (pos > 0) {
-        let name = line.slice(1, pos)
+        const name = line.slice(1, pos)
         if (blacklisted.includes(name) !== true) {
           if (oldIcons[name] !== void 0) {
             oldIcons[name].prefix.forEach(pfx => {
@@ -78,7 +79,8 @@ fileContents
               }).join(', ')
               icons.push(`{ name: '${name}', prefix: '${pfx}', tags: [${tags}] }`)
             })
-          } else {
+          }
+          else {
             icons.push(`{ name: '${name}', prefix: '---', tags: [] }`)
           }
         }

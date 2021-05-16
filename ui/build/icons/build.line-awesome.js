@@ -40,7 +40,8 @@ fa.forEach(f => {
   const tags = f.tags
   if (oldIcons[name] !== void 0) {
     oldIcons[name].prefix.push(prefix)
-  } else {
+  }
+  else {
     if (prefix === 'lab') {
       if (tags.includes('brand') !== true) {
         tags.push('brand')
@@ -78,7 +79,8 @@ fileContents
               }).join(', ')
               icons.push(`{ name: '${name}', prefix: '${pfx}', tags: [${tags}] }`)
             })
-          } else {
+          }
+          else {
             if (!name.startsWith('la.la')) {
               icons.push(`{ name: '${name}', prefix: '---', tags: [] }`)
             }

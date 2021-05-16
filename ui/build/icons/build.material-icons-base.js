@@ -99,7 +99,8 @@ function run (googleIcons, theme) {
             return "'" + tag + "'"
           }).join(', ')
           icons.push(`{ name: '${name}', tags: [${tags}] }`)
-        } else {
+        }
+        else {
           icons.push(`{ name: '${name}', tags: [] }`)
         }
       }

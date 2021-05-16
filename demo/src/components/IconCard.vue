@@ -47,7 +47,8 @@ export default {
         { label: 'Material Icons Sharp', value: 'material-icons-sharp' },
         { label: 'MDI Icons (v5)', value: 'mdi-v5' },
         { label: 'Themify Icons', value: 'themify' },
-        { label: 'Line-awesome Icons', value: 'line-awesome' }
+        { label: 'Line-awesome Icons', value: 'line-awesome' },
+        { label: 'Bootstrap Icons', value: 'bootstrap-icons' }
       ],
       selectedIconSet: {}
     }
