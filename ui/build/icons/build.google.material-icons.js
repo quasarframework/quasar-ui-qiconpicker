@@ -21,7 +21,8 @@ async function run () {
       // give function clean copy of google icons
       require('./build.material-icons-base.js').run(JSON.parse(JSON.stringify(icons)), themeMap[theme])
     })
-  } catch (err) {
+  }
+  catch (err) {
     console.log('err', err)
     throw err
   }

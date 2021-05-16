@@ -47,7 +47,8 @@ fileContents
               return "'" + tag + "'"
             }).join(', ')
             icons.push(`{ name: '${line}', tags: [${tags}] }`)
-          } else {
+          }
+          else {
             icons.push(`{ name: '${line}', tags: [] }`)
           }
         }
