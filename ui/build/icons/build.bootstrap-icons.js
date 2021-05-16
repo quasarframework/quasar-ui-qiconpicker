@@ -35,7 +35,7 @@ fileContents
   .forEach(line => {
     line = line.trim()
     if (line.startsWith('.')) {
-      const pos = line.indexOf(':before')
+      const pos = line.indexOf('::before')
       if (pos > 0) {
         line = line.slice(1, pos)
         if (blacklisted.includes(line) === false) {
