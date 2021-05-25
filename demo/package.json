@@ -14,23 +14,23 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@quasar/extras": "^1.10.4",
+    "@quasar/extras": "^1.10.5",
     "@quasar/quasar-ui-qiconpicker": "../ui",
-    "quasar": "^1.15.15"
+    "quasar": "^1.15.16"
   },
   "devDependencies": {
     "@quasar/app": "^2.2.6",
-    "@quasar/quasar-app-extension-qmarkdown": "^1.4.1",
+    "@quasar/quasar-app-extension-qmarkdown": "^1.4.3",
     "@quasar/quasar-app-extension-qribbon": "^1.0.0-beta.15",
     "@vue/eslint-config-standard": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "devtron": "^1.4.0",
-    "electron": "^12.0.7",
+    "electron": "^13.0.0",
     "electron-debug": "^3.2.0",
     "electron-devtools-installer": "^3.2.0",
-    "eslint": "^7.26.0",
+    "eslint": "^7.27.0",
     "eslint-loader": "^4.0.2",
-    "eslint-plugin-import": "^2.23.2",
+    "eslint-plugin-import": "^2.23.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-quasar": "^1.0.0",
