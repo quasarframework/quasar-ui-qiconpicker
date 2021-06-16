@@ -1,6 +1,6 @@
 {
   "name": "@quasar/quasar-app-extension-qiconpicker",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "QIconPicker - A Quasar App Extension",
   "author": "Jeff Galbraith <jeff@quasar.dev>",
   "license": "MIT",
@@ -31,7 +31,7 @@
     "icon picker"
   ],
   "dependencies": {
-    "@quasar/quasar-ui-qiconpicker": "^1.3.2"
+    "@quasar/quasar-ui-qiconpicker": "^1.3.3"
   },
   "devDependencies": {
     "@vue/eslint-config-standard": "^6.0.0",
