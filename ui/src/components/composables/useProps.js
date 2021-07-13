@@ -1,6 +1,6 @@
 export default {
   base: {
-    value: String,
+    modelValue: String,
     iconSet: {
       type: String,
       validator: v => [
