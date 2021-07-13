@@ -1,33 +1,26 @@
 {
   "name": "dev",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A Quasar Framework app",
   "productName": "Quasar App",
+  "author": "nucle <christian.behon@knusperleicht.at>",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js,.vue src",
-    "lint-fix": "eslint --ext .js,.vue src --fix",
-    "dev": "quasar dev",
-    "dev:ssr": "quasar dev -m ssr",
-    "dev:ios": "quasar dev -m ios",
-    "dev:android": "quasar dev -m android",
-    "dev:electron": "quasar dev -m electron"
+    "lint": "eslint --ext .js,.vue ./",
+    "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@quasar/extras": "^1.10.7"
+    "@quasar/extras": "^1.0.0",
+    "core-js": "^3.6.5",
+    "quasar": "^2.0.0"
   },
   "devDependencies": {
-    "@quasar/app": "^2.2.10",
-    "@vue/eslint-config-standard": "^6.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.28.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-quasar": "^1.0.0",
-    "eslint-plugin-vue": "^7.11.1",
-    "eslint-webpack-plugin": "^2.5.4"
+    "@babel/eslint-parser": "^7.13.14",
+    "@quasar/app": "^3.0.0",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-vue": "^7.0.0",
+    "eslint-webpack-plugin": "^2.4.0"
   },
   "browserslist": [
     "last 10 Chrome versions",
@@ -41,7 +34,7 @@
     "last 5 Opera versions"
   ],
   "engines": {
-    "node": ">= 10.18.1",
+    "node": ">= 12.22.1",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
   }
