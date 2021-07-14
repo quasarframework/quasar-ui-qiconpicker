@@ -172,7 +172,7 @@
       "desc": "An array of categories (tags) for the selected icon set"
     }
   },
-  "scopedSlots": {
+  "slots": {
     "icon": {
       "desc": "Slot for changing the display of the icon",
       "scope": {
@@ -186,6 +186,9 @@
           ]
         }
       }
+    },
+    "footer": {
+      "desc": "Anything can go into this slot"
     }
   },
   "methods": {

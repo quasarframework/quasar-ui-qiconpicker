@@ -8,62 +8,6 @@ const tableData = []
 
 const { version, name } = require('../package.json')
 
-/*
-  Keep valid tags short - no plural
-  Try to keep list this list (no additions)
-  For instance, Fontawesome 'Fruits & Vegetables'
-  can go into the 'food' tag. 'Currency' and 'Finance'
-  can go into into 'money' tag. 'Hotel' can go into
-  the 'travel' tag. 'Audio & Video' can go into the
-  'media' tag, etc. 'Animal', 'plants', etc, can all
-  go into 'nature'. Also, 'buildings' can go to 'map'.
-  Use 'other' when it cannot be categorized and we
-  will review to see where it may fit in best.
-  After modifications, run "yarn build" to validate
-  and generate new files.
-*/
-module.exports.validateTags = function (tags) {
-  const validTags = [
-    'accessibility',
-    'alert',
-    'arrow',
-    'art',
-    'brand',
-    'buildings',
-    'calendar',
-    'computer',
-    'editor',
-    'emotions',
-    'family',
-    'file',
-    'food',
-    'health',
-    'home',
-    'map',
-    'media',
-    'money',
-    'nature',
-    'office',
-    'other',
-    'people',
-    'religion',
-    'science',
-    'social',
-    'sport',
-    'technology',
-    'travel',
-    'weather',
-    'web'
-  ]
-  tags.forEach(tag => {
-    if (validTags.includes(tag) !== true) {
-      console.error('\n' + red('[Error]'), `Invalid tag type found: ${tag}`)
-      console.log()
-      process.exit(1)
-    }
-  })
-}
-
 process.on('exit', code => {
   if (code === 0 && tableData.length > 0) {
     const { table } = require('table')

@@ -1,17 +1,18 @@
 <template>
   <q-page class="flex flex-center">
-    <color></color>
+    <default></default>
   </q-page>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import Color from "components/Color";
+import Default from "components/Default";
+
 
 export default defineComponent({
   name: 'PageIndex',
   components: {
-    Color
+    Default
   }
 })
 </script>
