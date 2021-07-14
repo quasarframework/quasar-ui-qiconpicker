@@ -1,7 +1,7 @@
-import {h, computed, watch} from "vue";
-import {QBtn} from "quasar";
+import {h, computed } from "vue";
+import {QBtn, QTooltip} from "quasar";
 
-export default function useIcons(data, props, emit, slots) {
+export default function useIcons(data, props, emit, slots, setBothColors, __firstItemIndex, __lastItemIndex) {
   const __filteredIcons = computed(() => {
     let icons = data.iconsList
     if (icons) {
@@ -21,11 +21,11 @@ export default function useIcons(data, props, emit, slots) {
   const __displayedIcons = computed(() => {
     let icons = []
     if (data.iconsList) {
-      icons = __filteredIcons
+      icons = __filteredIcons.value
 
       // should the icons be paged?
       if (props.pagination && props.pagination.itemsPerPage !== 0) {
-        icons = icons.slice(this.__firstItemIndex, this.__lastItemIndex)
+        icons = icons.slice(__firstItemIndex, __lastItemIndex)
       }
     }
     return icons
@@ -33,7 +33,7 @@ export default function useIcons(data, props, emit, slots) {
 
 
   const __loadIconSet = (iconSet) => {
-    this.iconsList = []
+    data.iconsList = []
     if (iconSet) {
       // detect if UMD version is installed
       if (window.QIconPicker) {
@@ -59,6 +59,10 @@ export default function useIcons(data, props, emit, slots) {
     }
   }
 
+  const __renderTooltip = (name) => {
+    return h(QTooltip, {}, name)
+  }
+
   const __renderIcon = (icon) => {
     const slot = (slots.icon && slots.icon())
 
@@ -72,7 +76,7 @@ export default function useIcons(data, props, emit, slots) {
     const color = isSelected ? props.selectedColor : ''
     const backgroundColor = isSelected ? props.selectedBackgroundColor : ''
 
-    return h(QBtn, this.setBothColors(color, backgroundColor, {
+    return h(QBtn, setBothColors(color, backgroundColor, {
       staticClass: 'q-icon-picker__icon' + (isSelected ? ' q-icon-picker__active' : ''),
       style: {
         'font-size': props.fontSize
@@ -92,40 +96,15 @@ export default function useIcons(data, props, emit, slots) {
         }
       }
     }), [
-      props.tooltips === true && this.__renderTooltip(h, name)
+      props.tooltips === true && __renderTooltip(h, name)
     ])
   }
 
-// watch
-  watch(() => props.iconSet, (val, prevVal) => {
-    if (val) {
-      __loadIconSet(val)
-      this.__updatePagination()
-      this.$nextTick(() => {
-        // whenever the icon set changes, it resets pagination page to page 1
-        this.__setPagination({page: 1})
-      })
-      // scroll to top of QScrollArea, if applicable
-      this.$refs.scrollArea.setScrollPosition(0)
-    }
-  })
 
-  watch(() => props.icons, (val) => {
-    if (this.icons !== void 0 && this.icons.length > 0) {
-      this.iconsList = this.icons
-    }
-    this.__updatePagination()
-    this.$nextTick(() => {
-      // whenever the icon set changes, it resets pagination page to page 1
-      this.__setPagination({page: 1})
-    })
-    // scroll to top of QScrollArea, if applicable
-    this.$refs.scrollArea.setScrollPosition(0)
-  })
 
   const __getCategories = () => {
     const t = []
-    this.iconsList.forEach(icon => {
+    data.iconsList.forEach(icon => {
       const tags = icon.tags
       if (tags && tags.length > 0) {
         tags.forEach(tag => {
@@ -136,7 +115,7 @@ export default function useIcons(data, props, emit, slots) {
       }
     })
     t.sort()
-    this.categories = t
+    data.categories = t
     return true
   }
 

@@ -1,7 +1,19 @@
 import {computed, watch} from "vue";
 import {QPagination} from "quasar";
 
-export default function usePagination(data, props, emit, slots, __filteredIcons) {
+export default function usePagination(data, props, emit, slots, setBothColors, __filteredIcons) {
+
+  // index of first item on a page
+  const __firstItemIndex = () => {
+    const {page, itemsPerPage} = __computedPagination.value
+    return (page - 1) * itemsPerPage
+  }
+
+  // index of last item on a page
+  const __lastItemIndex = () => {
+    const {page, itemsPerPage} = __computedPagination.value
+    return page * itemsPerPage
+  }
 
   const __fixPagination = (p) => {
     if (p.page < 1) {
@@ -34,7 +46,7 @@ export default function usePagination(data, props, emit, slots, __filteredIcons)
 
   const __setPagination = (val) => {
     const newPagination = __fixPagination({
-      ...__computedPagination,
+      ...__computedPagination.value,
       ...val
     })
 
@@ -53,7 +65,7 @@ export default function usePagination(data, props, emit, slots, __filteredIcons)
 
   // public function - goes to previous page
   const prevPage = () => {
-    const {page} = __computedPagination
+    const {page} = __computedPagination.value
     if (page > 1) {
       __setPagination({page: page - 1})
     }
@@ -61,7 +73,7 @@ export default function usePagination(data, props, emit, slots, __filteredIcons)
 
   // public function - goes to next page
   const nextPage = () => {
-    const {page, itemsPerPage} = __computedPagination
+    const {page, itemsPerPage} = __computedPagination.value
     if (__lastItemIndex > 0 && page * itemsPerPage < __filteredIcons.length) {
       __setPagination({page: page + 1})
     }
@@ -94,9 +106,9 @@ export default function usePagination(data, props, emit, slots, __filteredIcons)
     if (props.pagination && props.pagination.itemsPerPage === 0) return ''
 
     const slot = slots.pagination && slots.pagination()
-    const {page, totalPages} = __computedPagination
+    const {page, totalPages} = __computedPagination.value
 
-    return slot || h(QPagination, this.setBothColors(this.color, this.backgroundColor, {
+    return slot || h(QPagination, setBothColors(props.color, props.backgroundColor, {
       staticClass: 'q-icon-picker__pagination',
       props: {
         ...this.paginationProps,
@@ -111,17 +123,7 @@ export default function usePagination(data, props, emit, slots, __filteredIcons)
     }))
   }
 
-  // index of first item on a page
-  const __firstItemIndex = () => {
-    const {page, itemsPerPage} = __computedPagination
-    return (page - 1) * itemsPerPage
-  }
 
-  // index of last item on a page
-  const __lastItemIndex = () => {
-    const {page, itemsPerPage} = __computedPagination
-    return page * itemsPerPage
-  }
 
 
   watch(() => props.pagination, (newVal, oldVal) => {
@@ -142,6 +144,10 @@ export default function usePagination(data, props, emit, slots, __filteredIcons)
 
   return {
     __renderPagination,
-    __updatePagination
+    __updatePagination,
+    __computedPagination,
+    __setPagination,
+    __firstItemIndex,
+    __lastItemIndex
   }
 }

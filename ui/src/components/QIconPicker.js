@@ -1,32 +1,84 @@
-import {h, defineComponent, onBeforeMount, onMounted, reactive, computed} from 'vue'
-import {textToRgb} from 'quasar/src/utils/colors'
-
-// Util
-import props from './utils/props.js'
+import {h, defineComponent, onBeforeMount, onMounted, reactive, nextTick, watch, ref} from 'vue'
+import {useColorizeProps, useColorize } from 'q-colorize-mixin'
 
 // Quasar
 import {
-  QBtn,
   QScrollArea,
   QTooltip,
-  QPagination,
   QResizeObserver
 } from 'quasar'
 import usePagination from "./composables/usePagination";
 import useIcons from "./composables/useIcons";
-import useProps from "./composables/useProps";
+
+
+const useIconPickerProps = {
+  modelValue: String,
+  iconSet: {
+    type: String,
+    validator: v => [
+      'material-icons',
+      'material-icons-outlined',
+      'material-icons-round',
+      'material-icons-sharp',
+      'ionicons-v4',
+      'mdi-v4',
+      'mdi-v5',
+      'fontawesome-v5',
+      'eva-icons',
+      'themify',
+      'line-awesome',
+      'bootstrap-icons',
+      ''].includes(v),
+    default: ''
+  },
+  icons: Array,
+  filter: String,
+  tags: Array,
+  dense: Boolean,
+  tooltips: Boolean,
+  noFooter: Boolean,
+  fontSize: {
+    type: String,
+    default: 'inherit'
+  },
+  selectedColor: {
+    type: String,
+    default: 'grey-1'
+  },
+  selectedBackgroundColor: {
+    type: String,
+    default: 'primary'
+  },
+  paginationProps: {
+    type: Object,
+    default: () => ({
+      maxPages: 5,
+      input: true
+    })
+  },
+  pagination: Object,
+  animated: Boolean,
+  transitionPrev: {
+    type: String,
+    default: 'slide-right'
+  },
+  transitionNext: {
+    type: String,
+    default: 'slide-left'
+  }
+}
 
 
 export default defineComponent({
   name: 'QIconPicker',
-
-  //mixins: [QColorizeMixin],
-
   props: {
-    ...useProps.base
+    ...useIconPickerProps,
+    ...useColorizeProps
   },
   setup(props, {slots, emit}) {
 
+    const scrollAreaRef = ref(null)
+    const pickerRef = ref(null)
     const data = reactive({
       iconsList: [],
       innerPagination: {
@@ -41,22 +93,59 @@ export default defineComponent({
 
 
     const {
-      __filteredIcons,
-      __getCategories,
-      __loadIconSet,
-      __renderIcons
-    } = useIcons(data, props, emit, slots)
+      setBothColors
+    } = useColorize()
 
     const {
       __renderPagination,
       __updatePagination,
-      __computedPagination
-    } = usePagination(data, props, emit, slots, __filteredIcons)
+      __computedPagination,
+      __setPagination,
+      __firstItemIndex,
+      __lastItemIndex
+    } = usePagination(data, props, emit, slots, setBothColors, __filteredIcons)
+
+
+
+    const {
+      __filteredIcons,
+      __getCategories,
+      __loadIconSet,
+      __renderIcons
+    } = useIcons(data, props, emit, slots, setBothColors, __firstItemIndex, __lastItemIndex)
+
+
+    // watch
+    watch(() => props.iconSet, (val, prevVal) => {
+      if (val) {
+        __loadIconSet(val)
+        __updatePagination()
+        nextTick(() => {
+          // whenever the icon set changes, it resets pagination page to page 1
+          __setPagination({page: 1})
+        }).catch(e => console.error(e))
+        // scroll to top of QScrollArea, if applicable
+        scrollAreaRef.value.setScrollPosition(0)
+      }
+    })
+
+    watch(() => props.icons, (val) => {
+      if (props.icons !== void 0 && props.icons.length > 0) {
+        data.iconsList = props.icons
+      }
+      __updatePagination()
+      nextTick(() => {
+        // whenever the icon set changes, it resets pagination page to page 1
+        __setPagination({page: 1})
+      }).catch(e => console.error(e))
+      // scroll to top of QScrollArea, if applicable
+      scrollAreaRef.value.setScrollPosition(0)
+    })
 
 
     onBeforeMount(() => {
       if (props.pagination) {
-        emit('update:pagination', {...__computedPagination})
+        emit('update:pagination', {...__computedPagination.value})
       }
     })
 
@@ -78,7 +167,7 @@ export default defineComponent({
 
     const __renderScrollArea = () => {
       return h(QScrollArea, {
-        ref: 'scrollArea',
+        ref: scrollAreaRef,
         style: {
           width: this.width + 'px',
           height: this.height + 'px'
@@ -137,24 +226,19 @@ export default defineComponent({
     }
 
 
-    const __renderTooltip = (name) => {
-      return h(QTooltip, {}, name)
-    }
-
-
     return () => {
-      const picker = h('div', this.setBothColors(props.color, this.backgroundColor, {
-        ref: 'picker',
+      const picker = h('div', setBothColors(props.color, this.backgroundColor, {
+        ref: pickerRef,
         staticClass: 'q-icon-picker column'
       }), [
         __renderBody(),
         props.noFooter !== true && props.pagination !== void 0 && __renderFooter()
       ])
 
-      this.$nextTick(() => {
+      nextTick(() => {
         __getCategories()
         emit('tags', data.categories)
-      })
+      }).catch(e => console.error(e))
 
       return picker
     }
