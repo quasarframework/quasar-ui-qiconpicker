@@ -1,5 +1,5 @@
 import {h, defineComponent, onBeforeMount, onMounted, reactive, nextTick, watch, ref, computed} from 'vue'
-import {useColorizeProps, useColorize } from 'q-colorize-mixin'
+import {useColorizeProps, useColorize} from 'q-colorize-mixin'
 
 
 import {
@@ -168,7 +168,6 @@ function useIcons(data, props, emit, slots, setBothColors, __firstItemIndex, __l
   }
 
 
-
   const __getCategories = () => {
     const t = []
     data.iconsList.forEach(icon => {
@@ -198,10 +197,6 @@ function useIcons(data, props, emit, slots, setBothColors, __firstItemIndex, __l
     __loadIconSet
   }
 }
-
-
-
-
 
 
 export default defineComponent({
@@ -239,7 +234,6 @@ export default defineComponent({
       __firstItemIndex,
       __lastItemIndex
     } = usePagination(data, props, emit, slots, setBothColors, __filteredIcons)
-
 
 
     const {

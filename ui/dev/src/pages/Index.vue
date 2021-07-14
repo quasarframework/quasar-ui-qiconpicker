@@ -8,7 +8,6 @@
 import { defineComponent } from 'vue';
 import Default from "components/Default";
 
-
 export default defineComponent({
   name: 'PageIndex',
   components: {

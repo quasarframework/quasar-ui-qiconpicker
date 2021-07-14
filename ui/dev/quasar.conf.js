@@ -79,7 +79,7 @@ module.exports = configure(function (ctx) {
 
         chain.resolve.alias.merge({
           ui: path.resolve(__dirname, '../src/index.js'),
-          '@quasar/quasar-ui-qiconpicker': path.resolve(__dirname, '../src')
+          '@quasar/quasar-ui-qiconpicker': path.resolve(__dirname, '..')
         })
       }
     },

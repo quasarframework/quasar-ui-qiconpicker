@@ -12,12 +12,11 @@
 </template>
 
 <script>
-import { defineComponent, reactive, toRefs } from 'vue';
-
+import { defineComponent,reactive } from 'vue';
 
 export default defineComponent({
+  name: 'Default',
   setup() {
-
     const data = reactive({
       value: '',
       pagination: {
@@ -27,9 +26,8 @@ export default defineComponent({
     })
 
     return {
-      ...toRefs(data)
+      data
     }
-
   }
 })
 </script>
