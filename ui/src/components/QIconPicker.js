@@ -1,14 +1,6 @@
-import {h, defineComponent, onBeforeMount, onMounted, reactive, nextTick, watch, ref, computed} from 'vue'
+import {h, defineComponent, onBeforeMount, onMounted, reactive, computed, ref, nextTick, watch} from 'vue'
 import {useColorizeProps, useColorize} from 'q-colorize-mixin'
-
-
-import {
-  QBtn,
-  QScrollArea,
-  QTooltip,
-  QResizeObserver
-} from 'quasar'
-import usePagination from "./composables/usePagination";
+import {QBtn, QPagination, QResizeObserver, QScrollArea, QTooltip} from "quasar";
 
 const useIconPickerProps = {
   modelValue: String,
@@ -68,147 +60,20 @@ const useIconPickerProps = {
 }
 
 
-function useIcons(data, props, emit, slots, setBothColors, __firstItemIndex, __lastItemIndex) {
-  const __filteredIcons = computed(() => {
-    let icons = data.iconsList
-    if (icons) {
-      if (props.tags !== void 0 && props.tags !== '' && props.tags !== null && props.tags.length > 0) {
-        icons = icons.filter(icon => {
-          return icon.tags.filter(tag => props.tags.includes(tag)).length > 0
-        })
-      }
-      if (props.filter !== void 0 && props.filter !== '' && props.filter !== null) {
-        icons = icons.filter(icon => icon.name.includes(props.filter))
-      }
-    }
-    return icons
-  })
-
-  // the icons to display after filtering and then pagination
-  const __displayedIcons = computed(() => {
-    let icons = []
-    if (data.iconsList) {
-      icons = __filteredIcons.value
-
-      // should the icons be paged?
-      if (props.pagination && props.pagination.itemsPerPage !== 0) {
-        icons = icons.slice(__firstItemIndex, __lastItemIndex)
-      }
-    }
-    return icons
-  })
-
-
-  const __loadIconSet = (iconSet) => {
-    data.iconsList = []
-    if (iconSet) {
-      // detect if UMD version is installed
-      if (window.QIconPicker) {
-        const name = iconSet.replace(/-([a-z])/g, g => g[1].toUpperCase())
-        if (window.QIconPicker.iconSet && window.QIconPicker.iconSet[name]) {
-          const iconsSet = window.QIconPicker.iconSet[name]
-          data.iconsList = iconsSet.icons
-        } else {
-          /* eslint-disable */
-          console.error('QIconPicker: no icon set loaded called ' + iconSet + '\'')
-          console.error('Be sure to load the UMD version of the icon set in a script tag before using QIconPicker UMD version')
-          /* eslint-enable */
-        }
-      } else {
-        try {
-          const iconsSet = require('@quasar/quasar-ui-qiconpicker/src/components/icon-set/' + iconSet + '.js').default
-          data.iconsList = iconsSet.icons
-        } catch (e) {
-          // eslint-disable-next-line no-console
-          console.error('QIconPicker: cannot find icon set found called ' + iconSet + '\'')
-        }
-      }
-    }
-  }
-
-  const __renderTooltip = (name) => {
-    return h(QTooltip, {}, name)
-  }
-
-  const __renderIcon = (icon) => {
-    const slot = (slots.icon && slots.icon())
-
-    const name = (icon.prefix !== void 0 ? icon.prefix + ' ' + icon.name : icon.name)
-
-    if (slot) {
-      return slot(name)
-    }
-
-    const isSelected = name === this.value
-    const color = isSelected ? props.selectedColor : ''
-    const backgroundColor = isSelected ? props.selectedBackgroundColor : ''
-
-    return h(QBtn, setBothColors(color, backgroundColor, {
-      staticClass: 'q-icon-picker__icon' + (isSelected ? ' q-icon-picker__active' : ''),
-      style: {
-        'font-size': props.fontSize
-      },
-      domProps: {
-        id: name
-      },
-      props: {
-        unelevated: true,
-        dense: props.dense,
-        noWrap: true,
-        icon: name
-      },
-      on: {
-        click: () => {
-          emit('input', name)
-        }
-      }
-    }), [
-      props.tooltips === true && __renderTooltip(h, name)
-    ])
-  }
-
-
-  const __getCategories = () => {
-    const t = []
-    data.iconsList.forEach(icon => {
-      const tags = icon.tags
-      if (tags && tags.length > 0) {
-        tags.forEach(tag => {
-          if (t.includes(tag) !== true) {
-            t.push(tag)
-          }
-        })
-      }
-    })
-    t.sort()
-    data.categories = t
-    return true
-  }
-
-  const __renderIcons = () => {
-    return __displayedIcons.value.map(icon => __renderIcon(h, icon))
-  }
-
-  return {
-    __renderIcons,
-    __filteredIcons,
-    __getCategories,
-    __renderIcon,
-    __loadIconSet
-  }
-}
-
-
 export default defineComponent({
   name: 'QIconPicker',
   props: {
     ...useIconPickerProps,
     ...useColorizeProps
   },
-  setup(props, {slots, emit}) {
-
-    const scrollAreaRef = ref(null)
+  emits: [
+    'update:modelValue',
+    'update:tags',
+    'update:pagination'
+  ],
+  setup(props, {attrs, slots, emit, expose}) {
     const pickerRef = ref(null)
+    const scrollAreaRef = ref(null)
     const data = reactive({
       iconsList: [],
       innerPagination: {
@@ -221,40 +86,211 @@ export default defineComponent({
       height: '100%'
     })
 
-
     const {
       setBothColors
     } = useColorize()
 
-    const {
-      __renderPagination,
-      __updatePagination,
-      __computedPagination,
-      __setPagination,
-      __firstItemIndex,
-      __lastItemIndex
-    } = usePagination(data, props, emit, slots, setBothColors, __filteredIcons)
+
+    function fixPagination(p) {
+      if (p.page < 1) {
+        p.page = 1
+      }
+      if (p.itemsPerPage === void 0 || p.itemsPerPage < 1) {
+        p.itemsPerPage = 0 // all
+      }
+      return p
+    }
+
+    const computedPagination = computed(() => {
+      console.log(data.innerPagination)
+      console.log(props.pagination)
+      return fixPagination({
+        ...data.innerPagination,
+        ...props.pagination
+      })
+    })
+
+    const computedFilteredIcons = computed(() => {
+      let icons = data.iconsList
+      if (icons) {
+        if (props.tags !== void 0 && props.tags !== '' && props.tags !== null && props.tags.length > 0) {
+          icons = icons.filter(icon => {
+            return icon.tags.filter(tag => props.tags.includes(tag)).length > 0
+          })
+        }
+        if (props.filter !== void 0 && props.filter !== '' && props.filter !== null) {
+          icons = icons.filter(icon => icon.name.includes(props.filter))
+        }
+      }
+      return icons
+    })
+
+    function loadIconSet(iconSet) {
+      data.iconsList = []
+      if (iconSet) {
+        // detect if UMD version is installed
+        if (window.QIconPicker) {
+          const name = iconSet.replace(/-([a-z])/g, g => g[1].toUpperCase())
+          if (window.QIconPicker.iconSet && window.QIconPicker.iconSet[name]) {
+            data.iconsList = window.QIconPicker.iconSet[name].icons
+          } else {
+            console.error(`QIconPicker: no icon set loaded called ${iconSet}`)
+            console.error('Be sure to load the UMD version of the icon set in a script tag before using QIconPicker UMD version')
+          }
+        } else {
+          try {
+            data.iconsList = require(`@quasar/quasar-ui-qiconpicker/src/components/icon-set/${iconSet}.js`).default.icons
+          } catch (e) {
+            console.error(`QIconPicker: cannot find icon set found called ${iconSet}`)
+          }
+        }
+      }
+      console.info(`Loaded ${data.iconsList.length} icons.`)
+    }
+
+    const computedPagesNumber = computed(() => {
+      return computedPagination.value.itemsPerPage === 0
+        ? 1
+        : Math.max(
+          1,
+          Math.ceil(computedFilteredIcons.value.length / computedPagination.value.itemsPerPage)
+        )
+    })
+
+    function setPagination(val) {
+      console.info(val)
+      const newPagination = fixPagination({
+        ...computedPagination.value,
+        ...val
+      })
+      console.log(newPagination)
+
+      if (props.pagination) {
+        emit('update:pagination', newPagination)
+      } else {
+        data.innerPagination = newPagination
+      }
+    }
+
+    function updatePagination() {
+      if (props.pagination !== void 0) {
+        setPagination({total: computedFilteredIcons.value.length, totalPages: computedPagesNumber.value})
+      }
+    }
+
+    // returns true if the pagination is the same,
+    // otherwise returns false if it has changed
+    function samePagination(oldPag, newPag) {
+      // eslint-disable-next-line no-unused-vars
+      for (const prop in newPag) {
+        if (newPag[prop] !== oldPag[prop]) {
+          return false
+        }
+      }
+      return true
+    }
+
+    // index of first item on a page
+    const computedFirstItemIndex = computed(() => {
+      const {page, itemsPerPage} = computedPagination.value
+      return (page - 1) * itemsPerPage
+    })
+
+    // index of last item on a page
+    const computedLastItemIndex = computed(() => {
+      const {page, itemsPerPage} = computedPagination.value
+      return page * itemsPerPage
+    })
+
+    // returns true if on first page
+    const computedIsFirstPage = computed(() => {
+      return computedPagination.value.page === 1
+    })
+
+    // public function - goes to previous page
+    function prevPage() {
+      const {page} = computedPagination.value
+      if (page > 1) {
+        setPagination({page: page - 1})
+      }
+    }
+
+    // public function - goes to next page
+    function nextPage() {
+      const {page, itemsPerPage} = computedPagination.value
+      if (computedLastItemIndex.value > 0 && page * itemsPerPage < computedFilteredIcons.value.length) {
+        setPagination({page: page + 1})
+      }
+    }
 
 
-    const {
-      __filteredIcons,
-      __getCategories,
-      __loadIconSet,
-      __renderIcons
-    } = useIcons(data, props, emit, slots, setBothColors, __firstItemIndex, __lastItemIndex)
+    function categories() {
+      const t = []
+      data.iconsList.forEach(icon => {
+        const tags = icon.tags
+        if (tags && tags.length > 0) {
+          tags.forEach(tag => {
+            if (t.includes(tag) !== true) {
+              t.push(tag)
+            }
+          })
+        }
+      })
+      t.sort()
+      data.categories = t
+      return true
+    }
+
+    const isLastPage = computed(() => {
+      return computedLastItemIndex.value === 0
+        ? true
+        : computedPagination.value.page >= computedPagesNumber.value
+    })
+
+    const computedDisplayedIcons = computed(() => {
+      let icons = []
+      if (data.iconsList) {
+        icons = computedFilteredIcons.value
+
+        // should the icons be paged?
+        if (props.pagination && props.pagination.itemsPerPage !== 0) {
+          icons = icons.slice(computedFirstItemIndex.value, computedLastItemIndex.value)
+        }
+      }
+      return icons
+    })
+
+    onBeforeMount(() => {
+      if (props.pagination) {
+        emit('update:pagination', {...computedPagination.value})
+      }
+    })
+
+    onMounted(() => {
+      if (props.iconSet) {
+        loadIconSet(props.iconSet)
+      } else if (props.icons !== void 0 && props.icons.length > 0) {
+        data.iconsList = props.icons
+      }
+      updatePagination()
+    })
+
+    function onResize(size) {
+      attrs.style.width = size.width
+      attrs.style.height = size.height
+    }
 
 
-    // watch
-    watch(() => props.iconSet, (val, prevVal) => {
+    watch(() => props.iconSet, (val) => {
       if (val) {
-        __loadIconSet(val)
-        __updatePagination()
+        loadIconSet(val)
+        updatePagination()
         nextTick(() => {
           // whenever the icon set changes, it resets pagination page to page 1
-          __setPagination({page: 1})
+          setPagination({page: 1})
         }).catch(e => console.error(e))
         // scroll to top of QScrollArea, if applicable
-        scrollAreaRef.value.setScrollPosition(0)
+        scrollAreaRef.setScrollPosition(0)
       }
     })
 
@@ -262,111 +298,180 @@ export default defineComponent({
       if (props.icons !== void 0 && props.icons.length > 0) {
         data.iconsList = props.icons
       }
-      __updatePagination()
+      updatePagination()
       nextTick(() => {
         // whenever the icon set changes, it resets pagination page to page 1
-        __setPagination({page: 1})
+        setPagination({page: 1})
       }).catch(e => console.error(e))
       // scroll to top of QScrollArea, if applicable
-      scrollAreaRef.value.setScrollPosition(0)
+      scrollAreaRef.setScrollPosition(0)
     })
 
 
-    onBeforeMount(() => {
-      if (props.pagination) {
-        emit('update:pagination', {...__computedPagination.value})
-      }
+    watch(() => props.filter, () => {
+      // whenever the filter changes, it resets pagination page to page 1
+      setPagination({page: 1, totalPages: computedPagesNumber.value})
+      updatePagination()
     })
 
-    onMounted(() => {
-      if (props.iconSet) {
-        __loadIconSet(props.iconSet)
-      } else if (props.icons !== void 0 && props.icons.length > 0) {
-        data.iconsList = props.icons
-      }
-      __updatePagination()
+    watch(() => props.tags, (val) => {
+      // whenever the tags change, it resets pagination page to page 1
+      setPagination({page: 1, totalPages: computedPagesNumber.value})
+      updatePagination()
     })
 
 
-    const __onResize = (size) => {
-      this.width = size.width
-      this.height = size.height
-    }
-
-
-    const __renderScrollArea = () => {
-      return h(QScrollArea, {
-        ref: scrollAreaRef,
-        style: {
-          width: this.width + 'px',
-          height: this.height + 'px'
-        }
-        // staticClass: 'q-icon-picker__scroll-area col column'
-      }, [
-        __renderContainer()
-      ])
-    }
-
-    const __renderBody = () => {
-      return h('div', {
-        staticClass: 'q-icon-picker__body col column'
-      }, [
-        __renderScrollArea(),
-        h(QResizeObserver, {
-          on: {
-            resize: __onResize
-          }
-        })
-      ])
-    }
-
-
-    const __renderFooter = () => {
-      const slot = (slots.footer && slots.footer())
-      return h('div', {
-        staticClass: 'q-icon-picker__footer flex flex-center'
-      }, [
-        slot ? slot(__computedPagination) : __renderPagination()
-      ])
-    }
-
-
-    const __renderContainer = () => {
-      const container = h('div', {
-        key: __computedPagination.value.page,
-        staticClass: 'q-icon-picker__container col'
-      }, [
-        ...__renderIcons()
-      ])
-
-      if (props.animated === true) {
-        const transition = 'q-transition--' + (this.direction === 'prev' ? props.transitionPrev : props.transitionNext)
-        return h('transition', {
-          props: {
-            name: transition,
-            appear: true
-          }
-        }, [
-          container
-        ])
+    watch(() => props.pagination, (newVal, oldVal) => {
+      console.log('Update Pagination')
+      if (!samePagination(oldVal, newVal)) {
+        updatePagination()
       }
+    })
 
-      return container
-    }
+    watch(() => 'onUpdate:pagination' , () => {
+      console.log('WALDJMKKDKSKSKSSKSMKSMKSSSMKSS')
+    })
+
+    watch(() => props.pagination.itemsPerPage, () => {
+      console.log('Update Pagination itemsPerPage')
+      updatePagination()
+    })
+
+    watch(() => props.pagination.page, () => {
+      console.log('Update Pagination page')
+      updatePagination()
+    })
+
+    expose({
+      prevPage,
+      nextPage
+    })
 
 
     return () => {
-      const picker = h('div', setBothColors(props.color, this.backgroundColor, {
+
+      function renderPagination() {
+
+        if (props.pagination && props.pagination.itemsPerPage === 0) return ''
+        const slot = (slots.pagination && slots.pagination())
+        const {page, totalPages} = computedPagination.value
+        console.log(totalPages)
+        console.log(page)
+        console.log(totalPages)
+        return slot || h(QPagination, {
+          class: ['q-icon-picker__pagination'],
+          ...props.paginationProps,
+          modelValue: page,
+          max: totalPages,
+          onModelValue: v => {
+              console.log(v)
+              setPagination({page: v.target.value})
+            }
+        })
+      }
+
+
+      function renderFooter() {
+        const slot = (slots.footer && slots.footer())
+
+        return h('div', {
+          class: 'q-icon-picker__footer flex flex-center'
+        }, [
+          slot ? slot(computedPagination.value) : renderPagination()
+        ])
+      }
+
+      function renderTooltip(name) {
+        if (props.tooltips === true) {
+          return () => h(QTooltip, {}, [name])
+        }
+      }
+
+      function renderIcon(icon) {
+        // const slot = slots.icon
+
+        const name = (icon.prefix !== void 0 ? icon.prefix + ' ' + icon.name : icon.name)
+
+        // if (slot) {
+        //   return hSlot(slot,).icon(name)
+        // }
+        const isSelected = name === props.modelValue
+        const color = isSelected ? props.selectedColor : ''
+        const backgroundColor = isSelected ? props.selectedBackgroundColor : ''
+
+        return h(QBtn, {
+          class: ['q-icon-picker__icon' + (isSelected ? ' q-icon-picker__active' : ''), setBothColors(color, backgroundColor).class],
+          style: [{'font-size': props.fontSize}],
+          id: name,
+          unelevated: true,
+          dense: props.dense,
+          noWrap: true,
+          icon: name,
+          onClick: () => emit('update:modelValue', name),
+        }, renderTooltip(name))
+      }
+
+
+      function renderIcons() {
+        return computedDisplayedIcons.value.map(icon => renderIcon(icon))
+      }
+
+
+      function renderContainer() {
+
+        const container = h('div', {
+          key: computedPagination.value.page,
+          class: 'q-icon-picker__container col'
+        }, [...renderIcons()])
+
+        // if (this.animated === true) {
+        //   const transition = 'q-transition--' + (this.direction === 'prev' ? props.transitionPrev : props.transitionNext)
+        //   return h('transition', {
+        //     props: {
+        //       name: transition,
+        //       appear: true
+        //     }
+        //   }, [
+        //     container
+        //   ])
+        // }
+
+        return () => container
+      }
+
+
+      function renderScrollArea() {
+        return h(QScrollArea, {
+          ref: scrollAreaRef,
+          style: [{width: attrs.style.width}, {height: attrs.style.height}]
+        }, renderContainer())
+      }
+
+      function renderBody() {
+        if (props.noFooter !== true && props.pagination !== void 0) {
+          return h('div', {
+            class: 'q-icon-picker__body col column'
+          }, [
+            renderScrollArea(),
+            h(QResizeObserver, {
+              onResize: onResize
+            })
+          ])
+        }
+      }
+
+
+      const picker = h('div', {
         ref: pickerRef,
-        staticClass: 'q-icon-picker column'
-      }), [
-        __renderBody(),
-        props.noFooter !== true && props.pagination !== void 0 && __renderFooter()
+        class: ['q-icon-picker column', setBothColors(attrs.style.color, attrs.style.backgroundColor).class]
+      }, [
+        renderBody(),
+        renderFooter()
       ])
 
       nextTick(() => {
-        __getCategories()
-        emit('tags', data.categories)
+        categories()
+        emit('update:tags', data.categories)
       }).catch(e => console.error(e))
 
       return picker
@@ -374,3 +479,14 @@ export default defineComponent({
 
   }
 })
+
+// public function - goes to previous page
+function prevPage() {
+console.error('WAKLMKLMD')
+}
+
+// public function - goes to next page
+function nextPage() {
+  console.error('WAKLMKLMD')
+}
+export { prevPage,  nextPage}
