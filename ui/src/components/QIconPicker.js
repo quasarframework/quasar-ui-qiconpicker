@@ -1,4 +1,4 @@
-import {h, defineComponent, onBeforeMount, onMounted, reactive, computed, ref, nextTick, watch, toRefs} from 'vue'
+import {h, defineComponent, onBeforeMount, onMounted, reactive, computed, ref, nextTick, watch, toRefs, Transition} from 'vue'
 import {useColorizeProps, useColorize} from 'q-colorize-mixin'
 import {QBtn, QPagination, QResizeObserver, QScrollArea, QTooltip} from "quasar";
 
@@ -101,12 +101,11 @@ function useIconPickerPagination(data, props, emit, computedFilteredIcons) {
   })
 
   function setPagination(val) {
-    console.info(val)
     const newPagination = fixPagination({
       ...computedPagination.value,
       ...val
     })
-    console.log(newPagination)
+
 
     if (props.pagination) {
       emit('update:pagination', newPagination)
@@ -120,12 +119,6 @@ function useIconPickerPagination(data, props, emit, computedFilteredIcons) {
       setPagination({total: computedFilteredIcons.value.length, totalPages: computedPagesNumber.value})
     }
   }
-
-  // returns true if on first page
-  const computedIsFirstPage = computed(() => {
-    return computedPagination.value.page === 1
-  })
-
 
   return {
     samePagination,
@@ -154,9 +147,15 @@ function useIconPickerExposed(expose, computedPagination, setPagination, compute
     }
   }
 
+  // returns true if on first page
+  const isFirstPage = computed(() => {
+    return computedPagination.value.page === 1
+  })
+
   expose({
     prevPage,
-    nextPage
+    nextPage,
+    isFirstPage
   })
 }
 
@@ -321,8 +320,8 @@ export default defineComponent({
     })
 
     function onResize(size) {
-      attrs.style.width = size.width
-      attrs.style.height = size.height
+      data.width = size.width
+      data.height = size.height
     }
 
 
@@ -384,7 +383,11 @@ export default defineComponent({
         if (props.pagination && props.pagination.itemsPerPage === 0) return ''
         const slot = (slots.pagination && slots.pagination())
         const {page, totalPages} = computedPagination.value
-        return slot || h(QPagination, {
+
+        console.log(attrs['background-color'])
+        console.log(attrs)
+
+        return slot || h(QPagination, setBothColors(props.color, attrs['background-color'], {
           class: ['q-icon-picker__pagination'],
           ...props.paginationProps,
           modelValue: page,
@@ -392,48 +395,50 @@ export default defineComponent({
           'onUpdate:modelValue': value => {
             setPagination({page: value})
           }
-        })
+        }))
       }
 
 
       function renderFooter() {
-        const slot = (slots.footer && slots.footer())
+        if (props.noFooter !== true && props.pagination !== void 0) {
+          const slot = (slots.footer && slots.footer())
 
-        return h('div', {
-          class: 'q-icon-picker__footer flex flex-center'
-        }, [
-          slot ? slot(computedPagination.value) : renderPagination()
-        ])
+          return h('div', {
+            class: 'q-icon-picker__footer flex flex-center'
+          }, [
+            slot ? slot(computedPagination.value) : renderPagination()
+          ])
+        }
       }
 
       function renderTooltip(name) {
         if (props.tooltips === true) {
-          return () => h(QTooltip, {}, [name])
+          return h(QTooltip, {}, [name])
         }
       }
 
       function renderIcon(icon) {
-        // const slot = slots.icon
+        const slot = slots.icon
 
         const name = (icon.prefix !== void 0 ? icon.prefix + ' ' + icon.name : icon.name)
 
-        // if (slot) {
-        //   return hSlot(slot,).icon(name)
-        // }
+        if (slot) {
+          return icon(name)
+        }
         const isSelected = name === props.modelValue
         const color = isSelected ? props.selectedColor : ''
         const backgroundColor = isSelected ? props.selectedBackgroundColor : ''
 
-        return h(QBtn, {
-          class: ['q-icon-picker__icon' + (isSelected ? ' q-icon-picker__active' : ''), setBothColors(color, backgroundColor).class],
-          style: [{'font-size': props.fontSize}],
+        return h(QBtn, setBothColors(color, backgroundColor, {
+          class:  'q-icon-picker__icon' + (isSelected ? ' q-icon-picker__active' : ''),
+          style: {'font-size': props.fontSize},
           id: name,
           unelevated: true,
           dense: props.dense,
           noWrap: true,
           icon: name,
           onClick: () => emit('update:modelValue', name),
-        }, renderTooltip(name))
+        }), renderTooltip(name))
       }
 
 
@@ -444,52 +449,66 @@ export default defineComponent({
 
       function renderContainer() {
 
-        const container = h('div', {
+        const container = () => h('div', {
           key: computedPagination.value.page,
           class: 'q-icon-picker__container col'
         }, [...renderIcons()])
+// this.direction === 'prev' ? props.transitionPrev :
+        console.log(attrs)
+        if (props.animated === true) {
+          const transition = 'q-transition--slide-left'
+          return () => h(Transition, {
+            name: transition,
+            appear: true
+          }, container)
+        }
 
-        // if (this.animated === true) {
-        //   const transition = 'q-transition--' + (this.direction === 'prev' ? props.transitionPrev : props.transitionNext)
-        //   return h('transition', {
-        //     props: {
-        //       name: transition,
-        //       appear: true
-        //     }
-        //   }, [
-        //     container
-        //   ])
-        // }
-
-        return () => container
+        return container
       }
 
 
       function renderScrollArea() {
         return h(QScrollArea, {
           ref: scrollAreaRef,
-          style: [{width: attrs.style.width}, {height: attrs.style.height}]
+          style: {width: data.width + 'px', height: data.height + 'px'}
         }, renderContainer())
       }
 
+
+      //
+      // function __renderBigPlayButton () {
+      //   return (slot && slot()) || h('div', setBorderColor(props.bigPlayButtonColor, {
+      //     class: state.bottomControls === true ? 'q-media--big-button q-media--big-button-bottom-controls' : 'q-media--big-button',
+      //     style: {
+      //       top: __bigButtonPositionHeight()
+      //     }
+      //   }), [
+      //     h(QIcon, setTextColor(props.bigPlayButtonColor, {
+      //       name: iconSet.mediaPlayer.bigPlayButton,
+      //       class: 'q-media--big-button-icon',
+      //       ...events
+      //     }))
+      //   ])
+      // }
+
+
+
+
       function renderBody() {
-        if (props.noFooter !== true && props.pagination !== void 0) {
-          return h('div', {
-            class: 'q-icon-picker__body col column'
-          }, [
-            renderScrollArea(),
-            h(QResizeObserver, {
-              onResize: onResize
-            })
-          ])
-        }
+        return h('div', {
+          class: 'q-icon-picker__body col column'
+        }, [
+          renderScrollArea(),
+          h(QResizeObserver, {
+            onResize: (val) => onResize(val)
+          })
+        ])
       }
 
-
-      const picker = h('div', {
-        ref: pickerRef,
-        class: ['q-icon-picker column', setBothColors(attrs.style.color, attrs.style.backgroundColor).class]
-      }, [
+    console.log(props)
+      const picker = h('div', setBothColors('',  '',{
+        class: 'q-icon-picker column'
+      }), [
         renderBody(),
         renderFooter()
       ])
@@ -501,6 +520,5 @@ export default defineComponent({
 
       return picker
     }
-
   }
 })

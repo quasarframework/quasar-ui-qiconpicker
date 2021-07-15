@@ -1,14 +1,24 @@
 <template>
-  <div class="q-pa-lg flex flex-center">
-    <div style="width: 700px;">
-      <q-icon-picker
-        v-model="value"
-        icon-set="material-icons"
-        style="height: 220px;"
-        :pagination="pageSettings"
-        @update:pagination="pageSettings = $event"
-      ></q-icon-picker>
-    </div>
+  <div style="max-width: 800px; width: 100%;">
+    <q-icon-picker
+      v-model="value"
+      icon-set="material-icons"
+      style="height: 220px;"
+      :pagination="pageSettings"
+
+      color="green-8"
+      background-color="yellow-8"
+      selected-color="green-8"
+      selected-background-color="green-2"
+
+      :pagination-props="{
+          maxPages: 5,
+          input: true,
+          color: 'orange-10'
+        }"
+
+      @update:pagination="pageSettings = $event"
+    ></q-icon-picker>
   </div>
 </template>
 
