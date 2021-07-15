@@ -154,11 +154,6 @@ export function useIconPickerExposed(data, expose, computedPagination, setPagina
     prevPage,
     nextPage
   })
-
-  return {
-    prevPage,
-    nextPage
-  }
 }
 
 function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastItemIndex) {
