@@ -1,4 +1,4 @@
-import {h, defineComponent, onBeforeMount, onMounted, reactive, computed, ref, nextTick, watch, toRefs, Transition} from 'vue'
+import {h, defineComponent, onBeforeMount, onMounted, reactive, computed, ref, nextTick, watch, toRefs, Transition, getCurrentInstance } from 'vue'
 import {useColorizeProps, useColorize} from 'q-colorize-mixin'
 import {QBtn, QPagination, QResizeObserver, QScrollArea, QTooltip} from "quasar";
 
@@ -75,7 +75,6 @@ function useIconPickerPagination(data, props, emit, computedFilteredIcons) {
   // returns true if the pagination is the same,
   // otherwise returns false if it has changed
   function samePagination(oldPag, newPag) {
-    // eslint-disable-next-line no-unused-vars
     for (const prop in newPag) {
       if (newPag[prop] !== oldPag[prop]) {
         return false
@@ -130,33 +129,36 @@ function useIconPickerPagination(data, props, emit, computedFilteredIcons) {
 }
 
 // Public functions
-function useIconPickerExposed(expose, computedPagination, setPagination, computedFirstItemIndex, computedLastItemIndex, computedFilteredIcons) {
+export function useIconPickerExposed(data, expose, computedPagination, setPagination, computedFirstItemIndex, computedLastItemIndex, computedFilteredIcons) {
   // goes to previous page
   function prevPage() {
+    console.log('WAAAHHHHHHHHHHHHHHHHHHH PREV PAGE')
     const {page} = computedPagination.value
     if (page > 1) {
       setPagination({page: page - 1})
+      data.direction = 'prev'
     }
   }
 
   // oes to next page
   function nextPage() {
+    console.log('WAAAHHHHHHHHHHHHHHHHHHH NEXT PAGE')
     const {page, itemsPerPage} = computedPagination.value
     if (computedLastItemIndex.value > 0 && page * itemsPerPage < computedFilteredIcons.value.length) {
       setPagination({page: page + 1})
+      data.direction = 'next'
     }
   }
 
-  // returns true if on first page
-  const isFirstPage = computed(() => {
-    return computedPagination.value.page === 1
-  })
-
   expose({
     prevPage,
-    nextPage,
-    isFirstPage
+    nextPage
   })
+
+  return {
+    prevPage,
+    nextPage
+  }
 }
 
 function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastItemIndex) {
@@ -223,8 +225,7 @@ function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastIte
 export default defineComponent({
   name: 'QIconPicker',
   props: {
-    ...useIconPickerProps,
-    ...useColorizeProps
+    ...useIconPickerProps
   },
   emits: [
     'update:modelValue',
@@ -232,7 +233,9 @@ export default defineComponent({
     'update:pagination'
   ],
   setup(props, {attrs, slots, emit, expose}) {
-    const pickerRef = ref(null)
+    const { proxy } = getCurrentInstance()
+
+    console.log(proxy)
     const scrollAreaRef = ref(null)
     const data = reactive({
       iconsList: [],
@@ -243,7 +246,8 @@ export default defineComponent({
       },
       categories: [],
       width: '100%',
-      height: '100%'
+      height: '100%',
+      direction: ''
     })
 
     // index of first item on a page
@@ -257,11 +261,6 @@ export default defineComponent({
       const {page, itemsPerPage} = computedPagination.value
       return page * itemsPerPage
     })
-
-
-    const {
-      setBothColors
-    } = useColorize()
 
     const {
       loadIconSet,
@@ -277,7 +276,7 @@ export default defineComponent({
       computedPagesNumber
     } = useIconPickerPagination(data, props, emit, computedFilteredIcons)
 
-    useIconPickerExposed(expose, computedPagination, setPagination, computedFirstItemIndex, computedLastItemIndex, computedFilteredIcons)
+    useIconPickerExposed(data, expose, computedPagination, setPagination, computedFirstItemIndex, computedLastItemIndex, computedFilteredIcons)
 
 
     const isLastPage = computed(() => {
@@ -285,6 +284,12 @@ export default defineComponent({
         ? true
         : computedPagination.value.page >= computedPagesNumber.value
     })
+
+    // returns true if on first page
+    const isFirstPage = computed(() => {
+      return computedPagination.value.page === 1
+    })
+
 
     function categories() {
       const t = []
@@ -384,10 +389,7 @@ export default defineComponent({
         const slot = (slots.pagination && slots.pagination())
         const {page, totalPages} = computedPagination.value
 
-        console.log(attrs['background-color'])
-        console.log(attrs)
-
-        return slot || h(QPagination, setBothColors(props.color, attrs['background-color'], {
+        return slot || h(QPagination,  {
           class: ['q-icon-picker__pagination'],
           ...props.paginationProps,
           modelValue: page,
@@ -395,7 +397,7 @@ export default defineComponent({
           'onUpdate:modelValue': value => {
             setPagination({page: value})
           }
-        }))
+        })
       }
 
 
@@ -429,16 +431,20 @@ export default defineComponent({
         const color = isSelected ? props.selectedColor : ''
         const backgroundColor = isSelected ? props.selectedBackgroundColor : ''
 
-        return h(QBtn, setBothColors(color, backgroundColor, {
-          class:  'q-icon-picker__icon' + (isSelected ? ' q-icon-picker__active' : ''),
-          style: {'font-size': props.fontSize},
+        return h(QBtn,{
+          class:  (isSelected ? 'selected' : ''),
+          style: {
+            'font-size': props.fontSize,
+            'color': color,
+            'background-color': backgroundColor,
+          },
           id: name,
           unelevated: true,
           dense: props.dense,
           noWrap: true,
           icon: name,
           onClick: () => emit('update:modelValue', name),
-        }), renderTooltip(name))
+        }, renderTooltip(name))
       }
 
 
@@ -453,10 +459,9 @@ export default defineComponent({
           key: computedPagination.value.page,
           class: 'q-icon-picker__container col'
         }, [...renderIcons()])
-// this.direction === 'prev' ? props.transitionPrev :
-        console.log(attrs)
+
         if (props.animated === true) {
-          const transition = 'q-transition--slide-left'
+          const transition = 'q-transition--' + (data.direction === 'prev' ? props.transitionPrev : props.transitionNext)
           return () => h(Transition, {
             name: transition,
             appear: true
@@ -474,26 +479,6 @@ export default defineComponent({
         }, renderContainer())
       }
 
-
-      //
-      // function __renderBigPlayButton () {
-      //   return (slot && slot()) || h('div', setBorderColor(props.bigPlayButtonColor, {
-      //     class: state.bottomControls === true ? 'q-media--big-button q-media--big-button-bottom-controls' : 'q-media--big-button',
-      //     style: {
-      //       top: __bigButtonPositionHeight()
-      //     }
-      //   }), [
-      //     h(QIcon, setTextColor(props.bigPlayButtonColor, {
-      //       name: iconSet.mediaPlayer.bigPlayButton,
-      //       class: 'q-media--big-button-icon',
-      //       ...events
-      //     }))
-      //   ])
-      // }
-
-
-
-
       function renderBody() {
         return h('div', {
           class: 'q-icon-picker__body col column'
@@ -505,10 +490,9 @@ export default defineComponent({
         ])
       }
 
-    console.log(props)
-      const picker = h('div', setBothColors('',  '',{
+      const picker = h('div', {
         class: 'q-icon-picker column'
-      }), [
+      }, [
         renderBody(),
         renderFooter()
       ])

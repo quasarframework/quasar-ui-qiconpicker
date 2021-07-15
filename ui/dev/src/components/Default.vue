@@ -3,18 +3,16 @@
     <q-icon-picker
       v-model="value"
       icon-set="material-icons"
-      style="height: 220px;"
+      style="height: 360px;"
       :pagination="pageSettings"
-
-      color="green-8"
-      background-color="yellow-8"
-      selected-color="green-8"
-      selected-background-color="green-2"
-
+      class="test1"
+      selected-color="#000"
+      selected-background-color="#21BA45"
+      animated
       :pagination-props="{
           maxPages: 5,
           input: true,
-          color: 'orange-10'
+          color: '#21BA45'
         }"
 
       @update:pagination="pageSettings = $event"
@@ -29,7 +27,7 @@ export default defineComponent({
   name: 'Default',
   setup() {
     const pageSettings = ref({
-      itemsPerPage: 60,
+      itemsPerPage: 32,
       page: 0
     })
 
@@ -42,3 +40,12 @@ export default defineComponent({
   }
 })
 </script>
+
+<style>
+.test1 {
+  color: #0aff00;
+  background-color: #25577d;
+  font-size: 30px;
+}
+
+</style>

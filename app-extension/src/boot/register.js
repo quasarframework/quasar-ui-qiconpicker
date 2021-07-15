@@ -1,4 +1,6 @@
-import Vue from 'vue'
-import VuePlugin from '@quasar/quasar-ui-qiconpicker'
+import { boot } from 'quasar/wrappers'
+import VuePlugin from 'quasar-ui-test-ext'
 
-Vue.use(VuePlugin)
+export default boot(({ app }) => {
+  app.use(VuePlugin)
+})
