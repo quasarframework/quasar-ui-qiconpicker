@@ -1,4 +1,4 @@
-import {h, defineComponent, onBeforeMount, onMounted, reactive, computed, ref, nextTick, watch, toRefs, Transition } from 'vue'
+import {h, defineComponent, onBeforeMount, onMounted, reactive, computed, ref, nextTick, watch, toRefs, Transition} from 'vue'
 import {QBtn, QPagination, QResizeObserver, QScrollArea, QTooltip} from "quasar";
 
 /**
@@ -243,7 +243,7 @@ function exposeIconPickerApi(data, expose, computedPagination, setPagination, co
 
   // goes to first page
   const firstPage = () => {
-      setPagination({page: 0})
+    setPagination({page: 0})
   }
 
   // checks if we are on the last page
@@ -379,18 +379,23 @@ export default defineComponent({
       updatePagination()
     })
 
+    if (props.pagination) {
+      watch(() => props.pagination, (newVal, oldVal) => {
+        if (!samePagination(oldVal, newVal)) {
+          updatePagination()
+        }
+      })
+    }
 
-    watch(() => props.pagination, (newVal, oldVal) => {
-      if (!samePagination(oldVal, newVal)) {
+    if (props.pagination) {
+      watch(() => props.pagination.itemsPerPage, () => {
         updatePagination()
-      }
-    })
+      })
 
-    const {itemsPerPage, page} = toRefs(props.pagination)
-    watch([itemsPerPage, page], () => {
-      updatePagination()
-    })
-
+      watch(() =>props.pagination.page, () => {
+        updatePagination()
+      })
+    }
 
     return () => {
 
@@ -405,7 +410,7 @@ export default defineComponent({
           modelValue: page,
           max: totalPages,
           'onUpdate:modelValue': value => {
-            if(props.animated) {
+            if (props.animated) {
               if (value > page) {
                 data.direction = direction.NEXT
               } else {
@@ -431,17 +436,16 @@ export default defineComponent({
 
       function renderTooltip(name) {
         if (props.tooltips === true) {
-          return h(QTooltip, {}, [name])
+          return () => h(QTooltip, {}, () => name)
         }
       }
 
       function renderIcon(icon) {
-        const slot = slots.icon
 
         const name = (icon.prefix !== void 0 ? icon.prefix + ' ' + icon.name : icon.name)
 
-        if (slot) {
-          return icon(name)
+        if (slots.icon && slots.icon()) {
+          return slots.icon(name)
         }
         const isSelected = name === props.modelValue
         const color = isSelected ? props.selectedColor : ''
