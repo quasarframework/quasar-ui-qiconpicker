@@ -2,7 +2,6 @@
   "meta": {
     "docsUrl": "https://quasarframework.github.io/quasar-ui-qiconpicker/docs"
   },
-
   "props": {
     "value": {
       "type": "String",
@@ -47,7 +46,9 @@
         "name": {
           "type": "String",
           "desc": "The icon name",
-          "__exemption": [ "examples" ]
+          "__exemption": [
+            "examples"
+          ]
         }
       }
     },
@@ -197,6 +198,18 @@
     },
     "nextPage": {
       "desc": "If paginated, will go to next page, if not on last page"
+    },
+    "lastPage": {
+      "desc": "If paginated, will go to the last page"
+    },
+    "isLastPage": {
+      "desc": "True if on last page otherwise false"
+    },
+    "firstPage": {
+      "desc": "If paginated, will go to the first page"
+    },
+    "isFirstPage": {
+      "desc": "True if on first page otherwise false"
     }
   }
 }

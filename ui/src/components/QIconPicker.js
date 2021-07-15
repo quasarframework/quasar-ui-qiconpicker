@@ -1,7 +1,9 @@
-import {h, defineComponent, onBeforeMount, onMounted, reactive, computed, ref, nextTick, watch, toRefs, Transition, getCurrentInstance } from 'vue'
-import {useColorizeProps, useColorize} from 'q-colorize-mixin'
+import {h, defineComponent, onBeforeMount, onMounted, reactive, computed, ref, nextTick, watch, toRefs, Transition } from 'vue'
 import {QBtn, QPagination, QResizeObserver, QScrollArea, QTooltip} from "quasar";
 
+/**
+ * QIconPicker Properties
+ */
 const useIconPickerProps = {
   modelValue: String,
   iconSet: {
@@ -59,7 +61,15 @@ const useIconPickerProps = {
   }
 }
 
+const direction = {
+  NEXT: 'next',
+  PREV: 'prev'
+}
 
+
+/**
+ * Pagination
+ */
 function useIconPickerPagination(data, props, emit, computedFilteredIcons) {
 
   function fixPagination(p) {
@@ -91,12 +101,8 @@ function useIconPickerPagination(data, props, emit, computedFilteredIcons) {
   })
 
   const computedPagesNumber = computed(() => {
-    return computedPagination.value.itemsPerPage === 0
-      ? 1
-      : Math.max(
-        1,
-        Math.ceil(computedFilteredIcons.value.length / computedPagination.value.itemsPerPage)
-      )
+    return computedPagination.value.itemsPerPage === 0 ? 1
+      : Math.max(1, Math.ceil(computedFilteredIcons.value.length / computedPagination.value.itemsPerPage))
   })
 
   function setPagination(val) {
@@ -104,7 +110,6 @@ function useIconPickerPagination(data, props, emit, computedFilteredIcons) {
       ...computedPagination.value,
       ...val
     })
-
 
     if (props.pagination) {
       emit('update:pagination', newPagination)
@@ -128,34 +133,9 @@ function useIconPickerPagination(data, props, emit, computedFilteredIcons) {
   }
 }
 
-// Public functions
-export function useIconPickerExposed(data, expose, computedPagination, setPagination, computedFirstItemIndex, computedLastItemIndex, computedFilteredIcons) {
-  // goes to previous page
-  function prevPage() {
-    console.log('WAAAHHHHHHHHHHHHHHHHHHH PREV PAGE')
-    const {page} = computedPagination.value
-    if (page > 1) {
-      setPagination({page: page - 1})
-      data.direction = 'prev'
-    }
-  }
-
-  // oes to next page
-  function nextPage() {
-    console.log('WAAAHHHHHHHHHHHHHHHHHHH NEXT PAGE')
-    const {page, itemsPerPage} = computedPagination.value
-    if (computedLastItemIndex.value > 0 && page * itemsPerPage < computedFilteredIcons.value.length) {
-      setPagination({page: page + 1})
-      data.direction = 'next'
-    }
-  }
-
-  expose({
-    prevPage,
-    nextPage
-  })
-}
-
+/**
+ * Icons
+ */
 function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastItemIndex) {
 
   function loadIconSet(iconSet) {
@@ -180,7 +160,6 @@ function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastIte
     }
     console.info(`Loaded ${data.iconsList.length} icons.`)
   }
-
 
   const computedDisplayedIcons = computed(() => {
     let icons = []
@@ -209,11 +188,85 @@ function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastIte
     }
     return icons
   })
+
+  function categories() {
+    const t = []
+    data.iconsList.forEach(icon => {
+      const tags = icon.tags
+      if (tags && tags.length > 0) {
+        tags.forEach(tag => {
+          if (t.includes(tag) !== true) {
+            t.push(tag)
+          }
+        })
+      }
+    })
+    t.sort()
+    data.categories = t
+    return true
+  }
+
   return {
     loadIconSet,
     computedDisplayedIcons,
-    computedFilteredIcons
+    computedFilteredIcons,
+    categories
   }
+}
+
+/**
+ * Exposes api functions
+ */
+function exposeIconPickerApi(data, expose, computedPagination, setPagination, computedFirstItemIndex, computedLastItemIndex, computedFilteredIcons, computedPagesNumber) {
+  // goes to previous page
+  const prevPage = () => {
+    const {page} = computedPagination.value
+    if (page > 1) {
+      setPagination({page: page - 1})
+      data.direction = direction.PREV
+    }
+  }
+
+  // goes to next page
+  const nextPage = () => {
+    const {page, itemsPerPage} = computedPagination.value
+    if (computedLastItemIndex.value > 0 && page * itemsPerPage < computedFilteredIcons.value.length) {
+      setPagination({page: page + 1})
+      data.direction = direction.NEXT
+    }
+  }
+
+  // goes to last page
+  const lastPage = () => {
+    setPagination({page: computedPagesNumber.value})
+  }
+
+  // goes to first page
+  const firstPage = () => {
+      setPagination({page: 0})
+  }
+
+  // checks if we are on the last page
+  const isLastPage = computed(() => {
+    return computedLastItemIndex.value === 0
+      ? true
+      : computedPagination.value.page >= computedPagesNumber.value
+  })
+
+
+  // checks if we are on the first page
+  const isFirstPage = computed(() => {
+    return computedPagination.value.page === 1
+  })
+
+  expose({
+    prevPage,
+    nextPage,
+    lastPage,
+    firstPage,
+    isLastPage,
+    isFirstPage
+  })
 }
 
 
@@ -228,9 +281,6 @@ export default defineComponent({
     'update:pagination'
   ],
   setup(props, {attrs, slots, emit, expose}) {
-    const { proxy } = getCurrentInstance()
-
-    console.log(proxy)
     const scrollAreaRef = ref(null)
     const data = reactive({
       iconsList: [],
@@ -260,7 +310,8 @@ export default defineComponent({
     const {
       loadIconSet,
       computedDisplayedIcons,
-      computedFilteredIcons
+      computedFilteredIcons,
+      categories
     } = useIconPickerIcons(data, props, computedFirstItemIndex, computedLastItemIndex)
 
     const {
@@ -271,37 +322,7 @@ export default defineComponent({
       computedPagesNumber
     } = useIconPickerPagination(data, props, emit, computedFilteredIcons)
 
-    useIconPickerExposed(data, expose, computedPagination, setPagination, computedFirstItemIndex, computedLastItemIndex, computedFilteredIcons)
-
-
-    const isLastPage = computed(() => {
-      return computedLastItemIndex.value === 0
-        ? true
-        : computedPagination.value.page >= computedPagesNumber.value
-    })
-
-    // returns true if on first page
-    const isFirstPage = computed(() => {
-      return computedPagination.value.page === 1
-    })
-
-
-    function categories() {
-      const t = []
-      data.iconsList.forEach(icon => {
-        const tags = icon.tags
-        if (tags && tags.length > 0) {
-          tags.forEach(tag => {
-            if (t.includes(tag) !== true) {
-              t.push(tag)
-            }
-          })
-        }
-      })
-      t.sort()
-      data.categories = t
-      return true
-    }
+    exposeIconPickerApi(data, expose, computedPagination, setPagination, computedFirstItemIndex, computedLastItemIndex, computedFilteredIcons, computedPagesNumber)
 
 
     onBeforeMount(() => {
@@ -318,11 +339,6 @@ export default defineComponent({
       }
       updatePagination()
     })
-
-    function onResize(size) {
-      data.width = size.width
-      data.height = size.height
-    }
 
 
     watch(() => props.iconSet, (val) => {
@@ -350,7 +366,6 @@ export default defineComponent({
       // scroll to top of QScrollArea, if applicable
       scrollAreaRef.setScrollPosition(0)
     })
-
 
     watch(() => props.filter, () => {
       // whenever the filter changes, it resets pagination page to page 1
@@ -384,17 +399,23 @@ export default defineComponent({
         const slot = (slots.pagination && slots.pagination())
         const {page, totalPages} = computedPagination.value
 
-        return slot || h(QPagination,  {
+        return slot || h(QPagination, {
           class: ['q-icon-picker__pagination'],
           ...props.paginationProps,
           modelValue: page,
           max: totalPages,
           'onUpdate:modelValue': value => {
+            if(props.animated) {
+              if (value > page) {
+                data.direction = direction.NEXT
+              } else {
+                data.direction = direction.PREV
+              }
+            }
             setPagination({page: value})
           }
         })
       }
-
 
       function renderFooter() {
         if (props.noFooter !== true && props.pagination !== void 0) {
@@ -426,8 +447,7 @@ export default defineComponent({
         const color = isSelected ? props.selectedColor : ''
         const backgroundColor = isSelected ? props.selectedBackgroundColor : ''
 
-        return h(QBtn,{
-          class:  (isSelected ? 'selected' : ''),
+        return h(QBtn, {
           style: {
             'font-size': props.fontSize,
             'color': color,
@@ -442,11 +462,9 @@ export default defineComponent({
         }, renderTooltip(name))
       }
 
-
       function renderIcons() {
         return computedDisplayedIcons.value.map(icon => renderIcon(icon))
       }
-
 
       function renderContainer() {
 
@@ -480,7 +498,10 @@ export default defineComponent({
         }, [
           renderScrollArea(),
           h(QResizeObserver, {
-            onResize: (val) => onResize(val)
+            onResize: (size) => {
+              data.width = size.width
+              data.height = size.height
+            }
           })
         ])
       }
