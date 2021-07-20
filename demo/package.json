@@ -16,7 +16,7 @@
   "dependencies": {
     "@quasar/extras": "^1.10.7",
     "@quasar/quasar-ui-qiconpicker": "../ui",
-    "quasar": "^1.15.21"
+    "quasar": "^2.0.3"
   },
   "devDependencies": {
     "@quasar/app": "^2.2.10",
