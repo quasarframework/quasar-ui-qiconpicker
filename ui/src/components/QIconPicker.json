@@ -37,6 +37,7 @@
     },
     "icons": {
       "type": "Array",
+      "tsType": "IconNameArray",
       "desc": "An array of objects containing icon information. The object must contain the key `name` with the value being the icon name (ie: `{ name: 'bolt' }`). _**Note:** the icons used must already be loaded by Quasar._",
       "category": "model",
       "examples": [
@@ -62,6 +63,7 @@
     },
     "tags": {
       "type": "Array",
+      "tsType": "StringArray",
       "addedIn": "v1.0.7",
       "desc": "An array of tags to be used to do filtering by category",
       "category": "behavior",
@@ -130,13 +132,14 @@
         "font-size=\"24px\""
       ]
     },
-    "pagination": {
+    "model-pagination": {
       "type": "Object",
+      "tsType": "Pagination",
       "sync": true,
-      "desc": "For pagination purposes uses Quasar's pagination component. Use `pagination.sync` to synchronize the data. You can use `page` and `itemsPerPage` to control the pagination. QIconPicker will set `totalPages` depending on `icon-set` or `icons` properties. If using a `filter` the page will automatically be reset to 1",
-      "category": "behavior",
+      "desc": "For pagination purposes uses Quasar's pagination component. Use `v-model:model-pagination` to synchronize the data. You can use `page` and `itemsPerPage` to control the pagination. QIconPicker will set `totalPages` depending on `icon-set` or `icons` properties. If using a `filter` the page will automatically be reset to 1",
+      "category": "model",
       "examples": [
-        ":pagination.sync=\"myPagination\""
+        "v-model:model-pagination=\"myPagination\""
       ]
     },
     "animated": {
@@ -190,6 +193,9 @@
     },
     "footer": {
       "desc": "Anything can go into this slot"
+    },
+    "pagination": {
+      "desc": "Use if you want to provide your own pagination UI. You can control this with the data from the property `model-pagination`"
     }
   },
   "methods": {
