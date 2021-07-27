@@ -20,6 +20,7 @@
     "quasar": "^2.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
     "@babel/eslint-parser": "^7.13.14",
     "@quasar/app": "^3.0.2",
     "eslint": "^7.29.0",
