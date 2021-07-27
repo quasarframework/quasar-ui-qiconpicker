@@ -11,8 +11,7 @@
                 :filter="data.value"
                 icon-set="material-icons"
                 tooltips
-                :pagination="data.pagination"
-                @update:pagination="data.pagination = $event"
+                v-model:model-pagination="data.pagination"
                 style="height: 300px; width: 300px; background-color: white;"
               ></q-icon-picker>
 

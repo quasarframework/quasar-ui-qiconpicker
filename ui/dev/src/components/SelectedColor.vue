@@ -6,8 +6,7 @@
         icon-set="material-icons"
         selected-color="#4E3D42"
         selected-background-color="#C9D5B5"
-        :pagination="data.pagination"
-        @update:pagination="data.pagination = $event"
+        v-model:model-pagination="data.pagination"
         style="height: 220px;"
       ></q-icon-picker>
     </div>

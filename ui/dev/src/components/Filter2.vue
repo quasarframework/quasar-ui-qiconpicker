@@ -13,8 +13,7 @@
         icon-set="material-icons"
         :filter="data.filter"
         style="height: 220px"
-        :pagination="data.pagination"
-        @update:pagination="data.pagination = $event"
+        v-model:model-pagination="data.pagination"
       ></q-icon-picker>
     </div>
   </div>

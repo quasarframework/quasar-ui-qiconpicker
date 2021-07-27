@@ -5,8 +5,7 @@
         v-model="data.value"
         icon-set="material-icons"
         font-size="30px"
-        :pagination="data.pagination"
-        @update:pagination="data.pagination = $event"
+        v-model:model-pagination="data.pagination"
         style="height: 360px;"
       ></q-icon-picker>
     </div>

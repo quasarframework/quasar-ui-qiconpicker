@@ -13,8 +13,7 @@
       <q-icon-picker
         v-model="data.value"
         icon-set="material-icons"
-        :pagination="data.pagination"
-        @update:pagination="data.pagination = $event"
+        v-model:model-pagination="data.pagination"
         :paginationProps="{
           maxPages: 5,
           input: true,
