@@ -192,7 +192,7 @@ Choices are:
                 v-model="value"
                 icon-set="material-icons"
                 :filter="filter"
-                :pagination.sync="pagination"
+                v-model:model-pagination="pagination"
                 style="height: 220px"
               ></q-icon-picker>
             </div>
