@@ -25,8 +25,7 @@ jsconfig.json
 .babelrc
 
 # Other
-/src/components/QFlashcard.json
-/src/components/QFlashcardSection.json
+/src/components/QIconPicker.json
 
 # Testing
 /test
