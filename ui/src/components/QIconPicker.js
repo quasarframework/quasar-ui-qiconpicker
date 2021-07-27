@@ -279,7 +279,7 @@ export default defineComponent({
     'update:tags',
     'update:model-pagination'
   ],
-  setup(props, {attrs, slots, emit, expose}) {
+  setup(props, { slots, emit, expose }) {
     const scrollAreaRef = ref(null)
     const data = reactive({
       iconsList: [],
