@@ -3,28 +3,40 @@ const fs = require('fs')
 const fse = require('fs-extra')
 const rollup = require('rollup')
 const uglify = require('uglify-js')
-// const buble = require('@rollup/plugin-buble')
+const buble = require('@rollup/plugin-buble')
 const json = require('@rollup/plugin-json')
 const { nodeResolve } = require('@rollup/plugin-node-resolve')
+const replace = require('@rollup/plugin-replace')
 
 const { version } = require('../package.json')
 
 const buildConf = require('./config')
 const buildUtils = require('./utils')
 
+const bubleConfig = {
+  objectAssign: 'Object.assign'
+}
+
+const nodeResolveConfig = {
+  extensions: ['.js'],
+  preferBuiltins: false
+}
+
+function pathResolve (_path) {
+  return path.resolve(__dirname, _path)
+}
+
 const rollupPluginsModern = [
-  nodeResolve(),
-  json()
+  replace({
+    preventAssignment: false,
+    values: {
+      __UI_VERSION__: `'${ version }'`
+    }
+  }),
+  nodeResolve(nodeResolveConfig),
+  json(),
+  buble(bubleConfig)
 ]
-
-// const bubleConfig = {
-//   objectAssign: 'Object.assign'
-// }
-
-// const nodeResolveConfig = {
-//   extensions: ['.js'],
-//   preferBuiltins: false
-// }
 
 const uglifyJsOptions = {
   compress: {
@@ -59,68 +71,74 @@ const uglifyJsOptions = {
   }
 }
 
-// const rollupPlugins = [
-//   nodeResolve(nodeResolveConfig),
-//   json(),
-//   buble(bubleConfig)
-// ]
-
-const builds = [
-  {
-    rollup: {
-      input: {
-        input: pathResolve('entry/index.esm.js')
-      },
-      output: {
-        file: pathResolve('../dist/index.esm.js'),
-        format: 'es',
-        exports: 'auto'
-      }
-    },
-    build: {
-      unminified: true,
-      minified: true,
-      minExt: true
-    }
-  },
-  {
-    rollup: {
-      input: {
-        input: pathResolve('entry/index.common.js')
-      },
-      output: {
-        file: pathResolve('../dist/index.common.js'),
-        format: 'cjs',
-        exports: 'auto'
-      }
-    },
-    build: {
-      unminified: true,
-      minified: true,
-      minExt: true
-    }
-  },
-  {
-    rollup: {
-      input: {
-        input: pathResolve('entry/index.umd.js')
-      },
-      output: {
-        name: 'QFlashcard',
-        file: pathResolve('../dist/index.umd.js'),
-        format: 'umd'
-      }
-    },
-    build: {
-      unminified: true,
-      minified: true,
-      minExt: true
-    }
-  }
+const buildEntries = [
+  'QIconPicker'
 ]
 
+function generateBuilds () {
+  const builds = []
+
+  buildEntries.forEach(entry => {
+    builds.push({
+      rollup: {
+        input: {
+          input: pathResolve('../src/index.esm.js')
+        },
+        output: {
+          file: pathResolve('../dist/index.esm.js'),
+          format: 'es',
+          exports: 'auto'
+        }
+      },
+      build: {
+        unminified: true,
+        minified: true,
+        minExt: true
+      }
+    })
+    builds.push({
+      rollup: {
+        input: {
+          input: pathResolve('../src/index.common.js')
+        },
+        output: {
+          file: pathResolve('../dist/index.common.js'),
+          format: 'cjs',
+          exports: 'auto'
+        }
+      },
+      build: {
+        unminified: true,
+        minified: true,
+        minExt: true
+      }
+    })
+    builds.push({
+      rollup: {
+        input: {
+          input: pathResolve('../src/index.umd.js')
+        },
+        output: {
+          name: entry,
+          file: pathResolve('../dist/index.umd.js'),
+          format: 'umd'
+        }
+      },
+      build: {
+        unminified: true,
+        minified: true,
+        minExt: true
+      }
+    })
+  })
+
+  return builds
+}
+
+const builds = generateBuilds()
+
 // Add your asset folders here, if needed
-// addAssets(builds, 'icon-set', 'iconSet')
+addAssets(builds, 'icon-set', 'iconSet')
 // addAssets(builds, 'lang', 'lang')
 
 build(builds)
@@ -129,33 +147,29 @@ build(builds)
  * Helpers
  */
 
-function pathResolve (_path) {
-  return path.resolve(__dirname, _path)
-}
-
 // eslint-disable-next-line no-unused-vars
 function addAssets (builds, type, injectName) {
   const
     files = fs.readdirSync(pathResolve('../../ui/src/components/' + type)),
     plugins = [buble(bubleConfig)],
-    outputDir = pathResolve(`../dist/${type}`)
+    outputDir = pathResolve(`../dist/${ type }`)
 
   fse.mkdirp(outputDir)
 
   files
     .filter(file => file.endsWith('.js'))
     .forEach(file => {
-      const name = file.substr(0, file.length - 3).replace(/-([a-z])/g, g => g[1].toUpperCase())
+      const name = file.substr(0, file.length - 3).replace(/-([a-z])/g, g => g[ 1 ].toUpperCase())
       builds.push({
         rollup: {
           input: {
-            input: pathResolve(`../src/components/${type}/${file}`),
+            input: pathResolve(`../src/components/${ type }/${ file }`),
             plugins
           },
           output: {
-            file: addExtension(pathResolve(`../dist/${type}/${file}`), 'umd'),
+            file: addExtension(pathResolve(`../dist/${ type }/${ file }`), 'umd'),
             format: 'umd',
-            name: `QFlashcard.${injectName}.${name}`
+            name: `QIconPicker.${ injectName }.${ name }`
           }
         },
         build: {
@@ -174,7 +188,7 @@ function build (builds) {
 function genConfig (opts) {
   Object.assign(opts.rollup.input, {
     plugins: rollupPluginsModern,
-    external: ['vue', 'quasar']
+    external: [ 'vue', 'quasar' ]
   })
 
   Object.assign(opts.rollup.output, {
@@ -187,7 +201,7 @@ function genConfig (opts) {
 
 function addExtension (filename, ext = 'min') {
   const insertionPoint = filename.lastIndexOf('.')
-  return `${filename.slice(0, insertionPoint)}.${ext}${filename.slice(insertionPoint)}`
+  return `${ filename.slice(0, insertionPoint) }.${ ext }${ filename.slice(insertionPoint) }`
 }
 
 function injectVueRequirement (code) {
@@ -199,7 +213,7 @@ function injectVueRequirement (code) {
   }
 
   const checkMe = ` if (Vue === void 0) {
-    console.error('[ QFlashcard ] Vue is required to run. Please add a script tag for it before loading QFlashcard.')
+    console.error('[ QIconPicker ] Vue is required to run. Please add a script tag for it before loading QIconPicker.')
     return
   }
   `
@@ -216,7 +230,7 @@ function buildEntry (config) {
     .then(({ output }) => {
       const code = config.rollup.output.format === 'umd'
         ? injectVueRequirement(output[ 0 ].code)
-        : output[0].code
+        : output[ 0 ].code
 
       return config.build.unminified
         ? buildUtils.writeFile(config.rollup.output.file, code)
