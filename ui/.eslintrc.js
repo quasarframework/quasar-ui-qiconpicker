@@ -6,7 +6,7 @@ module.exports = {
 
   parser: '@babel/eslint-parser',
   parserOptions: {
-    ecmaVersion: 2019, // Allows for the parsing of modern ECMAScript features
+    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
     sourceType: 'module', // Allows for the use of imports
     requireConfigFile: false
   },
@@ -20,7 +20,7 @@ module.exports = {
   // Rules order is important, please avoid shuffling them
   extends: [
     // Base ESLint recommended rules
-    'eslint:recommended',
+    // 'eslint:recommended',
 
     // Uncomment any of the lines below to choose desired strictness,
     // but leave only one uncommented!
@@ -46,21 +46,23 @@ module.exports = {
   ],
 
   globals: {
-    ga: true, // Google Analytics
-    cordova: true,
-    __statics: true,
-    __QUASAR_SSR__: true,
-    __QUASAR_SSR_SERVER__: true,
-    __QUASAR_SSR_CLIENT__: true,
-    __QUASAR_SSR_PWA__: true,
-    process: true,
-    Capacitor: true,
-    chrome: true
+    $q: 'readonly',
+    $router: 'readonly',
+    ga: 'readonly', // Google Analytics
+    cordova: 'readonly',
+    __statics: 'readonly',
+    __QUASAR_SSR__: 'readonly',
+    __QUASAR_SSR_SERVER__: 'readonly',
+    __QUASAR_SSR_CLIENT__: 'readonly',
+    __QUASAR_SSR_PWA__: 'readonly',
+    process: 'readonly',
+    Capacitor: 'readonly',
+    chrome: 'readonly',
   },
 
   // add your custom rules here
   rules: {
-    'brace-style': ['error', 'stroustrup', {allowSingleLine: true}],
+    'brace-style': [ 'error', 'stroustrup', { allowSingleLine: true } ],
     'prefer-const': 'error',
     'prefer-promise-reject-errors': 'off',
     'multiline-ternary': 'off',
@@ -72,18 +74,18 @@ module.exports = {
     'one-var': 'off',
     'no-void': 'off',
     'no-lone-blocks': 'error',
-    'no-unused-expressions': ['error', {allowTernary: true, "allowShortCircuit": true}],
+    'no-unused-expressions': [ 'error', { allowTernary: true, "allowShortCircuit": true } ],
     'no-useless-concat': 'error',
     'no-useless-return': 'error',
     'no-unneeded-ternary': 'error',
-    'no-confusing-arrow': ['error', {allowParens: true}],
-    'operator-linebreak': ['error', 'before'],
+    'no-confusing-arrow': [ 'error', { allowParens: true } ],
+    'operator-linebreak': [ 'error', 'before' ],
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 
-    'array-bracket-spacing': ['error', 'always', {singleValue: false}],
-    'object-curly-spacing': ['error', 'always'],
-    'computed-property-spacing': ['error', 'always'],
-    'template-curly-spacing': ['error', 'always'],
+    'array-bracket-spacing': [ 'error', 'always', { singleValue: false } ],
+    'object-curly-spacing': [ 'error', 'always' ],
+    'computed-property-spacing': [ 'error', 'always' ],
+    'template-curly-spacing': [ 'error', 'always' ],
 
     'import/first': 'off',
     'import/named': 'error',
@@ -99,7 +101,8 @@ module.exports = {
     'vue/singleline-html-element-content-newline': 'off',
     'vue/no-multiple-template-root': 'off',
 
-    // allow console.log during development only
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+    // allow console.log during production for demo purposes
+    // 'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+    'no-console': 'off'
   }
 }
