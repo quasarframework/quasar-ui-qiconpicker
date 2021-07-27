@@ -275,7 +275,7 @@ export default defineComponent({
     ...useIconPickerProps
   },
   emits: [
-    'update:modelValue',
+    'update:model-value',
     'update:tags',
     'update:model-pagination'
   ],
@@ -461,7 +461,7 @@ export default defineComponent({
           dense: props.dense,
           noWrap: true,
           icon: name,
-          onClick: () => emit('update:modelValue', name),
+          onClick: () => emit('update:model-value', name),
         }, renderTooltip(name))
       }
 
