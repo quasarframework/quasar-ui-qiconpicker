@@ -49,7 +49,7 @@ const useIconPickerProps = {
       input: true
     })
   },
-  pagination: Object,
+  modelPagination: Object,
   animated: Boolean,
   transitionPrev: {
     type: String,
@@ -65,7 +65,6 @@ const direction = {
   NEXT: 'next',
   PREV: 'prev'
 }
-
 
 /**
  * Pagination
@@ -96,7 +95,7 @@ function useIconPickerPagination(data, props, emit, computedFilteredIcons) {
   const computedPagination = computed(() => {
     return fixPagination({
       ...data.innerPagination,
-      ...props.pagination
+      ...props.modelPagination
     })
   })
 
@@ -111,15 +110,15 @@ function useIconPickerPagination(data, props, emit, computedFilteredIcons) {
       ...val
     })
 
-    if (props.pagination) {
-      emit('update:pagination', newPagination)
+    if (props.modelPagination) {
+      emit('update:model-pagination', newPagination)
     } else {
       data.innerPagination = newPagination
     }
   }
 
   function updatePagination() {
-    if (props.pagination !== void 0) {
+    if (props.modelPagination !== void 0) {
       setPagination({total: computedFilteredIcons.value.length, totalPages: computedPagesNumber.value})
     }
   }
@@ -167,7 +166,7 @@ function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastIte
       icons = computedFilteredIcons.value
 
       // should the icons be paged?
-      if (props.pagination && props.pagination.itemsPerPage !== 0) {
+      if (props.modelPagination && props.modelPagination.itemsPerPage !== 0) {
         icons = icons.slice(computedFirstItemIndex.value, computedLastItemIndex.value)
       }
     }
@@ -278,7 +277,7 @@ export default defineComponent({
   emits: [
     'update:modelValue',
     'update:tags',
-    'update:pagination'
+    'update:model-pagination'
   ],
   setup(props, {attrs, slots, emit, expose}) {
     const scrollAreaRef = ref(null)
@@ -326,8 +325,8 @@ export default defineComponent({
 
 
     onBeforeMount(() => {
-      if (props.pagination) {
-        emit('update:pagination', {...computedPagination.value})
+      if (props.modelPagination) {
+        emit('update:model-pagination', {...computedPagination.value})
       }
     })
 
@@ -379,20 +378,20 @@ export default defineComponent({
       updatePagination()
     })
 
-    if (props.pagination) {
-      watch(() => props.pagination, (newVal, oldVal) => {
+    if (props.modelPagination) {
+      watch(() => props.modelPagination, (newVal, oldVal) => {
         if (!samePagination(oldVal, newVal)) {
           updatePagination()
         }
       })
     }
 
-    if (props.pagination) {
-      watch(() => props.pagination.itemsPerPage, () => {
+    if (props.modelPagination) {
+      watch(() => props.modelPagination.itemsPerPage, () => {
         updatePagination()
       })
 
-      watch(() =>props.pagination.page, () => {
+      watch(() =>props.modelPagination.page, () => {
         updatePagination()
       })
     }
@@ -400,7 +399,7 @@ export default defineComponent({
     return () => {
 
       function renderPagination() {
-        if (props.pagination && props.pagination.itemsPerPage === 0) return ''
+        if (props.modelPagination && props.modelPagination.itemsPerPage === 0) return ''
         const slot = (slots.pagination && slots.pagination())
         const {page, totalPages} = computedPagination.value
 
@@ -423,7 +422,7 @@ export default defineComponent({
       }
 
       function renderFooter() {
-        if (props.noFooter !== true && props.pagination !== void 0) {
+        if (props.noFooter !== true && props.modelPagination !== void 0) {
           const slot = (slots.footer && slots.footer())
 
           return h('div', {
