@@ -1,5 +1,5 @@
-import {h, defineComponent, onBeforeMount, onMounted, reactive, computed, ref, nextTick, watch, Transition} from 'vue'
-import {QBtn, QPagination, QResizeObserver, QScrollArea, QTooltip} from "quasar";
+import { h, defineComponent, onBeforeMount, onMounted, reactive, computed, ref, nextTick, watch, Transition } from 'vue'
+import { QBtn, QPagination, QResizeObserver, QScrollArea, QTooltip } from "quasar";
 
 /**
  * QIconPicker Properties
@@ -21,7 +21,8 @@ const useIconPickerProps = {
       'themify',
       'line-awesome',
       'bootstrap-icons',
-      ''].includes(v),
+      ''
+    ].includes(v),
     default: ''
   },
   icons: Array,
@@ -85,7 +86,7 @@ function useIconPickerPagination(data, props, emit, computedFilteredIcons) {
   // otherwise returns false if it has changed
   function samePagination(oldPag, newPag) {
     for (const prop in newPag) {
-      if (newPag[prop] !== oldPag[prop]) {
+      if (newPag[ prop ] !== oldPag[ prop ]) {
         return false
       }
     }
@@ -112,14 +113,15 @@ function useIconPickerPagination(data, props, emit, computedFilteredIcons) {
 
     if (props.modelPagination) {
       emit('update:model-pagination', newPagination)
-    } else {
+    }
+    else {
       data.innerPagination = newPagination
     }
   }
 
   function updatePagination() {
     if (props.modelPagination !== void 0) {
-      setPagination({total: computedFilteredIcons.value.length, totalPages: computedPagesNumber.value})
+      setPagination({ total: computedFilteredIcons.value.length, totalPages: computedPagesNumber.value })
     }
   }
 
@@ -142,22 +144,25 @@ function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastIte
     if (iconSet) {
       // detect if UMD version is installed
       if (window.QIconPicker) {
-        const name = iconSet.replace(/-([a-z])/g, g => g[1].toUpperCase())
-        if (window.QIconPicker.iconSet && window.QIconPicker.iconSet[name]) {
-          data.iconsList = window.QIconPicker.iconSet[name].icons
-        } else {
-          console.error(`QIconPicker: no icon set loaded called ${iconSet}`)
+        const name = iconSet.replace(/-([a-z])/g, g => g[ 1 ].toUpperCase())
+        if (window.QIconPicker.iconSet && window.QIconPicker.iconSet[ name ]) {
+          data.iconsList = window.QIconPicker.iconSet[ name ].icons
+        }
+        else {
+          console.error(`QIconPicker: no icon set loaded called ${ iconSet }`)
           console.error('Be sure to load the UMD version of the icon set in a script tag before using QIconPicker UMD version')
         }
-      } else {
+      }
+      else {
         try {
-          data.iconsList = require(`@quasar/quasar-ui-qiconpicker/src/components/icon-set/${iconSet}.js`).default.icons
-        } catch (e) {
-          console.error(`QIconPicker: cannot find icon set found called ${iconSet}`)
+          data.iconsList = require(`@quasar/quasar-ui-qiconpicker/src/components/icon-set/${ iconSet }.js`).default.icons
+        }
+        catch (e) {
+          console.error(`QIconPicker: cannot find icon set found called ${ iconSet }`)
         }
       }
     }
-    console.info(`Loaded ${data.iconsList.length} icons.`)
+    console.info(`Loaded ${ data.iconsList.length } icons.`)
   }
 
   const computedDisplayedIcons = computed(() => {
@@ -219,30 +224,30 @@ function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastIte
 function exposeIconPickerApi(data, expose, computedPagination, setPagination, computedFirstItemIndex, computedLastItemIndex, computedFilteredIcons, computedPagesNumber) {
   // goes to previous page
   const prevPage = () => {
-    const {page} = computedPagination.value
+    const { page } = computedPagination.value
     if (page > 1) {
-      setPagination({page: page - 1})
+      setPagination({ page: page - 1 })
       data.direction = direction.PREV
     }
   }
 
   // goes to next page
   const nextPage = () => {
-    const {page, itemsPerPage} = computedPagination.value
+    const { page, itemsPerPage } = computedPagination.value
     if (computedLastItemIndex.value > 0 && page * itemsPerPage < computedFilteredIcons.value.length) {
-      setPagination({page: page + 1})
+      setPagination({ page: page + 1 })
       data.direction = direction.NEXT
     }
   }
 
   // goes to last page
   const lastPage = () => {
-    setPagination({page: computedPagesNumber.value})
+    setPagination({ page: computedPagesNumber.value })
   }
 
   // goes to first page
   const firstPage = () => {
-    setPagination({page: 0})
+    setPagination({ page: 0 })
   }
 
   // checks if we are on the last page
@@ -271,14 +276,17 @@ function exposeIconPickerApi(data, expose, computedPagination, setPagination, co
 
 export default defineComponent({
   name: 'QIconPicker',
+
   props: {
     ...useIconPickerProps
   },
+
   emits: [
     'update:model-value',
     'update:tags',
     'update:model-pagination'
   ],
+
   setup(props, { slots, emit, expose }) {
     const scrollAreaRef = ref(null)
     const data = reactive({
@@ -296,13 +304,13 @@ export default defineComponent({
 
     // index of first item on a page
     const computedFirstItemIndex = computed(() => {
-      const {page, itemsPerPage} = computedPagination.value
+      const { page, itemsPerPage } = computedPagination.value
       return (page - 1) * itemsPerPage
     })
 
     // index of last item on a page
     const computedLastItemIndex = computed(() => {
-      const {page, itemsPerPage} = computedPagination.value
+      const { page, itemsPerPage } = computedPagination.value
       return page * itemsPerPage
     })
 
@@ -326,14 +334,15 @@ export default defineComponent({
 
     onBeforeMount(() => {
       if (props.modelPagination) {
-        emit('update:model-pagination', {...computedPagination.value})
+        emit('update:model-pagination', { ...computedPagination.value })
       }
     })
 
     onMounted(() => {
       if (props.iconSet) {
         loadIconSet(props.iconSet)
-      } else if (props.icons !== void 0 && props.icons.length > 0) {
+      }
+      else if (props.icons !== void 0 && props.icons.length > 0) {
         data.iconsList = props.icons
       }
       updatePagination()
@@ -346,7 +355,7 @@ export default defineComponent({
         updatePagination()
         nextTick(() => {
           // whenever the icon set changes, it resets pagination page to page 1
-          setPagination({page: 1})
+          setPagination({ page: 1 })
         }).catch(e => console.error(e))
         // scroll to top of QScrollArea, if applicable
         scrollAreaRef.setScrollPosition(0)
@@ -360,7 +369,7 @@ export default defineComponent({
       updatePagination()
       nextTick(() => {
         // whenever the icon set changes, it resets pagination page to page 1
-        setPagination({page: 1})
+        setPagination({ page: 1 })
       }).catch(e => console.error(e))
       // scroll to top of QScrollArea, if applicable
       scrollAreaRef.setScrollPosition(0)
@@ -368,13 +377,13 @@ export default defineComponent({
 
     watch(() => props.filter, () => {
       // whenever the filter changes, it resets pagination page to page 1
-      setPagination({page: 1, totalPages: computedPagesNumber.value})
+      setPagination({ page: 1, totalPages: computedPagesNumber.value })
       updatePagination()
     })
 
     watch(() => props.tags, (val) => {
       // whenever the tags change, it resets pagination page to page 1
-      setPagination({page: 1, totalPages: computedPagesNumber.value})
+      setPagination({ page: 1, totalPages: computedPagesNumber.value })
       updatePagination()
     })
 
@@ -401,10 +410,10 @@ export default defineComponent({
       function renderPagination() {
         if (props.modelPagination && props.modelPagination.itemsPerPage === 0) return ''
         const slot = (slots.pagination && slots.pagination())
-        const {page, totalPages} = computedPagination.value
+        const { page, totalPages } = computedPagination.value
 
         return slot || h(QPagination, {
-          class: ['q-icon-picker__pagination'],
+          class: 'q-icon-picker__pagination',
           ...props.paginationProps,
           modelValue: page,
           max: totalPages,
@@ -412,11 +421,12 @@ export default defineComponent({
             if (props.animated) {
               if (value > page) {
                 data.direction = direction.NEXT
-              } else {
+              }
+              else {
                 data.direction = direction.PREV
               }
             }
-            setPagination({page: value})
+            setPagination({ page: value })
           }
         })
       }
@@ -440,7 +450,6 @@ export default defineComponent({
       }
 
       function renderIcon(icon) {
-
         const name = (icon.prefix !== void 0 ? icon.prefix + ' ' + icon.name : icon.name)
 
         if (slots.icon && slots.icon()) {
@@ -470,7 +479,6 @@ export default defineComponent({
       }
 
       function renderContainer() {
-
         const container = () => h('div', {
           key: computedPagination.value.page,
           class: 'q-icon-picker__container col'
@@ -491,7 +499,10 @@ export default defineComponent({
       function renderScrollArea() {
         return h(QScrollArea, {
           ref: scrollAreaRef,
-          style: {width: data.width + 'px', height: data.height + 'px'}
+          style: {
+            width: data.width + 'px',
+            height: data.height + 'px'
+          }
         }, renderContainer())
       }
 
