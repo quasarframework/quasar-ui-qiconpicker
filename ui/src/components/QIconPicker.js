@@ -358,7 +358,7 @@ export default defineComponent({
           setPagination({ page: 1 })
         }).catch(e => console.error(e))
         // scroll to top of QScrollArea, if applicable
-        scrollAreaRef.setScrollPosition(0)
+        scrollAreaRef.value.setScrollPosition(0)
       }
     })
 
@@ -372,7 +372,7 @@ export default defineComponent({
         setPagination({ page: 1 })
       }).catch(e => console.error(e))
       // scroll to top of QScrollArea, if applicable
-      scrollAreaRef.setScrollPosition(0)
+      scrollAreaRef.value.setScrollPosition(0)
     })
 
     watch(() => props.filter, () => {
