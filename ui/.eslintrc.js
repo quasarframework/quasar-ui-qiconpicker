@@ -13,8 +13,7 @@ module.exports = {
 
   env: {
     browser: true,
-    es6: true,
-    'jest/globals': true
+    es6: true
   },
 
   // Rules order is important, please avoid shuffling them
@@ -32,7 +31,6 @@ module.exports = {
     // 'plugin:quasar/standard',
 
     // 'standard',
-    'plugin:jest/recommended',
     'plugin:promise/recommended'
   ],
 
