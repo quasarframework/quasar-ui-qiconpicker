@@ -26,16 +26,16 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import {defineComponent, ref, watch} from 'vue';
 
 export default defineComponent({
-  setup () {
+  setup() {
     const data = ref({
       value: '',
       paginationColor: 'orange-10',
       pagination: {
         itemsPerPage: 60,
-        page: 0
+        page: 0,
       }
     })
 

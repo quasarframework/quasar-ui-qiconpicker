@@ -4,20 +4,23 @@
       <q-icon-picker
         v-model="data.value"
         icon-set="material-icons"
-        selected-color="#4E3D42"
-        selected-background-color="#C9D5B5"
+        color="green-8"
+        background-color="yellow-8"
         v-model:model-pagination="data.pagination"
         style="height: 220px;"
       ></q-icon-picker>
     </div>
   </div>
+
 </template>
 
+<script src="dist/icon-set/material-icons.umd.js">
+</script>
 <script>
-import { defineComponent, ref } from 'vue'
+import {defineComponent, ref} from 'vue';
 
 export default defineComponent({
-  setup () {
+  setup() {
     const data = ref({
       value: '',
       pagination: {

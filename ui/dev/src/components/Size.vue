@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import {defineComponent, ref, watch} from 'vue';
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
-  setup() {
+  setup () {
     const data = ref({
       value: '',
       pagination: {

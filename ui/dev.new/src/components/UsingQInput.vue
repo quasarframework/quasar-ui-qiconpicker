@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import { defineComponent, ref, watch } from 'vue'
+import {defineComponent, ref, watch} from 'vue';
 
 export default defineComponent({
-  setup () {
+  setup() {
     const data = ref({
       value: '',
       showIconPicker: false,
@@ -37,13 +37,15 @@ export default defineComponent({
       }
     })
 
-    watch(() => data.value.value, () => {
+    watch(()=> data.value.value, () =>  {
       data.value.showIconPicker = false
     })
 
     return {
       data
     }
+
+
   }
 })
 </script>

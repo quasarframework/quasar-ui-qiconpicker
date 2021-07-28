@@ -33,11 +33,11 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import {defineComponent, ref} from 'vue';
 
 export default defineComponent({
-  setup () {
-    const data = ref({
+  setup() {
+    const data = ref( {
       value: '',
       pagination: {
         itemsPerPage: 24,
@@ -48,6 +48,7 @@ export default defineComponent({
     return {
       data
     }
+
   }
 })
 </script>
@@ -84,3 +85,4 @@ export default defineComponent({
   box-shadow: 1px 1px #17191C
   cursor: pointer
 </style>
+

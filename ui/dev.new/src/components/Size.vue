@@ -4,24 +4,23 @@
       <q-icon-picker
         v-model="data.value"
         icon-set="material-icons"
-        selected-color="#4E3D42"
-        selected-background-color="#C9D5B5"
+        font-size="30px"
         v-model:model-pagination="data.pagination"
-        style="height: 220px;"
+        style="height: 360px;"
       ></q-icon-picker>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import {defineComponent, ref, watch} from 'vue';
 
 export default defineComponent({
-  setup () {
+  setup() {
     const data = ref({
       value: '',
       pagination: {
-        itemsPerPage: 60,
+        itemsPerPage: 32,
         page: 0
       }
     })

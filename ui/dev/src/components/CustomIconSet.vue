@@ -12,32 +12,32 @@
 </template>
 
 <script>
-import {defineComponent, ref} from 'vue';
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'Default',
-    setup() {
-      const data = ref({
-        value: '',
-        icons: [
-          { name: 'camera' },
-          { name: 'o_camera' },
-          { name: 'r_camera' },
-          { name: 's_camera' },
-          { name: 'ion-ios-camera' },
-          { name: 'fas fa-camera' },
-          { name: 'eva-camera' },
-          { name: 'mdi-camera' },
-          { name: 'ti-camera' }
-        ],
-        pagination: {
-          itemsPerPage: 60,
-          page: 0
-        }
-      })
-      return {
-        data
+  setup () {
+    const data = ref({
+      value: '',
+      icons: [
+        { name: 'camera' },
+        { name: 'o_camera' },
+        { name: 'r_camera' },
+        { name: 's_camera' },
+        { name: 'ion-ios-camera' },
+        { name: 'fas fa-camera' },
+        { name: 'eva-camera' },
+        { name: 'mdi-camera' },
+        { name: 'ti-camera' }
+      ],
+      pagination: {
+        itemsPerPage: 60,
+        page: 0
       }
+    })
+    return {
+      data
     }
+  }
 })
 </script>

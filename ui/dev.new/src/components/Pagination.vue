@@ -1,34 +1,40 @@
 <template>
-  <div class="q-pa-lg flex flex-center">
+  <div class="row justify-center q-ma-md">
     <div style="width: 700px;">
-      <q-icon-picker
+      <q-select
+        v-model="data.pagination.itemsPerPage"
+        :options="data.options"
+        label="Items Per Page"
+        class="q-ma-sm col-4">
+      </q-select>
+      <!-- <q-icon-picker
         v-model="data.value"
         icon-set="material-icons"
-        selected-color="#4E3D42"
-        selected-background-color="#C9D5B5"
         v-model:model-pagination="data.pagination"
         style="height: 220px;"
-      ></q-icon-picker>
+      ></q-icon-picker> -->
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import {defineComponent, ref} from 'vue';
 
 export default defineComponent({
-  setup () {
+  setup() {
     const data = ref({
       value: '',
       pagination: {
-        itemsPerPage: 60,
+        itemsPerPage: 75,
         page: 0
-      }
+      },
+      options: [25, 50, 75, 100]
     })
 
     return {
       data
     }
   }
+
 })
 </script>

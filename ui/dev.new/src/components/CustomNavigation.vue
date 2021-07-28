@@ -1,5 +1,5 @@
 <template>
-  <div style="max-width: 800px; width: 100%;">
+  <div style="max-width: 800px; width: 100%;" class="flex flex-center">
     <q-icon-picker
       ref="pagingRef"
       v-model="value"
@@ -23,17 +23,16 @@
       <q-btn push color="white" :disable="(pagingRef) ? pagingRef.isLastPage :  true" @click="pagingRef.nextPage()" text-color="black"  icon="navigate_next"/>
       <q-btn push color="white" :disable="(pagingRef) ? pagingRef.isLastPage :  true" @click="pagingRef.lastPage()" text-color="black" icon="last_page" label="Last"/>
     </q-btn-group>
-
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent, reactive, ref } from 'vue';
 
 export default defineComponent({
   name: 'Default',
-  setup () {
-    const pageSettings = ref({
+  setup() {
+    const pageSettings = reactive({
       itemsPerPage: 32,
       page: 0
     })

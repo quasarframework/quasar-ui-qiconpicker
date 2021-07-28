@@ -297,8 +297,8 @@ export default defineComponent({
         totalPages: 0
       },
       categories: [],
-      width: '100%',
-      height: '100%',
+      width: '100',
+      height: '100',
       direction: ''
     })
 
@@ -358,7 +358,9 @@ export default defineComponent({
           setPagination({ page: 1 })
         }).catch(e => console.error(e))
         // scroll to top of QScrollArea, if applicable
-        scrollAreaRef.value.setScrollPosition(0)
+        if(scrollAreaRef.value) {
+          scrollAreaRef.value.setScrollPosition(0)
+        }
       }
     })
 
@@ -372,7 +374,9 @@ export default defineComponent({
         setPagination({ page: 1 })
       }).catch(e => console.error(e))
       // scroll to top of QScrollArea, if applicable
-      scrollAreaRef.value.setScrollPosition(0)
+      if(scrollAreaRef.value) {
+        scrollAreaRef.value.setScrollPosition(0)
+      }
     })
 
     watch(() => props.filter, () => {
@@ -482,7 +486,7 @@ export default defineComponent({
         const container = () => h('div', {
           key: computedPagination.value.page,
           class: 'q-icon-picker__container col'
-        }, [...renderIcons()])
+        },  [...renderIcons()])
 
         if (props.animated === true) {
           const transition = 'q-transition--' + (data.direction === 'prev' ? props.transitionPrev : props.transitionNext)
@@ -522,7 +526,7 @@ export default defineComponent({
 
       const picker = h('div', {
         class: 'q-icon-picker column'
-      }, [
+      },  [
         renderBody(),
         renderFooter()
       ])
