@@ -1,4 +1,4 @@
-import { h, defineComponent, onBeforeMount, onMounted, reactive, computed, ref, nextTick, watch, Transition } from 'vue'
+import { h, defineComponent, onMounted, reactive, computed, ref, nextTick, watch, Transition } from 'vue'
 import { QBtn, QPagination, QResizeObserver, QScrollArea, QTooltip } from "quasar";
 
 /**
@@ -330,13 +330,6 @@ export default defineComponent({
     } = useIconPickerPagination(data, props, emit, computedFilteredIcons)
 
     exposeIconPickerApi(data, expose, computedPagination, setPagination, computedFirstItemIndex, computedLastItemIndex, computedFilteredIcons, computedPagesNumber)
-
-
-    onBeforeMount(() => {
-      if (props.modelPagination) {
-        emit('update:model-pagination', { ...computedPagination.value })
-      }
-    })
 
     onMounted(() => {
       if (props.iconSet) {
