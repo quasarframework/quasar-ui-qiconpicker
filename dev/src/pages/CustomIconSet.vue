@@ -30,7 +30,9 @@ export default defineComponent({
           { name: 'fas fa-camera' },
           { name: 'eva-camera' },
           { name: 'mdi-camera' },
-          { name: 'ti-camera' }
+          { name: 'ti-camera' },
+          { name: 'bi-camera' },
+          { name: 'bi-camera2' }
         ],
         pagination: {
           itemsPerPage: 60,
