@@ -8,12 +8,12 @@
           label="Items Per Page"
           class="q-ma-sm col-4">
         </q-select>
-        <!-- <q-icon-picker
+        <q-icon-picker
           v-model="data.value"
           icon-set="material-icons"
           v-model:model-pagination="data.pagination"
           style="height: 220px;"
-        ></q-icon-picker> -->
+        ></q-icon-picker>
       </div>
     </div>
   </q-page>
