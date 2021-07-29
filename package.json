@@ -5,7 +5,8 @@
   "workspaces": [
     "ui",
     "docs",
-    "app-extension"
+    "app-extension",
+    "dev"
   ],
   "author": "Jeff Galbraith <jeff@quasar.dev>",
   "license": "MIT",
