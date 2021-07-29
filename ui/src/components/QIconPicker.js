@@ -113,10 +113,12 @@ function useIconPickerPagination(data, props, emit, computedFilteredIcons) {
       ...val
     })
 
-    if (props.modelPagination && !samePagination(data.innerPagination, newPagination)) {
-      emit('update:model-pagination', newPagination)
+    if (!samePagination(data.innerPagination, newPagination)) {
+      if (props.modelPagination) {
+        emit('update:model-pagination', newPagination)
+      }
+      data.innerPagination = newPagination
     }
-    data.innerPagination = newPagination
   }
 
   function updatePagination() {
