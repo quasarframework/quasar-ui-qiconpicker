@@ -35,6 +35,8 @@ const useIconPickerProps = {
     type: String,
     default: 'inherit'
   },
+  color: String,
+  backgroundColor: String,
   selectedColor: {
     type: String,
     default: 'grey-1'
@@ -522,8 +524,15 @@ export default defineComponent({
         ])
       }
 
+      const classes = [
+        'q-icon-picker',
+        'column'
+      ]
+      if (props.color) classes.push('text-' + props.color)
+      if (props.backgroundColor) classes.push('bg-' + props.backgroundColor)
+
       const picker = h('div', {
-        class: 'q-icon-picker column'
+        class: classes.join(' ')
       },  [
         renderBody(),
         renderFooter()
