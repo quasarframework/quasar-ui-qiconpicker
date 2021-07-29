@@ -135,11 +135,19 @@
     "model-pagination": {
       "type": "Object",
       "tsType": "Pagination",
-      "sync": true,
       "desc": "For pagination purposes uses Quasar's pagination component. Use `v-model:model-pagination` to synchronize the data. You can use `page` and `itemsPerPage` to control the pagination. QIconPicker will set `totalPages` depending on `icon-set` or `icons` properties. If using a `filter` the page will automatically be reset to 1",
       "category": "model",
       "examples": [
         "v-model:model-pagination=\"myPagination\""
+      ]
+    },
+    "pagination-props": {
+      "type": "Object",
+      "tsType": "PaginationProps",
+      "desc": "The properties to pass to the QPagination component",
+      "category": "behavior",
+      "__exemption": [
+        "examples"
       ]
     },
     "animated": {
