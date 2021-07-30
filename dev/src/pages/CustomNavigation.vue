@@ -7,8 +7,8 @@
         icon-set="material-icons"
         v-model:model-pagination="pagination"
         size="36px"
-        selected-color="#000"
-        selected-background-color="#21BA45"
+        selected-color="yellow-8"
+        selected-text-color="red-8"
         animated
         no-footer
         :pagination-props="{

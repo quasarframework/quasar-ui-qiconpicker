@@ -39,11 +39,11 @@ const useIconPickerProps = {
   textColor: String,
   selectedColor: {
     type: String,
-    default: 'grey-1'
-  },
-  selectedBackgroundColor: {
-    type: String,
     default: 'primary'
+  },
+  selectedTextColor: {
+    type: String,
+    default: 'grey-1'
   },
   paginationProps: {
     type: Object,
@@ -455,8 +455,8 @@ export default defineComponent({
           return slots.icon(name)
         }
         const isSelected = name === props.modelValue
+        const textColor = isSelected ? props.selectedTextColor : undefined
         const color = isSelected ? props.selectedColor : undefined
-        const backgroundColor = isSelected ? props.selectedBackgroundColor : undefined
         const size = props.size ? props.size : undefined
 
         return h(QBtn, {
@@ -465,8 +465,8 @@ export default defineComponent({
           dense: props.dense,
           noWrap: true,
           size: size,
-          'text-color': color,
-          color: backgroundColor,
+          'text-color': textColor,
+          color: color,
           icon: name,
           onClick: () => emit('update:model-value', name),
         }, renderTooltip(name))
