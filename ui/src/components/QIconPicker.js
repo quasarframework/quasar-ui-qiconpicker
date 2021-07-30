@@ -465,7 +465,7 @@ export default defineComponent({
           dense: props.dense,
           noWrap: true,
           size: size,
-          'text-color': textColor,
+          textColor: textColor,
           color: color,
           icon: name,
           onClick: () => emit('update:model-value', name),
