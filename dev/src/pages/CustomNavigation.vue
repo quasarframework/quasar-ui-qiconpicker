@@ -5,9 +5,8 @@
         ref="pagingRef"
         v-model="value"
         icon-set="material-icons"
-        style="height: 360px;"
-        v-model:model-pagination="pageSettings"
-        class="test1"
+        v-model:model-pagination="pagination"
+        size="36px"
         selected-color="#000"
         selected-background-color="#21BA45"
         animated
@@ -34,7 +33,7 @@ import { defineComponent, reactive, ref } from 'vue';
 export default defineComponent({
   name: 'Default',
   setup() {
-    const pageSettings = reactive({
+    const pagination = reactive({
       itemsPerPage: 32,
       page: 0
     })
@@ -44,7 +43,7 @@ export default defineComponent({
 
     return {
       pagingRef,
-      pageSettings,
+      pagination,
       value
     }
   }

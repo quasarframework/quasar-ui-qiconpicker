@@ -5,7 +5,7 @@
         <q-icon-picker
           v-model="data.value"
           icon-set="material-icons"
-          font-size="30px"
+          size="30px"
           v-model:model-pagination="data.pagination"
           style="height: 360px;"
         ></q-icon-picker>

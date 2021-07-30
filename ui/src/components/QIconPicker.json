@@ -123,13 +123,14 @@
         "selected-background-color=\"#c8c8c8\""
       ]
     },
-    "font-size": {
+    "size": {
       "type": "String",
-      "desc": "The font-size to use for the icons. Any acceptable CSS size can be used",
+      "desc": "Size in CSS units, including unit name or standard size name (xs|sm|md|lg|xl)",
       "category": "style",
       "examples": [
-        "font-size=\"3rem\"",
-        "font-size=\"24px\""
+        "size=\"3rem\"",
+        "size=\"24px\"",
+        "size=\"lg\""
       ]
     },
     "model-pagination": {

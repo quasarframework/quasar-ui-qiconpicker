@@ -31,7 +31,7 @@ const useIconPickerProps = {
   dense: Boolean,
   tooltips: Boolean,
   noFooter: Boolean,
-  fontSize: {
+  size: {
     type: String,
     default: 'inherit'
   },
@@ -455,19 +455,18 @@ export default defineComponent({
           return slots.icon(name)
         }
         const isSelected = name === props.modelValue
-        const color = isSelected ? props.selectedColor : ''
-        const backgroundColor = isSelected ? props.selectedBackgroundColor : ''
+        const color = isSelected ? props.selectedColor : undefined
+        const backgroundColor = isSelected ? props.selectedBackgroundColor : undefined
+        const size = props.size ? props.size : undefined
 
         return h(QBtn, {
-          style: {
-            'font-size': props.fontSize,
-            'color': color,
-            'background-color': backgroundColor,
-          },
           id: name,
           unelevated: true,
           dense: props.dense,
           noWrap: true,
+          size: size,
+          'text-color': color,
+          color: backgroundColor,
           icon: name,
           onClick: () => emit('update:model-value', name),
         }, renderTooltip(name))
