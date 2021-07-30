@@ -9,7 +9,6 @@
 
                 <q-icon-picker
                   v-model="data.value"
-                  :filter="data.value"
                   icon-set="material-icons"
                   tooltips
                   v-model:model-pagination="data.pagination"
