@@ -89,20 +89,20 @@
     },
     "color": {
       "type": "String",
-      "desc": "Any color from the [Quasar Color Pallete](https://quasar.dev/style/color-palette) or a CSS color (#, rgb, rgba, hls, etc)",
+      "desc": "Any color from the [Quasar Color Pallete](https://quasar.dev/style/color-palette)",
       "category": "style",
       "examples": [
         "color=\"orange-8\"",
-        "color=\"#c8c8c8\""
+        "color=\"yellow-6\""
       ]
     },
-    "background-color": {
+    "text-color": {
       "type": "String",
-      "desc": "Any color from the [Quasar Color Pallete](https://quasar.dev/style/color-palette) or a CSS color (#, rgb, rgba, hls, etc)",
+      "desc": "Any color from the [Quasar Color Pallete](https://quasar.dev/style/color-palette)",
       "category": "style",
       "examples": [
-        "background-color=\"orange-8\"",
-        "background-color=\"#c8c8c8\""
+        "text-color=\"orange-8\"",
+        "text-color=\"red-6\""
       ]
     },
     "selected-color": {

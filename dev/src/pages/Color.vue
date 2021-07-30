@@ -5,8 +5,8 @@
         <q-icon-picker
           v-model="data.value"
           icon-set="material-icons"
-          color="green-8"
-          background-color="yellow-8"
+          text-color="green-8"
+          color="yellow-8"
           v-model:model-pagination="data.pagination"
           style="height: 220px;"
         ></q-icon-picker>
