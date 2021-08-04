@@ -1,6 +1,6 @@
 ---
 title: QIconPicker » IconPicker simplified
-desc: Simple overlays for your Quasar apps
+desc: Simple qiconpicker for your Quasar apps
 keys: Help
 noEdit: true,
 components:

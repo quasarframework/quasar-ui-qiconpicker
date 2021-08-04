@@ -3,7 +3,6 @@ title: Overview
 desc: Innovation through collaboration
 keys: Contributing
 related:
-  - /all-about-qiconpicker/installation-types
   - /contributing/sponsor
 ---
 

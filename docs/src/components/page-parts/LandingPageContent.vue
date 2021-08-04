@@ -2,11 +2,11 @@
   <section class="flex flex-center bg-blue-10 text-white shadow-10">
     <div class="landing-page__container">
       <div class="landing-page__splash row justify-around items-center">
-        <h2 class="text-weight-bold text-blue-2 q-pa-sm" style="padding-left: 20px;">Overlays,<br>for your<br>Quasar apps</h2>
+        <h2 class="text-weight-bold text-blue-2 q-pa-sm" style="padding-left: 20px;">Icon Picker,<br>for your<br>Quasar apps</h2>
         <div class="q-pa-sm">
           <!-- TODO: Jeff - need image before publishing -->
           <img
-            src="/qiconpicker.png"
+            src="/q-icon-picker.png"
             class="shadow-10 rounded-borders"
             style="max-width: 340px;"
           />

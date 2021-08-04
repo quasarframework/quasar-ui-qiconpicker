@@ -1,4 +1,12 @@
-
+---
+title: Installation Types
+desc: How to install QIconPicker
+keys: All about QIconPicker
+related:
+  - /all-about-qiconpicker/what-is-qiconpicker
+  - /contributing/bugs-and-feature-requests
+  - /contributing/sponsor
+---
 ## QIconPicker
 
 ### App Extension

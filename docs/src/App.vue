@@ -14,12 +14,12 @@ export default defineComponent({
 
   setup () {
     useMeta({
-      title: 'QIconPicker » simple overlays for your Quasar apps',
+      title: 'QIconPicker » simple icon picker for your Quasar apps',
       titleTemplate: title => `${ title } » QIconPicker`,
 
       meta: getMeta(
-        'QIconPicker - simple overlays for your Quasar apps',
-        'QIconPicker allows simplified overlays for your Quasar apps.'
+        'QIconPicker - simple icon picker for your Quasar apps',
+        'QIconPicker allows simplified icon picker for your Quasar apps.'
       )
     })
 
