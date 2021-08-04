@@ -6,7 +6,7 @@ components:
   - apis/QIconPickerJsonApi
 ---
 ## API
-<q-iconpicker-json-api />
+<q-icon-picker-json-api />
 
 ## QIconPicker Examples
 ### Color

@@ -5,4 +5,4 @@ keys: latest-news
 components:
   - releases/QIconPickerReleases
 ---
-<q-iconpicker-releases class="q-mt-sm"/>
+<q-icon-picker-releases class="q-mt-sm"/>
