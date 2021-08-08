@@ -20,5 +20,23 @@ QIconPicker is an icon picker for your Quasar application. It allows you to have
 
 ## Features
 
-- Able to control "no scrolling"
-- ...
+- Add filter for searchable icons
+- Tooltips
+- Show icons in pop up
+- Customize navigation:
+  - Show/hide navigation
+  - Customize navigation
+    (nextPage, lastPage, firstPage, nextPage, isFirstPage, isLastPage)
+- Support for custom icons
+- Support multiple fonts:
+  - material-icons
+  - material-icons-outlined
+  - material-icons-round
+  - material-icons-sharp
+  - ionicons-v4
+  - mdi-v4
+  - mdi-v5
+  - fontawesome-v5
+  - eva-icons
+  - themify
+  - bootstrap-icons

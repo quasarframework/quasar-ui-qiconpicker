@@ -4,6 +4,13 @@
   "description": "QIconPicker Docs",
   "productName": "Quasar App",
   "author": "Jeff Galbraith <galbraith64@gmail.com>",
+  "contributors": [
+    {
+      "name": "Christian Behon",
+      "email": "christian.behon@knusperleicht.at",
+      "url": "https://knusperleicht.at"
+    }
+  ],
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",

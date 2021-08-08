@@ -16,6 +16,7 @@ In my spare time, I am a core member of the [Quasar Framework](https://quasar.de
 - [QCalendar](https://github.com/quasarframework/quasar-ui-qcalendar)
 - [QMediaPlayer](https://github.com/quasarframework/quasar-ui-qmediaplayer)
 - [QMarkdown](https://github.com/quasarframework/quasar-ui-qmarkdown)
+- [QIconPicker](https://github.com/quasarframework/quasar-ui-qiconpicker)
 - and many more.
 
 I am also the creator and maintainer of the [**eslint-plugin-quasar**](https://github.com/quasarframework/eslint-plugin-quasar).

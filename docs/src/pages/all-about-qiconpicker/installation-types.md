@@ -29,28 +29,63 @@ quasar ext remove @quasar/qiconpicker
 When installed as an App Extension, you can use `quasar describe QIconPicker`
 
 
-OR:
-
-
-Create and register a boot file:
+### Or Create and register a boot file:
+```
+$ yarn add @quasar/quasar-ui-qiconpicker
+# or
+$ npm install @quasar/quasar-ui-qiconpicker
+```
+Then
 
 ```js
-import Vue from 'vue'
+import { boot } from 'quasar/wrappers'
 import Plugin from '@quasar/quasar-ui-qiconpicker'
 import '@quasar/quasar-ui-qiconpicker/dist/index.css'
 
-Vue.use(Plugin)
+export default boot(({ app }) => {
+  app.use(Plugin)
+})
 ```
 
 
-OR:
+or from sources
 
 
 ```html
-<style src="@quasar/quasar-ui-qiconpicker/dist/index.css"></style>
+import { boot } from 'quasar/wrappers'
+import Plugin from '@quasar/quasar-ui-qiconpicker/src/index.js'
+
+export default boot(({ app }) => {
+app.use(Plugin)
+})
+```
+
+Additionally, because you are accessing the sources this way, you will need to make sure your project will transpile the code.
+
+In `quasar.conf.js` update the following:
+```js
+// Note: using ~ tells Quasar the file resides in node_modules
+css: [
+  'app.sass',
+  '~quasar-ui-qiconpicker/src/index.sass'
+],
+
+build: {
+  transpile = true,
+  transpileDependencies: [
+    /quasar-ui-qiconpicker[\\/]src/
+  ]
+}
+```
+
+### Or target as a component import
+
+:::
+```html
+<style src="@quasar/quasar-ui-qoverlay/dist/QOverlay.min.css"></style>
 
 <script>
-import { Component as QIconPicker } from '@quasar/quasar-ui-qiconpicker'
+import { QIconPicker } from '@quasar/quasar-ui-qiconpicker/dist/index.esm.js'
 
 export default {
   components: {
@@ -59,6 +94,7 @@ export default {
 }
 </script>
 ```
+:::
 
 
 ### Caching
@@ -99,20 +135,34 @@ export default {
 
 Don't add them all (unless you have this requirement). Remove the ones from above you won't be needing.
 
-## Vue CLI project
+## Vue CLI or Vite
+### Vue project from src
 
-
+:::
 ```js
-import Vue from 'vue'
-import Plugin from '@quasar/quasar-ui-qiconpicker'
+import App from './App.vue'
+import Plugin from '@quasar/quasar-ui-qiconpicker/src/index.js'
+import '@quasar/quasar-ui-qiconpicker/src/index.css'
+
+const app = createApp(App).use(Plugin)
+```
+:::
+
+### Vue project from dist
+
+:::
+```js
+import App from './App.vue'
+import Plugin from '@quasar/quasar-ui-qiconpicker/dist/index.js'
 import '@quasar/quasar-ui-qiconpicker/dist/index.css'
 
-Vue.use(Plugin)
+const app = createApp(App).use(Plugin)
 ```
+:::
 
 
-OR:
 
+### Or component import
 
 ```html
 <style src="@quasar/quasar-ui-qiconpicker/dist/index.css"></style>
@@ -133,6 +183,7 @@ export default {
 
 Exports `window.QIconPicker`.
 
+### Quasar install
 Add the following tag(s) after the Quasar ones:
 
 
@@ -213,28 +264,27 @@ You can get the tags with the `tag` event.
 Notice the `@tags="onTags"`. Capturing this is a bit tricky. You need to set a guard to stop potential end-less loop in your Vue code (depending on how you use it). In your `data ()` function set a guard variable; in this case `loaded`:
 
 ```js
-  data () {
-    return {
-      loaded: false,  // guard var
-      tags: [],       // user selected tags to pass to QIconPicker
-      categories: [], // keep track of categories
-      selected: {}    // keep track of user selected categories
-    }
+    const loaded = ref(false) // guard var
+    const tags = ref([]) // user selected tags to pass to QIconPicker
+    const selected = ref({}) // keep track of categories
+    const categories = ref([]) // keep track of user selected categories
 ```
 
 in your `methods` section, add the event handler, and put the guard in to stop potential recursion:
 
 ```js
-  methods: {
-    onTags (tags) {
-      if (this.loaded !== true) {
+
+    function onTags (tags) {
+      if (loaded.value !== true) {
         let cats = []
         let t = [ ...tags ]
         cats.splice(0, 0, ...t)
-        this.categories.splice(0, this.categories.length, ...cats)
-        this.categories.concat(...cats)
-        this.categories.forEach(cat => {
-          this.$set(this.selected, cat, false)
+        categories.value.splice(0, categories.value.length, ...cats)
+        categories.value.concat(...cats)
+        categories.value.forEach(cat => {
+            if(cat === selected.value) {
+                cat = false
+            }
         })
         this.loaded = true
       }
@@ -245,27 +295,24 @@ in your `methods` section, add the event handler, and put the guard in to stop p
 This is all good and well, until you need to select a different icon-set. We can create the proper handlers in the `watch` section:
 
 ```js
-  watch: {
-    iconSet (val) {
-      this.loaded = false
-      this.tags.splice(0, this.tags.length)
-    },
-    selected: {
-      handler (val) {
-        let tags = []
-        this.categories.forEach(cat => {
-          // if user has selected this tag...
-          if (val[cat] === true) {
-            // ...then keep track of it
-            tags.push(cat)
-          }
-        })
-        // push all user selected tags to QIconPicker
-        this.tags.splice(0, this.tags.length, ...tags)
-      },
-      deep: true
-    }
-  },
+
+    watch(() => iconSet, (val) => {
+      loaded.value = false
+      tags.value.splice(0, tags.value.length)
+    })
+
+    watch(() => selected, (val) => {
+      let tags = []
+      categories.value.forEach(cat => {
+        // if user has selected this tag...
+        if (val[cat] === true) {
+          // ...then keep track of it
+          tags.push(cat)
+        }
+      })
+      // push all user selected tags to QIconPicker
+      tags.value.splice(0, tags.value.length, ...tags)
+    }, { deep: true })
 ```
 
 Notice in the above code, the areas where the guard is reset with `this.loaded = false`.
