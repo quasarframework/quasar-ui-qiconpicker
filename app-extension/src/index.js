@@ -24,7 +24,7 @@ module.exports = function (api) {
   // package or a minimum version of "@quasar/app" CLI
   api.compatibleWith('quasar', '^2.0.0')
   api.compatibleWith('@quasar/app', '^3.0.0')
-  api.compatibleWith('@quasar/extras', '^1.8.0') // needed for latest font and svg support
+  api.compatibleWith('@quasar/extras', '^1.10.0') // needed for latest font and svg support
 
   // Uncomment the line below if you provide a JSON API for your component
   api.registerDescribeApi('QIconPicker', '~@quasar/quasar-ui-qiconpicker/dist/api/QIconPicker.json')
