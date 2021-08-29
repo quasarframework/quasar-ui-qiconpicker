@@ -249,6 +249,7 @@ function buildEntry (config) {
       const minified = uglify.minify(code, uglifyJsOptions)
 
       if (minified.error) {
+        // eslint-disable-next-line promise/no-return-wrap
         return Promise.reject(minified.error)
       }
 
