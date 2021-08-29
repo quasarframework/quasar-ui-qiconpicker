@@ -16,14 +16,14 @@ components:
   codepen-title="QIconPicker"
 />
 
-### CustomIconSet
+### Custom Icon Set
 <example-viewer
   title=""
   file="CustomIconSet"
   codepen-title="QIconPicker"
 />
 
-### CustomNavigation
+### Custom Navigation
 <example-viewer
 title=""
 file="CustomNavigation"
@@ -44,14 +44,14 @@ file="Pagination"
 codepen-title="QIconPicker"
 />
 
-### PaginationColor
+### Pagination Color
 <example-viewer
 title=""
 file="PaginationColor"
 codepen-title="QIconPicker"
 />
 
-### PaginationCustom
+### Pagination Custom
 <example-viewer
 title=""
 file="PaginationCustom"
@@ -59,7 +59,7 @@ codepen-title="QIconPicker"
 />
 
 
-### SelectedColor
+### Selected Color
 <example-viewer
 title=""
 file="SelectedColor"
@@ -81,21 +81,21 @@ file="Tooltips"
 codepen-title="QIconPicker"
 />
 
-### UsingIconSlot
+### Using Icon Slot
 <example-viewer
 title=""
 file="UsingIconSlot"
 codepen-title="QIconPicker"
 />
 
-### UsingQInput
+### Using QInput
 <example-viewer
 title=""
 file="UsingQInput"
 codepen-title="QIconPicker"
 />
 
-### UsingQInputWithFilter
+### Using QInput With Filter
 <example-viewer
 title=""
 file="UsingQInputWithFilter"

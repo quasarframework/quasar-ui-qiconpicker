@@ -15,7 +15,7 @@ related:
 
 To add as an App Extension to your Quasar application, run the following (in your Quasar app folder):
 ```
-quasar ext add @quasar/qiconpicker
+quasar ext add @quasar/qiconpicker@next
 ```
 
 #### Uninstall
@@ -30,11 +30,13 @@ When installed as an App Extension, you can use `quasar describe QIconPicker`
 
 
 ### Or Create and register a boot file:
-```
+
+```bash
 $ yarn add @quasar/quasar-ui-qiconpicker
 # or
 $ npm install @quasar/quasar-ui-qiconpicker
 ```
+
 Then
 
 ```js
@@ -51,7 +53,7 @@ export default boot(({ app }) => {
 or from sources
 
 
-```html
+```js
 import { boot } from 'quasar/wrappers'
 import Plugin from '@quasar/quasar-ui-qiconpicker/src/index.js'
 
@@ -168,7 +170,7 @@ const app = createApp(App).use(Plugin)
 <style src="@quasar/quasar-ui-qiconpicker/dist/index.css"></style>
 
 <script>
-import { Component as QIconPicker } from '@quasar/quasar-ui-qiconpicker'
+import { QIconPicker } from '@quasar/quasar-ui-qiconpicker'
 
 export default {
   components: {

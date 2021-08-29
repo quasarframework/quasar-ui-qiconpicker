@@ -9,14 +9,15 @@
         selected-color="yellow-8"
         selected-text-color="red-8"
         no-footer
-        style="height: 220px;"
+        class="test1"
+        style="height: 370px;"
       />
-            <q-btn-group push >
-              <q-btn push color="white" :disable="(qIconPickerRef) ? qIconPickerRef.isFirstPage :  true" @click="qIconPickerRef.firstPage()" text-color="black" label="First" icon="first_page" />
-              <q-btn push color="white" :disable="(qIconPickerRef) ? qIconPickerRef.isFirstPage :  true" @click="qIconPickerRef.prevPage()" text-color="black" icon="navigate_before"/>
-              <q-btn push color="white" :disable="(qIconPickerRef) ? qIconPickerRef.isLastPage :  true" @click="qIconPickerRef.nextPage()" text-color="black"  icon="navigate_next"/>
-              <q-btn push color="white" :disable="(qIconPickerRef) ? qIconPickerRef.isLastPage :  true" @click="qIconPickerRef.lastPage()" text-color="black" icon="last_page" label="Last"/>
-            </q-btn-group>
+      <q-btn-group push >
+        <q-btn push color="white" :disable="(pagingRef ? pagingRef.isFirstPage : true)" @click="pagingRef.firstPage()" text-color="black" label="First" icon="first_page" />
+        <q-btn push color="white" :disable="(pagingRef ? pagingRef.isFirstPage : true)" @click="pagingRef.prevPage()" text-color="black" icon="navigate_before"/>
+        <q-btn push color="white" :disable="(pagingRef ? pagingRef.isLastPage : true)" @click="pagingRef.nextPage()" text-color="black"  icon="navigate_next"/>
+        <q-btn push color="white" :disable="(pagingRef ? pagingRef.isLastPage : true)" @click="pagingRef.lastPage()" text-color="black" icon="last_page" label="Last"/>
+      </q-btn-group>
     </div>
   </q-page>
 </template>
@@ -47,6 +48,10 @@ export default defineComponent({
 </script>
 
 <style>
+.test1 {
+  color: #0aff00;
+  background-color: #25577d;
+}
 
 
 </style>

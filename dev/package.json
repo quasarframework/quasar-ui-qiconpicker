@@ -15,22 +15,22 @@
     "dev:electron": "quasar dev -m electron"
   },
   "dependencies": {
-    "@quasar/extras": "^1.10.8",
-    "quasar": "^2.0.3"
+    "@quasar/extras": "^1.10.11",
+    "quasar": "^2.0.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.6",
-    "@babel/eslint-parser": "^7.13.14",
-    "@quasar/app": "^3.0.2",
+    "@babel/core": "^7.15.0",
+    "@babel/eslint-parser": "^7.15.0",
+    "@quasar/app": "^3.1.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.29.0",
+    "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-quasar": "^1.0.0",
-    "eslint-plugin-vue": "^7.0.0",
-    "eslint-webpack-plugin": "^2.4.0"
+    "eslint-plugin-vue": "^7.17.0",
+    "eslint-webpack-plugin": "^3.0.1"
   },
   "browserslist": [
     "last 10 Chrome versions",
