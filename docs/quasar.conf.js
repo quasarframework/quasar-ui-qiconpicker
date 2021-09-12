@@ -77,12 +77,23 @@ module.exports = configure(function (ctx) {
 
       // https://quasar.dev/quasar-cli/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpack (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{
-            extensions: [ 'js', 'vue' ],
-            exclude: 'node_modules'
-          }])
+      chainWebpack(chain) {
+
+        if (ctx.prod) {
+          chain.plugin('eslint-webpack-plugin')
+            .use(ESLintPlugin, [{
+              extensions: [ 'js', 'vue' ],
+              exclude: 'node_modules'
+            }])
+        } else {
+          chain.plugin('eslint-webpack-plugin')
+            .use(ESLintPlugin, [{ extensions: [ 'js', 'vue' ] }])
+
+          chain.resolve.alias.merge({
+            ui: path.resolve(__dirname, '../ui/src/index.js'),
+            '@quasar/quasar-ui-qiconpicker': path.resolve(__dirname, '../ui')
+          })
+        }
 
         chain.resolve.alias.merge({
           examples: path.resolve(__dirname, './src/examples')
@@ -249,7 +260,7 @@ module.exports = configure(function (ctx) {
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
       nodeIntegration: true,
 
-      extendWebpack (/* cfg */) {
+      extendWebpack(/* cfg */) {
         // do something with Electron main process Webpack cfg
         // chainWebpack also available besides this extendWebpack
       }
