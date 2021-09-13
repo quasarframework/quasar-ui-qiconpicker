@@ -11,6 +11,6 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build:all": "yarn && cd ./ui && yarn build && cd ../docs && quasar build"
+    "build": "yarn && cd ./ui && yarn build && cd ../docs && quasar build"
   }
 }
