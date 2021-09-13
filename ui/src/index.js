@@ -1,16 +1,17 @@
-import { version } from '../package.json'
-import Component from './components/QIconPicker'
+import QIconPicker from './components/QIconPicker'
+import pkg from '../package.json'
+const { version } = pkg
 
 export {
   version,
-  Component
+  QIconPicker
 }
 
 export default {
   version,
-  Component,
+  QIconPicker,
 
   install (Vue) {
-    Vue.component(Component.name, Component)
+    Vue.component(QIconPicker.name, QIconPicker)
   }
 }

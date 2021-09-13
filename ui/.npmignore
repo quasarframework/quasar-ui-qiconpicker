@@ -8,6 +8,7 @@ yarn.lock
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+jsconfig.json
 
 # Editor directories and files
 .idea
@@ -21,6 +22,12 @@ yarn-error.log*
 # Linters
 .eslintignore
 .eslintrc.js
+.babelrc
 
 # Other
 /src/components/QIconPicker.json
+
+# Testing
+/test
+.env.jest
+jest.config.js

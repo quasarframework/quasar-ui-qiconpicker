@@ -1,7 +1,7 @@
 QIconPicker
 ===
 
-[![npm](https://img.shields.io/npm/v/@quasar/quasar-ui-qiconpicker.svg?label=@quasar/quasar-ui-qiconpicker)](https://www.npmjs.com/package/@quasar/quasar-ui-qiconpicker)
+[![npm](https://img.shields.io/npm/v/@quasar/quasar-ui-qiconpicker/next?label=@quasar/quasar-ui-qiconpicker)](https://www.npmjs.com/package/@quasar/quasar-ui-qiconpicker)
 [![npm](https://img.shields.io/npm/dt/@quasar/quasar-ui-qiconpicker.svg)](https://www.npmjs.com/package/@quasar/quasar-ui-qiconpicker)
 
 QIconPicker is a [Quasar](https://quasar.dev) component. It gives an Icon Picker for your apps.
@@ -23,7 +23,7 @@ Create and register a boot file:
 
 ```js
 import Vue from 'vue'
-import Plugin from 'quasar-ui-qiconpicker'
+import Plugin from '@quasar/quasar-ui-qiconpicker'
 import '@quasar/quasar-ui-qiconpicker/dist/index.css'
 
 Vue.use(Plugin)
@@ -192,7 +192,7 @@ Choices are:
                 v-model="value"
                 icon-set="material-icons"
                 :filter="filter"
-                :pagination.sync="pagination"
+                v-model:model-pagination="pagination"
                 style="height: 220px"
               ></q-icon-picker>
             </div>
@@ -275,14 +275,18 @@ $ yarn dev:electron
 ```
 
 ## Building package
+
 ```bash
 $ yarn build
+```
 
 # build just the JSON API
+```bash
 $ yarn build:api
 ```
 
 # Donate
+
 If you appreciate the work that went into this, please consider donating to [Quasar](https://donate.quasar.dev) or [Jeff](https://github.com/sponsors/hawkeye64).
 
 # License
