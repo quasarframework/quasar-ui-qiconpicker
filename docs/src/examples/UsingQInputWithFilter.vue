@@ -4,7 +4,7 @@
         <q-input v-model="data.value" label="Icon" clearable>
           <template v-slot:append>
             <q-icon name="extension" class="cursor-pointer">
-              <q-popup-proxy v-model="data.showIconPicker">
+              <q-popup-proxy v-model="data.showIconPicker" class="column justify-center items-center">
                 <q-input
                   v-model="data.filter"
                   label="Filter"
