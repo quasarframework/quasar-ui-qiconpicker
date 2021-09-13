@@ -73,7 +73,7 @@ css: [
 ],
 
 build: {
-  transpile = true,
+  transpile: true,
   transpileDependencies: [
     /quasar-ui-qiconpicker[\\/]src/
   ]
@@ -84,7 +84,7 @@ build: {
 
 :::
 ```html
-<style src="@quasar/quasar-ui-qoverlay/dist/QOverlay.min.css"></style>
+<style src="@quasar/quasar-ui-qiconpicker/dist/index.min.css"></style>
 
 <script>
 import { QIconPicker } from '@quasar/quasar-ui-qiconpicker/dist/index.esm.js'
@@ -121,6 +121,7 @@ import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-outlined.umd.
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-round.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-sharp.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/mdi-v4.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/mdi-v5.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/themify.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/lineawesome.umd.js'
