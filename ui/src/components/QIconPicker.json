@@ -26,6 +26,7 @@
         "ionicons-v4",
         "mdi-v4",
         "mdi-v5",
+        "mdi-v6",
         "fontawesome-v5",
         "eva-icons",
         "themify",
@@ -38,6 +39,7 @@
     },
     "icons": {
       "type": "Array",
+      "tsType": "IconNameArray",
       "desc": "An array of objects containing icon information. The object must contain the key `name` with the value being the icon name (ie: `{ name: 'bolt' }`). _**Note:** the icons used must already be loaded by Quasar._",
       "category": "model",
       "examples": [
@@ -61,6 +63,7 @@
     },
     "tags": {
       "type": "Array",
+      "tsType": "StringArray",
       "addedIn": "v1.0.7",
       "desc": "An array of tags to be used to do filtering by category",
       "category": "behavior",
@@ -131,6 +134,7 @@
     },
     "pagination": {
       "type": "Object",
+      "tsType": "Pagination",
       "sync": true,
       "desc": "For pagination purposes uses Quasar's pagination component. Use `pagination.sync` to synchronize the data. You can use `page` and `itemsPerPage` to control the pagination. QIconPicker will set `totalPages` depending on `icon-set` or `icons` properties. If using a `filter` the page will automatically be reset to 1",
       "category": "behavior",
