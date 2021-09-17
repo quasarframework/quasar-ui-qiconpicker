@@ -82,7 +82,7 @@ import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-outlined.umd.
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-round.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-sharp.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons.umd.js'
-import '@quasar/quasar-ui-qiconpicker/dist/icon-set/mdi-v5.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/mdi-v6.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/themify.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/lineawesome.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/bootstrap-icons.umd.js'
@@ -169,12 +169,13 @@ Choices are:
 7. material-icons.umd.js
 8. mdi-v4.umd.js
 9. mdi-v5.umd.js
+9. mdi-v6.umd.js
 10. themify.umd.js
 11. line-awesome.umd.js
 12. bootstrap-icons.umd.js
 
 ``` warning
-You can only use one of `mdi-v4` or `mdi-v5`
+You can only use one of `mdi-v4`, `mdi-v5` or `mdi-v6`
 ```
 
 # Codepen

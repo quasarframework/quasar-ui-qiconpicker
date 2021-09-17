@@ -87,7 +87,7 @@ export default {
         `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/material-icons-outlined.umd.js`,
         `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/material-icons-round.umd.js`,
         `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/material-icons-sharp.umd.js`,
-        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/mdi-v5.umd.js`,
+        `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/mdi-v6.umd.js`,
         `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/themify.umd.js`,
         `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/line-awesome.umd.js`,
         `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/icon-set/bootstrap-icons.umd.js`
@@ -97,7 +97,7 @@ export default {
         'https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp',
         'https://cdn.jsdelivr.net/npm/@quasar/extras/fontawesome-v5/fontawesome-v5.css',
         'https://cdn.jsdelivr.net/npm/@quasar/extras/ionicons-v4/ionicons-v4.css',
-        'https://cdn.jsdelivr.net/npm/@quasar/extras/mdi-v5/mdi-v5.css',
+        'https://cdn.jsdelivr.net/npm/@quasar/extras/mdi-v6/mdi-v6.css',
         'https://cdn.jsdelivr.net/npm/@quasar/extras/themify/themify.css',
         'https://cdn.jsdelivr.net/npm/@quasar/extras/eva-icons/eva-icons.css',
         'https://cdn.jsdelivr.net/npm/@quasar/extras/line-awesome/line-awesome.css',
