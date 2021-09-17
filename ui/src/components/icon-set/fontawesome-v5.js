@@ -1305,7 +1305,6 @@ export default {
     { name: 'fa-trash-restore-alt', prefix: 'fas', tags: [] },
     { name: 'fa-tree', prefix: 'fas', tags: [] },
     { name: 'fa-trello', prefix: 'fab', tags: ['brand'] },
-    { name: 'fa-tripadvisor', prefix: 'fab', tags: ['brand'] },
     { name: 'fa-trophy', prefix: 'fas', tags: [] },
     { name: 'fa-truck', prefix: 'fas', tags: ['travel'] },
     { name: 'fa-truck-loading', prefix: 'fas', tags: ['travel'] },
