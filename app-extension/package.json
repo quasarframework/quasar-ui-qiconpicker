@@ -1,6 +1,6 @@
 {
   "name": "@quasar/quasar-app-extension-qiconpicker",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-alpha.2",
   "description": "QIconPicker - A Quasar App Extension",
   "author": "Jeff Galbraith <jeff@quasar.dev>",
   "license": "MIT",
@@ -31,7 +31,7 @@
     "icon picker"
   ],
   "dependencies": {
-    "@quasar/quasar-ui-qiconpicker": "^2.0.0-alpha.1"
+    "@quasar/quasar-ui-qiconpicker": "^2.0.0-alpha.2"
   },
   "engines": {
     "node": ">= 10.0.0",
