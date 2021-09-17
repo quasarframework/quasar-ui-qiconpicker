@@ -29,6 +29,7 @@
     "build:api": "node build/build.api.js",
     "icons:mdi-v4": "node build/icons/build.mdi-v4.js",
     "icons:mdi-v5": "node build/icons/build.mdi-v5.js",
+    "icons:mdi-v6": "node build/icons/build.mdi-v6.js",
     "icons:ion": "node build/icons/build.ion.js",
     "icons:eva": "node build/icons/build.eva.js",
     "icons:themify": "node build/icons/build.themify.js",
