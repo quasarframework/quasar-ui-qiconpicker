@@ -1,6 +1,7 @@
 require('./build.google.material-icons.js')
 require('./build.mdi-v4.js')
 require('./build.mdi-v5.js')
+require('./build.mdi-v6.js')
 require('./build.ion.js')
 require('./build.eva.js')
 require('./build.themify.js')

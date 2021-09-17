@@ -145,9 +145,12 @@ Choices are:
 7. material-icons.umd.js
 8. mdi-v4.umd.js
 9. mdi-v5.umd.js
-10. themify.umd.js
-11. line-awesome.umd.js
-12. bootstrap-icons.umd.js
+10. mdi-v5.umd.js
+11. themify.umd.js
+12. line-awesome.umd.js
+13. bootstrap-icons.umd.js
+
+> You can only use one of `mdi-v4`,  `mdi-v5` or `mdi-v6`
 
 ### UMD Example
 ```html
