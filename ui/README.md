@@ -87,6 +87,7 @@ You can do this by adding to your **App.vue** (or, any other appropriate) file:
 <script>
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/eva-icons.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/fontawesome-v5.umd.js'
+import '@quasar/quasar-ui-qiconpicker/dist/icon-set/line-awesome.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/ionicons-v4.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-outlined.umd.js'
 import '@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons-round.umd.js'

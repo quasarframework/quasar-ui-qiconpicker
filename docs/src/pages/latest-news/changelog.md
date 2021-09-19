@@ -3,6 +3,6 @@ title: Changelog
 desc: The latest QIconPicker releases
 keys: latest-news
 components:
-  - releases/QIconPickerReleases
+  - releases/Releases
 ---
-<q-icon-picker-releases class="q-mt-sm"/>
+<releases class="q-mt-sm"/>

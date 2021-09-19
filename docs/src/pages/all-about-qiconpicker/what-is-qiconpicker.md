@@ -38,6 +38,7 @@ QIconPicker is an icon picker for your Quasar application. It allows you to have
   - mdi-v5
   - mdi-v6
   - fontawesome-v5
+  - line-awesome
   - eva-icons
   - themify
   - bootstrap-icons
