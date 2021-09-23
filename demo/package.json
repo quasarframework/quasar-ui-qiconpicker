@@ -14,7 +14,7 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@quasar/extras": "^1.11.0",
+    "@quasar/extras": "^1.11.1",
     "@quasar/quasar-ui-qiconpicker": "../ui",
     "quasar": "^1.16.0"
   },
