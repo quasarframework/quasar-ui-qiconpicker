@@ -25,9 +25,9 @@
   "dependencies": {
     "@quasar/extras": "^1.11.1",
     "@quasar/quasar-ui-qiconpicker": "./ui",
-    "core-js": "^3.18.0",
+    "core-js": "^3.18.1",
     "quasar": "^2.1.0",
-    "quasar-ui-example-viewer": "^2.0.0-alpha.6",
+    "quasar-ui-example-viewer": "^2.0.0-alpha.9",
     "quasar-ui-json-api-viewer": "^2.0.0-alpha.6"
   },
   "devDependencies": {
