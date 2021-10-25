@@ -9,7 +9,7 @@ The **QIconPicker App Extension** allows you to seamlessly add the [QIconPicker]
 
 # Install
 ```bash
-quasar ext add @quasar/qiconpicker@next
+quasar ext add @quasar/qiconpicker
 ```
 Quasar CLI will retrieve it from NPM and install the extension.
 

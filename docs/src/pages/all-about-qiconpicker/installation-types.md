@@ -15,7 +15,7 @@ related:
 
 To add as an App Extension to your Quasar application, run the following (in your Quasar app folder):
 ```
-quasar ext add @quasar/qiconpicker@next
+quasar ext add @quasar/qiconpicker
 ```
 
 #### Uninstall
@@ -31,7 +31,7 @@ When installed as an App Extension, you can use `quasar describe QIconPicker`
 
 ### Or Create and register a boot file:
 
-```bash
+```
 $ yarn add @quasar/quasar-ui-qiconpicker
 # or
 $ npm install @quasar/quasar-ui-qiconpicker
@@ -82,7 +82,6 @@ build: {
 
 ### Or target as a component import
 
-:::
 ```html
 <style src="@quasar/quasar-ui-qiconpicker/dist/index.min.css"></style>
 
@@ -96,7 +95,6 @@ export default {
 }
 </script>
 ```
-:::
 
 
 ### Caching
@@ -142,7 +140,6 @@ Don't add them all (unless you have this requirement). Remove the ones from abov
 ## Vue CLI or Vite
 ### Vue project from src
 
-:::
 ```js
 import App from './App.vue'
 import Plugin from '@quasar/quasar-ui-qiconpicker/src/index.js'
@@ -150,11 +147,9 @@ import '@quasar/quasar-ui-qiconpicker/src/index.css'
 
 const app = createApp(App).use(Plugin)
 ```
-:::
 
 ### Vue project from dist
 
-:::
 ```js
 import App from './App.vue'
 import Plugin from '@quasar/quasar-ui-qiconpicker/dist/index.js'
@@ -162,9 +157,6 @@ import '@quasar/quasar-ui-qiconpicker/dist/index.css'
 
 const app = createApp(App).use(Plugin)
 ```
-:::
-
-
 
 ### Or component import
 
@@ -230,7 +222,7 @@ Choices are:
 13. bootstrap-icons.umd.js
 
 ``` warning
-You can only use one of `mdi-v4`,  `mdi-v5` or `mdi-v6`
+You can only use one of `mdi-v4`, `mdi-v5` or `mdi-v6`
 ```
 
 # Working with QIconPicker
