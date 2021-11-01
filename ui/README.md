@@ -115,16 +115,16 @@ Add the following tag(s) after the Quasar ones:
 ```html
 <head>
   <!-- AFTER the Quasar stylesheet tags: -->
-  <link href="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker/dist/index.min.css" rel="stylesheet" type="text/css">
+  <link href="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@qv1/dist/index.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <!-- at end of body, AFTER Quasar script(s): -->
-  <script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker/dist/index.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@qv1/dist/index.umd.min.js"></script>
 </body>
 ```
 If you need the RTL variant of the CSS, then go for the following (instead of the above stylesheet link):
 ```html
-<link href="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker/dist/index.rtl.min.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@qv1/dist/index.rtl.min.css" rel="stylesheet" type="text/css">
 ```
 
 For **UMD** variants only, there is also a caveat:
@@ -132,7 +132,7 @@ For **UMD** variants only, there is also a caveat:
 You must **also** load the QIconPicker icon set for the icon font(s) that you have loaded:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@qv1/dist/icon-set/material-icons.umd.js"></script>
 ```
 
 Choices are:
@@ -166,7 +166,7 @@ Choices are:
     <title>UMD test</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" rel="stylesheet" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/quasar@^1.0.0/dist/quasar.min.css" rel="stylesheet" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker/dist/index.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@qv1/dist/index.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <div id="q-app">
@@ -214,8 +214,8 @@ Choices are:
     <script src="https://cdn.jsdelivr.net/npm/vue@^2.0.0/dist/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quasar@^1.0.0/dist/quasar.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quasar@^1.0.0/dist/icon-set/material-icons.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker/dist/index.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker/dist/icon-set/material-icons.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@qv1/dist/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@qv1/dist/icon-set/material-icons.umd.js"></script>
 
 
     <script>
