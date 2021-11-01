@@ -1,7 +1,7 @@
 QIconPicker
 ===
 
-[![npm](https://img.shields.io/npm/v/@quasar/quasar-ui-qiconpicker.svg?label=@quasar/quasar-ui-qiconpicker)](https://www.npmjs.com/package/@quasar/quasar-ui-qiconpicker)
+[![npm](https://img.shields.io/npm/v/@quasar/quasar-ui-qiconpicker@qv1?label=@quasar/quasar-ui-qiconpicker)](https://www.npmjs.com/package/@quasar/quasar-ui-qiconpicker)
 [![npm](https://img.shields.io/npm/dt/@quasar/quasar-ui-qiconpicker.svg)](https://www.npmjs.com/package/@quasar/quasar-ui-qiconpicker)
 
 QIconPicker is a [Quasar](https://quasar.dev) component. It gives an Icon Picker for your apps.
