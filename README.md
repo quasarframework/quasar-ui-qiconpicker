@@ -1,3 +1,5 @@
+> If you are looking for QIconPicker that works with Quasar v1/Vue v2, then look into the [qv1 branch](https://github.com/quasarframework/quasar-ui-qiconpicker/tree/qv1). Documentation can be found [here](https://quasarframework.github.io/quasar-ui-qiconpicker).
+
 QIconPicker (Vue Plugin, UMD and Quasar App Extension)
 ===
 
