@@ -3,8 +3,8 @@
 QIconPicker (Vue Plugin, UMD and Quasar App Extension)
 ===
 
-![](https://img.shields.io/npm/v/@quasar/quasar-ui-qiconpicker.svg?label=@quasar/quasar-ui-qiconpicker)
-![](https://img.shields.io/npm/v/@quasar/quasar-app-extension-qiconpicker.svg?label=@quasar/quasar-app-extension-qiconpicker)
+![](https://img.shields.io/npm/v/@quasar/quasar-ui-qiconpicker@qv1?label=@quasar/quasar-ui-qiconpicker)
+![](https://img.shields.io/npm/v/@quasar/quasar-app-extension-qiconpicker@qv1?label=@quasar/quasar-app-extension-qiconpicker)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/quasarframework/app-extension-qiconpicker.svg)]()
 [![GitHub repo size in bytes](https://img.shields.io/github/repo-size/quasarframework/app-extension-qiconpicker.svg)]()
 
