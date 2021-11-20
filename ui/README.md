@@ -1,4 +1,4 @@
-QIconPicker
+QIconPicker (Quasar v2, UMD and Vue v3 Compatible)
 ===
 
 [![npm](https://img.shields.io/npm/v/@quasar/quasar-ui-qiconpicker/next?label=@quasar/quasar-ui-qiconpicker)](https://www.npmjs.com/package/@quasar/quasar-ui-qiconpicker)
