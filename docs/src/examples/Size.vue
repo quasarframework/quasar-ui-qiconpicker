@@ -1,15 +1,15 @@
 <template>
-    <div class="q-pa-lg flex flex-center">
-      <div style="width: 700px;">
-        <q-icon-picker
-          v-model="data.value"
-          icon-set="material-icons"
-          size="30px"
-          v-model:model-pagination="data.pagination"
-          style="height: 360px;"
-        ></q-icon-picker>
-      </div>
+  <div class="q-pa-lg flex flex-center">
+    <div style="width: 700px;">
+      <q-icon-picker
+        v-model="data.value"
+        v-model:model-pagination="data.pagination"
+        icon-set="material-icons"
+        size="30px"
+        style="height: 360px;"
+      />
     </div>
+  </div>
 </template>
 
 <script>

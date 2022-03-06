@@ -3,7 +3,7 @@
   actual font info and then rebuilds the output with tags.
 */
 const path = require('path')
-const { green, blue, red } = require('chalk')
+const { green, blue, red } = require('kolorist')
 const { readFile, writeFile } = require('../utils')
 
 const name = 'eva-icons'

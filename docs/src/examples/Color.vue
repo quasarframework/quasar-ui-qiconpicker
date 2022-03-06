@@ -1,16 +1,16 @@
 <template>
-    <div class="q-pa-lg flex flex-center">
-      <div style="width: 700px;">
-        <q-icon-picker
-          v-model="data.value"
-          icon-set="material-icons"
-          text-color="green-8"
-          color="yellow-8"
-          v-model:model-pagination="data.pagination"
-          style="height: 220px;"
-        ></q-icon-picker>
-      </div>
+  <div class="q-pa-lg flex flex-center">
+    <div style="width: 700px;">
+      <q-icon-picker
+        v-model="data.value"
+        v-model:model-pagination="data.pagination"
+        icon-set="material-icons"
+        text-color="green-8"
+        color="yellow-8"
+        style="height: 220px;"
+      />
     </div>
+  </div>
 </template>
 
 <script>

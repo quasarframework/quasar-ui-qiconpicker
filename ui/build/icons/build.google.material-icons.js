@@ -1,5 +1,5 @@
 const fetch = require('cross-fetch')
-const { blue } = require('chalk')
+const { blue } = require('kolorist')
 
 const themeMap = {
   baseline: 'baseline',

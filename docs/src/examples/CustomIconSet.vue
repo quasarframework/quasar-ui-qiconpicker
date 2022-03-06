@@ -1,14 +1,14 @@
 <template>
-    <div class="q-pa-lg flex flex-center">
-      <div style="width: 700px;">
-        <q-icon-picker
-          v-model="data.value"
-          :icons="data.icons"
-          style="height: 100px;"
-          tooltips
-        ></q-icon-picker>
-      </div>
+  <div class="q-pa-lg flex flex-center">
+    <div style="width: 700px;">
+      <q-icon-picker
+        v-model="data.value"
+        :icons="data.icons"
+        style="height: 100px;"
+        tooltips
+      />
     </div>
+  </div>
 </template>
 
 <script>

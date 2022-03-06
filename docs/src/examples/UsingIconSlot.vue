@@ -1,35 +1,35 @@
 <template>
-    <div class="q-pa-lg flex flex-center">
-      <div style="width: 700px;">
-        <div class="wrapper">
-          <q-icon-picker
-            v-model="data.value"
-            icon-set="material-icons"
-            v-model:model-pagination="data.pagination"
-            :pagination-props="{
+  <div class="q-pa-lg flex flex-center">
+    <div style="width: 700px;">
+      <div class="wrapper">
+        <q-icon-picker
+          v-model="data.value"
+          v-model:model-pagination="data.pagination"
+          icon-set="material-icons"
+          :pagination-props="{
             'max-pages': 5,
             'input': true,
             'color': 'yellow-10',
             'input-class': 'text-yellow-10'
           }"
-            class="container"
-            style="height: 400px;"
-          >
-            <template #icon="name">
-              <q-btn
-                :label="name"
-                :icon="name"
-                no-caps
-                no-wrap
-                align="left"
-                style="width: 32%"
-                class="q-ma-xs ellipsis col-4 icon-item"
-              />
-            </template>
-          </q-icon-picker>
-        </div>
+          class="container"
+          style="height: 400px;"
+        >
+          <template #icon="name">
+            <q-btn
+              :label="name"
+              :icon="name"
+              no-caps
+              no-wrap
+              align="left"
+              style="width: 32%"
+              class="q-ma-xs ellipsis col-4 icon-item"
+            />
+          </template>
+        </q-icon-picker>
       </div>
     </div>
+  </div>
 </template>
 
 <script>

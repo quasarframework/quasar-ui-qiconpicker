@@ -1,20 +1,20 @@
 <template>
-    <div class="row justify-center q-ma-md">
-      <div style="width: 700px;">
-        <q-select
-          v-model="data.pagination.itemsPerPage"
-          :options="data.options"
-          label="Items Per Page"
-          class="q-ma-sm col-4">
-        </q-select>
-        <q-icon-picker
-          v-model="data.value"
-          icon-set="material-icons"
-          v-model:model-pagination="data.pagination"
-          style="height: 220px;"
-        ></q-icon-picker>
-      </div>
+  <div class="row justify-center q-ma-md">
+    <div style="width: 700px;">
+      <q-select
+        v-model="data.pagination.itemsPerPage"
+        :options="data.options"
+        label="Items Per Page"
+        class="q-ma-sm col-4"
+      />
+      <q-icon-picker
+        v-model="data.value"
+        v-model:model-pagination="data.pagination"
+        icon-set="material-icons"
+        style="height: 220px;"
+      />
     </div>
+  </div>
 </template>
 
 <script>

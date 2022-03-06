@@ -10,7 +10,7 @@
   the prefix manually. Then, we have a finished file.
 */
 const path = require('path')
-const { green, blue, red } = require('chalk')
+const { green, blue, red } = require('kolorist')
 const { readFile, writeFile } = require('../utils')
 const { validateTags } = require('../utils')
 

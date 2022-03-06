@@ -1,42 +1,34 @@
+process.env.BABEL_ENV = 'production'
+
 const path = require('path')
 const fs = require('fs')
 const fse = require('fs-extra')
 const rollup = require('rollup')
 const uglify = require('uglify-js')
-const buble = require('@rollup/plugin-buble')
+// const buble = require('@rollup/plugin-buble')
 const json = require('@rollup/plugin-json')
 const { nodeResolve } = require('@rollup/plugin-node-resolve')
-const replace = require('@rollup/plugin-replace')
-
-const { version } = require('../package.json')
 
 const buildConf = require('./config')
 const buildUtils = require('./utils')
-
-const bubleConfig = {
-  objectAssign: 'Object.assign'
-}
-
-const nodeResolveConfig = {
-  extensions: ['.js'],
-  preferBuiltins: false
-}
 
 function pathResolve (_path) {
   return path.resolve(__dirname, _path)
 }
 
 const rollupPluginsModern = [
-  replace({
-    preventAssignment: false,
-    values: {
-      __UI_VERSION__: `'${ version }'`
-    }
-  }),
-  nodeResolve(nodeResolveConfig),
-  json(),
-  buble(bubleConfig)
+  nodeResolve(),
+  json()
 ]
+
+// const bubleConfig = {
+//   objectAssign: 'Object.assign'
+// }
+
+// const nodeResolveConfig = {
+//   extensions: ['.js'],
+//   preferBuiltins: false
+// }
 
 const uglifyJsOptions = {
   compress: {
@@ -70,6 +62,12 @@ const uglifyJsOptions = {
     evaluate: true
   }
 }
+
+// const rollupPlugins = [
+//   nodeResolve(nodeResolveConfig),
+//   json(),
+//   buble(bubleConfig)
+// ]
 
 const buildEntries = [
   'QIconPicker'
@@ -151,7 +149,7 @@ build(builds)
 function addAssets (builds, type, injectName) {
   const
     files = fs.readdirSync(pathResolve('../../ui/src/components/' + type)),
-    plugins = [buble(bubleConfig)],
+    // plugins = [buble(bubleConfig)],
     outputDir = pathResolve(`../dist/${ type }`)
 
   fse.mkdirp(outputDir)
@@ -163,8 +161,7 @@ function addAssets (builds, type, injectName) {
       builds.push({
         rollup: {
           input: {
-            input: pathResolve(`../src/components/${ type }/${ file }`),
-            plugins
+            input: pathResolve(`../src/components/${ type }/${ file }`)
           },
           output: {
             file: addExtension(pathResolve(`../dist/${ type }/${ file }`), 'umd'),

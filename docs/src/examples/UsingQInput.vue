@@ -1,25 +1,30 @@
 <template>
-    <div class="q-pa-lg flex flex-center">
-      <div style="width: 700px;">
-        <q-input v-model="data.value" label="Icon" clearable>
-          <template v-slot:append>
-            <q-icon name="extension" class="cursor-pointer">
-              <q-popup-proxy v-model="data.showIconPicker">
-
-                <q-icon-picker
-                  v-model="data.value"
-                  icon-set="material-icons"
-                  tooltips
-                  v-model:model-pagination="data.pagination"
-                  style="height: 300px; width: 300px; background-color: white;"
-                ></q-icon-picker>
-
-              </q-popup-proxy>
-            </q-icon>
-          </template>
-        </q-input>
-      </div>
+  <div class="q-pa-lg flex flex-center">
+    <div style="width: 700px;">
+      <q-input
+        v-model="data.value"
+        label="Icon"
+        clearable
+      >
+        <template #append>
+          <q-icon
+            name="extension"
+            class="cursor-pointer"
+          >
+            <q-popup-proxy v-model="data.showIconPicker">
+              <q-icon-picker
+                v-model="data.value"
+                v-model:model-pagination="data.pagination"
+                icon-set="material-icons"
+                tooltips
+                style="height: 300px; width: 300px; background-color: white;"
+              />
+            </q-popup-proxy>
+          </q-icon>
+        </template>
+      </q-input>
     </div>
+  </div>
 </template>
 
 <script>

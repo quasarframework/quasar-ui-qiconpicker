@@ -1,6 +1,6 @@
 import QIconPicker from './components/QIconPicker'
 
-const version = __UI_VERSION__
+import { version } from './version'
 
 function install (app) {
   app.component(QIconPicker.name, QIconPicker)
