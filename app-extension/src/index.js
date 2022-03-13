@@ -30,7 +30,8 @@ module.exports = function (api) {
     api.compatibleWith('@quasar/app-vite', '^1.0.0-alpha.0')
   }
   else {
-    api.compatibleWith('@quasar/app-webpack', '^3.0.0')
+    // should be "@quasar/app-webpack" but that is not backward compatible
+    api.compatibleWith('@quasar/app', '^3.0.0')
   }
 
   api.compatibleWith('@quasar/extras', '^1.10.0') // needed for latest font and svg support
