@@ -97,10 +97,10 @@ function generateBuilds () {
     builds.push({
       rollup: {
         input: {
-          input: pathResolve('../src/index.common.js')
+          input: pathResolve('../src/index.cjs.js')
         },
         output: {
-          file: pathResolve('../dist/index.common.js'),
+          file: pathResolve('../dist/index.cjs.js'),
           format: 'cjs',
           exports: 'auto'
         }
