@@ -3,9 +3,7 @@ import JsonApiViewer from 'quasar-ui-json-api-viewer/src/components/JsonApiViewe
 import MarkdownPage from '../components/MarkdownPage.vue'
 import MarkdownLink from '../components/MarkdownLink.vue'
 import ExampleViewer, { setDefaults } from 'quasar-ui-example-viewer/src'
-import pkg from '@quasar/quasar-ui-qiconpicker/package.json'
-const { version } = pkg
-
+import { version } from '@quasar/quasar-ui-qiconpicker/src/version.js'
 
 setDefaults({
   locationUrl: 'https://github.com/quasarframework/quasar-ui-qiconpicker/tree/next/docs/src/examples',
@@ -22,9 +20,4 @@ export default boot(({ app }) => {
   app.component('JsonApiViewer', JsonApiViewer)
   app.component('MarkdownPage', MarkdownPage)
   app.component('MarkdownLink', MarkdownLink)
-
-  if (process.env.DEV) {
-    const IconPicker = require(`@quasar/quasar-ui-qiconpicker`)
-    app.use(IconPicker)
-  }
 })
