@@ -30,7 +30,7 @@
                 :filter="data.filter"
                 icon-set="material-icons"
                 tooltips
-                style="height: 300px; width: 300px; background-color: white;"
+                style="height: 300px; width: 300px;"
               />
             </q-popup-proxy>
           </q-icon>
@@ -46,9 +46,11 @@ import { QIconPicker } from '@quasar/quasar-ui-qiconpicker/src/index'
 import '@quasar/quasar-ui-qiconpicker/src/index.sass'
 
 export default defineComponent({
+
   components: {
     QIconPicker
   },
+
   setup() {
     const data = ref({
       value: '',
@@ -67,8 +69,6 @@ export default defineComponent({
     return {
       data
     }
-
-
   }
 })
 </script>
