@@ -14,7 +14,7 @@ QIconPicker (Vue v3 Plugin, UMD and Quasar v2 App Extension)
 * [/ui](ui) - standalone npm package (go here for more details)
 * [/app-extension](app-extension) - Quasar app extension
 * [/demo](https://github.com/quasarframework/quasar-ui-qiconpicker/tree/master/demo) - demo and examples
-* [Live Demo](https://quasarframework.github.io/quasar-ui-qiconpicker/docs)
+* [Live Demo](https://qiconpicker.netlify.app/)
 
 # Demo Workflow
 If you fork or download this project, make sure you have the Quasar CLI globally installed:
