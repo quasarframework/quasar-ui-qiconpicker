@@ -35,6 +35,7 @@
     "icons:themify": "node build/icons/build.themify.js",
     "icons:bootstrap-icons": "node build/icons/build.bootstrap-icons.js",
     "icons:fontawesome": "node build/icons/build.fontawesome.js",
+    "icons:material": "node build/icons/build.google.material-icons.js",
     "icons:all": "node build/icons/build.all.js"
   },
   "funding": {
@@ -80,7 +81,7 @@
     "eslint": "^8.12.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jsdoc": "^38.1.3",
+    "eslint-plugin-jsdoc": "^44.2.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-quasar": "^1.1.0",
