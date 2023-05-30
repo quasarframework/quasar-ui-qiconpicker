@@ -6,7 +6,7 @@
  * API: https://github.com/quasarframework/quasar/blob/master/app/lib/app-extension/IndexAPI.js
  */
 
-function extendConf (conf, api) {
+function extendConf(conf, api) {
   // register our boot file
   conf.boot.push('~@quasar/quasar-app-extension-qiconpicker/src/boot/register.js')
 
@@ -27,11 +27,10 @@ module.exports = function (api) {
   api.compatibleWith('quasar', '^2.0.0')
 
   if (api.hasVite === true) {
-    api.compatibleWith('@quasar/app-vite', '^1.0.0-alpha.0')
-  }
-  else {
+    api.compatibleWith('@quasar/app-vite', '^1.0.0 || ^2.0.0 || ^2.0.0-alpha.1')
+  } else {
     // should be "@quasar/app-webpack" but that is not backward compatible
-    api.compatibleWith('@quasar/app', '^3.0.0')
+    api.compatibleWith('@quasar/app', '^3.0.0 || ^4.0.0 || ^4.0.0-alpha.1')
   }
 
   api.compatibleWith('@quasar/extras', '^1.10.0') // needed for latest font and svg support

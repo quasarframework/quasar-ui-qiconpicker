@@ -1,6 +1,6 @@
 const path = require('path')
-const { green, blue, red } = require('kolorist')
-const { readFile, writeFile } = require('../utils')
+const {green, blue, red} = require('kolorist')
+const {readFile, writeFile} = require('../utils')
 
 const themeMap = {
   baseline: '',
@@ -9,7 +9,7 @@ const themeMap = {
   sharp: 's_'
 }
 
-function run (googleIcons, theme) {
+function run(googleIcons, theme) {
   const name = 'material-icons' + (theme === 'baseline' ? '' : '-' + theme)
   // console.log(`${blue('[building]')}  ${name}...`)
   const inputLocation = `../../src/components/icon-set/${name}.js`
@@ -17,6 +17,18 @@ function run (googleIcons, theme) {
   const oldIcons = {}
   const icons = []
   const blacklisted = [
+    'grade',
+    'grading',
+    'dynamic_feed',
+    'o_dynamic_feed',
+    'r_dynamic_feed',
+    's_dynamic_feed',
+    's_grade',
+    's_grading',
+    'r_grade',
+    'r_grading',
+    'o_grade',
+    'o_grading'
   ]
   const whiteListed = {
     baseline: [
@@ -74,7 +86,7 @@ function run (googleIcons, theme) {
   fa.forEach(f => {
     const name = f.name
     const tags = f.tags
-    oldIcons[name] = { tags: Array(tags).join(',') }
+    oldIcons[name] = {tags: Array(tags).join(',')}
   })
 
   googleIcons.forEach(gi => {
@@ -82,7 +94,7 @@ function run (googleIcons, theme) {
   })
 
   whiteListed[theme].forEach(name => {
-    googleIcons.push({ name: themeMap[theme] + name })
+    googleIcons.push({name: themeMap[theme] + name})
   })
 
   googleIcons.sort((a, b) => {
@@ -94,14 +106,22 @@ function run (googleIcons, theme) {
       const name = gi.name
       if (blacklisted.includes(name) === false) {
         if (oldIcons[name]) {
-          const tags = oldIcons[name].tags.split(',').map(tag => {
-            if (tag === '') return tag
-            return "'" + tag + "'"
-          }).join(', ')
-          icons.push(`{ name: '${name}', tags: [${tags}] }`)
-        }
-        else {
-          icons.push(`{ name: '${name}', tags: [] }`)
+
+          const oldTags = oldIcons[name].tags
+            .split(',')
+
+          // Merge old and new tags
+          const tagsWithoutDuplicates = [...new Set(oldTags.concat(gi.tags))];
+          const newTags = tagsWithoutDuplicates
+            .filter(tag => tag !== "")
+            .map(tag => "'" + tag + "'")
+            .join(', ')
+
+          // Add merged tags old/new
+          icons.push(`{ name: '${name}', tags: [${newTags}] }`)
+        } else {
+          // Add new tags
+          icons.push(`{ name: '${name}', tags: [${gi.tags}] }`)
         }
       }
     })
@@ -127,6 +147,7 @@ function run (googleIcons, theme) {
   output += '}\n'
 
   writeFile(path.resolve(__dirname, outputLocation), output)
+    .catch(exception => console.error(exception))
   console.log(`${blue('[icon]')} ${green(name + ':')} ${icons.length} generated`)
 }
 

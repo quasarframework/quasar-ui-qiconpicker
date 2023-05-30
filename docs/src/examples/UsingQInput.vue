@@ -17,7 +17,7 @@
                 v-model:model-pagination="data.pagination"
                 icon-set="material-icons"
                 tooltips
-                style="height: 300px; width: 300px; background-color: white;"
+                class="pop-up"
               />
             </q-popup-proxy>
           </q-icon>
@@ -33,9 +33,11 @@ import { QIconPicker } from '@quasar/quasar-ui-qiconpicker/src/index'
 import '@quasar/quasar-ui-qiconpicker/src/index.sass'
 
 export default defineComponent({
+
   components: {
     QIconPicker
   },
+
   setup() {
     const data = ref({
       value: '',
@@ -46,15 +48,20 @@ export default defineComponent({
       }
     })
 
-    watch(()=> data.value.value, () =>  {
+    watch(() => data.value.value, () => {
       data.value.showIconPicker = false
     })
 
     return {
       data
     }
-
-
   }
 })
 </script>
+
+<style scoped>
+.pop-up {
+  height: 300px;
+  width: 300px;
+}
+</style>
