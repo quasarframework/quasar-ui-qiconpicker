@@ -142,7 +142,7 @@ function useIconPickerPagination(data, props, emit, computedFilteredIcons) {
  */
 function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastItemIndex) {
 
-  function loadIconSet(iconSet) {
+  async function loadIconSet (iconSet) {
     data.iconsList = []
     if (iconSet) {
       // detect if UMD version is installed
@@ -157,12 +157,18 @@ function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastIte
         }
       }
       else {
-        try {
-          data.iconsList = require(`@quasar/quasar-ui-qiconpicker/src/components/icon-set/${ iconSet }.js`).default.icons
-        }
-        catch (e) {
-          console.error(`QIconPicker: cannot find icon set found called ${ iconSet }`)
-        }
+          // If vite
+          if (typeof import.meta !== 'undefined' && import.meta.env !== undefined) {
+            const set = await import(
+              `/node_modules/@quasar/quasar-ui-qiconpicker/src/components/icon-set/material-icons.js`
+            )
+            data.iconsList = set.default.icons
+            // Else if webpack
+          } else {
+            data.iconsList = require(
+              `@quasar/quasar-ui-qiconpicker/src/components/icon-set/${iconSet}.js`,
+            ).default.icons;
+          }
       }
     }
     console.info(`Loaded ${ data.iconsList.length } icons.`)
