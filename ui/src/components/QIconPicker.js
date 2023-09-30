@@ -160,7 +160,7 @@ function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastIte
           // If vite
           if (typeof import.meta !== 'undefined' && import.meta.env !== undefined) {
             const set = await import(
-              `/node_modules/@quasar/quasar-ui-qiconpicker/src/components/icon-set/material-icons.js`
+              `/node_modules/@quasar/quasar-ui-qiconpicker/src/components/icon-set/${iconSet}.js`
             )
             data.iconsList = set.default.icons
             // Else if webpack
