@@ -45,14 +45,19 @@ const builds = [
         input: pathResolve('../src/index.esm.js'),
       },
       output: {
-        file: pathResolve('../dist/index.esm.js'),
+        dir: pathResolve('../dist'),
+        entryFileNames: 'index.esm.js',
+        chunkFileNames: 'chunks/[name]-[hash].js',
         format: 'esm',
       },
     },
     build: {
       unminified: true,
       minified: true,
-      minExt: true,
+      minOutput: {
+        entryFileNames: 'index.esm.min.js',
+        chunkFileNames: 'chunks/[name]-[hash].min.js',
+      },
     },
   },
   {
@@ -61,7 +66,9 @@ const builds = [
         input: pathResolve('../src/index.cjs.js'),
       },
       output: {
-        file: pathResolve('../dist/index.cjs.js'),
+        dir: pathResolve('../dist'),
+        entryFileNames: 'index.cjs.js',
+        chunkFileNames: 'chunks/[name]-[hash].js',
         format: 'cjs',
         exports: 'auto',
       },
@@ -69,7 +76,10 @@ const builds = [
     build: {
       unminified: true,
       minified: true,
-      minExt: true,
+      minOutput: {
+        entryFileNames: 'index.cjs.min.js',
+        chunkFileNames: 'chunks/[name]-[hash].min.js',
+      },
     },
   },
   {
@@ -81,6 +91,7 @@ const builds = [
         name: 'QIconPicker',
         file: pathResolve('../dist/index.umd.js'),
         format: 'umd',
+        codeSplitting: false,
       },
     },
     build: {
@@ -164,31 +175,71 @@ function addExtension(filename, ext = 'min') {
 
 async function buildEntry(config) {
   const bundle = await rolldown(config.rolldown.input)
-  const { output } = await bundle.generate(config.rolldown.output)
-  const code =
-    config.rolldown.output.format === 'umd' ? injectVueRequirement(output[0].code) : output[0].code
 
   if (config.build.unminified) {
-    await buildUtils.writeFile(config.rolldown.output.file, code)
+    const { output } = await bundle.generate(config.rolldown.output)
+    await writeOutputFiles(output, config.rolldown.output)
   }
 
   if (config.build.minified) {
-    const minified = uglify.minify(code, uglifyJsOptions)
-
-    if (minified.error) {
-      throw minified.error
-    }
-
-    await buildUtils.writeFile(
-      config.build.minExt === true
-        ? addExtension(config.rolldown.output.file)
-        : config.rolldown.output.file,
-      buildConf.banner + minified.code,
-      true,
-    )
+    const minOutputOptions = getMinOutputOptions(config)
+    const { output } = await bundle.generate(minOutputOptions)
+    await writeOutputFiles(output, minOutputOptions, true)
   }
 
   await bundle.close()
+}
+
+async function writeOutputFiles(output, outputOptions, minify = false) {
+  await Promise.all(
+    output.map((chunk) => {
+      if (chunk.type !== 'chunk') {
+        return Promise.resolve()
+      }
+
+      let code = outputOptions.format === 'umd' ? injectVueRequirement(chunk.code) : chunk.code
+
+      if (minify === true) {
+        const minified = uglify.minify(code, uglifyJsOptions)
+
+        if (minified.error) {
+          throw minified.error
+        }
+
+        code = buildConf.banner + minified.code
+      }
+
+      const outputFile = getOutputFile(chunk, outputOptions)
+      fs.mkdirSync(path.dirname(outputFile), { recursive: true })
+
+      return buildUtils.writeFile(outputFile, code, minify)
+    }),
+  )
+}
+
+function getMinOutputOptions(config) {
+  const output = {
+    ...config.rolldown.output,
+  }
+
+  if (config.build.minOutput) {
+    Object.assign(output, config.build.minOutput)
+  }
+
+  if (output.file) {
+    output.file =
+      config.build.minExt === true ? addExtension(config.rolldown.output.file) : output.file
+  }
+
+  return output
+}
+
+function getOutputFile(chunk, outputOptions) {
+  if (outputOptions.file) {
+    return outputOptions.file
+  }
+
+  return path.join(outputOptions.dir, chunk.fileName)
 }
 
 function injectVueRequirement(code) {

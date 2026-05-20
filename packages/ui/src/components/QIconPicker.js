@@ -10,42 +10,25 @@ import {
   Transition,
 } from 'vue'
 import { QBtn, QPagination, QResizeObserver, QScrollArea, QTooltip } from 'quasar'
-import bootstrapIcons from './icon-set/bootstrap-icons'
-import evaIcons from './icon-set/eva-icons'
-import fontawesomeV5 from './icon-set/fontawesome-v5'
-import fontawesomeV6 from './icon-set/fontawesome-v6'
-import ioniconsV6 from './icon-set/ionicons-v6'
-import ioniconsV7 from './icon-set/ionicons-v7'
-import lineAwesome from './icon-set/line-awesome'
-import materialIcons from './icon-set/material-icons'
-import materialIconsOutlined from './icon-set/material-icons-outlined'
-import materialIconsRound from './icon-set/material-icons-round'
-import materialIconsSharp from './icon-set/material-icons-sharp'
-import materialSymbolsOutlined from './icon-set/material-symbols-outlined'
-import materialSymbolsRounded from './icon-set/material-symbols-rounded'
-import materialSymbolsSharp from './icon-set/material-symbols-sharp'
-import mdiV6 from './icon-set/mdi-v6'
-import mdiV7 from './icon-set/mdi-v7'
-import themify from './icon-set/themify'
 
-const iconSets = {
-  'bootstrap-icons': bootstrapIcons,
-  'eva-icons': evaIcons,
-  'fontawesome-v5': fontawesomeV5,
-  'fontawesome-v6': fontawesomeV6,
-  'ionicons-v6': ioniconsV6,
-  'ionicons-v7': ioniconsV7,
-  'line-awesome': lineAwesome,
-  'material-icons': materialIcons,
-  'material-icons-outlined': materialIconsOutlined,
-  'material-icons-round': materialIconsRound,
-  'material-icons-sharp': materialIconsSharp,
-  'material-symbols-outlined': materialSymbolsOutlined,
-  'material-symbols-rounded': materialSymbolsRounded,
-  'material-symbols-sharp': materialSymbolsSharp,
-  'mdi-v6': mdiV6,
-  'mdi-v7': mdiV7,
-  themify,
+const iconSetLoaders = {
+  'bootstrap-icons': () => import('./icon-set/bootstrap-icons'),
+  'eva-icons': () => import('./icon-set/eva-icons'),
+  'fontawesome-v5': () => import('./icon-set/fontawesome-v5'),
+  'fontawesome-v6': () => import('./icon-set/fontawesome-v6'),
+  'ionicons-v6': () => import('./icon-set/ionicons-v6'),
+  'ionicons-v7': () => import('./icon-set/ionicons-v7'),
+  'line-awesome': () => import('./icon-set/line-awesome'),
+  'material-icons': () => import('./icon-set/material-icons'),
+  'material-icons-outlined': () => import('./icon-set/material-icons-outlined'),
+  'material-icons-round': () => import('./icon-set/material-icons-round'),
+  'material-icons-sharp': () => import('./icon-set/material-icons-sharp'),
+  'material-symbols-outlined': () => import('./icon-set/material-symbols-outlined'),
+  'material-symbols-rounded': () => import('./icon-set/material-symbols-rounded'),
+  'material-symbols-sharp': () => import('./icon-set/material-symbols-sharp'),
+  'mdi-v6': () => import('./icon-set/mdi-v6'),
+  'mdi-v7': () => import('./icon-set/mdi-v7'),
+  themify: () => import('./icon-set/themify'),
 }
 
 /**
@@ -199,8 +182,12 @@ function useIconPickerPagination(data, props, emit, computedFilteredIcons) {
  * Icons
  */
 function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastItemIndex) {
-  function loadIconSet(iconSet) {
+  let iconSetLoadId = 0
+
+  async function loadIconSet(iconSet) {
+    const loadId = ++iconSetLoadId
     data.iconsList = []
+
     if (iconSet) {
       // detect if UMD version is installed
       if (typeof window !== 'undefined' && window.QIconPicker) {
@@ -214,8 +201,20 @@ function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastIte
           )
         }
       } else {
-        if (iconSets[iconSet]) {
-          data.iconsList = iconSets[iconSet].icons
+        const loader = iconSetLoaders[iconSet]
+
+        if (loader) {
+          try {
+            const module = await loader()
+            const loadedIconSet = module.default || module
+
+            if (loadId === iconSetLoadId) {
+              data.iconsList = loadedIconSet.icons
+            }
+          } catch (err) {
+            console.error(`QIconPicker: failed to load icon set called ${iconSet}`)
+            console.error(err)
+          }
         } else {
           console.error(`QIconPicker: cannot find icon set called ${iconSet}`)
         }
@@ -405,9 +404,9 @@ export default defineComponent({
       computedPagesNumber,
     )
 
-    onMounted(() => {
+    onMounted(async () => {
       if (props.iconSet) {
-        loadIconSet(props.iconSet)
+        await loadIconSet(props.iconSet)
       } else if (props.icons !== void 0 && props.icons.length > 0) {
         data.iconsList = props.icons
       }
@@ -416,9 +415,9 @@ export default defineComponent({
 
     watch(
       () => props.iconSet,
-      (val) => {
+      async (val) => {
         if (val) {
-          loadIconSet(val)
+          await loadIconSet(val)
           updatePagination()
           nextTick(() => {
             // whenever the icon set changes, it resets pagination page to page 1
@@ -498,40 +497,36 @@ export default defineComponent({
     return () => {
       function renderPagination() {
         if (props.modelPagination && props.modelPagination.itemsPerPage === 0) return ''
-        const slot = slots.pagination && slots.pagination()
         const { page, totalPages } = computedPagination.value
 
-        return (
-          slot ||
-          h(QPagination, {
-            class: 'q-icon-picker__pagination',
-            ...props.paginationProps,
-            modelValue: page,
-            max: totalPages,
-            'onUpdate:modelValue': (value) => {
-              if (props.animated) {
-                if (value > page) {
-                  data.direction = direction.NEXT
-                } else {
-                  data.direction = direction.PREV
+        return slots.pagination
+          ? slots.pagination(computedPagination.value)
+          : h(QPagination, {
+              class: 'q-icon-picker__pagination',
+              ...props.paginationProps,
+              modelValue: page,
+              max: totalPages,
+              'onUpdate:modelValue': (value) => {
+                if (props.animated) {
+                  if (value > page) {
+                    data.direction = direction.NEXT
+                  } else {
+                    data.direction = direction.PREV
+                  }
                 }
-              }
-              setPagination({ page: value })
-            },
-          })
-        )
+                setPagination({ page: value })
+              },
+            })
       }
 
       function renderFooter() {
         if (props.noFooter !== true && props.modelPagination !== void 0) {
-          const slot = slots.footer && slots.footer()
-
           return h(
             'div',
             {
               class: 'q-icon-picker__footer flex flex-center',
             },
-            [slot ? slot(computedPagination.value) : renderPagination()],
+            [slots.footer ? slots.footer(computedPagination.value) : renderPagination()],
           )
         }
       }
@@ -546,7 +541,7 @@ export default defineComponent({
         const name = icon.prefix !== void 0 ? icon.prefix + ' ' + icon.name : icon.name
         const iconValue = icon.icon !== void 0 ? icon.icon : name
 
-        if (slots.icon && slots.icon()) {
+        if (slots.icon) {
           return slots.icon(iconValue)
         }
         const isSelected = iconValue === props.modelValue

@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { QIconPicker, version } from '../src'
+import QIconPickerApi from '../src/components/QIconPicker.json'
 import ioniconsV7 from '../src/components/icon-set/ionicons-v7'
 import materialSymbolsOutlined from '../src/components/icon-set/material-symbols-outlined'
 
@@ -13,6 +14,12 @@ describe('QIconPicker', () => {
   it('keeps the public v-model prop aligned with the API metadata', () => {
     expect(QIconPicker.props).toHaveProperty('modelValue')
     expect(QIconPicker.emits).toContain('update:model-value')
+  })
+
+  it('documents emitted tag updates with the runtime event name', () => {
+    expect(QIconPicker.emits).toContain('update:tags')
+    expect(QIconPickerApi.events).toHaveProperty('update:tags')
+    expect(QIconPickerApi.events).not.toHaveProperty('tags')
   })
 
   it('supports the current versioned icon-set families', () => {

@@ -1,4 +1,12 @@
-const { resolve } = require('path')
-const open = require('open')
+const { resolve } = require('node:path')
 
-open(resolve(__dirname, '../umd-test.html'))
+async function openUmdTest() {
+  const { default: open } = await import('open')
+
+  await open(resolve(__dirname, '../umd-test.html'))
+}
+
+openUmdTest().catch((err) => {
+  console.error(err)
+  process.exit(1)
+})
