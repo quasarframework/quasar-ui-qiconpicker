@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const { createFolder, writeFile } = require('./utils')
+const { createFolder, writeFile } = require('./build.utils')
 
 const rootDir = path.resolve(__dirname, '..')
 const srcDir = path.join(rootDir, 'src/components')
@@ -171,7 +171,11 @@ async function buildApi() {
   console.log(` 🧾 Generated ${components.length} API file${components.length === 1 ? '' : 's'}`)
 }
 
-buildApi().catch((err) => {
-  console.error(err)
-  process.exit(1)
-})
+module.exports.buildApi = buildApi
+
+if (require.main === module) {
+  buildApi().catch((err) => {
+    console.error(err)
+    process.exit(1)
+  })
+}

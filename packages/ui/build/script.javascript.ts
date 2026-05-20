@@ -4,7 +4,7 @@ const { rolldown } = require('rolldown')
 const uglify = require('uglify-js')
 
 const buildConf = require('./config')
-const buildUtils = require('./utils')
+const buildUtils = require('./build.utils')
 
 const uglifyJsOptions = {
   compress: {

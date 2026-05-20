@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const { green, blue, red } = require('kolorist')
-const { validateTags, writeFile } = require('../utils')
+const { validateTags, writeFile } = require('../build.utils')
 
 function iconSetPath(name) {
   return path.resolve(__dirname, `../../src/components/icon-set/${name}.js`)

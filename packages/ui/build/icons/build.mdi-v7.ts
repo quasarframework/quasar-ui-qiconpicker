@@ -1,13 +1,40 @@
+const fs = require('fs')
 const path = require('path')
 const { green, blue, red } = require('kolorist')
-const { readFile, writeFile } = require('../utils')
+const { readFile, writeFile } = require('../build.utils')
 
-const name = 'themify'
-const inputLocation = `../../src/components/icon-set/${name}.js`
+const name = 'mdi-v7'
+const seedName = 'mdi-v6'
 const outputLocation = `../../src/components/icon-set/${name}.js`
+const seedLocation = `../../src/components/icon-set/${seedName}.js`
+const currentLocation = `../../src/components/icon-set/${name}.js`
 const oldIcons = {}
 const icons = []
-const blacklisted = []
+const blacklisted = [
+  'md',
+  'mdi-blank',
+  'mdi-18px.mdi-set, .mdi-18px.md',
+  'mdi-24px.mdi-set, .mdi-24px.md',
+  'mdi-36px.mdi-set, .mdi-36px.md',
+  'mdi-48px.mdi-set, .mdi-48px.md',
+  'mdi-dar',
+  'mdi-dark.mdi-inactiv',
+  'mdi-ligh',
+  'mdi-light.mdi-inactiv',
+  'mdi-rotate-4',
+  'mdi-rotate-9',
+  'mdi-rotate-13',
+  'mdi-rotate-18',
+  'mdi-rotate-22',
+  'mdi-rotate-27',
+  'mdi-rotate-31',
+  'mdi-flip-',
+  'mdi-spi',
+]
+
+const inputLocation = fs.existsSync(path.resolve(__dirname, currentLocation))
+  ? currentLocation
+  : seedLocation
 
 let fa = readFile(path.resolve(__dirname, inputLocation))
 fa = fa.split('\n')
@@ -26,7 +53,7 @@ fa.forEach((f) => {
   oldIcons[name] = { tags: Array(tags).join(',') }
 })
 
-const location = require.resolve('@quasar/extras/themify/themify.css')
+const location = require.resolve('@quasar/extras/mdi-v7/mdi-v7.css')
 const fileContents = readFile(location)
 
 fileContents.split('\n').forEach((line) => {
@@ -34,7 +61,7 @@ fileContents.split('\n').forEach((line) => {
   if (line.startsWith('.')) {
     const pos = line.indexOf(':before')
     if (pos > 0) {
-      line = line.slice(1, pos)
+      line = line.slice(1, pos - 1)
       if (blacklisted.includes(line) === false) {
         if (oldIcons[line]) {
           const tags = oldIcons[line].tags

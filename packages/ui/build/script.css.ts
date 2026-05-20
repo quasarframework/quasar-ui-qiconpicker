@@ -7,7 +7,7 @@ const rtl = require('rtlcss')
 const autoprefixer = require('autoprefixer')
 
 const buildConf = require('./config')
-const buildUtils = require('./utils')
+const buildUtils = require('./build.utils')
 
 const postCssCompiler = postcss([autoprefixer])
 const postCssRtlCompiler = postcss([rtl({})])

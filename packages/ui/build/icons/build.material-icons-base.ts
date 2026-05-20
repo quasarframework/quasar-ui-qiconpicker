@@ -1,6 +1,6 @@
 const path = require('path')
 const { green, blue, red } = require('kolorist')
-const { readFile, writeFile } = require('../utils')
+const { readFile, writeFile } = require('../build.utils')
 
 const themeMap = {
   baseline: '',

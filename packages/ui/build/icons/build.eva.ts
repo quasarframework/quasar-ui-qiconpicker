@@ -1,12 +1,17 @@
+/*
+  This generator reads existing output to get tags. Reads the
+  actual font info and then rebuilds the output with tags.
+*/
 const path = require('path')
 const { green, blue, red } = require('kolorist')
-const { readFile, writeFile } = require('../utils')
+const { readFile, writeFile } = require('../build.utils')
 
-const name = 'bootstrap-icons'
+const name = 'eva-icons'
 const inputLocation = `../../src/components/icon-set/${name}.js`
 const outputLocation = `../../src/components/icon-set/${name}.js`
 const oldIcons = {}
 const icons = []
+// no blacklisted items (yet)
 const blacklisted = []
 
 let fa = readFile(path.resolve(__dirname, inputLocation))
@@ -26,15 +31,15 @@ fa.forEach((f) => {
   oldIcons[name] = { tags: Array(tags).join(',') }
 })
 
-const location = require.resolve('@quasar/extras/bootstrap-icons/bootstrap-icons.css')
+const location = require.resolve('@quasar/extras/eva-icons/eva-icons.css')
 const fileContents = readFile(location)
 
 fileContents.split('\n').forEach((line) => {
   line = line.trim()
   if (line.startsWith('.')) {
-    const pos = line.indexOf('::before')
+    const pos = line.indexOf(':before')
     if (pos > 0) {
-      line = line.slice(1, pos)
+      line = line.slice(1, pos - 1)
       if (blacklisted.includes(line) === false) {
         if (oldIcons[line]) {
           const tags = oldIcons[line].tags
@@ -66,7 +71,6 @@ icons.forEach((icon, index) => {
   if (index !== 0) {
     output += ',\n'
   }
-
   output += `    ${icon}`
 })
 

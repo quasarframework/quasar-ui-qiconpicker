@@ -19,10 +19,7 @@ async function run() {
     icons = icons.map((icon, index) => ({ index, ...icon }))
     Object.keys(themeMap).forEach((theme) => {
       // give function clean copy of google icons
-      require('./build.material-icons-base.js').run(
-        JSON.parse(JSON.stringify(icons)),
-        themeMap[theme],
-      )
+      require('./build.material-icons-base').run(JSON.parse(JSON.stringify(icons)), themeMap[theme])
     })
   } catch (err) {
     console.log('err', err)

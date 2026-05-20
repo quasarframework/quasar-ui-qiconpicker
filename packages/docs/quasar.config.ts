@@ -5,6 +5,10 @@ import { defineConfig } from '@quasar/app-vite'
 import { viteExamplesPlugin, viteManualChunks } from '@md-plugins/vite-examples-plugin'
 import { viteMdPlugin, type MenuItem } from '@md-plugins/vite-md-plugin'
 
+// Avoid duplicate Vite plugin type identities when optional peer sets resolve Vite differently.
+const viteMdPluginFactory = viteMdPlugin as unknown as (options?: any) => any
+const viteExamplesPluginFactory = viteExamplesPlugin as unknown as (options?: any) => any
+
 export default defineConfig(async (ctx) => {
   const siteConfig = await import('./src/siteConfig')
   const { sidebar } = siteConfig.default
@@ -89,7 +93,7 @@ export default defineConfig(async (ctx) => {
 
       vitePlugins: [
         [
-          viteMdPlugin,
+          viteMdPluginFactory,
           {
             path: ctx.appPaths.srcDir + '/markdown',
             menu: sidebar as MenuItem[],
@@ -101,7 +105,7 @@ export default defineConfig(async (ctx) => {
           },
         ],
         [
-          viteExamplesPlugin,
+          viteExamplesPluginFactory,
           {
             isProd: ctx.prod,
             path: ctx.appPaths.srcDir + '/examples',

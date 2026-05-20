@@ -72,6 +72,7 @@ Use this file as the per-repo checklist for migrating QIconPicker to the current
 - [ ] Coverage baseline captured and expanded beyond the core render smoke tests
 - [ ] Runtime/composable logic audit completed with regression coverage for discovered bugs
 - [ ] External consumer / IDE verification completed for typing-sensitive fixes
+- [ ] Repo-wide JavaScript files audited and converted to TypeScript where practical; remaining `.js` files are intentional runtime, template, generated, or published-output compatibility files
 - [ ] API drift warnings/checks are enabled and clean
 
 ## Current Medium Priority
@@ -87,10 +88,13 @@ Use this file as the per-repo checklist for migrating QIconPicker to the current
 - [x] Package versions reviewed against latest published compatible releases
 - [x] Peer dependency check is clean
 - [x] Build system reviewed for parity with current shared Rolldown practices
+- [x] UI package build scripts converted to TypeScript, using QCalendar/QMarkdown as the template
+- [x] UI API/type generation does not depend on obsolete `quasar-json-api` / npm `zlib`; use the local TypeScript generator pattern where practical
+- [ ] Remaining `.js` files documented with a reason to keep them, or scheduled for TypeScript conversion
 - [ ] Shared/generated docs styles reviewed for deprecated Sass `@import`; migrate to `@use` where practical
 - [ ] CI policy decided for API drift warnings vs failures
 - [ ] Coverage plan defined
-- [ ] Large icon-set bundle strategy reviewed; adding current Quasar Extras sets makes this a likely release blocker unless icon sets are lazy loaded or externalized from the main bundle
+- [x] Large icon-set bundle strategy reviewed; built-in icon sets are lazy loaded for ESM/CJS/app builds while UMD remains intentionally single-file
 
 ## Initial Findings
 
@@ -112,8 +116,11 @@ Use this file as the per-repo checklist for migrating QIconPicker to the current
   - `pnpm peers check`
   - `pnpm build`
 - Build warnings:
-  - Static icon-set imports remove the browser-side dynamic `require()` problem, but make the main UI/docs bundles large.
-  - After aligning with `@quasar/extras@1.18.0`, `pnpm build` reports `dist/index.esm.js` at about `8.5 MB` and docs `e.QIconPicker` at about `5.6 MB`; lazy loading or externalizing icon sets should be handled before release.
+  - Built-in icon sets are lazy loaded for ESM/CJS/app builds. `pnpm build` now reports `dist/index.esm.js` at about `14 KB` and docs `e.QIconPicker` at about `249 KB`, down from about `8.5 MB` and `5.6 MB`.
+  - Individual icon-set chunks can still exceed the default chunk warning threshold; this is expected for large Quasar Extras families like Material Icons and Ionicons.
+  - The UMD bundle intentionally keeps icon-set data inlined for single-file CDN/script-tag compatibility.
+- Docs config note:
+  - qPress/md-plugin Vite factories are cast at the config boundary to avoid duplicate Vite plugin type identities when optional peer sets resolve Vite differently.
 - Local environment note:
   - A stale root `node_modules/quasar` directory from the old install caused Quasar CLI to report `Pkg quasar v2.12.0`; removing the stale artifact made the docs build report the installed `v2.19.3`.
 - Follow-up repos to apply the same pattern to:

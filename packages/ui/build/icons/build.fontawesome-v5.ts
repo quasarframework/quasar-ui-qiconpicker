@@ -11,8 +11,8 @@
 */
 const path = require('path')
 const { green, blue, red } = require('kolorist')
-const { readFile, writeFile } = require('../utils')
-const { validateTags } = require('../utils')
+const { readFile, writeFile } = require('../build.utils')
+const { validateTags } = require('../build.utils')
 
 const name = 'fontawesome-v5'
 const inputLocation = `../../src/components/icon-set/${name}.js`
