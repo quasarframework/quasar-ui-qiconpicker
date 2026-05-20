@@ -1,0 +1,46 @@
+{
+  "name": "docs",
+  "version": "3.0.0-beta.0",
+  "private": true,
+  "description": "QIconPicker Docs",
+  "author": "Jeff Galbraith <galbraith64@gmail.com>",
+  "type": "module",
+  "scripts": {
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "test": "echo \"No test specified\" && exit 0",
+    "dev": "quasar dev",
+    "build": "quasar build",
+    "postinstall": "quasar prepare --silent"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.18.0",
+    "markdown-it": "^14.1.1",
+    "markdown-it-container": "^4.0.0",
+    "pinia": "^3.0.4",
+    "quasar": "^2.19.3",
+    "vue": "^3.5.34",
+    "vue-router": "^5.0.7"
+  },
+  "devDependencies": {
+    "@md-plugins/quasar-app-extension-q-press": "0.1.0-beta.4",
+    "@md-plugins/shared": "0.1.0-beta.4",
+    "@md-plugins/vite-examples-plugin": "0.1.0-beta.4",
+    "@md-plugins/vite-md-plugin": "0.1.0-beta.4",
+    "@quasar/app-vite": "3.0.0-beta.18",
+    "@quasar/quasar-ui-qiconpicker": "workspace:*",
+    "@types/node": "^25.9.1",
+    "autoprefixer": "^10.4.21",
+    "sass-embedded": "^1.99.0",
+    "typescript": "~5.9.3",
+    "vite-plugin-checker": "^0.13.0",
+    "vue-tsc": "^3.3.0"
+  },
+  "engines": {
+    "node": ">=22.13",
+    "pnpm": ">=11.1.0"
+  },
+  "productName": "QIconPicker Docs"
+}

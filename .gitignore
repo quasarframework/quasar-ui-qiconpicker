@@ -2,6 +2,7 @@
 .thumbs.db
 node_modules
 dist
+coverage
 yarn.lock
 npm-debug.log*
 yarn-debug.log*

@@ -1,15 +1,36 @@
 {
   "name": "qiconpicker",
-  "version": "1.0.0",
-  "description": "QIconPicker mono-repo",
-  "workspaces": [
-    "ui",
-    "docs"
-  ],
-  "author": "Jeff Galbraith <jeff@quasar.dev>",
-  "license": "MIT",
+  "version": "3.0.0-beta.0",
   "private": true,
+  "description": "QIconPicker mono-repo",
+  "license": "MIT",
+  "author": "Jeff Galbraith <jeff@quasar.dev>",
   "scripts": {
-    "build": "yarn && cd ./ui && yarn build && cd ../docs && quasar build"
-  }
+    "clean": "rm -rf node_modules pnpm-lock.yaml packages/ui/node_modules packages/docs/node_modules packages/app-extension/node_modules packages/docs/.quasar packages/docs/dist",
+    "build": "pnpm run build:ui && pnpm run build:docs",
+    "build:ui": "cd packages/ui && pnpm build",
+    "build:docs": "cd packages/docs && pnpm build",
+    "ci:publish": "pnpm --filter @quasar/quasar-ui-qiconpicker publish --access public --publish-branch main && pnpm --filter @quasar/quasar-app-extension-qiconpicker publish --access public --publish-branch main",
+    "ci:publish:beta": "pnpm --filter @quasar/quasar-ui-qiconpicker publish --access public --publish-branch v3-beta --tag beta --no-git-checks && pnpm --filter @quasar/quasar-app-extension-qiconpicker publish --access public --publish-branch v3-beta --tag beta --no-git-checks",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "typecheck": "pnpm --filter @quasar/quasar-ui-qiconpicker typecheck",
+    "deep": "ncu --deep",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.7",
+    "oxfmt": "^0.51.0",
+    "oxlint": "^1.66.0",
+    "typescript": "~5.9.3",
+    "vitest": "^4.1.7"
+  },
+  "engines": {
+    "node": ">=22.13",
+    "pnpm": ">=11.1.0"
+  },
+  "packageManager": "pnpm@11.1.0"
 }

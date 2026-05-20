@@ -1,0 +1,26 @@
+/**
+ * Quasar App Extension index/runner script
+ * (runs on each dev/build)
+ *
+ * Docs: https://quasar.dev/app-extensions/development-guide/index-api
+ */
+
+import { defineIndexScript } from '@quasar/app-vite'
+
+function extendConf() {
+  return {
+    boot: ['~@quasar/quasar-app-extension-qiconpicker/src/boot/vite-register.js'],
+
+    css: ['~@quasar/quasar-ui-qiconpicker/src/index.scss'],
+  }
+}
+
+export default defineIndexScript((api) => {
+  api.compatibleWith('quasar', '^2.0.0')
+  api.compatibleWith('@quasar/app-vite', '>=3.0.0-beta.18')
+  api.compatibleWith('@quasar/extras', '^1.10.0')
+
+  api.registerDescribeApi('QIconPicker', '~@quasar/quasar-ui-qiconpicker/dist/api/QIconPicker.json')
+
+  api.extendQuasarConf(extendConf)
+})
