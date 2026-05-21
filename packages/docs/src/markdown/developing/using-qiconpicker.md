@@ -31,10 +31,6 @@ import QIconPickerApi from '@quasar/quasar-ui-qiconpicker/dist/api/QIconPicker.j
 
 <MarkdownExample title="CustomNavigation" file="CustomNavigation" no-github no-edit/>
 
-### Custom Search Metadata
-
-<MarkdownExample title="Custom Search Metadata" file="CustomSearchMetadata" no-github no-edit/>
-
 ### Font Awesome Selection
 
 <MarkdownExample title="Font Awesome Selection" file="FontAwesomeSelection" no-github no-edit/>
