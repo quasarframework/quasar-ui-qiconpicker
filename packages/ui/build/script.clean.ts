@@ -5,7 +5,7 @@ import { rimrafSync } from 'rimraf'
 const buildDir = dirname(fileURLToPath(import.meta.url))
 
 export function cleanDist(): void {
-  rimrafSync(resolve(buildDir, '../dist/*'))
+  rimrafSync(resolve(buildDir, '../dist'))
   console.log(' 💥 Cleaned build artifacts.')
 }
 
