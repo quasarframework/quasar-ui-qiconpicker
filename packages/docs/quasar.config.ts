@@ -33,7 +33,7 @@ export default defineConfig(async (ctx) => {
           tsConfig.compilerOptions ??= {}
           tsConfig.compilerOptions.paths ??= {}
           tsConfig.compilerOptions.paths['@quasar/quasar-ui-qiconpicker'] = [
-            './../../ui/src/index.js',
+            './../../ui/src/index.ts',
           ]
         },
       },
@@ -50,7 +50,7 @@ export default defineConfig(async (ctx) => {
           // Consume workspace source in docs so examples track local UI edits.
           {
             find: /^@quasar\/quasar-ui-qiconpicker$/,
-            replacement: ctx.appPaths.appDir + '/../ui/src/index.js',
+            replacement: ctx.appPaths.appDir + '/../ui/src/index.ts',
           },
         ]
 

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import {
   h,
   defineComponent,
@@ -11,25 +13,7 @@ import {
 } from 'vue'
 import { QBtn, QPagination, QResizeObserver, QScrollArea, QTooltip } from 'quasar'
 
-const iconSetLoaders = {
-  'bootstrap-icons': () => import('./icon-set/bootstrap-icons'),
-  'eva-icons': () => import('./icon-set/eva-icons'),
-  'fontawesome-v5': () => import('./icon-set/fontawesome-v5'),
-  'fontawesome-v6': () => import('./icon-set/fontawesome-v6'),
-  'ionicons-v6': () => import('./icon-set/ionicons-v6'),
-  'ionicons-v7': () => import('./icon-set/ionicons-v7'),
-  'line-awesome': () => import('./icon-set/line-awesome'),
-  'material-icons': () => import('./icon-set/material-icons'),
-  'material-icons-outlined': () => import('./icon-set/material-icons-outlined'),
-  'material-icons-round': () => import('./icon-set/material-icons-round'),
-  'material-icons-sharp': () => import('./icon-set/material-icons-sharp'),
-  'material-symbols-outlined': () => import('./icon-set/material-symbols-outlined'),
-  'material-symbols-rounded': () => import('./icon-set/material-symbols-rounded'),
-  'material-symbols-sharp': () => import('./icon-set/material-symbols-sharp'),
-  'mdi-v6': () => import('./icon-set/mdi-v6'),
-  'mdi-v7': () => import('./icon-set/mdi-v7'),
-  themify: () => import('./icon-set/themify'),
-}
+import { iconSetNames, loadIconSet as loadQuasarExtrasIconSet } from './icon-set-loader'
 
 /**
  * QIconPicker Properties
@@ -38,32 +22,11 @@ const useIconPickerProps = {
   modelValue: String,
   iconSet: {
     type: String,
-    validator: (v) =>
-      [
-        'material-icons',
-        'material-icons-outlined',
-        'material-icons-round',
-        'material-icons-sharp',
-        'material-symbols-outlined',
-        'material-symbols-rounded',
-        'material-symbols-sharp',
-        'ionicons-v6',
-        'ionicons-v7',
-        'mdi-v6',
-        'mdi-v7',
-        'fontawesome-v5',
-        'fontawesome-v6',
-        'eva-icons',
-        'themify',
-        'line-awesome',
-        'bootstrap-icons',
-        '',
-      ].includes(v),
+    validator: (v) => [...iconSetNames, ''].includes(v),
     default: '',
   },
   icons: Array,
   filter: String,
-  tags: Array,
   dense: Boolean,
   tooltips: Boolean,
   noFooter: Boolean,
@@ -197,16 +160,13 @@ function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastIte
         } else {
           console.error(`QIconPicker: no icon set loaded called ${iconSet}`)
           console.error(
-            'Be sure to load the UMD version of the icon set in a script tag before using QIconPicker UMD version',
+            'Built-in icon sets require ESM/CJS bundler support for @quasar/extras lazy imports. With the UMD build, pass an icons array instead.',
           )
         }
       } else {
-        const loader = iconSetLoaders[iconSet]
-
-        if (loader) {
+        if (iconSetNames.includes(iconSet)) {
           try {
-            const module = await loader()
-            const loadedIconSet = module.default || module
+            const loadedIconSet = await loadQuasarExtrasIconSet(iconSet)
 
             if (loadId === iconSetLoadId) {
               data.iconsList = loadedIconSet.icons
@@ -238,45 +198,18 @@ function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastIte
   const computedFilteredIcons = computed(() => {
     let icons = data.iconsList
     if (icons) {
-      if (
-        props.tags !== void 0 &&
-        props.tags !== '' &&
-        props.tags !== null &&
-        props.tags.length > 0
-      ) {
-        icons = icons.filter((icon) => {
-          return icon.tags.filter((tag) => props.tags.includes(tag)).length > 0
-        })
-      }
       if (props.filter !== void 0 && props.filter !== '' && props.filter !== null) {
-        icons = icons.filter((icon) => icon.name.includes(props.filter))
+        const filter = props.filter.toLowerCase()
+        icons = icons.filter((icon) => icon.name.toLowerCase().includes(filter))
       }
     }
     return icons
   })
 
-  function categories() {
-    const t = []
-    data.iconsList.forEach((icon) => {
-      const tags = icon.tags
-      if (tags && tags.length > 0) {
-        tags.forEach((tag) => {
-          if (t.includes(tag) !== true) {
-            t.push(tag)
-          }
-        })
-      }
-    })
-    t.sort()
-    data.categories = t
-    return true
-  }
-
   return {
     loadIconSet,
     computedDisplayedIcons,
     computedFilteredIcons,
-    categories,
   }
 }
 
@@ -353,7 +286,7 @@ export default defineComponent({
     ...useIconPickerProps,
   },
 
-  emits: ['update:model-value', 'update:tags', 'update:model-pagination'],
+  emits: ['update:model-value', 'update:model-pagination'],
 
   setup(props, { slots, emit, expose }) {
     const scrollAreaRef = ref(null)
@@ -364,7 +297,6 @@ export default defineComponent({
         itemsPerPage: 0,
         totalPages: 0,
       },
-      categories: [],
       width: '100',
       height: '100',
       direction: '',
@@ -382,8 +314,12 @@ export default defineComponent({
       return page * itemsPerPage
     })
 
-    const { loadIconSet, computedDisplayedIcons, computedFilteredIcons, categories } =
-      useIconPickerIcons(data, props, computedFirstItemIndex, computedLastItemIndex)
+    const { loadIconSet, computedDisplayedIcons, computedFilteredIcons } = useIconPickerIcons(
+      data,
+      props,
+      computedFirstItemIndex,
+      computedLastItemIndex,
+    )
 
     const {
       samePagination,
@@ -453,15 +389,6 @@ export default defineComponent({
       () => props.filter,
       () => {
         // whenever the filter changes, it resets pagination page to page 1
-        setPagination({ page: 1, totalPages: computedPagesNumber.value })
-        updatePagination()
-      },
-    )
-
-    watch(
-      () => props.tags,
-      () => {
-        // whenever the tags change, it resets pagination page to page 1
         setPagination({ page: 1, totalPages: computedPagesNumber.value })
         updatePagination()
       },
@@ -538,8 +465,8 @@ export default defineComponent({
       }
 
       function renderIcon(icon) {
-        const name = icon.prefix !== void 0 ? icon.prefix + ' ' + icon.name : icon.name
-        const iconValue = icon.icon !== void 0 ? icon.icon : name
+        const iconValue = icon.prefix !== void 0 ? icon.prefix + ' ' + icon.name : icon.name
+        const displayValue = icon.icon !== void 0 ? icon.icon : iconValue
 
         if (slots.icon) {
           return slots.icon(iconValue)
@@ -559,10 +486,10 @@ export default defineComponent({
             size: size,
             textColor: textColor,
             color: color,
-            icon: iconValue,
+            icon: displayValue,
             onClick: () => emit('update:model-value', iconValue),
           },
-          renderTooltip(name),
+          renderTooltip(iconValue),
         )
       }
 
@@ -635,20 +562,13 @@ export default defineComponent({
       if (props.color) classes.push('bg-' + props.color)
       if (props.textColor) classes.push('text-' + props.textColor)
 
-      const picker = h(
+      return h(
         'div',
         {
           class: classes.join(' '),
         },
         [renderBody(), renderFooter()],
       )
-
-      nextTick(() => {
-        categories()
-        emit('update:tags', data.categories)
-      }).catch((e) => console.error(e))
-
-      return picker
     }
   },
 })

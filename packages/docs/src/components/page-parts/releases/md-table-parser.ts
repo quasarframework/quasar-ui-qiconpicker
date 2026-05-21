@@ -1,5 +1,5 @@
-function getTable(rows) {
-  const header = rows[0]
+function getTable(rows: string[]): string {
+  const header = (rows[0] || '')
     .split('|')
     .filter((col) => col)
     .map((col) => `<th class="text-left">${col.trim()}</th>`)
@@ -28,9 +28,9 @@ function getTable(rows) {
   )
 }
 
-export default (raw) => {
+export default (raw: string): string => {
   let content = ''
-  let tableRows = []
+  let tableRows: string[] = []
 
   for (const row of raw.split('\n')) {
     if (row.indexOf('|') > -1) {

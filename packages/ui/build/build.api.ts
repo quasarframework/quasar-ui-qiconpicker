@@ -1,8 +1,30 @@
-const fs = require('fs')
-const path = require('path')
-const { createFolder, writeFile } = require('./build.utils')
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const rootDir = path.resolve(__dirname, '..')
+import { createFolder, writeFile } from './build.utils'
+
+interface ApiEntry {
+  desc?: string
+  type?: string
+  tsType?: string
+  values?: unknown[]
+}
+
+interface ComponentApi {
+  type?: string
+  props?: Record<string, ApiEntry>
+  methods?: Record<string, ApiEntry>
+  [key: string]: unknown
+}
+
+interface ComponentApiFile {
+  name: string
+  api: ComponentApi
+}
+
+const buildDir = path.dirname(fileURLToPath(import.meta.url))
+const rootDir = path.resolve(buildDir, '..')
 const srcDir = path.join(rootDir, 'src/components')
 const apiDir = path.join(rootDir, 'dist/api')
 const typesDir = path.join(rootDir, 'dist/types')
@@ -10,7 +32,7 @@ const sourceTypesFile = path.join(rootDir, 'types/types.d.ts')
 const distTypesFile = path.join(typesDir, 'types.d.ts')
 const distIndexFile = path.join(typesDir, 'index.d.ts')
 
-function pascalCase(value) {
+function pascalCase(value: string): string {
   return value
     .split(/[-_\s]+/)
     .filter(Boolean)
@@ -18,24 +40,26 @@ function pascalCase(value) {
     .join('')
 }
 
-function camelCase(value) {
+function camelCase(value: string): string {
   const name = pascalCase(value)
   return name.charAt(0).toLowerCase() + name.slice(1)
 }
 
-function getDescription(entry) {
+function getDescription(entry: ApiEntry): string {
   return typeof entry.desc === 'string' ? entry.desc.replace(/\*\//g, '* /') : ''
 }
 
-function getComment(entry, indent = '    ') {
+function getComment(entry: ApiEntry, indent = '    '): string {
   const desc = getDescription(entry)
 
-  if (!desc) return ''
+  if (!desc) {
+    return ''
+  }
 
   return `${indent}/**\n${indent} * ${desc.replace(/\n/g, `\n${indent} * `)}\n${indent} */\n`
 }
 
-function getType(entry) {
+function getType(entry: ApiEntry): string {
   if (entry.tsType) {
     return entry.tsType
   }
@@ -62,7 +86,7 @@ function getType(entry) {
   }
 }
 
-function getPropsTypes(api) {
+function getPropsTypes(api: ComponentApi): string {
   return Object.entries(api.props || {})
     .map(([name, entry]) => {
       const propName = camelCase(name)
@@ -72,22 +96,22 @@ function getPropsTypes(api) {
     .join('\n')
 }
 
-function getMethodsTypes(api) {
+function getMethodsTypes(api: ComponentApi): string {
   return Object.entries(api.methods || {})
     .map(([name, entry]) => `${getComment(entry)}    ${name} (): void`)
     .join('\n')
 }
 
-function getComponentTypes(name, api) {
+function getComponentTypes(name: string, api: ComponentApi): string {
   const parts = [getPropsTypes(api), getMethodsTypes(api)].filter(Boolean)
 
   return `export interface ${name} extends ComponentPublicInstance {\n${parts.join('\n')}\n}\n`
 }
 
-function normalizeApi(file) {
+function normalizeApi(file: string): ComponentApiFile {
   const name = path.basename(file, '.json')
   const source = path.join(srcDir, file)
-  const api = JSON.parse(fs.readFileSync(source, 'utf-8'))
+  const api = JSON.parse(fs.readFileSync(source, 'utf-8')) as ComponentApi
 
   return {
     name,
@@ -98,7 +122,7 @@ function normalizeApi(file) {
   }
 }
 
-function writeApiFiles(components) {
+function writeApiFiles(components: ComponentApiFile[]): Promise<string[]> {
   createFolder('dist/api')
 
   return Promise.all(
@@ -108,7 +132,7 @@ function writeApiFiles(components) {
   )
 }
 
-function getTypesFile(components) {
+function getTypesFile(components: ComponentApiFile[]): string {
   const typeImports = fs.existsSync(sourceTypesFile)
     ? `import { ${getSourceTypeNames()} } from './types'\n\n`
     : ''
@@ -137,11 +161,11 @@ export default plugin
 `
 }
 
-function getSourceTypeNames() {
+function getSourceTypeNames(): string {
   const content = fs.readFileSync(sourceTypesFile, 'utf-8')
-  const names = []
+  const names: string[] = []
   const exportRE = /^export\s+(?:type|interface)\s+([A-Za-z0-9_]+)/gm
-  let match
+  let match: RegExpExecArray | null
 
   while ((match = exportRE.exec(content)) !== null) {
     names.push(match[1])
@@ -150,7 +174,7 @@ function getSourceTypeNames() {
   return names.join(', ')
 }
 
-async function buildApi() {
+export async function buildApi(): Promise<void> {
   const files = fs
     .readdirSync(srcDir)
     .filter((file) => file.endsWith('.json'))
@@ -171,10 +195,8 @@ async function buildApi() {
   console.log(` 🧾 Generated ${components.length} API file${components.length === 1 ? '' : 's'}`)
 }
 
-module.exports.buildApi = buildApi
-
-if (require.main === module) {
-  buildApi().catch((err) => {
+if (import.meta.url === `file://${process.argv[1]}`) {
+  buildApi().catch((err: unknown) => {
     console.error(err)
     process.exit(1)
   })

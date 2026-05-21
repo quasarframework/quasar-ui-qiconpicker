@@ -2,8 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { QIconPicker, version } from '../src'
 import QIconPickerApi from '../src/components/QIconPicker.json'
-import ioniconsV7 from '../src/components/icon-set/ionicons-v7'
-import materialSymbolsOutlined from '../src/components/icon-set/material-symbols-outlined'
+import { loadIconSet } from '../src/components/icon-set-loader'
 
 describe('QIconPicker', () => {
   it('exports the component and package version', () => {
@@ -16,10 +15,11 @@ describe('QIconPicker', () => {
     expect(QIconPicker.emits).toContain('update:model-value')
   })
 
-  it('documents emitted tag updates with the runtime event name', () => {
-    expect(QIconPicker.emits).toContain('update:tags')
-    expect(QIconPickerApi.events).toHaveProperty('update:tags')
-    expect(QIconPickerApi.events).not.toHaveProperty('tags')
+  it('does not expose the removed tag/category API', () => {
+    expect(QIconPicker.props).not.toHaveProperty('tags')
+    expect(QIconPicker.emits).not.toContain('update:tags')
+    expect(QIconPickerApi.props).not.toHaveProperty('tags')
+    expect(QIconPickerApi.events).not.toHaveProperty('update:tags')
   })
 
   it('supports the current versioned icon-set families', () => {
@@ -27,18 +27,33 @@ describe('QIconPicker', () => {
 
     expect(validator('mdi-v6')).toBe(true)
     expect(validator('mdi-v7')).toBe(true)
-    expect(validator('ionicons-v6')).toBe(true)
     expect(validator('ionicons-v7')).toBe(true)
-    expect(validator('fontawesome-v5')).toBe(true)
+    expect(validator('ionicons-v8')).toBe(true)
     expect(validator('fontawesome-v6')).toBe(true)
+    expect(validator('fontawesome-v7')).toBe(true)
 
     expect(validator('mdi-v5')).toBe(false)
+    expect(validator('ionicons-v6')).toBe(false)
     expect(validator('ionicons-v4')).toBe(false)
+    expect(validator('fontawesome-v5')).toBe(false)
   })
 
-  it('generates SVG and ligature icon-set entries for newer Quasar extras', () => {
-    expect(ioniconsV7.icons[0]).toHaveProperty('icon')
-    expect(ioniconsV7.icons[0].name).toMatch(/^ion/)
+  it('loads icon-set entries from Quasar Extras on demand', async () => {
+    const [fontawesomeV7, ioniconsV8, materialSymbolsOutlined] = await Promise.all([
+      loadIconSet('fontawesome-v7'),
+      loadIconSet('ionicons-v8'),
+      loadIconSet('material-symbols-outlined'),
+    ])
+
+    expect(fontawesomeV7.icons[0]).toMatchObject({
+      name: 'fa-11ty',
+      prefix: 'fab',
+    })
+    expect(fontawesomeV7.icons[0]).toHaveProperty('icon')
+    expect(ioniconsV8.icons[0]).toHaveProperty('icon')
+    expect(ioniconsV8.icons[0].name).toMatch(/^ion/)
+    expect(materialSymbolsOutlined.icons[0]).toHaveProperty('icon')
     expect(materialSymbolsOutlined.icons[0].name).toMatch(/^sym_o_/)
+    expect(materialSymbolsOutlined.icons[0]).not.toHaveProperty('tags')
   })
 })

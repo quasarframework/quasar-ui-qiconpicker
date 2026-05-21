@@ -1,7 +1,7 @@
 <template>
   <section class="landing-page markdown-brand">
     <header class="hero">
-      <img src="/q-icon-picker.png" alt="QIconPicker Logo" class="hero-logo" />
+      <img src="/qiconpicker-logo.svg" alt="QIconPicker Logo" class="hero-logo" />
       <h1 class="hero-title">QIconPicker</h1>
 
       <div class="row justify-center">

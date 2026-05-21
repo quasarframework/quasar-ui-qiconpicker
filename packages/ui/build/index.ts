@@ -1,15 +1,25 @@
 process.env.NODE_ENV = 'production'
 
-const { spawn } = require('node:child_process')
-const { cpus } = require('node:os')
-const { resolve } = require('node:path')
-const { createFolder } = require('./build.utils')
-const { green, blue } = require('kolorist')
+import { spawn } from 'node:child_process'
+import { cpus } from 'node:os'
+import { createRequire } from 'node:module'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { blue, green } from 'kolorist'
 
-const rootDir = resolve(__dirname, '..')
+import { buildApi } from './build.api'
+import { createFolder } from './build.utils'
+import { cleanDist } from './script.clean'
+import { generateVersionFile } from './script.version'
+import { syncAppExt } from './script.app-ext'
+
+const nodeRequire = createRequire(import.meta.url)
+const { version } = nodeRequire('../package.json') as { version: string }
+const buildDir = dirname(fileURLToPath(import.meta.url))
+const rootDir = resolve(buildDir, '..')
 const parallel = cpus().length > 1
 
-function runScript(script) {
+function runScript(script: string): Promise<void> {
   return new Promise((resolve, reject) => {
     const child = spawn('pnpm', ['exec', 'tsx', script], {
       cwd: rootDir,
@@ -29,21 +39,19 @@ function runScript(script) {
   })
 }
 
-async function main() {
+async function main(): Promise<void> {
   console.log()
 
-  require('./script.app-ext').syncAppExt()
-  require('./script.clean')
+  syncAppExt()
+  cleanDist()
 
   console.log(
-    ` 📦 Building ${green('v' + require('../package.json').version)}...${parallel ? blue(' [multi-threaded]') : ''}\n`,
+    ` 📦 Building ${green('v' + version)}...${parallel ? blue(' [multi-threaded]') : ''}\n`,
   )
 
   createFolder('dist')
-
-  require('./script.version')
-
-  await require('./build.api').buildApi()
+  generateVersionFile()
+  await buildApi()
 
   const jobs = ['build/script.javascript.ts', 'build/script.css.ts']
 
@@ -57,7 +65,7 @@ async function main() {
   }
 }
 
-main().catch((err) => {
+main().catch((err: unknown) => {
   console.error(err)
   process.exit(1)
 })

@@ -37,12 +37,12 @@ QIconPicker is an icon picker for your Quasar application. It allows you to have
   - material-symbols-outlined
   - material-symbols-rounded
   - material-symbols-sharp
-  - ionicons-v6
   - ionicons-v7
+  - ionicons-v8
   - mdi-v6
   - mdi-v7
-  - fontawesome-v5
   - fontawesome-v6
+  - fontawesome-v7
   - line-awesome
   - eva-icons
   - themify

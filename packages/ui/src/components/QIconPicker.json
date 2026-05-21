@@ -12,7 +12,7 @@
     },
     "icon-set": {
       "type": "String",
-      "desc": "The name of a [Quasar Icon Set](https://quasar.dev/options/quasar-icon-sets)",
+      "desc": "The name of a [Quasar Icon Set](https://quasar.dev/options/quasar-icon-sets). Built-in sets are lazy loaded from `@quasar/extras`.",
       "category": "model",
       "values": [
         "material-icons",
@@ -22,23 +22,23 @@
         "material-symbols-outlined",
         "material-symbols-rounded",
         "material-symbols-sharp",
-        "ionicons-v6",
         "ionicons-v7",
+        "ionicons-v8",
         "mdi-v6",
         "mdi-v7",
-        "fontawesome-v5",
         "fontawesome-v6",
+        "fontawesome-v7",
         "line-awesome",
         "eva-icons",
         "themify",
         "bootstrap-icons"
       ],
-      "examples": ["icon-set=\"material-icons\"", "icon-set=\"fontawesome-v6\""]
+      "examples": ["icon-set=\"material-icons\"", "icon-set=\"fontawesome-v7\""]
     },
     "icons": {
       "type": "Array",
       "tsType": "IconNameArray",
-      "desc": "An array of objects containing icon information. The object must contain the key `name` with the value being the icon name (ie: `{ name: 'bolt' }`). _**Note:** the icons used must already be loaded by Quasar._",
+      "desc": "An array of objects containing icon information. The object must contain the key `name` with the value being the selected icon name. Use the optional `icon` key for SVG path data used for display, for example `{ name: 'bolt', icon: matBolt }`.",
       "category": "model",
       "examples": [":icons=\"[{ name: 'calendar-today' }, { name: 'bolt' }]\""]
     },
@@ -47,14 +47,6 @@
       "desc": "Icons will be filtered by the passed string",
       "category": "behavior",
       "examples": [":filter=\"myFilter\""]
-    },
-    "tags": {
-      "type": "Array",
-      "tsType": "StringArray",
-      "addedIn": "v1.0.7",
-      "desc": "An array of tags to be used to do filtering by category",
-      "category": "behavior",
-      "examples": [":tags=\"['accessibility']\"", ":tags=\"['media']\""]
     },
     "dense": {
       "type": "Boolean",
@@ -140,20 +132,16 @@
   "events": {
     "update:model-value": {
       "type": "String",
-      "desc": "`v-model`; Value from when the selection changes"
-    },
-    "update:tags": {
-      "type": "Array",
-      "desc": "Emitted with an array of categories (tags) for the selected icon set"
+      "desc": "`v-model`; Selected icon name, including the icon prefix when required"
     }
   },
   "slots": {
     "icon": {
-      "desc": "Slot for changing the display of the icon",
+      "desc": "Slot for changing the display of the icon.",
       "scope": {
         "name": {
           "type": "String",
-          "desc": "The name of the slotted icon",
+          "desc": "The selected icon name",
           "examples": [
             "bolt",
             "calendar",

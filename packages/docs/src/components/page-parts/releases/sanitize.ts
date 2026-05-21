@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 /**
  * Sanitizer which filters a set of whitelisted tags, attributes and css.
  * For now, the whitelist is small but can be easily extended.

@@ -210,8 +210,8 @@ const config: SiteConfig = {
   },
   logoConfig: {
     showLogo: true,
-    logoLight: '/q-icon-picker.png',
-    logoDark: '/q-icon-picker.png',
+    logoLight: '/qiconpicker-logo.svg',
+    logoDark: '/qiconpicker-logo.svg',
     logoAlt: 'QIconPicker Logo',
   },
   versionConfig: {

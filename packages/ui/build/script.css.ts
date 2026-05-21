@@ -1,14 +1,16 @@
 /* eslint-disable array-bracket-spacing */
-const path = require('path')
-const sass = require('sass-embedded')
-const postcss = require('postcss')
-const cssnano = require('cssnano')
-const rtl = require('rtlcss')
-const autoprefixer = require('autoprefixer')
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import autoprefixer from 'autoprefixer'
+import cssnano from 'cssnano'
+import postcss from 'postcss'
+import rtl from 'rtlcss'
+import * as sass from 'sass-embedded'
 
-const buildConf = require('./config')
-const buildUtils = require('./build.utils')
+import buildConf from './config'
+import * as buildUtils from './build.utils'
 
+const buildDir = path.dirname(fileURLToPath(import.meta.url))
 const postCssCompiler = postcss([autoprefixer])
 const postCssRtlCompiler = postcss([rtl({})])
 
@@ -26,48 +28,36 @@ const nano = postcss([
   }),
 ])
 
-generate('src/index.scss', 'dist/index').catch((e) => {
-  console.error(e)
+generate('src/index.scss', 'dist/index').catch((err: unknown) => {
+  console.error(err)
   process.exit(1)
 })
 
-/**
- * Helpers
- */
-
-function resolve(_path) {
-  return path.resolve(__dirname, '..', _path)
+function resolvePath(relativePath: string): string {
+  return path.resolve(buildDir, '..', relativePath)
 }
 
-function generate(src, dest) {
-  src = resolve(src)
-  dest = resolve(dest)
+async function generate(src: string, dest: string): Promise<void> {
+  const source = resolvePath(src)
+  const destination = resolvePath(dest)
 
-  return sass
-    .compileAsync(src, { loadPaths: ['node_modules'] })
-    .then((result) => result.css)
-    .then((code) => buildConf.banner + code)
-    .then((code) => postCssCompiler.process(code, { from: void 0 }))
-    .then((code) => {
-      code.warnings().forEach((warn) => {
-        console.warn(warn.toString())
-      })
-      return code.css
-    })
-    .then((code) =>
-      Promise.all([
-        generateUMD(dest, code),
-        // eslint-disable-next-line promise/no-nesting
-        postCssRtlCompiler
-          .process(code, { from: void 0 })
-          .then((code) => generateUMD(dest, code.css, '.rtl')),
-      ]),
-    )
+  const result = await sass.compileAsync(source, { loadPaths: ['node_modules'] })
+  let code = buildConf.banner + result.css
+  const prefixed = await postCssCompiler.process(code, { from: undefined })
+
+  prefixed.warnings().forEach((warn) => {
+    console.warn(warn.toString())
+  })
+
+  code = prefixed.css
+  const rtlCode = await postCssRtlCompiler.process(code, { from: undefined })
+
+  await Promise.all([generateUMD(destination, code), generateUMD(destination, rtlCode.css, '.rtl')])
 }
 
-function generateUMD(dest, code, ext = '') {
-  return buildUtils
-    .writeFile(`${dest}${ext}.css`, code, true)
-    .then((code) => nano.process(code, { from: void 0 }))
-    .then((code) => buildUtils.writeFile(`${dest}${ext}.min.css`, code.css, true))
+async function generateUMD(dest: string, code: string, ext = ''): Promise<void> {
+  const source = await buildUtils.writeFile(`${dest}${ext}.css`, code, true)
+  const minified = await nano.process(source, { from: undefined })
+
+  await buildUtils.writeFile(`${dest}${ext}.min.css`, minified.css, true)
 }

@@ -43,14 +43,14 @@
               </q-input>
               <q-icon-picker
                 v-model="value"
-                icon-set="material-icons"
+                :icons="icons"
                 :filter="filter"
                 v-model:model-pagination="pagination"
                 style="height: 220px"
               ></q-icon-picker>
             </div>
             <ul class="q-mb-lg">
-              <li>In /ui, run: "yarn build"</li>
+              <li>In /packages/ui, run: "pnpm build"</li>
               <li class="text-red">You need to build & refresh page on each change manually.</li>
               <li>Use self-closing tags only!</li>
               <li>Example: &lt;my-component&gt;&lt;/my-component&gt;</li>
@@ -65,7 +65,6 @@
     <script src="https://cdn.jsdelivr.net/npm/quasar@latest/dist/quasar.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quasar@latest/dist/icon-set/material-icons.umd.min.js"></script>
     <script src="dist/index.umd.js"></script>
-    <script src="dist/icon-set/material-icons.umd.js"></script>
 
     <script>
       new Vue({
@@ -76,6 +75,14 @@
             version: QIconPicker.version,
             value: '',
             filter: '',
+            icons: [
+              { name: 'home' },
+              { name: 'event' },
+              { name: 'search' },
+              { name: 'settings' },
+              { name: 'favorite' },
+              { name: 'check_circle' },
+            ],
             pagination: {
               itemsPerPage: 60,
               page: 0,

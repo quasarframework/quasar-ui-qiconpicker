@@ -74,22 +74,10 @@
     "build:app-ext": "tsx build/script.app-ext.ts",
     "typecheck": "pnpm build:api && tsc -p test-d/tsconfig.json --noEmit --pretty false",
     "test:types": "pnpm build && pnpm typecheck",
-    "release": "pnpm publish --tag beta",
-    "icons:mdi-v6": "tsx build/icons/build.mdi-v6.ts",
-    "icons:mdi-v7": "tsx build/icons/build.mdi-v7.ts",
-    "icons:ionicons-v6": "tsx build/icons/build.ionicons-v6.ts",
-    "icons:ionicons-v7": "tsx build/icons/build.ionicons-v7.ts",
-    "icons:eva": "tsx build/icons/build.eva.ts",
-    "icons:themify": "tsx build/icons/build.themify.ts",
-    "icons:bootstrap-icons": "tsx build/icons/build.bootstrap-icons.ts",
-    "icons:fontawesome": "tsx build/icons/build.fontawesome-v5.ts",
-    "icons:fontawesome-v6": "tsx build/icons/build.fontawesome-v6.ts",
-    "icons:material-symbols": "tsx build/icons/build.material-symbols.ts",
-    "icons:material": "tsx build/icons/build.google.material-icons.ts",
-    "icons:all": "tsx build/icons/build.all.ts"
+    "release": "pnpm publish --tag beta"
   },
   "devDependencies": {
-    "@quasar/extras": "^1.18.0",
+    "@quasar/extras": "1.18.0",
     "@types/node": "^25.9.1",
     "@types/rtlcss": "^3.5.4",
     "@types/uglify-js": "^3.17.5",
@@ -110,6 +98,9 @@
     "typescript": "~5.9.3",
     "uglify-js": "^3.19.3",
     "vue": "^3.5.34"
+  },
+  "peerDependencies": {
+    "@quasar/extras": ">=1.18.0"
   },
   "browserslist": [
     "last 4 Chrome versions",

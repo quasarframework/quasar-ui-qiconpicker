@@ -1,10 +1,24 @@
-const fs = require('fs')
-const path = require('path')
-const { rolldown } = require('rolldown')
-const uglify = require('uglify-js')
+/* global console process */
+process.env.BABEL_ENV = 'production'
 
-const buildConf = require('./config')
-const buildUtils = require('./build.utils')
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import {
+  rolldown,
+  type InputOptions,
+  type OutputChunk,
+  type OutputOptions,
+  type Plugin,
+} from 'rolldown'
+import * as ts from 'typescript'
+import uglify from 'uglify-js'
+
+import buildConf from './config'
+import * as buildUtils from './build.utils'
+
+const buildDir = path.dirname(fileURLToPath(import.meta.url))
+const rolldownPlugins: Plugin[] = [resolveTypeScriptSources(), transpileTypeScript()]
 
 const uglifyJsOptions = {
   compress: {
@@ -38,11 +52,26 @@ const uglifyJsOptions = {
   },
 }
 
-const builds = [
+interface RolldownConfig {
+  input: InputOptions
+  output: OutputOptions
+}
+
+interface BuildConfig {
+  rolldown: RolldownConfig
+  build: {
+    unminified?: boolean
+    minified?: boolean
+    minExt?: boolean
+    minOutput?: OutputOptions
+  }
+}
+
+const builds: BuildConfig[] = [
   {
     rolldown: {
       input: {
-        input: pathResolve('../src/index.esm.js'),
+        input: pathResolve('../src/index.esm.ts'),
       },
       output: {
         dir: pathResolve('../dist'),
@@ -63,7 +92,7 @@ const builds = [
   {
     rolldown: {
       input: {
-        input: pathResolve('../src/index.cjs.js'),
+        input: pathResolve('../src/index.cjs.ts'),
       },
       output: {
         dir: pathResolve('../dist'),
@@ -85,7 +114,7 @@ const builds = [
   {
     rolldown: {
       input: {
-        input: pathResolve('../src/index.umd.js'),
+        input: pathResolve('../src/index.umd.ts'),
       },
       output: {
         name: 'QIconPicker',
@@ -102,61 +131,71 @@ const builds = [
   },
 ]
 
-addAssets(builds, 'icon-set', 'iconSet')
-
 build(builds)
 
-/**
- * Helpers
- */
-
-function pathResolve(_path) {
-  return path.resolve(__dirname, _path)
+function pathResolve(relativePath: string): string {
+  return path.resolve(buildDir, relativePath)
 }
 
-function addAssets(builds, type, injectName) {
-  const files = fs.readdirSync(pathResolve(`../src/components/${type}`))
-  const outputDir = pathResolve(`../dist/${type}`)
+function resolveTypeScriptSources(): Plugin {
+  return {
+    name: 'resolve-typescript-sources',
+    resolveId(source, importer) {
+      if (importer === undefined || source.startsWith('.') === false) {
+        return null
+      }
 
-  fs.mkdirSync(outputDir, { recursive: true })
+      const sourcePath = path.resolve(path.dirname(importer), source)
+      const candidates = source.endsWith('.js')
+        ? [sourcePath.replace(/\.js$/, '.ts')]
+        : [sourcePath, `${sourcePath}.ts`, `${sourcePath}.js`]
 
-  files
-    .filter((file) => file.endsWith('.js'))
-    .forEach((file) => {
-      const name = file.slice(0, -3).replace(/-([a-z])/g, (g) => g[1].toUpperCase())
+      return candidates.find((candidate) => buildUtils.fileExists(candidate)) ?? null
+    },
+  }
+}
 
-      builds.push({
-        rolldown: {
-          input: {
-            input: pathResolve(`../src/components/${type}/${file}`),
-          },
-          output: {
-            file: addExtension(pathResolve(`../dist/${type}/${file}`), 'umd'),
-            format: 'umd',
-            name: `QIconPicker.${injectName}.${name}`,
-          },
-        },
-        build: {
-          minified: true,
+function transpileTypeScript(): Plugin {
+  return {
+    name: 'transpile-typescript',
+    transform(code, id) {
+      if (id.endsWith('.ts') === false) {
+        return null
+      }
+
+      const result = ts.transpileModule(code, {
+        fileName: id,
+        compilerOptions: {
+          esModuleInterop: true,
+          module: ts.ModuleKind.ESNext,
+          moduleResolution: ts.ModuleResolutionKind.Bundler,
+          target: ts.ScriptTarget.ES2020,
         },
       })
-    })
+
+      return {
+        code: result.outputText,
+        map: null,
+      }
+    },
+  }
 }
 
-async function build(builds) {
+async function build(builds: BuildConfig[]): Promise<void> {
   try {
     for (const config of builds.map(genConfig)) {
       await buildEntry(config)
     }
-  } catch (err) {
+  } catch (err: unknown) {
     buildUtils.logError(err)
     process.exit(1)
   }
 }
 
-function genConfig(opts) {
+function genConfig(opts: BuildConfig): BuildConfig {
   Object.assign(opts.rolldown.input, {
-    external: ['vue', 'quasar'],
+    external: (id: string) => id === 'vue' || id === 'quasar' || id.startsWith('@quasar/extras/'),
+    plugins: rolldownPlugins,
   })
 
   Object.assign(opts.rolldown.output, {
@@ -168,12 +207,12 @@ function genConfig(opts) {
   return opts
 }
 
-function addExtension(filename, ext = 'min') {
+function addExtension(filename: string, ext = 'min'): string {
   const insertionPoint = filename.lastIndexOf('.')
   return `${filename.slice(0, insertionPoint)}.${ext}${filename.slice(insertionPoint)}`
 }
 
-async function buildEntry(config) {
+async function buildEntry(config: BuildConfig): Promise<void> {
   const bundle = await rolldown(config.rolldown.input)
 
   if (config.build.unminified) {
@@ -190,7 +229,11 @@ async function buildEntry(config) {
   await bundle.close()
 }
 
-async function writeOutputFiles(output, outputOptions, minify = false) {
+async function writeOutputFiles(
+  output: OutputChunk[],
+  outputOptions: OutputOptions,
+  minify = false,
+): Promise<void> {
   await Promise.all(
     output.map((chunk) => {
       if (chunk.type !== 'chunk') {
@@ -217,7 +260,7 @@ async function writeOutputFiles(output, outputOptions, minify = false) {
   )
 }
 
-function getMinOutputOptions(config) {
+function getMinOutputOptions(config: BuildConfig): OutputOptions {
   const output = {
     ...config.rolldown.output,
   }
@@ -228,21 +271,23 @@ function getMinOutputOptions(config) {
 
   if (output.file) {
     output.file =
-      config.build.minExt === true ? addExtension(config.rolldown.output.file) : output.file
+      config.build.minExt === true
+        ? addExtension(config.rolldown.output.file as string)
+        : output.file
   }
 
   return output
 }
 
-function getOutputFile(chunk, outputOptions) {
+function getOutputFile(chunk: OutputChunk, outputOptions: OutputOptions): string {
   if (outputOptions.file) {
     return outputOptions.file
   }
 
-  return path.join(outputOptions.dir, chunk.fileName)
+  return path.join(outputOptions.dir as string, chunk.fileName)
 }
 
-function injectVueRequirement(code) {
+function injectVueRequirement(code: string): string {
   const index = code.indexOf(`Vue = Vue && Vue.hasOwnProperty('default') ? Vue['default'] : Vue`)
 
   if (index === -1) {

@@ -5,7 +5,6 @@ export type IconName = {
   name: string
   icon?: string
   prefix?: string
-  tags?: string[]
 }
 
 export type IconNameArray = IconName[]

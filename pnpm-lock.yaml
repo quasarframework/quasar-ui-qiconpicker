@@ -42,7 +42,7 @@ importers:
   packages/docs:
     dependencies:
       '@quasar/extras':
-        specifier: ^1.18.0
+        specifier: 1.18.0
         version: 1.18.0
       markdown-it:
         specifier: ^14.1.1
@@ -106,7 +106,7 @@ importers:
   packages/ui:
     devDependencies:
       '@quasar/extras':
-        specifier: ^1.18.0
+        specifier: 1.18.0
         version: 1.18.0
       '@types/node':
         specifier: ^25.9.1

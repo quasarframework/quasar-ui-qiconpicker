@@ -1,14 +1,30 @@
-const fs = require('fs'),
-  path = require('path'),
-  root = path.resolve(__dirname, '../../..'),
-  resolvePath = (file) => path.resolve(root, file),
-  { blue } = require('kolorist')
+import fs from 'node:fs'
+import { createRequire } from 'node:module'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { blue } from 'kolorist'
 
-const writeJson = function (file, json) {
-  return fs.writeFileSync(file, JSON.stringify(json, null, 2) + '\n', 'utf-8')
+const nodeRequire = createRequire(import.meta.url)
+const buildDir = path.dirname(fileURLToPath(import.meta.url))
+const root = path.resolve(buildDir, '../../..')
+const resolvePath = (file: string): string => path.resolve(root, file)
+
+type PackageJson = {
+  name: string
+  version: string
+  dependencies?: Record<string, string>
+  devDependencies?: Record<string, string>
 }
 
-function updateDependency(dependencies, name, version) {
+function writeJson(file: string, json: PackageJson): void {
+  fs.writeFileSync(file, JSON.stringify(json, null, 2) + '\n', 'utf-8')
+}
+
+function updateDependency(
+  dependencies: Record<string, string> | undefined,
+  name: string,
+  version: string,
+): boolean {
   if (dependencies?.[name]) {
     const currentSpecifier = dependencies[name]
     dependencies[name] = currentSpecifier.startsWith('workspace:') ? 'workspace:^' : '^' + version
@@ -18,26 +34,21 @@ function updateDependency(dependencies, name, version) {
   return false
 }
 
-module.exports.syncAppExt = function (both = true) {
-  // make sure this project has an app-extension project
+export function syncAppExt(both = true): void {
   const appExtDir = resolvePath('packages/app-extension')
   if (!fs.existsSync(appExtDir)) {
     return
   }
 
-  // make sure this project has an ui project
   const uiDir = resolvePath('packages/ui')
   if (!fs.existsSync(uiDir)) {
     return
   }
 
-  // get version and name from ui package.json
-  const { name, version } = require(resolvePath('packages/ui/package.json'))
-
-  // read app-ext package.json
+  const { name, version } = nodeRequire(resolvePath('packages/ui/package.json')) as PackageJson
   const appExtFile = resolvePath('packages/app-extension/package.json')
-  const appExtJson = require(appExtFile)
-  // sync version numbers
+  const appExtJson = nodeRequire(appExtFile) as PackageJson
+
   if (both === true) {
     appExtJson.version = version
   }

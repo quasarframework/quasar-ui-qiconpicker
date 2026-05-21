@@ -6,7 +6,7 @@ import type {
   PaginationProps,
 } from '@quasar/quasar-ui-qiconpicker'
 
-const icon: IconName = { name: 'home', tags: ['navigation'] }
+const icon: IconName = { name: 'home' }
 const svgIcon: IconName = { name: 'ionAccessibility', icon: 'M0 0h24v24H0z' }
 const icons: IconNameArray = [icon]
 const pagination: Pagination = { page: 1, rowsPerPage: 20 }

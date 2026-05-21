@@ -1,12 +1,10 @@
-const { resolve } = require('node:path')
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import open from 'open'
 
-async function openUmdTest() {
-  const { default: open } = await import('open')
+const buildDir = dirname(fileURLToPath(import.meta.url))
 
-  await open(resolve(__dirname, '../umd-test.html'))
-}
-
-openUmdTest().catch((err) => {
+open(resolve(buildDir, '../umd-test.html')).catch((err: unknown) => {
   console.error(err)
   process.exit(1)
 })
