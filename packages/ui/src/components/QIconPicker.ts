@@ -361,7 +361,7 @@ export default defineComponent({
           }).catch((e) => console.error(e))
           // scroll to top of QScrollArea, if applicable
           if (scrollAreaRef.value) {
-            scrollAreaRef.value.setScrollPosition(0)
+            scrollAreaRef.value.setScrollPosition('vertical', 0)
           }
         }
       },
@@ -380,7 +380,7 @@ export default defineComponent({
         }).catch((e) => console.error(e))
         // scroll to top of QScrollArea, if applicable
         if (scrollAreaRef.value) {
-          scrollAreaRef.value.setScrollPosition(0)
+          scrollAreaRef.value.setScrollPosition('vertical', 0)
         }
       },
     )

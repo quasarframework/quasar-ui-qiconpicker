@@ -15,6 +15,10 @@ import QIconPickerApi from '@quasar/quasar-ui-qiconpicker/dist/api/QIconPicker.j
 
 ## QIconPicker Examples
 
+### Built-in Icon Sets
+
+<MarkdownExample title="Built-in Icon Sets" file="BuiltInIconSets" no-github no-edit/>
+
 ### Color
 
 <MarkdownExample title="Color" file="Color" no-github no-edit/>
@@ -27,9 +31,25 @@ import QIconPickerApi from '@quasar/quasar-ui-qiconpicker/dist/api/QIconPicker.j
 
 <MarkdownExample title="CustomNavigation" file="CustomNavigation" no-github no-edit/>
 
+### Custom Search Metadata
+
+<MarkdownExample title="Custom Search Metadata" file="CustomSearchMetadata" no-github no-edit/>
+
+### Font Awesome Selection
+
+<MarkdownExample title="Font Awesome Selection" file="FontAwesomeSelection" no-github no-edit/>
+
+### Footer Slot
+
+<MarkdownExample title="Footer Slot" file="FooterSlot" no-github no-edit/>
+
 ### Filter
 
 <MarkdownExample title="Filter2" file="Filter2" no-github no-edit/>
+
+### No Footer
+
+<MarkdownExample title="No Footer" file="NoFooter" no-github no-edit/>
 
 ### Pagination
 
