@@ -1,6 +1,6 @@
 {
   "meta": {
-    "docsUrl": "https://quasarframework.github.io/quasar-ui-qiconpicker/docs"
+    "docsUrl": "https://qiconpicker.netlify.app/developing/using-qiconpicker"
   },
   "props": {
     "model-value": {

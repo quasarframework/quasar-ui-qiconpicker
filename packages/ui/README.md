@@ -2,7 +2,7 @@
 
 QIconPicker is a Quasar component that provides an icon picker for Vue and Quasar applications.
 
-[![npm](https://img.shields.io/npm/v/@quasar/quasar-ui-qiconpicker/next?label=@quasar/quasar-ui-qiconpicker)](https://www.npmjs.com/package/@quasar/quasar-ui-qiconpicker)
+[![npm](https://img.shields.io/npm/v/@quasar/quasar-ui-qiconpicker/beta?label=@quasar/quasar-ui-qiconpicker)](https://www.npmjs.com/package/@quasar/quasar-ui-qiconpicker)
 [![npm](https://img.shields.io/npm/dt/@quasar/quasar-ui-qiconpicker)](https://www.npmjs.com/package/@quasar/quasar-ui-qiconpicker)
 
 [![Discord](https://img.shields.io/badge/discord-join%20server-738ADB?style=for-the-badge&logo=discord&logoColor=738ADB)](https://chat.quasar.dev)

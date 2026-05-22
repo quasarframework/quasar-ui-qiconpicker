@@ -2,7 +2,7 @@
 
 The **QIconPicker App Extension** adds the [QIconPicker](../ui) component to a Quasar CLI Vite application. It registers the boot file and adds the QIconPicker stylesheet for you.
 
-[![npm](https://img.shields.io/npm/v/@quasar/quasar-app-extension-qiconpicker.svg?label=@quasar/quasar-app-extension-qiconpicker)](https://www.npmjs.com/package/@quasar/quasar-app-extension-qiconpicker)
+[![npm](https://img.shields.io/npm/v/@quasar/quasar-app-extension-qiconpicker/beta?label=@quasar/quasar-app-extension-qiconpicker)](https://www.npmjs.com/package/@quasar/quasar-app-extension-qiconpicker)
 [![npm](https://img.shields.io/npm/dt/@quasar/quasar-app-extension-qiconpicker.svg)](https://www.npmjs.com/package/@quasar/quasar-app-extension-qiconpicker)
 
 [![Discord](https://img.shields.io/badge/discord-join%20server-738ADB?style=for-the-badge&logo=discord&logoColor=738ADB)](https://chat.quasar.dev)
