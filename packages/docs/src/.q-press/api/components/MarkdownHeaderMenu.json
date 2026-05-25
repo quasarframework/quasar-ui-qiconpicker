@@ -7,13 +7,18 @@
     "elements": {
       "type": "Array",
       "desc": "Array of menu elements to display in the header menu",
-      "examples": ["[{ name: 'Home', path: '/' }, { name: 'Docs', path: '/docs' }]"],
+      "examples": [
+        "[{ name: 'Home', path: '/' }, { name: 'Docs', path: '/docs' }]"
+      ],
       "category": "content"
     },
     "mqPrefix": {
       "type": "String",
       "desc": "Prefix for media query classes",
-      "examples": ["'md'", "'lg'"],
+      "examples": [
+        "'md'",
+        "'lg'"
+      ],
       "category": "style"
     }
   },

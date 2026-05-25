@@ -7,7 +7,10 @@
     "heightHint": {
       "type": "Number",
       "desc": "Height hint for the header",
-      "examples": [128, 64],
+      "examples": [
+        128,
+        64
+      ],
       "category": "style"
     }
   },

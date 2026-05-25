@@ -7,7 +7,11 @@
     "lang": {
       "type": "String",
       "desc": "Language of the code block to copy",
-      "examples": ["'js'", "'html'", "'css'"],
+      "examples": [
+        "'js'",
+        "'html'",
+        "'css'"
+      ],
       "category": "content"
     }
   },

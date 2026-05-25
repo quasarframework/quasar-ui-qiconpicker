@@ -10,7 +10,7 @@ Use this file as the per-repo checklist for migrating QIconPicker to the current
 - Branch: `v3-beta`
 - Target version: `3.0.0-beta.0`
 - Base branch: `origin/main`
-- Target `@quasar/app-vite` version verified as published: `3.0.0-beta.18`
+- Target `@quasar/app-vite` version verified as published: `3.0.0-beta.27`
 
 ## Completed
 

@@ -1,10 +1,11 @@
-@use "sass:math";
+@use 'sass:math';
+@use './fonts.scss';
 
-@import "./fonts.scss";
-@import "./prism-theme.scss";
+// Keep this import so Prism shares the selected qPress theme variables.
+@import './prism-theme.scss';
 
 .material-icons {
-  font-family: "Material Icons";
+  font-family: 'Material Icons';
   font-weight: 400;
   font-style: normal;
   line-height: 1;
@@ -13,7 +14,7 @@
   white-space: nowrap;
   word-wrap: normal;
   direction: ltr;
-  font-feature-settings: "liga";
+  font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
 
@@ -203,7 +204,7 @@ ul {
     cursor: pointer;
 
     &:after {
-      content: " #";
+      content: ' #';
       opacity: 0;
     }
     &:hover:after {
@@ -236,7 +237,7 @@ ul {
   font-size: 1.4em !important;
   font-weight: 500;
   &:before {
-    content: "» ";
+    content: '» ';
     vertical-align: text-top;
   }
 }
@@ -245,7 +246,7 @@ ul {
   font-size: 1em !important;
   font-weight: 500;
   &:before {
-    content: "»» ";
+    content: '»» ';
     vertical-align: text-top;
   }
 }
@@ -254,7 +255,7 @@ ul {
   font-size: 1em !important;
   font-weight: 400;
   &:before {
-    content: "»»» ";
+    content: '»»» ';
     vertical-align: text-top;
   }
 }
@@ -327,33 +328,30 @@ body.q-scroll--lock .q-page > .q-scroll--anchor {
   overflow-anchor: auto;
 }
 
-// Makes scrollbars look better for header drop-downs and search results.
-.markdown-header-menu,
-.markdown-search__results {
-  &::-webkit-scrollbar {
-    height: 12px;
-    width: 14px;
-    background: transparent;
-    z-index: 12;
-    overflow: visible;
-  }
+// makes the scroll bar look better for the drop-down menus in the header
+::-webkit-scrollbar {
+  height: 12px;
+  width: 14px;
+  background: transparent;
+  z-index: 12;
+  overflow: visible;
+}
 
-  &::-webkit-scrollbar-thumb {
-    width: 10px;
-    background-color: $brand-primary;
-    border-radius: 10px;
-    z-index: 12;
-    border: 4px solid rgba(0, 0, 0, 0);
-    background-clip: padding-box;
-    transition: background-color $header-quick-transition;
-    margin: 4px;
-    min-height: 32px;
-    min-width: 32px;
-  }
+::-webkit-scrollbar-thumb {
+  width: 10px;
+  background-color: $brand-primary;
+  border-radius: 10px;
+  z-index: 12;
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  transition: background-color $header-quick-transition;
+  margin: 4px;
+  min-height: 32px;
+  min-width: 32px;
+}
 
-  &::-webkit-scrollbar-thumb:hover {
-    background: $brand-primary;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: $brand-primary;
 }
 
 .shadow-bottom {
@@ -522,9 +520,9 @@ body.q-scroll--lock .q-page > .q-scroll--anchor {
 }
 
 $additional-colors: (
-  "brand-primary" $brand-primary,
-  "brand-secondary" $brand-secondary,
-  "brand-accent" $brand-accent
+  'brand-primary' $brand-primary,
+  'brand-secondary' $brand-secondary,
+  'brand-accent' $brand-accent
 );
 @each $color-name, $color in $additional-colors {
   :root {
@@ -665,7 +663,7 @@ body.body--dark {
   letter-spacing: $letter-spacing-brand;
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 100%;
     left: 0;

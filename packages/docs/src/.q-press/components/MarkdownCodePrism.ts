@@ -1,8 +1,8 @@
-import Prism from "prismjs";
-import { h, computed, defineComponent, type PropType } from "vue";
+import Prism from 'prismjs'
+import { h, computed, defineComponent, type PropType } from 'vue'
 
 export default defineComponent({
-  name: "MarkdownCodePrism",
+  name: 'MarkdownCodePrism',
 
   props: {
     code: {
@@ -18,19 +18,19 @@ export default defineComponent({
   setup(props) {
     const html = computed(() => {
       if (!props.code || !props.lang) {
-        return "";
+        return ''
       }
 
-      return Prism.highlight(props.code, Prism.languages[props.lang] as Prism.Grammar, props.lang);
-    });
+      return Prism.highlight(props.code, Prism.languages[props.lang] as Prism.Grammar, props.lang)
+    })
 
     return () =>
       h(
-        "pre",
+        'pre',
         {
           class: `markdown-code language-${props.lang}`,
         },
-        [h("code", { innerHTML: html.value })],
-      );
+        [h('code', { innerHTML: html.value })],
+      )
   },
-});
+})

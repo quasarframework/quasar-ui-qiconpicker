@@ -7,7 +7,10 @@
     "to": {
       "type": "String",
       "desc": "The target URL or path for the link",
-      "examples": ["/home", "https://example.com"],
+      "examples": [
+        "/home",
+        "https://example.com"
+      ],
       "required": true,
       "category": "navigation"
     },

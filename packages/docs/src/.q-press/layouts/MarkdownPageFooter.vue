@@ -83,13 +83,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import siteConfig from "../../siteConfig";
-import type { SiteMenuItem } from "../../siteConfig";
+import { computed } from 'vue'
+import siteConfig from '../../siteConfig'
+import type { SiteMenuItem } from '../../siteConfig'
 
 const isPrivacyLocal = computed(() => {
-  return siteConfig?.privacy?.link?.startsWith("/") || siteConfig?.privacy?.link?.startsWith(".");
-});
+  return siteConfig?.privacy?.link?.startsWith('/') || siteConfig?.privacy?.link?.startsWith('.')
+})
 
 /**
  * Loop through the menus and extract all menu items therein, including children to a flat array of menu items
@@ -97,10 +97,10 @@ const isPrivacyLocal = computed(() => {
  * @return {*[]} An array of flattened menu items (no more children, they move up to the same level as others)
  */
 function getMenu(path: string): SiteMenuItem[] {
-  const children: SiteMenuItem[] = [];
+  const children: SiteMenuItem[] = []
   const menuItem: SiteMenuItem | undefined = siteConfig.sidebar.find(
     (item) => item.path === path,
-  ) as SiteMenuItem;
+  ) as SiteMenuItem
 
   if (menuItem !== void 0 && menuItem.children) {
     for (const item of menuItem.children) {
@@ -111,22 +111,22 @@ function getMenu(path: string): SiteMenuItem[] {
           external: item.external,
           image: item.image ?? void 0,
           maxWidth: item.maxWidth ?? void 0,
-        } as SiteMenuItem);
+        } as SiteMenuItem)
       }
     }
   }
 
-  return children;
+  return children
 }
 
 const links = siteConfig.links.footerLinks.flatMap((nav) => ({
   name: nav.name,
   children: [...(nav.children || []), ...((nav.extract !== void 0 && getMenu(nav.extract)) || [])],
-}));
+}))
 
 const props = defineProps({
   fullscreen: Boolean,
-});
+})
 </script>
 
 <style lang="scss">
@@ -144,6 +144,12 @@ const props = defineProps({
   .markdown-layout__item,
   &__title {
     font-size: ($font-size - 2px);
+  }
+
+  &__image {
+    display: block;
+    height: auto;
+    width: 100%;
   }
 
   &__nav {
@@ -181,12 +187,6 @@ const props = defineProps({
 
   &__copyright {
     font-size: ($font-size - 2px);
-  }
-
-  &__image {
-    display: block;
-    height: auto;
-    width: 100%;
   }
 }
 

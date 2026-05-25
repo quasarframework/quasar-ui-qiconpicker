@@ -1,5 +1,5 @@
-import { Notify } from "quasar";
-import { slugify } from "@md-plugins/shared";
+import { Notify } from 'quasar'
+import { slugify } from '@md-plugins/shared'
 
 /**
  * Fallback function to copy text to clipboard when the Clipboard API is not available.
@@ -10,22 +10,22 @@ import { slugify } from "@md-plugins/shared";
  * @returns A boolean indicating whether the copy operation was successful (true) or not (false).
  */
 function copyToClipboardFallback(text: string): boolean {
-  const textArea = document.createElement("textarea");
-  textArea.value = text;
-  textArea.style.position = "fixed"; // avoid scrolling to bottom
-  document.body.appendChild(textArea);
-  textArea.focus();
-  textArea.select();
+  const textArea = document.createElement('textarea')
+  textArea.value = text
+  textArea.style.position = 'fixed' // avoid scrolling to bottom
+  document.body.appendChild(textArea)
+  textArea.focus()
+  textArea.select()
 
-  let res = false;
+  let res = false
   try {
-    res = document.execCommand("copy");
+    res = document.execCommand('copy')
   } catch (err) {
-    console.error("Unable to copy to clipboard", err);
+    console.error('Unable to copy to clipboard', err)
   } finally {
-    document.body.removeChild(textArea);
+    document.body.removeChild(textArea)
   }
-  return res;
+  return res
 }
 
 /**
@@ -40,22 +40,22 @@ function copyToClipboardFallback(text: string): boolean {
 export async function copyToClipboard(text: string): Promise<void> {
   if (navigator.clipboard) {
     try {
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(text)
     } catch (err) {
-      console.error("Failed to copy text to clipboard using Clipboard API", err);
-      throw err;
+      console.error('Failed to copy text to clipboard using Clipboard API', err)
+      throw err
     }
   } else {
     return new Promise((resolve, reject) => {
-      const res = copyToClipboardFallback(text);
+      const res = copyToClipboardFallback(text)
       if (res) {
-        resolve();
+        resolve()
       } else {
-        const error = new Error("Failed to copy text to clipboard using fallback method");
-        console.error(error);
-        reject(error);
+        const error = new Error('Failed to copy text to clipboard using fallback method')
+        console.error(error)
+        reject(error)
       }
-    });
+    })
   }
 }
 
@@ -73,33 +73,33 @@ export async function copyToClipboard(text: string): Promise<void> {
  * @returns void This function doesn't return a value.
  */
 export function copyHeading(id: string): void {
-  const text = `${location.origin}${location.pathname}#${id}`;
-  const el = document.getElementById(id);
+  const text = `${location.origin}${location.pathname}#${id}`
+  const el = document.getElementById(id)
 
   if (el) {
-    el.id = ""; // Temporarily clear the ID to avoid jumping
+    el.id = '' // Temporarily clear the ID to avoid jumping
   }
 
-  if ("replaceState" in history) {
-    history.replaceState(history.state, "", `${location.pathname}#${id}`);
+  if ('replaceState' in history) {
+    history.replaceState(history.state, '', `${location.pathname}#${id}`)
   } else {
-    location.hash = `#${id}`;
+    location.hash = `#${id}`
   }
 
   if (el) {
     setTimeout(() => {
-      el.id = id; // Restore the ID
-    }, 300);
+      el.id = id // Restore the ID
+    }, 300)
   }
 
-  copyToClipboard(text);
+  copyToClipboard(text)
 
   Notify.create({
-    message: "Anchor has been copied to clipboard.",
-    position: "top",
-    actions: [{ icon: "cancel", color: "white", dense: true, round: true }],
+    message: 'Anchor has been copied to clipboard.',
+    position: 'top',
+    actions: [{ icon: 'cancel', color: 'white', dense: true, round: true }],
     timeout: 2000,
-  });
+  })
 }
 
-export { slugify };
+export { slugify }

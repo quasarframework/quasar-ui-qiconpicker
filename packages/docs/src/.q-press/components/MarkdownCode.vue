@@ -6,10 +6,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed } from 'vue'
 
-import MarkdownCodePrism from "./MarkdownCodePrism";
-import MarkdownCopyButton from "./MarkdownCopyButton.vue";
+import MarkdownCodePrism from './MarkdownCodePrism'
+import MarkdownCopyButton from './MarkdownCopyButton.vue'
 
 const props = defineProps({
   code: {
@@ -23,9 +23,9 @@ const props = defineProps({
 
   lang: {
     type: String,
-    default: "js",
+    default: 'js',
   },
-});
+})
 
-const style = computed(() => (props.maxHeight !== void 0 ? { maxHeight: props.maxHeight } : null));
+const style = computed(() => (props.maxHeight !== void 0 ? { maxHeight: props.maxHeight } : null))
 </script>

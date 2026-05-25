@@ -7,13 +7,17 @@
     "pageClass": {
       "type": "String",
       "desc": "CSS class to apply to the q-page component",
-      "examples": ["'custom-page-class'"],
+      "examples": [
+        "'custom-page-class'"
+      ],
       "category": "style"
     },
     "pageContentClass": {
       "type": "String",
       "desc": "CSS class to apply to the page content container",
-      "examples": ["'custom-page-content-class'"],
+      "examples": [
+        "'custom-page-content-class'"
+      ],
       "category": "style"
     },
     "isFullscreen": {

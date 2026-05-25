@@ -7,7 +7,10 @@
     "title": {
       "type": "String",
       "desc": "Title of the example",
-      "examples": ["'Example 1'", "'Sample Code'"],
+      "examples": [
+        "'Example 1'",
+        "'Sample Code'"
+      ],
       "category": "content"
     },
     "noGithub": {

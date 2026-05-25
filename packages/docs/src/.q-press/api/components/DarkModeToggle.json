@@ -7,14 +7,18 @@
     "darkIcon": {
       "type": "String",
       "desc": "Icon name for dark mode",
-      "examples": ["mdiMoonWaningCrescent"],
+      "examples": [
+        "mdiMoonWaningCrescent"
+      ],
       "default": "mdiMoonWaningCrescent",
       "category": "content"
     },
     "lightIcon": {
       "type": "String",
       "desc": "Icon name for light mode",
-      "examples": ["mdiWhiteBalanceSunny"],
+      "examples": [
+        "mdiWhiteBalanceSunny"
+      ],
       "default": "mdiWhiteBalanceSunny",
       "category": "content"
     }

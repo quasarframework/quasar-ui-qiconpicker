@@ -93,18 +93,18 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, markRaw, ref, reactive, onMounted } from "vue";
-import { openURL } from "quasar";
+import { computed, inject, markRaw, ref, reactive, onMounted } from 'vue'
+import { openURL } from 'quasar'
 
-import { fabGithub, fabCodepen } from "@quasar/extras/fontawesome-v6";
+import { fabGithub, fabCodepen } from '@quasar/extras/fontawesome-v6'
 // import { mdiCompare } from '@quasar/extras/mdi-v7'
 
-import MarkdownCode from "./MarkdownCode.vue";
-import MarkdownCodepen from "./MarkdownCodepen.vue";
-import MarkdownCardTitle from "./MarkdownCardTitle.vue";
+import MarkdownCode from './MarkdownCode.vue'
+import MarkdownCodepen from './MarkdownCodepen.vue'
+import MarkdownCardTitle from './MarkdownCardTitle.vue'
 // import { useDark } from '../composables/dark'
 
-import siteConfig from "../../siteConfig";
+import siteConfig from '../../siteConfig'
 
 const props = defineProps({
   title: {
@@ -119,21 +119,21 @@ const props = defineProps({
   scrollable: Boolean,
   overflow: Boolean,
   noGithub: Boolean, // no GitHub link
-});
+})
 
-const examples = inject("_markdown_examples_");
+const examples = inject('_markdown_examples_')
 
 // const dark = useDark()
-const codepenRef = ref(null);
-const isBusy = ref(true);
+const codepenRef = ref(null)
+const isBusy = ref(true)
 
-const component = ref(null);
+const component = ref(null)
 const def = reactive({
   tabs: [],
   parts: {},
-});
-const currentTab = ref("Template");
-const expanded = ref(false);
+})
+const currentTab = ref('Template')
+const expanded = ref(false)
 
 /**
  * A computed property that returns the CSS class for the component.
@@ -141,11 +141,11 @@ const expanded = ref(false);
  */
 const componentClass = computed(() => {
   return props.scrollable === true
-    ? "markdown-example__content--scrollable scroll-y"
+    ? 'markdown-example__content--scrollable scroll-y'
     : props.overflow === true
-      ? "overflow-auto"
-      : "";
-});
+      ? 'overflow-auto'
+      : ''
+})
 
 /**
  * Parses a given template and applies it to the target.
@@ -156,10 +156,10 @@ const componentClass = computed(() => {
  */
 function parseTemplate(target, template) {
   const string = `(<${target}(.*)?>[\\w\\W]*<\\/${target}>)`,
-    regex = new RegExp(string, "g"),
-    parsed = regex.exec(template) || [];
+    regex = new RegExp(string, 'g'),
+    parsed = regex.exec(template) || []
 
-  return parsed[1] || "";
+  return parsed[1] || ''
 }
 
 /**
@@ -170,51 +170,51 @@ function parseTemplate(target, template) {
  */
 function parseComponent(comp) {
   def.parts = {
-    Template: parseTemplate("template", comp),
-    Script: parseTemplate("script", comp),
-    Style: parseTemplate("style", comp),
-  };
-
-  const tabs = ["Template", "Script", "Style"].filter((type) => def.parts[type]);
-
-  if (tabs.length > 1) {
-    def.parts.All = comp;
-    tabs.push("All");
+    Template: parseTemplate('template', comp),
+    Script: parseTemplate('script', comp),
+    Style: parseTemplate('style', comp),
   }
 
-  def.tabs = tabs;
+  const tabs = ['Template', 'Script', 'Style'].filter((type) => def.parts[type])
+
+  if (tabs.length > 1) {
+    def.parts.All = comp
+    tabs.push('All')
+  }
+
+  def.tabs = tabs
 }
 
 function openGitHub() {
-  openURL(`${siteConfig.githubEditRootSrc}/examples/${examples.name}/${props.file}.vue`);
+  openURL(`${siteConfig.githubEditRootSrc}/examples/${examples.name}/${props.file}.vue`)
 }
 
 function openCodepen() {
-  codepenRef.value.open(def.parts);
+  codepenRef.value.open(def.parts)
 }
 
 function toggleExpand() {
-  expanded.value = expanded.value === false;
+  expanded.value = expanded.value === false
 }
 
 if (import.meta.env.QUASAR_CLIENT) {
   onMounted(() => {
     examples.list.then((list) => {
       component.value = markRaw(
-        import.meta.env.DEV
+        import.meta.env.QUASAR_DEV
           ? list.code[`/src/examples/${examples.name}/${props.file}.vue`].default
           : list[props.file],
-      );
+      )
 
       parseComponent(
-        import.meta.env.DEV
+        import.meta.env.QUASAR_DEV
           ? list.source[`/src/examples/${examples.name}/${props.file}.vue`]
           : list[`Raw${props.file}`],
-      );
+      )
 
-      isBusy.value = false;
-    });
-  });
+      isBusy.value = false
+    })
+  })
 }
 </script>
 

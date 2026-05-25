@@ -12,7 +12,9 @@
     "links": {
       "type": "Array",
       "desc": "Array of link objects to display in the footer",
-      "examples": ["[{ name: 'Home', path: '/' }, { name: 'Docs', path: '/docs' }]"],
+      "examples": [
+        "[{ name: 'Home', path: '/' }, { name: 'Docs', path: '/docs' }]"
+      ],
       "category": "content"
     }
   }

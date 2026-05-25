@@ -12,7 +12,9 @@
     "options": {
       "type": "String",
       "desc": "JSON string containing the CodePen options",
-      "examples": ["'{\"title\":\"My Pen\",\"html\":\"<div>Hello World</div>\"}'"],
+      "examples": [
+        "'{\"title\":\"My Pen\",\"html\":\"<div>Hello World</div>\"}'"
+      ],
       "category": "content"
     }
   }

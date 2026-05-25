@@ -7,7 +7,9 @@
     "menu": {
       "type": "Array",
       "desc": "Array of menu entries to display as icon links in the header",
-      "examples": ["[{ icon: 'home', path: '/' }, { icon: 'info', path: '/about' }]"],
+      "examples": [
+        "[{ icon: 'home', path: '/' }, { icon: 'info', path: '/about' }]"
+      ],
       "category": "content"
     }
   }

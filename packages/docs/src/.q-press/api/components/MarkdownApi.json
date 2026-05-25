@@ -7,13 +7,18 @@
     "nameBanner": {
       "type": "String",
       "desc": "Title to display in the banner",
-      "examples": ["'API Documentation'", "'Component API'"],
+      "examples": [
+        "'API Documentation'",
+        "'Component API'"
+      ],
       "category": "content"
     },
     "pageLink": {
       "type": "String",
       "desc": "URL for the page link",
-      "examples": ["'https://github.com/user/repo/edit/main/docs/page.md'"],
+      "examples": [
+        "'https://github.com/user/repo/edit/main/docs/page.md'"
+      ],
       "category": "navigation"
     }
   },

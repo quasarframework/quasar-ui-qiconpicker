@@ -7,20 +7,30 @@
     "code": {
       "type": "String",
       "desc": "The code to display",
-      "examples": ["'const a = 1;'", "'<div>Hello World</div>'"],
+      "examples": [
+        "'const a = 1;'",
+        "'<div>Hello World</div>'"
+      ],
       "category": "content"
     },
     "maxHeight": {
       "type": "String",
       "desc": "Maximum height for the code block",
-      "examples": ["'200px'", "'50vh'"],
+      "examples": [
+        "'200px'",
+        "'50vh'"
+      ],
       "category": "style"
     },
     "lang": {
       "type": "String",
       "desc": "Language of the code for syntax highlighting",
       "default": "js",
-      "examples": ["'js'", "'html'", "'css'"],
+      "examples": [
+        "'js'",
+        "'html'",
+        "'css'"
+      ],
       "category": "content"
     }
   }

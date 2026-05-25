@@ -7,7 +7,9 @@
     "nodes": {
       "type": "Array",
       "desc": "Array of nodes to display in the tree",
-      "examples": ["[{ id: 1, l: 'Node 1', c: [{ id: 2, l: 'Child Node' }] }]"],
+      "examples": [
+        "[{ id: 1, l: 'Node 1', c: [{ id: 2, l: 'Child Node' }] }]"
+      ],
       "category": "content"
     }
   },

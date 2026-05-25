@@ -7,13 +7,18 @@
     "title": {
       "type": "String",
       "desc": "The title text to display",
-      "examples": ["'Introduction'", "'Chapter 1'"],
+      "examples": [
+        "'Introduction'",
+        "'Chapter 1'"
+      ],
       "category": "content"
     },
     "prefix": {
       "type": "String",
       "desc": "Prefix to add to the slugified title",
-      "examples": ["'section-'"],
+      "examples": [
+        "'section-'"
+      ],
       "category": "content"
     }
   },
