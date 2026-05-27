@@ -106,9 +106,12 @@ pnpm build:ui
 pnpm build:docs
 ```
 
-## Donate
+## Support
 
-If you appreciate the work that went into this project, please consider donating to [Quasar](https://donate.quasar.dev) or [Jeff](https://github.com/sponsors/hawkeye64).
+If QIconPicker is useful in your workflow and you want to support ongoing maintenance:
+
+GitHub Sponsors: https://github.com/sponsors/hawkeye64
+PayPal: https://paypal.me/hawkeye64
 
 ## License
 
