@@ -16,6 +16,9 @@ importers:
       '@vitest/coverage-v8':
         specifier: ^4.1.7
         version: 4.1.7(vitest@4.1.7)
+      npm-check-updates:
+        specifier: ^22.2.1
+        version: 22.2.1
       oxfmt:
         specifier: ^0.52.0
         version: 0.52.0
@@ -45,8 +48,8 @@ importers:
   packages/docs:
     dependencies:
       '@quasar/extras':
-        specifier: 1.18.0
-        version: 1.18.0
+        specifier: 2.0.0-beta.1
+        version: 2.0.0-beta.1
       markdown-it:
         specifier: ^14.2.0
         version: 14.2.0
@@ -109,8 +112,8 @@ importers:
   packages/ui:
     devDependencies:
       '@quasar/extras':
-        specifier: 1.18.0
-        version: 1.18.0
+        specifier: 2.0.0-beta.1
+        version: 2.0.0-beta.1
       '@types/node':
         specifier: ^25.9.1
         version: 25.9.1
@@ -909,8 +912,8 @@ packages:
   '@quasar/art@1.0.0':
     resolution: {integrity: sha512-IAV8Qg2QM3U2alywUcCELyOlHCUNbJYmiVDRTLgcgmyBlQwo3Wk33eHAyT9cpnV5CqlmuYXe6UZt0Ybi1m0lMA==}
 
-  '@quasar/extras@1.18.0':
-    resolution: {integrity: sha512-hIqqw56sKGujWA3sTIT1ItlVglD+eA3hAWDVxY4qjA4/BSgYJDHk6ymJCbsDPIJFT7DJsG/F3A67vELXbBAIvA==}
+  '@quasar/extras@2.0.0-beta.1':
+    resolution: {integrity: sha512-+6rGSa3zZlNcnrVuGJeDKveKdiKNI0OEJpv2gM9DVWbYGviYqbaVNXX0Bbwe878yE0y8uGoSBsYJoNod5Q1a2w==}
 
   '@quasar/render-ssr-error@2.2.2':
     resolution: {integrity: sha512-KvDsEaUdf6BX9g+ktI/Rgg4dbuKYzk1qwfZE+dYDrtM5Bvao2Fdyl/BDGZ5c6dgUkplYEuZ2QyUGXKaDoRfhCQ==}
@@ -1881,6 +1884,11 @@ packages:
 
   node-releases@2.0.44:
     resolution: {integrity: sha512-5WUyunoPMsvvEhS8AxHtRzP+oA8UCkJ7YRxatWKjngndhDGLiqEVAQKWjFAiAiuL8zMRGzGSJxFnLetoa43qGQ==}
+
+  npm-check-updates@22.2.1:
+    resolution: {integrity: sha512-mGdIJfhtg+q0BzhbOpbOL73zhMZlgBQMG4wnBwPMMD5k96028UCuV0753YeSYk9odoh7HWK6/cY69bWxT7o+yg==}
+    engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0, npm: '>=10.0.0'}
+    hasBin: true
 
   npm-run-path@6.0.0:
     resolution: {integrity: sha512-9qny7Z9DsQU8Ou39ERsPU4OZQlSTP47ShQzuKZ6PRXpYLtIFgl/DEBYEXKlvcEa+9tHVcK8CF81Y2V72qaZhWA==}
@@ -3428,7 +3436,7 @@ snapshots:
 
   '@quasar/art@1.0.0': {}
 
-  '@quasar/extras@1.18.0': {}
+  '@quasar/extras@2.0.0-beta.1': {}
 
   '@quasar/render-ssr-error@2.2.2':
     dependencies:
@@ -4375,6 +4383,8 @@ snapshots:
       whatwg-url: 5.0.0
 
   node-releases@2.0.44: {}
+
+  npm-check-updates@22.2.1: {}
 
   npm-run-path@6.0.0:
     dependencies:

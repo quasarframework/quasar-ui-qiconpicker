@@ -1,4 +1,4 @@
-# QIconPicker v2.x.x
+# QIconPicker v3.x.x
 
 ## What's Changed
 
@@ -11,9 +11,15 @@
 ## Installing
 
 ```
-$ yarn add @quasar/quasar-ui-qiconpicker
+pnpm add @quasar/quasar-ui-qiconpicker@beta
 # or
-$ quasar ext add @quasar/qiconpicker
+bun add @quasar/quasar-ui-qiconpicker@beta
+# or
+yarn add @quasar/quasar-ui-qiconpicker@beta
+# or
+npm install @quasar/quasar-ui-qiconpicker@beta
+# or
+quasar ext add @quasar/qiconpicker@beta
 ```
 
 ## Documentation

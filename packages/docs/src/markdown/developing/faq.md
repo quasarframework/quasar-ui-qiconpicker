@@ -50,21 +50,35 @@ QIconPicker uses `@quasar/extras` as the source of truth for built-in icon set n
 Install `@quasar/extras` alongside QIconPicker when using built-in `icon-set` values:
 
 ```bash
-pnpm add @quasar/extras
-# bun add @quasar/extras
-# yarn add @quasar/extras
-# npm install @quasar/extras
+pnpm add @quasar/extras@2.0.0-beta.1
+# or
+bun add @quasar/extras@2.0.0-beta.1
+# or
+yarn add @quasar/extras@2.0.0-beta.1
+# or
+npm install @quasar/extras@2.0.0-beta.1
 ```
 
-### Which versioned icon sets are supported?
+### Which built-in icon sets are supported?
 
-QIconPicker keeps the latest two versioned families for large versioned icon sets:
+QIconPicker v3 follows the icon families exposed by `@quasar/extras` v2. These built-in `icon-set` values are supported:
 
-- Font Awesome: `fontawesome-v6`, `fontawesome-v7`
-- Ionicons: `ionicons-v7`, `ionicons-v8`
-- MDI: `mdi-v6`, `mdi-v7`
+- `material-icons`
+- `material-icons-outlined`
+- `material-icons-round`
+- `material-icons-sharp`
+- `material-symbols-outlined`
+- `material-symbols-rounded`
+- `material-symbols-sharp`
+- `ionicons-v8`
+- `mdi-v7`
+- `fontawesome-v7`
+- `eva-icons`
+- `themify`
+- `line-awesome`
+- `bootstrap-icons`
 
-Older sets such as `fontawesome-v5`, `ionicons-v6`, `mdi-v4`, and `mdi-v5` are not part of QIconPicker v3.
+Older sets such as `fontawesome-v6`, `ionicons-v7`, `mdi-v6`, and previous major families are not part of QIconPicker v3.
 
 ### Do I need to preload icon font CSS?
 

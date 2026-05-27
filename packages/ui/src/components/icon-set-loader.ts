@@ -23,11 +23,8 @@ export const iconSetNames = [
   'material-symbols-outlined',
   'material-symbols-rounded',
   'material-symbols-sharp',
-  'ionicons-v7',
   'ionicons-v8',
-  'mdi-v6',
   'mdi-v7',
-  'fontawesome-v6',
   'fontawesome-v7',
   'eva-icons',
   'themify',
@@ -128,24 +125,11 @@ const iconSetConfigs: Record<IconSetName, IconSetConfig> = {
   'material-symbols-sharp': {
     createEntry: createMaterialSvgEntry('symSharp', 'sym_s_'),
   },
-  'mdi-v6': {
-    createEntry: createSvgEntry('mdi', 'mdi-'),
-  },
   'mdi-v7': {
     createEntry: createSvgEntry('mdi', 'mdi-'),
   },
-  'ionicons-v7': {
-    createEntry: (iconName, icon) => ({ name: iconName, icon }),
-  },
   'ionicons-v8': {
     createEntry: (iconName, icon) => ({ name: iconName, icon }),
-  },
-  'fontawesome-v6': {
-    createEntry: (iconName, icon) => ({
-      name: `fa-${pascalToKebab(iconName.slice(3))}`,
-      icon,
-      prefix: iconName.slice(0, 3),
-    }),
   },
   'fontawesome-v7': {
     createEntry: (iconName, icon) => ({
@@ -214,29 +198,15 @@ const iconSetLoaders: Record<IconSetName, () => Promise<IconSet>> = {
       import('@quasar/extras/material-symbols-sharp/icons.json'),
       import('@quasar/extras/material-symbols-sharp'),
     ]).then(([icons, extras]) => createIconSet('material-symbols-sharp', icons, extras)),
-  'ionicons-v7': () =>
-    Promise.all([
-      import('@quasar/extras/ionicons-v7/icons.json'),
-      import('@quasar/extras/ionicons-v7'),
-    ]).then(([icons, extras]) => createIconSet('ionicons-v7', icons, extras)),
   'ionicons-v8': () =>
     Promise.all([
       import('@quasar/extras/ionicons-v8/icons.json'),
       import('@quasar/extras/ionicons-v8'),
     ]).then(([icons, extras]) => createIconSet('ionicons-v8', icons, extras)),
-  'mdi-v6': () =>
-    Promise.all([import('@quasar/extras/mdi-v6/icons.json'), import('@quasar/extras/mdi-v6')]).then(
-      ([icons, extras]) => createIconSet('mdi-v6', icons, extras),
-    ),
   'mdi-v7': () =>
     Promise.all([import('@quasar/extras/mdi-v7/icons.json'), import('@quasar/extras/mdi-v7')]).then(
       ([icons, extras]) => createIconSet('mdi-v7', icons, extras),
     ),
-  'fontawesome-v6': () =>
-    Promise.all([
-      import('@quasar/extras/fontawesome-v6/icons.json'),
-      import('@quasar/extras/fontawesome-v6'),
-    ]).then(([icons, extras]) => createIconSet('fontawesome-v6', icons, extras)),
   'fontawesome-v7': () =>
     Promise.all([
       import('@quasar/extras/fontawesome-v7/icons.json'),

@@ -25,16 +25,16 @@ describe('QIconPicker', () => {
   it('supports the current versioned icon-set families', () => {
     const validator = QIconPicker.props.iconSet.validator
 
-    expect(validator('mdi-v6')).toBe(true)
     expect(validator('mdi-v7')).toBe(true)
-    expect(validator('ionicons-v7')).toBe(true)
     expect(validator('ionicons-v8')).toBe(true)
-    expect(validator('fontawesome-v6')).toBe(true)
     expect(validator('fontawesome-v7')).toBe(true)
 
+    expect(validator('mdi-v6')).toBe(false)
     expect(validator('mdi-v5')).toBe(false)
+    expect(validator('ionicons-v7')).toBe(false)
     expect(validator('ionicons-v6')).toBe(false)
     expect(validator('ionicons-v4')).toBe(false)
+    expect(validator('fontawesome-v6')).toBe(false)
     expect(validator('fontawesome-v5')).toBe(false)
   })
 

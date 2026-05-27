@@ -10,7 +10,7 @@
 import { ref } from 'vue'
 import { QIconPicker } from '@quasar/quasar-ui-qiconpicker'
 import { biCamera, biCamera2, biCameraFill } from '@quasar/extras/bootstrap-icons'
-import { fasCamera, fasCameraRetro, fasCameraRotate } from '@quasar/extras/fontawesome-v6'
+import { fasCamera, fasCameraRetro, fasCameraRotate } from '@quasar/extras/fontawesome-v7'
 import { matCamera, matCameraAlt, matPhotoCamera } from '@quasar/extras/material-icons'
 import { mdiCamera, mdiCameraIris } from '@quasar/extras/mdi-v7'
 

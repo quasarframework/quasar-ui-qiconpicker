@@ -17,10 +17,15 @@ Install the [App Extension](../app-extension).
 Or install the UI package directly:
 
 ```bash
-pnpm add @quasar/quasar-ui-qiconpicker
-# yarn add @quasar/quasar-ui-qiconpicker
-# npm install @quasar/quasar-ui-qiconpicker
-# bun add @quasar/quasar-ui-qiconpicker
+pnpm add @quasar/quasar-ui-qiconpicker@beta
+# or
+bun add @quasar/quasar-ui-qiconpicker@beta
+# or
+yarn add @quasar/quasar-ui-qiconpicker@beta
+# or
+npm install @quasar/quasar-ui-qiconpicker@beta
+# or, in a Quasar CLI app
+quasar ext add @quasar/qiconpicker@beta
 ```
 
 Then create and register a boot file:
@@ -73,6 +78,23 @@ The UMD bundle exports `window.QIconPicker`.
 ```
 
 Built-in `icon-set` values lazy load from `@quasar/extras` and are intended for ESM/CJS bundler usage. For UMD, pass an `icons` array directly.
+
+Supported built-in `icon-set` values are:
+
+- `material-icons`
+- `material-icons-outlined`
+- `material-icons-round`
+- `material-icons-sharp`
+- `material-symbols-outlined`
+- `material-symbols-rounded`
+- `material-symbols-sharp`
+- `ionicons-v8`
+- `mdi-v7`
+- `fontawesome-v7`
+- `eva-icons`
+- `themify`
+- `line-awesome`
+- `bootstrap-icons`
 
 ## Setup
 

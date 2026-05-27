@@ -47,8 +47,8 @@ Use this file as the per-repo checklist for migrating QIconPicker to the current
 - [x] Netlify config exists and uses the workspace publish path (`packages/docs/dist/spa`)
 - [x] Shared workspace tooling versions aligned where needed
 - [x] Packages audited against latest compatible releases and updated where appropriate
-- [x] `@quasar/extras` updated to latest published `1.18.0`
-- [x] Versioned icon sets aligned to the latest two supported families: `mdi-v6`/`mdi-v7`, `ionicons-v6`/`ionicons-v7`, and `fontawesome-v5`/`fontawesome-v6`
+- [x] `@quasar/extras` updated to `2.0.0-beta.1`
+- [x] Versioned icon sets aligned to the Extras v2 families: `mdi-v7`, `ionicons-v8`, and `fontawesome-v7`
 - [x] New Material Symbols icon sets added: `material-symbols-outlined`, `material-symbols-rounded`, and `material-symbols-sharp`
 - [x] Removed stale generated icon sets for `mdi-v4`, `mdi-v5`, and `ionicons-v4`
 - [x] Peer dependency warnings resolved

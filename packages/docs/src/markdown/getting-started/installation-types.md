@@ -49,10 +49,13 @@ quasar describe QIconPicker
 If you do not install through the App Extension, install the UI package directly:
 
 ```bash
-pnpm add @quasar/quasar-ui-qiconpicker
-# bun add @quasar/quasar-ui-qiconpicker
-# yarn add @quasar/quasar-ui-qiconpicker
-# npm install @quasar/quasar-ui-qiconpicker
+pnpm add @quasar/quasar-ui-qiconpicker@beta
+# or
+bun add @quasar/quasar-ui-qiconpicker@beta
+# or
+yarn add @quasar/quasar-ui-qiconpicker@beta
+# or
+npm install @quasar/quasar-ui-qiconpicker@beta
 ```
 
 Then create and register a boot file:
@@ -109,19 +112,19 @@ QIconPicker lazy loads built-in icon-set names and SVG path data from `@quasar/e
 Make sure your app has `@quasar/extras` installed:
 
 ```bash
-pnpm add @quasar/extras
+pnpm add @quasar/extras@2.0.0-beta.1
 ```
 
 ```bash
-bun add @quasar/extras
+bun add @quasar/extras@2.0.0-beta.1
 ```
 
 ```bash
-yarn add @quasar/extras
+yarn add @quasar/extras@2.0.0-beta.1
 ```
 
 ```bash
-npm install @quasar/extras
+npm install @quasar/extras@2.0.0-beta.1
 ```
 
 Because icons are rendered from SVG path data, you do not need to preload the matching icon font CSS just for QIconPicker to display built-in sets.
@@ -184,7 +187,22 @@ If you need the RTL variant of the CSS, use this stylesheet instead:
 The UMD build is intended for manually supplied `icons` arrays. Built-in `icon-set` values rely on bundler support for `@quasar/extras` lazy imports.
 
 ```warning
-QIconPicker only keeps the latest two versioned icon-set families. For Font Awesome, use `fontawesome-v6` or `fontawesome-v7`. For Ionicons, use `ionicons-v7` or `ionicons-v8`. For MDI, use `mdi-v6` or `mdi-v7`.
+QIconPicker v3 follows `@quasar/extras` v2. Supported built-in `icon-set` values are:
+
+- `material-icons`
+- `material-icons-outlined`
+- `material-icons-round`
+- `material-icons-sharp`
+- `material-symbols-outlined`
+- `material-symbols-rounded`
+- `material-symbols-sharp`
+- `ionicons-v8`
+- `mdi-v7`
+- `fontawesome-v7`
+- `eva-icons`
+- `themify`
+- `line-awesome`
+- `bootstrap-icons`
 ```
 
 ## Working With QIconPicker
