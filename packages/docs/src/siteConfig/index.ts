@@ -1,4 +1,4 @@
-import { fabGithub, fabXTwitter } from '@quasar/extras/fontawesome-v6'
+import { fabGithub, fabXTwitter } from '@quasar/extras/fontawesome-v7'
 import { slugify } from '@md-plugins/shared'
 import type { MenuItem } from '@md-plugins/vite-md-plugin'
 import { version } from '../../../ui/package.json'
@@ -73,6 +73,21 @@ export interface PrivacyConfig {
   link: string
 }
 
+export interface CodepenGlobalPackage {
+  packageName: string
+  globalName: string
+}
+
+export interface CodepenConfig {
+  cssExternal?: string[]
+  jsExternal?: string[]
+  jsPreProcessor?: string
+  titleSuffix?: string
+  jsSetup?: string
+  head?: string
+  globalPackages?: CodepenGlobalPackage[]
+}
+
 export interface SiteConfig {
   lang: string
   title: string
@@ -81,6 +96,8 @@ export interface SiteConfig {
   version: string
   copyright: CopyrightConfig
   githubEditRootSrc: string
+  githubSourceRootSrc?: string
+  codepen?: CodepenConfig
   license: LicenseConfig
   privacy: PrivacyConfig
   logoConfig: LogoConfig
@@ -200,6 +217,24 @@ const config: SiteConfig = {
     line2: '',
   },
   githubEditRootSrc: `https://github.com/quasarframework/quasar-ui-qiconpicker/edit/${repoBranch}/packages/docs/src`,
+  githubSourceRootSrc: `https://github.com/quasarframework/quasar-ui-qiconpicker/tree/${repoBranch}/packages/docs/src`,
+  codepen: {
+    jsPreProcessor: 'typescript',
+    titleSuffix: `QIconPicker v${version}`,
+    cssExternal: [
+      `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/index.min.css`,
+    ],
+    jsExternal: [
+      `https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@${version}/dist/index.umd.min.js`,
+    ],
+    globalPackages: [
+      {
+        packageName: '@quasar/quasar-ui-qiconpicker',
+        globalName: '(globalThis as any).QIconPicker',
+      },
+    ],
+    jsSetup: 'app.use((globalThis as any).QIconPicker)',
+  },
   license: {
     label: 'MIT License',
     link: `https://github.com/quasarframework/quasar-ui-qiconpicker/blob/${repoBranch}/LICENSE`,

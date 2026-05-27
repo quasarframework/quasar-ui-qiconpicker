@@ -26,11 +26,11 @@
     "vue-router": "^5.0.7"
   },
   "devDependencies": {
-    "@md-plugins/quasar-app-extension-q-press": "0.1.0-beta.9",
-    "@md-plugins/shared": "0.1.0-beta.9",
-    "@md-plugins/vite-examples-plugin": "0.1.0-beta.9",
-    "@md-plugins/vite-md-plugin": "0.1.0-beta.9",
-    "@quasar/app-vite": "3.0.0-beta.29",
+    "@md-plugins/quasar-app-extension-q-press": "0.1.0-beta.12",
+    "@md-plugins/shared": "0.1.0-beta.12",
+    "@md-plugins/vite-examples-plugin": "0.1.0-beta.12",
+    "@md-plugins/vite-md-plugin": "0.1.0-beta.12",
+    "@quasar/app-vite": "3.0.0-beta.30",
     "@quasar/quasar-ui-qiconpicker": "workspace:*",
     "@types/node": "^25.9.1",
     "autoprefixer": "^10.5.0",
