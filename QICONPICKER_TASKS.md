@@ -94,7 +94,7 @@ Use this file as the per-repo checklist for migrating QIconPicker to the current
 - [ ] Shared/generated docs styles reviewed for deprecated Sass `@import`; migrate to `@use` where practical
 - [ ] CI policy decided for API drift warnings vs failures
 - [ ] Coverage plan defined
-- [x] Large icon-set bundle strategy reviewed; built-in icon sets are lazy loaded for ESM/CJS/app builds while UMD remains intentionally single-file
+- [x] Large icon-set bundle strategy reviewed; built-in icon sets are lazy loaded for ESM/app builds while UMD remains intentionally single-file
 
 ## Initial Findings
 
@@ -116,7 +116,7 @@ Use this file as the per-repo checklist for migrating QIconPicker to the current
   - `pnpm peers check`
   - `pnpm build`
 - Build warnings:
-  - Built-in icon sets are lazy loaded for ESM/CJS/app builds. `pnpm build` now reports `dist/index.esm.js` at about `14 KB` and docs `e.QIconPicker` at about `249 KB`, down from about `8.5 MB` and `5.6 MB`.
+  - Built-in icon sets are lazy loaded for ESM/app builds. `pnpm build` now reports `dist/index.esm.js` at about `14 KB` and docs `e.QIconPicker` at about `249 KB`, down from about `8.5 MB` and `5.6 MB`.
   - Individual icon-set chunks can still exceed the default chunk warning threshold; this is expected for large Quasar Extras families like Material Icons and Ionicons.
   - The UMD bundle intentionally keeps icon-set data inlined for single-file CDN/script-tag compatibility.
 - Docs config note:

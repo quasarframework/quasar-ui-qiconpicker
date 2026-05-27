@@ -160,7 +160,7 @@ function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastIte
         } else {
           console.error(`QIconPicker: no icon set loaded called ${iconSet}`)
           console.error(
-            'Built-in icon sets require ESM/CJS bundler support for @quasar/extras lazy imports. With the UMD build, pass an icons array instead.',
+            'Built-in icon sets require ESM bundler support for @quasar/extras lazy imports. With the UMD build, pass an icons array instead.',
           )
         }
       } else {
