@@ -50,13 +50,13 @@ QIconPicker uses `@quasar/extras` as the source of truth for built-in icon set n
 Install `@quasar/extras` alongside QIconPicker when using built-in `icon-set` values:
 
 ```bash
-pnpm add @quasar/extras@2.0.0-beta.1
+pnpm add @quasar/extras@2
 # or
-bun add @quasar/extras@2.0.0-beta.1
+bun add @quasar/extras@2
 # or
-yarn add @quasar/extras@2.0.0-beta.1
+yarn add @quasar/extras@2
 # or
-npm install @quasar/extras@2.0.0-beta.1
+npm install @quasar/extras@2
 ```
 
 ### Which built-in icon sets are supported?

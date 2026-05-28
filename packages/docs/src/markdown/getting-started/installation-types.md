@@ -112,19 +112,19 @@ QIconPicker lazy loads built-in icon-set names and SVG path data from `@quasar/e
 Make sure your app has `@quasar/extras` installed:
 
 ```bash
-pnpm add @quasar/extras@2.0.0-beta.1
+pnpm add @quasar/extras@2
 ```
 
 ```bash
-bun add @quasar/extras@2.0.0-beta.1
+bun add @quasar/extras@2
 ```
 
 ```bash
-yarn add @quasar/extras@2.0.0-beta.1
+yarn add @quasar/extras@2
 ```
 
 ```bash
-npm install @quasar/extras@2.0.0-beta.1
+npm install @quasar/extras@2
 ```
 
 Because icons are rendered from SVG path data, you do not need to preload the matching icon font CSS just for QIconPicker to display built-in sets.
