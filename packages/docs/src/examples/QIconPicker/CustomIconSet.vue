@@ -29,8 +29,8 @@ const data = ref({
     { name: 'auto_awesome' },
   ],
   pagination: {
-    itemsPerPage: 60,
-    page: 0,
+    itemsPerPage: 8,
+    page: 1,
   },
 })
 </script>

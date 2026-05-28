@@ -58,9 +58,9 @@ const data = ref({
     { name: 'visibility' },
   ],
   pagination: {
-    itemsPerPage: 75,
-    page: 0,
+    itemsPerPage: 10,
+    page: 1,
   },
-  options: [25, 50, 75, 100],
+  options: [6, 10, 15, 30],
 })
 </script>

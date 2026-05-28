@@ -58,8 +58,8 @@ import { QIconPicker } from '@quasar/quasar-ui-qiconpicker'
 defineOptions({ name: 'CustomNavigation' })
 
 const pagination = ref({
-  itemsPerPage: 60,
-  page: 0,
+  itemsPerPage: 10,
+  page: 1,
 })
 
 const value = ref('')

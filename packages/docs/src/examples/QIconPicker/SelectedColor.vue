@@ -40,8 +40,8 @@ const data = ref({
     { name: 'favorite' },
   ],
   pagination: {
-    itemsPerPage: 60,
-    page: 0,
+    itemsPerPage: 8,
+    page: 1,
   },
 })
 </script>

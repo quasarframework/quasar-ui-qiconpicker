@@ -47,7 +47,7 @@ defineOptions({ name: 'FooterSlot' })
 
 const value = ref('')
 const pagination = ref({
-  itemsPerPage: 72,
+  itemsPerPage: 10,
   page: 1,
 })
 const icons = [

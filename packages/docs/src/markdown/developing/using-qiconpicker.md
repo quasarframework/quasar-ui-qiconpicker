@@ -17,6 +17,10 @@ import QIconPickerApi from '@quasar/quasar-ui-qiconpicker/dist/api/QIconPicker.j
 
 Examples that pass local `icons` arrays include CodePen playground links. The built-in icon-set examples stay source-only because the UMD bundle cannot lazy load `@quasar/extras` ESM icon-set modules without a bundler.
 
+### Animated Transitions
+
+<MarkdownExample title="Animated Transitions" file="AnimatedTransitions"/>
+
 ### Built-in Icon Sets
 
 <MarkdownExample title="Built-in Icon Sets" file="BuiltInIconSets" no-edit/>
@@ -33,6 +37,10 @@ Examples that pass local `icons` arrays include CodePen playground links. The bu
 
 <MarkdownExample title="CustomNavigation" file="CustomNavigation"/>
 
+### Dense Compact Picker
+
+<MarkdownExample title="Dense Compact Picker" file="DenseCompactPicker"/>
+
 ### Font Awesome Selection
 
 <MarkdownExample title="Font Awesome Selection" file="FontAwesomeSelection" no-edit/>
@@ -48,6 +56,10 @@ Examples that pass local `icons` arrays include CodePen playground links. The bu
 ### No Footer
 
 <MarkdownExample title="No Footer" file="NoFooter"/>
+
+### Inline SVG Custom Icons
+
+<MarkdownExample title="Inline SVG Custom Icons" file="InlineSvgCustomIcons"/>
 
 ### Pagination
 
