@@ -78,7 +78,7 @@
     "release": "pnpm publish --tag beta"
   },
   "devDependencies": {
-    "@quasar/extras": "2.0.0-beta.1",
+    "@quasar/extras": "2.0.0",
     "@types/node": "^25.9.1",
     "@types/rtlcss": "^3.5.4",
     "@types/uglify-js": "^3.17.5",
