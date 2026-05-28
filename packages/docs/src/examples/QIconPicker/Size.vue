@@ -4,7 +4,7 @@
       <q-icon-picker
         v-model="data.value"
         v-model:model-pagination="data.pagination"
-        icon-set="material-icons"
+        :icons="data.icons"
         size="30px"
         style="height: 360px"
       />
@@ -20,6 +20,24 @@ defineOptions({ name: 'Size' })
 
 const data = ref({
   value: '',
+  icons: [
+    { name: 'add' },
+    { name: 'alarm' },
+    { name: 'anchor' },
+    { name: 'apps' },
+    { name: 'archive' },
+    { name: 'bolt' },
+    { name: 'brush' },
+    { name: 'build' },
+    { name: 'camera_alt' },
+    { name: 'check_circle' },
+    { name: 'cloud' },
+    { name: 'code' },
+    { name: 'dashboard' },
+    { name: 'delete' },
+    { name: 'edit' },
+    { name: 'favorite' },
+  ],
   pagination: {
     itemsPerPage: 32,
     page: 0,

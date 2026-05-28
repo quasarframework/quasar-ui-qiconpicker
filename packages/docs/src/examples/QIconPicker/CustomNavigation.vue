@@ -5,7 +5,7 @@
         ref="qIconPickerRef"
         v-model="value"
         v-model:model-pagination="pagination"
-        icon-set="material-icons"
+        :icons="icons"
         selected-color="yellow-8"
         selected-text-color="red-8"
         no-footer
@@ -64,4 +64,36 @@ const pagination = ref({
 
 const value = ref('')
 const qIconPickerRef = ref()
+const icons = [
+  { name: 'add' },
+  { name: 'alarm' },
+  { name: 'anchor' },
+  { name: 'apps' },
+  { name: 'archive' },
+  { name: 'bolt' },
+  { name: 'brush' },
+  { name: 'build' },
+  { name: 'calendar_today' },
+  { name: 'camera_alt' },
+  { name: 'chat' },
+  { name: 'check_circle' },
+  { name: 'cloud' },
+  { name: 'code' },
+  { name: 'dashboard' },
+  { name: 'delete' },
+  { name: 'edit' },
+  { name: 'email' },
+  { name: 'favorite' },
+  { name: 'home' },
+  { name: 'image' },
+  { name: 'map' },
+  { name: 'notifications' },
+  { name: 'palette' },
+  { name: 'person' },
+  { name: 'photo_camera' },
+  { name: 'search' },
+  { name: 'settings' },
+  { name: 'star' },
+  { name: 'visibility' },
+]
 </script>

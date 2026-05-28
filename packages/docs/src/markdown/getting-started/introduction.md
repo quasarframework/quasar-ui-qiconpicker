@@ -13,6 +13,8 @@ related:
 And, if you're looking to help out, check out our [Call to action](/other/contributing/call-to-action) in the **Contributing** section.
 :::
 
+> If you are upgrading an existing app, read the [Upgrade Guide](/other/upgrade-guide) for QIconPicker v3.
+
 ## Everything you need for a complete solution
 
 QIconPicker is an icon picker for your Quasar application. It allows you to have an icon selector embedded in your app. It uses a Quasar Icon Set or you can pass in an array of objects defining the icons to be displayed.

@@ -18,7 +18,7 @@
                 v-model="data.value"
                 v-model:model-pagination="data.pagination"
                 :filter="data.filter"
-                icon-set="material-icons"
+                :icons="data.icons"
                 tooltips
                 style="height: 300px; width: 300px"
               />
@@ -40,6 +40,24 @@ const data = ref({
   value: '',
   filter: '',
   showIconPicker: false,
+  icons: [
+    { name: 'add' },
+    { name: 'alarm' },
+    { name: 'anchor' },
+    { name: 'apps' },
+    { name: 'archive' },
+    { name: 'bolt' },
+    { name: 'brush' },
+    { name: 'build' },
+    { name: 'camera_alt' },
+    { name: 'check_circle' },
+    { name: 'cloud' },
+    { name: 'code' },
+    { name: 'dashboard' },
+    { name: 'delete' },
+    { name: 'edit' },
+    { name: 'favorite' },
+  ],
   pagination: {
     itemsPerPage: 35,
     page: 0,

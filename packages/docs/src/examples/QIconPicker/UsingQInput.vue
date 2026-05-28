@@ -8,7 +8,7 @@
               <q-icon-picker
                 v-model="data.value"
                 v-model:model-pagination="data.pagination"
-                icon-set="material-icons"
+                :icons="data.icons"
                 tooltips
                 class="pop-up"
               />
@@ -29,6 +29,24 @@ defineOptions({ name: 'UsingQInput' })
 const data = ref({
   value: '',
   showIconPicker: false,
+  icons: [
+    { name: 'add' },
+    { name: 'alarm' },
+    { name: 'anchor' },
+    { name: 'apps' },
+    { name: 'archive' },
+    { name: 'bolt' },
+    { name: 'brush' },
+    { name: 'build' },
+    { name: 'camera_alt' },
+    { name: 'check_circle' },
+    { name: 'cloud' },
+    { name: 'code' },
+    { name: 'dashboard' },
+    { name: 'delete' },
+    { name: 'edit' },
+    { name: 'favorite' },
+  ],
   pagination: {
     itemsPerPage: 35,
     page: 0,

@@ -12,6 +12,8 @@ QIconPicker can be installed as a Quasar App Extension, as a Vue plugin, as a di
 
 For Quasar CLI projects, the App Extension is the recommended path because it registers the boot file and adds the stylesheet for you.
 
+If you are upgrading an existing app, read the [Upgrade Guide](/other/upgrade-guide) before changing packages.
+
 ## Quasar CLI
 
 ### App Extension

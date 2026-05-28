@@ -15,21 +15,23 @@ import QIconPickerApi from '@quasar/quasar-ui-qiconpicker/dist/api/QIconPicker.j
 
 ## QIconPicker Examples
 
+Examples that pass local `icons` arrays include CodePen playground links. The built-in icon-set examples stay source-only because the UMD bundle cannot lazy load `@quasar/extras` ESM icon-set modules without a bundler.
+
 ### Built-in Icon Sets
 
 <MarkdownExample title="Built-in Icon Sets" file="BuiltInIconSets" no-edit/>
 
 ### Color
 
-<MarkdownExample title="Color" file="Color" no-edit/>
+<MarkdownExample title="Color" file="Color"/>
 
 ### Custom Icon Set
 
-<MarkdownExample title="CustomIconSet" file="CustomIconSet" no-edit/>
+<MarkdownExample title="CustomIconSet" file="CustomIconSet"/>
 
 ### Custom Navigation
 
-<MarkdownExample title="CustomNavigation" file="CustomNavigation" no-edit/>
+<MarkdownExample title="CustomNavigation" file="CustomNavigation"/>
 
 ### Font Awesome Selection
 
@@ -37,48 +39,48 @@ import QIconPickerApi from '@quasar/quasar-ui-qiconpicker/dist/api/QIconPicker.j
 
 ### Footer Slot
 
-<MarkdownExample title="Footer Slot" file="FooterSlot" no-edit/>
+<MarkdownExample title="Footer Slot" file="FooterSlot"/>
 
 ### Filter
 
-<MarkdownExample title="Filter2" file="Filter2" no-edit/>
+<MarkdownExample title="Filter2" file="Filter2"/>
 
 ### No Footer
 
-<MarkdownExample title="No Footer" file="NoFooter" no-edit/>
+<MarkdownExample title="No Footer" file="NoFooter"/>
 
 ### Pagination
 
-<MarkdownExample title="Pagination" file="Pagination" no-edit/>
+<MarkdownExample title="Pagination" file="Pagination"/>
 
 ### Pagination Color
 
-<MarkdownExample title="PaginationColor" file="PaginationColor" no-edit/>
+<MarkdownExample title="PaginationColor" file="PaginationColor"/>
 
 ### Pagination Custom
 
-<MarkdownExample title="PaginationCustom" file="PaginationCustom" no-edit/>
+<MarkdownExample title="PaginationCustom" file="PaginationCustom"/>
 
 ### Selected Color
 
-<MarkdownExample title="SelectedColor" file="SelectedColor" no-edit/>
+<MarkdownExample title="SelectedColor" file="SelectedColor"/>
 
 ### Size
 
-<MarkdownExample title="Size" file="Size" no-edit/>
+<MarkdownExample title="Size" file="Size"/>
 
 ### Tooltips
 
-<MarkdownExample title="Tooltips" file="Tooltips" no-edit/>
+<MarkdownExample title="Tooltips" file="Tooltips"/>
 
 ### Using Icon Slot
 
-<MarkdownExample title="UsingIconSlot" file="UsingIconSlot" no-edit/>
+<MarkdownExample title="UsingIconSlot" file="UsingIconSlot"/>
 
 ### Using QInput
 
-<MarkdownExample title="UsingQInput" file="UsingQInput" no-edit/>
+<MarkdownExample title="UsingQInput" file="UsingQInput"/>
 
 ### Using QInput With Filter
 
-<MarkdownExample title="UsingQInputWithFilter" file="UsingQInputWithFilter" no-edit/>
+<MarkdownExample title="UsingQInputWithFilter" file="UsingQInputWithFilter"/>

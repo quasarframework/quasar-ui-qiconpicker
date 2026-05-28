@@ -20,14 +20,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { QIconPicker } from '@quasar/quasar-ui-qiconpicker'
-import {
-  matAdd,
-  matDelete,
-  matEdit,
-  matFavorite,
-  matSearch,
-  matSettings,
-} from '@quasar/extras/material-icons'
 
 defineOptions({ name: 'NoFooter' })
 
@@ -38,11 +30,11 @@ const pagination = ref({
 })
 
 const icons = [
-  { name: 'add', icon: matAdd },
-  { name: 'delete', icon: matDelete },
-  { name: 'edit', icon: matEdit },
-  { name: 'favorite', icon: matFavorite },
-  { name: 'search', icon: matSearch },
-  { name: 'settings', icon: matSettings },
+  { name: 'add' },
+  { name: 'delete' },
+  { name: 'edit' },
+  { name: 'favorite' },
+  { name: 'search' },
+  { name: 'settings' },
 ]
 </script>

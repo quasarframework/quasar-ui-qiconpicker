@@ -12,7 +12,7 @@
       <q-icon-picker
         v-model="data.value"
         v-model:model-pagination="data.pagination"
-        icon-set="material-icons"
+        :icons="data.icons"
         :pagination-props="{
           maxPages: 5,
           input: true,
@@ -33,6 +33,38 @@ defineOptions({ name: 'PaginationColor' })
 const data = ref({
   value: '',
   paginationColor: 'orange-10',
+  icons: [
+    { name: 'add' },
+    { name: 'alarm' },
+    { name: 'anchor' },
+    { name: 'apps' },
+    { name: 'archive' },
+    { name: 'bolt' },
+    { name: 'brush' },
+    { name: 'build' },
+    { name: 'calendar_today' },
+    { name: 'camera_alt' },
+    { name: 'chat' },
+    { name: 'check_circle' },
+    { name: 'cloud' },
+    { name: 'code' },
+    { name: 'dashboard' },
+    { name: 'delete' },
+    { name: 'edit' },
+    { name: 'email' },
+    { name: 'favorite' },
+    { name: 'home' },
+    { name: 'image' },
+    { name: 'map' },
+    { name: 'notifications' },
+    { name: 'palette' },
+    { name: 'person' },
+    { name: 'photo_camera' },
+    { name: 'search' },
+    { name: 'settings' },
+    { name: 'star' },
+    { name: 'visibility' },
+  ],
   pagination: {
     itemsPerPage: 60,
     page: 0,
