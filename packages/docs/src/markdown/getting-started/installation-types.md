@@ -63,7 +63,7 @@ npm install @quasar/quasar-ui-qiconpicker@beta
 Then create and register a boot file:
 
 ```js
-import { defineBoot } from '@quasar/app-vite'
+import { defineBoot } from '#q-app'
 import Plugin from '@quasar/quasar-ui-qiconpicker'
 import '@quasar/quasar-ui-qiconpicker/dist/index.css'
 
@@ -77,7 +77,7 @@ export default defineBoot(({ app }) => {
 You can import from source when you need to transpile/customize the package in your app:
 
 ```js
-import { defineBoot } from '@quasar/app-vite'
+import { defineBoot } from '#q-app'
 import Plugin from '@quasar/quasar-ui-qiconpicker/src/index.ts'
 
 export default defineBoot(({ app }) => {

@@ -1,4 +1,4 @@
-# QIconPicker v3.x.x
+# QIconPicker v3.0.0-beta.x
 
 ## What's Changed
 
@@ -24,7 +24,7 @@ quasar ext add @quasar/qiconpicker@beta
 
 ## Documentation
 
-[QIconPicker v2 documentation](https://qiconpicker.netlify.app/) is now hosted by Netlify. Visit the documentation to get more information. The documentation is incomplete and is currently being updated. You can help out by PR-ing deficiencies.
+[QIconPicker documentation](https://qiconpicker.netlify.app/) is hosted by Netlify. Visit the documentation for installation, the Upgrade Guide, API details, and live examples.
 
 ## Donations
 
