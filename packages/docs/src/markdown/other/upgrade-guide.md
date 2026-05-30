@@ -111,16 +111,32 @@ If you previously imported generated icon arrays from QIconPicker, switch to the
 
 For custom collections, pass an `icons` array. The `name` value is emitted by `v-model`, and the optional `icon` value can provide SVG path data when you do not want to rely on an icon font.
 
-```ts
-const icons = [{ name: 'camera_alt' }, { name: 'photo_camera' }, { name: 'videocam' }]
+```ts [twoslash]
+interface PickerIcon {
+  name: string
+  icon?: string
+}
+
+const icons: PickerIcon[] = [{ name: 'camera_alt' }, { name: 'photo_camera' }, { name: 'videocam' }]
+
+icons[0]?.name
+// ^?
 ```
 
 ## Direct UI Package Usage
 
 Compiled package imports are the recommended path:
 
-```ts
+```ts [twoslash]
 import { QIconPicker } from '@quasar/quasar-ui-qiconpicker'
+
+QIconPicker
+// ^?
+```
+
+Import the component stylesheet alongside the component:
+
+```ts
 import '@quasar/quasar-ui-qiconpicker/dist/index.css'
 ```
 
