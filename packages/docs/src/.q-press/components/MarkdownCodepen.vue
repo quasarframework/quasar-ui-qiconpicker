@@ -15,9 +15,8 @@
 import { Quasar } from 'quasar'
 import { ref, reactive, computed, nextTick } from 'vue'
 
-import { slugify } from './markdown-utils'
-
 import siteConfig from '../../siteConfig'
+import { slugify } from './markdown-utils'
 
 type CodepenParts = {
   Template?: string
@@ -77,11 +76,7 @@ function indent(code: string, spaces = 2) {
 
         let escapeCount = 0
 
-        for (
-          let escapeIndex = index - 1;
-          escapeIndex >= 0 && line[escapeIndex] === '\\';
-          escapeIndex--
-        ) {
+        for (let escapeIndex = index - 1; escapeIndex >= 0 && line[escapeIndex] === '\\'; escapeIndex--) {
           escapeCount++
         }
 
