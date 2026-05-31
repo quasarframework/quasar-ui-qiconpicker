@@ -162,7 +162,7 @@ For the smallest application payload, prefer a custom `icons` array with only th
 
 :::details Q. Can the UMD build use built-in `icon-set` values?
 
-The UMD build is intended for manually supplied `icons` arrays. Built-in `icon-set` values rely on ESM/CJS bundler support for lazy imports from `@quasar/extras`.
+The UMD build is intended for manually supplied `icons` arrays. Built-in `icon-set` values rely on ESM bundler support for lazy imports from `@quasar/extras`.
 
 If you are using script tags only, pass your own `icons` array instead of using `icon-set`.
 

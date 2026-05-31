@@ -77,7 +77,7 @@ The UMD bundle exports `window.QIconPicker`.
 <script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker/dist/index.umd.min.js"></script>
 ```
 
-Built-in `icon-set` values lazy load from `@quasar/extras` and are intended for ESM/CJS bundler usage. For UMD, pass an `icons` array directly.
+Built-in `icon-set` values lazy load from `@quasar/extras` and are intended for ESM bundler usage. For UMD, pass an `icons` array directly.
 
 Supported built-in `icon-set` values are:
 
