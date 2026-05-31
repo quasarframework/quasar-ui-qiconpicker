@@ -50,13 +50,13 @@ While QIconPicker v3 is in beta, install packages from the `beta` dist tag.
 ```tabs
 <<| bash App Extension |>>
 quasar ext add @quasar/qiconpicker@beta
-<<| bash UI Package |>>
+<<| bash pnpm |>>
 pnpm add @quasar/quasar-ui-qiconpicker@beta @quasar/extras@2
-# or
+<<| bash bun |>>
 bun add @quasar/quasar-ui-qiconpicker@beta @quasar/extras@2
-# or
+<<| bash yarn |>>
 yarn add @quasar/quasar-ui-qiconpicker@beta @quasar/extras@2
-# or
+<<| bash npm |>>
 npm install @quasar/quasar-ui-qiconpicker@beta @quasar/extras@2
 ```
 
