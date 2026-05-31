@@ -188,15 +188,15 @@ If you are using a custom `icons` array, make sure each entry has either a displ
 
 :::
 
-:::details Q. How do I inspect the QIconPicker API?
+:::details Q. Can I inspect the component API from the CLI?
 
-The docs API table is generated from `QIconPicker.json` and shown on the [Using QIconPicker](/developing/using-qiconpicker) page.
-
-If the App Extension is installed, you can also run:
+Yes. After the App Extension is installed, run:
 
 ```bash
 quasar describe QIconPicker
 ```
+
+The same generated API is shown on the [Using QIconPicker](/developing/using-qiconpicker) page.
 
 :::
 
