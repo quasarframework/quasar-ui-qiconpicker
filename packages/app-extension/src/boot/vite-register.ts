@@ -1,4 +1,4 @@
-import { defineBoot } from '#q-app'
+import { defineBoot } from '@quasar/app-vite'
 import VuePlugin from '@quasar/quasar-ui-qiconpicker'
 
 export default defineBoot(({ app }) => {
