@@ -155,10 +155,10 @@ If you maintain custom CodePen or script-tag examples, load the QIconPicker CSS 
 
 ```html
 <link
-  href="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@3.0.0-beta.1/dist/index.min.css"
+  href="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@3.0.0-beta.2/dist/index.min.css"
   rel="stylesheet"
 />
-<script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@3.0.0-beta.1/dist/index.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@3.0.0-beta.2/dist/index.umd.min.js"></script>
 ```
 
 Then register the plugin from the browser global:
