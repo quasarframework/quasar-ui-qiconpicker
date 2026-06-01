@@ -188,7 +188,7 @@ If you are using a custom `icons` array, make sure each entry has either a displ
 
 :::
 
-:::details Q. Can I inspect the component API from the CLI?
+:::details Q. Can I inspect the component API from the Quasar CLI?
 
 Yes. After the App Extension is installed, run:
 
