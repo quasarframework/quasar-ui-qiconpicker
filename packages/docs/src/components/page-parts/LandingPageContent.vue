@@ -85,18 +85,16 @@
                 <p>{{ previewBody }}</p>
               </div>
 
-              <div
-                class="preview-stack"
-                :class="{ 'preview-stack--single': previewImages.length === 1 }"
-              >
-                <div
-                  v-for="(image, index) in previewImages"
-                  :key="image.src"
-                  class="preview-card"
-                  :class="index === 0 ? 'preview-card--primary' : 'preview-card--secondary'"
+              <div class="preview-stats">
+                <article
+                  v-for="highlight in previewHighlights"
+                  :key="highlight.label"
+                  class="preview-stat"
                 >
-                  <q-img :src="image.src" :alt="image.alt" fit="contain" />
-                </div>
+                  <div class="preview-stat__value">{{ highlight.value }}</div>
+                  <div class="preview-stat__label">{{ highlight.label }}</div>
+                  <p class="preview-stat__body">{{ highlight.body }}</p>
+                </article>
               </div>
             </div>
           </div>
@@ -200,16 +198,27 @@ const previewKicker = 'Icon Selection'
 const previewTitle = 'Find the right icon without leaving your form or builder flow'
 const previewBody =
   'Browse, search, and page through large icon libraries inside a Quasar-native picker that still gives you room for custom collections and slot-based presentation.'
-const sectionTitle = 'Searchable icon picking for application workflows, not just demos'
+const sectionTitle = 'Searchable icon picking for real application workflows'
 const sectionText =
   'QIconPicker keeps icon selection inside your app shell with large-library browsing, custom sets, and a presentation model that fits forms, editors, and admin tooling.'
 
 const heroPills = ['Search', 'Icon Sets', 'Pagination', 'Custom Collections', 'Slots']
 
-const previewImages = [
+const previewHighlights = [
   {
-    src: '/q-icon-picker.png',
-    alt: 'QIconPicker preview',
+    value: 'Find',
+    label: 'Search + Filter',
+    body: 'Help users narrow large icon lists quickly with search terms, collection filters, and focused picker flows.',
+  },
+  {
+    value: 'Page',
+    label: 'Large Libraries',
+    body: 'Page through dense icon sets without forcing the whole catalog into one oversized selection surface.',
+  },
+  {
+    value: 'Slot',
+    label: 'Custom Display',
+    body: 'Shape item, selected, empty, and action states so the picker still feels native inside forms and builders.',
   },
 ]
 
@@ -544,51 +553,45 @@ const supportItems = [
   line-height: 1.68;
 }
 
-.preview-stack {
-  position: relative;
-  min-height: clamp(250px, 30vw, 310px);
-  padding: 10px 14px 6px;
+.preview-stats {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.preview-stack--single {
-  min-height: auto;
-  display: flex;
-  justify-content: center;
-}
-
-.preview-card {
-  position: absolute;
-  overflow: hidden;
+.preview-stat {
+  min-height: 190px;
+  padding: 18px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 22px;
+  border-radius: 20px;
   background: rgba(255, 255, 255, 0.08);
   box-shadow: 0 22px 38px rgba(16, 22, 36, 0.2);
 }
 
-.preview-card :deep(.q-img) {
-  display: block;
-  width: 100%;
+.preview-stat__value {
+  margin-bottom: 8px;
+  font-family: 'Montserrat', 'Poppins', 'Segoe UI', sans-serif;
+  font-size: clamp(1.95rem, 3.5vw, 2.55rem);
+  line-height: 1;
+  font-weight: 800;
+  color: #f7fbff;
 }
 
-.preview-card--primary {
-  top: 10px;
-  left: 10px;
-  width: min(82%, 300px);
-  transform: rotate(-2deg);
+.preview-stat__label {
+  margin-bottom: 10px;
+  color: #dbe7ff;
+  font-family: 'Montserrat', 'Poppins', 'Segoe UI', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.preview-card--secondary {
-  right: 6px;
-  bottom: 4px;
-  width: min(56%, 220px);
-  transform: rotate(4deg);
-}
-
-.preview-stack--single .preview-card--primary {
-  position: relative;
-  width: min(100%, 320px);
-  margin: 4px auto 0;
-  transform: none;
+.preview-stat__body {
+  margin: 0;
+  color: var(--landing-text-soft);
+  font-size: 0.94rem;
+  line-height: 1.58;
 }
 
 .feature-section,
@@ -731,8 +734,8 @@ const supportItems = [
     grid-template-columns: 1fr;
   }
 
-  .preview-stack {
-    min-height: 320px;
+  .preview-stats {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -760,23 +763,8 @@ const supportItems = [
     justify-content: center;
   }
 
-  .preview-stack {
-    min-height: 260px;
-    padding: 6px 0 0;
-  }
-
-  .preview-card--primary {
-    position: relative;
-    width: 100%;
-    transform: none;
-  }
-
-  .preview-card--secondary {
-    right: auto;
-    bottom: auto;
-    left: 18px;
-    width: calc(100% - 36px);
-    transform: translateY(-24px);
+  .preview-stat {
+    min-height: 0;
   }
 
   .feature-card,
@@ -941,10 +929,18 @@ body.body--dark .landing-page {
     var(--landing-panel-bg);
 }
 
-.preview-card {
+.preview-stat {
   border-color: var(--landing-preview-card-border);
   background: var(--landing-preview-card-bg);
   box-shadow: var(--landing-preview-card-shadow);
+}
+
+.preview-stat__value {
+  color: var(--landing-heading);
+}
+
+.preview-stat__label {
+  color: var(--landing-accent-text);
 }
 
 .feature-card::before {
