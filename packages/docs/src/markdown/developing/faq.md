@@ -31,7 +31,7 @@ The App Extension registers the boot file and stylesheet for you. Install the UI
 
 :::details Q. Does QIconPicker v3 support webpack-based Quasar apps?
 
-No. QIconPicker v3 targets Quasar CLI Vite 3 and requires `@quasar/app-vite` >=3.0.0-beta.41. If your app still uses `@quasar/app-webpack`, migrate the app to Quasar CLI Vite before installing QIconPicker v3.
+No. QIconPicker v3 targets Quasar CLI Vite 3 and requires `@quasar/app-vite` >=3.0.0-beta.42. If your app still uses `@quasar/app-webpack`, migrate the app to Quasar CLI Vite before installing QIconPicker v3.
 
 :::
 

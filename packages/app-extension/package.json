@@ -41,12 +41,12 @@
     "@quasar/quasar-ui-qiconpicker": "workspace:^"
   },
   "devDependencies": {
-    "@quasar/app-vite": "3.0.0-beta.41",
+    "@quasar/app-vite": "3.0.0-beta.42",
     "typescript": "~6.0.3",
     "vue-router": "^5.1.0"
   },
   "peerDependencies": {
-    "@quasar/app-vite": ">=3.0.0-beta.41"
+    "@quasar/app-vite": ">=3.0.0-beta.42"
   },
   "engines": {
     "node": ">=22.13",
