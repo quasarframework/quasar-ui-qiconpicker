@@ -9,7 +9,7 @@ import { defineIndexScript } from '#q-app'
 
 export default defineIndexScript((api) => {
   api.compatibleWith('quasar', '^2.0.0')
-  api.compatibleWith('@quasar/app-vite', '>=3.0.0-beta.42')
+  api.compatibleWith('@quasar/app-vite', '>=3.0.0-beta.43')
   api.compatibleWith('@quasar/extras', '>=2.0.0')
 
   api.registerDescribeApi('QIconPicker', '~@quasar/quasar-ui-qiconpicker/dist/api/QIconPicker.json')

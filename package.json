@@ -30,8 +30,8 @@
   "devDependencies": {
     "@vitest/coverage-v8": "^4.1.8",
     "npm-check-updates": "^22.2.3",
-    "oxfmt": "^0.53.0",
-    "oxlint": "^1.68.0",
+    "oxfmt": "^0.54.0",
+    "oxlint": "^1.69.0",
     "typescript": "~6.0.3",
     "vitest": "^4.1.8"
   },
