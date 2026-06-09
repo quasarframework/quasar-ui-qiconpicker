@@ -12,6 +12,7 @@
     "build:app-ext": "cd packages/app-extension && pnpm build",
     "build:docs": "cd packages/docs && pnpm build",
     "ci:publish": "pnpm --filter @quasar/quasar-ui-qiconpicker publish --access public --publish-branch main && pnpm --filter @quasar/quasar-app-extension-qiconpicker publish --access public --publish-branch main",
+    "ci:publish:latest": "pnpm --filter @quasar/quasar-ui-qiconpicker publish --access public --publish-branch main --tag latest && pnpm --filter @quasar/quasar-app-extension-qiconpicker publish --access public --publish-branch main --tag latest",
     "ci:publish:beta": "pnpm --filter @quasar/quasar-ui-qiconpicker publish --access public --publish-branch v3-beta --tag beta --no-git-checks && pnpm --filter @quasar/quasar-app-extension-qiconpicker publish --access public --publish-branch v3-beta --tag beta --no-git-checks",
     "test": "vitest run",
     "coverage": "vitest run --coverage",
