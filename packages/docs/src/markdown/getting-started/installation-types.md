@@ -30,7 +30,7 @@ While QIconPicker v3 is in beta, install with:
 quasar ext add @quasar/qiconpicker@beta
 ```
 
-The QIconPicker v3 App Extension targets Quasar CLI Vite 3 and requires `@quasar/app-vite` >=3.0.0-beta.43. It does not support webpack-based Quasar applications.
+The QIconPicker v3 App Extension targets Quasar CLI Vite 3 and requires `@quasar/app-vite` >=3.0.0-beta.44. It does not support webpack-based Quasar applications.
 
 ### Uninstall
 
