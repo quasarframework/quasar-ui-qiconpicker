@@ -8,7 +8,7 @@ related:
   - /other/releases
 ---
 
-Use this guide to migrate from QIconPicker v2.x to QIconPicker v3.0.0-beta.3.
+Use this guide to migrate from QIconPicker v2.x to QIconPicker v3.0.0-beta.4.
 
 > QIconPicker v3 targets Vue 3, Quasar 2, and Quasar CLI Vite 3. If your app still uses Vue 2 or `@quasar/app-webpack`, migrate the app before installing QIconPicker v3.
 
@@ -155,10 +155,10 @@ If you maintain custom CodePen or script-tag examples, load the QIconPicker CSS 
 
 ```html
 <link
-  href="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@3.0.0-beta.3/dist/index.min.css"
+  href="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@3.0.0-beta.4/dist/index.min.css"
   rel="stylesheet"
 />
-<script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@3.0.0-beta.3/dist/index.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@3.0.0-beta.4/dist/index.umd.min.js"></script>
 ```
 
 Then register the plugin from the browser global:
