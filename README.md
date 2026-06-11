@@ -18,8 +18,8 @@ The repo is organized as a pnpm workspace under `packages/`.
 
 - [/packages/ui](packages/ui) - standalone npm package
 - [/packages/app-extension](packages/app-extension) - Quasar app extension
-- [/packages/docs](packages/docs) - docs, demo, and examples project
-- [live docs](https://qiconpicker.netlify.app/) - live docs, demo, and examples
+- [/packages/docs](packages/docs) - Q-Press documentation site with docs, demos, and examples
+- [live docs](https://qiconpicker.netlify.app/) - live Q-Press docs, demos, and examples
 
 ## Local Development
 
