@@ -24,12 +24,6 @@ To add QIconPicker to your Quasar application, run the following in your Quasar 
 quasar ext add @quasar/qiconpicker
 ```
 
-While QIconPicker v3 is in beta, install with:
-
-```bash
-quasar ext add @quasar/qiconpicker@beta
-```
-
 The QIconPicker v3 App Extension targets Quasar CLI Vite 3 and requires `@quasar/app-vite` >=3.0.0-rc.1. It does not support webpack-based Quasar applications.
 
 ### Uninstall
@@ -52,13 +46,13 @@ If you do not install through the App Extension, install the UI package directly
 
 ```tabs
 <<| bash pnpm |>>
-pnpm add @quasar/quasar-ui-qiconpicker@beta
+pnpm add @quasar/quasar-ui-qiconpicker
 <<| bash bun |>>
-bun add @quasar/quasar-ui-qiconpicker@beta
+bun add @quasar/quasar-ui-qiconpicker
 <<| bash yarn |>>
-yarn add @quasar/quasar-ui-qiconpicker@beta
+yarn add @quasar/quasar-ui-qiconpicker
 <<| bash npm |>>
-npm install @quasar/quasar-ui-qiconpicker@beta
+npm install @quasar/quasar-ui-qiconpicker
 ```
 
 Then create and register a boot file:

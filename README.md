@@ -1,7 +1,7 @@
 # QIconPicker
 
-![@quasar/quasar-ui-qiconpicker](https://img.shields.io/npm/v/@quasar/quasar-ui-qiconpicker/beta?label=@quasar/quasar-ui-qiconpicker)
-![@quasar/quasar-app-extension-qiconpicker](https://img.shields.io/npm/v/@quasar/quasar-app-extension-qiconpicker/beta?label=@quasar/quasar-app-extension-qiconpicker)
+![@quasar/quasar-ui-qiconpicker](https://img.shields.io/npm/v/@quasar/quasar-ui-qiconpicker?label=@quasar/quasar-ui-qiconpicker)
+![@quasar/quasar-app-extension-qiconpicker](https://img.shields.io/npm/v/@quasar/quasar-app-extension-qiconpicker?label=@quasar/quasar-app-extension-qiconpicker)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/fabea9b0-8350-44a6-bf07-197824997a61/deploy-status)](https://app.netlify.com/projects/qiconpicker/deploys)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/quasarframework/quasar-ui-qiconpicker.svg)]()
 [![GitHub repo size in bytes](https://img.shields.io/github/repo-size/quasarframework/quasar-ui-qiconpicker)]()

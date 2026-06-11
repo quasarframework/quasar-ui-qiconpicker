@@ -2,7 +2,7 @@
 
 QIconPicker is a Quasar component that provides an icon picker for Vue and Quasar applications.
 
-[![npm](https://img.shields.io/npm/v/@quasar/quasar-ui-qiconpicker/beta?label=@quasar/quasar-ui-qiconpicker)](https://www.npmjs.com/package/@quasar/quasar-ui-qiconpicker)
+[![npm](https://img.shields.io/npm/v/@quasar/quasar-ui-qiconpicker?label=@quasar/quasar-ui-qiconpicker)](https://www.npmjs.com/package/@quasar/quasar-ui-qiconpicker)
 [![npm](https://img.shields.io/npm/dt/@quasar/quasar-ui-qiconpicker)](https://www.npmjs.com/package/@quasar/quasar-ui-qiconpicker)
 
 [![Discord](https://img.shields.io/badge/discord-join%20server-738ADB?style=for-the-badge&logo=discord&logoColor=738ADB)](https://chat.quasar.dev)
@@ -17,15 +17,15 @@ Install the [App Extension](../app-extension).
 Or install the UI package directly:
 
 ```bash
-pnpm add @quasar/quasar-ui-qiconpicker@beta
+pnpm add @quasar/quasar-ui-qiconpicker
 # or
-bun add @quasar/quasar-ui-qiconpicker@beta
+bun add @quasar/quasar-ui-qiconpicker
 # or
-yarn add @quasar/quasar-ui-qiconpicker@beta
+yarn add @quasar/quasar-ui-qiconpicker
 # or
-npm install @quasar/quasar-ui-qiconpicker@beta
+npm install @quasar/quasar-ui-qiconpicker
 # or, in a Quasar CLI app
-quasar ext add @quasar/qiconpicker@beta
+quasar ext add @quasar/qiconpicker
 ```
 
 Then create and register a boot file:

@@ -19,12 +19,6 @@ For Quasar CLI Vite apps, use the App Extension when possible:
 quasar ext add @quasar/qiconpicker
 ```
 
-While QIconPicker v3 is in beta, use:
-
-```bash
-quasar ext add @quasar/qiconpicker@beta
-```
-
 The App Extension registers the boot file and stylesheet for you. Install the UI package directly only when you want to register QIconPicker manually or use it outside the App Extension flow.
 
 :::

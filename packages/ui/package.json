@@ -1,6 +1,6 @@
 {
   "name": "@quasar/quasar-ui-qiconpicker",
-  "version": "3.0.0-beta.4",
+  "version": "3.0.0-rc.0",
   "description": "QIconPicker - Quasar component",
   "keywords": [
     "icon",
@@ -75,7 +75,7 @@
     "build:app-ext": "tsx build/script.app-ext.ts",
     "typecheck": "pnpm build:api && tsc -p tsconfig.json --noEmit --pretty false && tsc -p test-d/tsconfig.json --noEmit --pretty false",
     "test:types": "pnpm build && pnpm typecheck",
-    "release": "pnpm publish --tag beta",
+    "release": "pnpm publish --tag latest",
     "prepack": "pnpm build"
   },
   "devDependencies": {

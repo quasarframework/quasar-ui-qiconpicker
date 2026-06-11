@@ -8,13 +8,13 @@ related:
   - /other/releases
 ---
 
-Use this guide to migrate from QIconPicker v2.x to QIconPicker v3.0.0-beta.4.
+Use this guide to migrate from QIconPicker v2.x to QIconPicker v3.0.0-rc.0.
 
 > QIconPicker v3 targets Vue 3, Quasar 2, and Quasar CLI Vite 3. If your app still uses Vue 2 or `@quasar/app-webpack`, migrate the app before installing QIconPicker v3.
 
-> This guide focuses on the changes most likely to affect app code. Check the [Releases](/other/releases) page for the latest beta notes, and please open an issue or PR if something is missing.
+> This guide focuses on the changes most likely to affect app code. Check the [Releases](/other/releases) page for the latest release-candidate notes, and please open an issue or PR if something is missing.
 
-## QIconPicker v3.0.0 Beta
+## QIconPicker v3.0.0 RC
 
 QIconPicker v3 prepares the package for Quasar CLI Vite 3 and the shared app-extension workspace standard.
 
@@ -33,7 +33,7 @@ Important changes:
 
 ## Requirements
 
-| Area                          | QIconPicker v3 beta             |
+| Area                          | QIconPicker v3 RC               |
 | ----------------------------- | ------------------------------- |
 | Vue                           | Vue 3                           |
 | Quasar                        | Quasar 2                        |
@@ -43,24 +43,22 @@ Important changes:
 | Node.js for this repo and CI  | `>=22.13`                       |
 | Package manager for this repo | `pnpm >=11.4.0`                 |
 
-## Installing the beta
+## Installing the release candidate
 
-While QIconPicker v3 is in beta, install packages from the `beta` dist tag.
+QIconPicker v3 release candidates are published on the `latest` dist tag.
 
 ```tabs
 <<| bash App Extension |>>
-quasar ext add @quasar/qiconpicker@beta
+quasar ext add @quasar/qiconpicker
 <<| bash pnpm |>>
-pnpm add @quasar/quasar-ui-qiconpicker@beta @quasar/extras@2
+pnpm add @quasar/quasar-ui-qiconpicker @quasar/extras@2
 <<| bash bun |>>
-bun add @quasar/quasar-ui-qiconpicker@beta @quasar/extras@2
+bun add @quasar/quasar-ui-qiconpicker @quasar/extras@2
 <<| bash yarn |>>
-yarn add @quasar/quasar-ui-qiconpicker@beta @quasar/extras@2
+yarn add @quasar/quasar-ui-qiconpicker @quasar/extras@2
 <<| bash npm |>>
-npm install @quasar/quasar-ui-qiconpicker@beta @quasar/extras@2
+npm install @quasar/quasar-ui-qiconpicker @quasar/extras@2
 ```
-
-When QIconPicker v3 is released as stable, remove the `@beta` tag from those commands.
 
 ## App Extension Changes
 
@@ -155,10 +153,10 @@ If you maintain custom CodePen or script-tag examples, load the QIconPicker CSS 
 
 ```html
 <link
-  href="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@3.0.0-beta.4/dist/index.min.css"
+  href="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@3.0.0-rc.0/dist/index.min.css"
   rel="stylesheet"
 />
-<script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@3.0.0-beta.4/dist/index.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@quasar/quasar-ui-qiconpicker@3.0.0-rc.0/dist/index.umd.min.js"></script>
 ```
 
 Then register the plugin from the browser global:
