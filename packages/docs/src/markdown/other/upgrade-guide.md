@@ -20,7 +20,7 @@ QIconPicker v3 prepares the package for Quasar CLI Vite 3 and the shared app-ext
 
 Important changes:
 
-- The app extension is Vite-only and requires `@quasar/app-vite` >=3.0.0-beta.44.
+- The app extension is Vite-only and requires `@quasar/app-vite` >=3.0.0-rc.1.
 - The webpack app-extension path is no longer supported.
 - The package now uses ESM-first exports for Quasar/Vite consumers.
 - UMD bundles remain available for CDN and CodePen examples.
@@ -33,15 +33,15 @@ Important changes:
 
 ## Requirements
 
-| Area                          | QIconPicker v3 beta                |
-| ----------------------------- | ---------------------------------- |
-| Vue                           | Vue 3                              |
-| Quasar                        | Quasar 2                           |
-| Quasar CLI                    | `@quasar/app-vite` >=3.0.0-beta.44 |
-| App extension                 | Vite only                          |
-| Icon metadata source          | `@quasar/extras` v2                |
-| Node.js for this repo and CI  | `>=22.13`                          |
-| Package manager for this repo | `pnpm >=11.4.0`                    |
+| Area                          | QIconPicker v3 beta             |
+| ----------------------------- | ------------------------------- |
+| Vue                           | Vue 3                           |
+| Quasar                        | Quasar 2                        |
+| Quasar CLI                    | `@quasar/app-vite` >=3.0.0-rc.1 |
+| App extension                 | Vite only                       |
+| Icon metadata source          | `@quasar/extras` v2             |
+| Node.js for this repo and CI  | `>=22.13`                       |
+| Package manager for this repo | `pnpm >=11.4.0`                 |
 
 ## Installing the beta
 
@@ -66,7 +66,7 @@ When QIconPicker v3 is released as stable, remove the `@beta` tag from those com
 
 The QIconPicker app extension now targets Quasar CLI Vite only.
 
-- Install it only in apps using `@quasar/app-vite` >=3.0.0-beta.44.
+- Install it only in apps using `@quasar/app-vite` >=3.0.0-rc.1.
 - The extension registers the Vite boot file and stylesheet.
 - The extension remains the recommended install path for Quasar apps because it handles plugin registration for you.
 
