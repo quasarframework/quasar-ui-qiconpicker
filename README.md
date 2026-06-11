@@ -12,14 +12,14 @@
 
 QIconPicker is a [Quasar](https://quasar.dev) component that provides an icon picker for Vue and Quasar applications.
 
-The repo is organized as a pnpm workspace under `packages/`.
+# Structure
 
-## Structure
+This is a pnpm workspace mono-repo. You cannot use npm for building.
 
-- [/packages/ui](packages/ui) - standalone npm package
-- [/packages/app-extension](packages/app-extension) - Quasar app extension
-- [/packages/docs](packages/docs) - Q-Press documentation site with docs, demos, and examples
-- [live docs](https://qiconpicker.netlify.app/) - live Q-Press docs, demos, and examples
+- [/ui](packages/ui) - standalone npm package (go here for more information)
+- [/app-extension](packages/app-extension) - Quasar app extension
+- [/docs](packages/docs) - Q-Press documentation site with docs, demos, and examples
+- [live demo](https://qiconpicker.netlify.app/) - **live Q-Press docs, demos, and examples**
 
 ## Local Development
 
