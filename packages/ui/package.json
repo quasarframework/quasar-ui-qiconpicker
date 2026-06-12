@@ -79,7 +79,7 @@
     "prepack": "pnpm build"
   },
   "devDependencies": {
-    "@quasar/extras": "2.0.0",
+    "@quasar/extras": "2.0.1",
     "@types/node": "^25.9.3",
     "@types/rtlcss": "^3.5.4",
     "@types/uglify-js": "^3.17.5",
