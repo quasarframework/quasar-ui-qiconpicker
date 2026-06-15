@@ -66,24 +66,31 @@
     <script src="dist/index.umd.js"></script>
 
     <script>
+      const { ref } = Vue
+
       const app = Vue.createApp({
-        data() {
+        setup() {
+          const value = ref('')
+          const filter = ref('')
+          const icons = [
+            { name: 'home' },
+            { name: 'event' },
+            { name: 'search' },
+            { name: 'settings' },
+            { name: 'favorite' },
+            { name: 'check_circle' },
+          ]
+          const pagination = ref({
+            itemsPerPage: 60,
+            page: 0,
+          })
+
           return {
             version: QIconPicker.version,
-            value: '',
-            filter: '',
-            icons: [
-              { name: 'home' },
-              { name: 'event' },
-              { name: 'search' },
-              { name: 'settings' },
-              { name: 'favorite' },
-              { name: 'check_circle' },
-            ],
-            pagination: {
-              itemsPerPage: 60,
-              page: 0,
-            },
+            value,
+            filter,
+            icons,
+            pagination,
           }
         },
       })
