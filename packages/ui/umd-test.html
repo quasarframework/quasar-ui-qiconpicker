@@ -67,6 +67,11 @@
 
     <script>
       const { ref } = Vue
+      const iconPickerPlugin = globalThis.QIconPicker
+      const bundleReady =
+        iconPickerPlugin !== void 0 &&
+        typeof iconPickerPlugin.install === 'function' &&
+        iconPickerPlugin.QIconPicker !== void 0
 
       const app = Vue.createApp({
         setup() {
@@ -86,7 +91,7 @@
           })
 
           return {
-            version: QIconPicker.version,
+            version: bundleReady === true ? iconPickerPlugin.version : 'bundle missing',
             value,
             filter,
             icons,
@@ -96,7 +101,9 @@
       })
 
       app.use(Quasar)
-      app.use(QIconPicker)
+      if (bundleReady === true) {
+        app.use(iconPickerPlugin)
+      }
       app.mount('#q-app')
     </script>
   </body>
