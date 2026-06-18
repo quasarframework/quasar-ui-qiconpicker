@@ -1,34 +1,73 @@
-# QIconPicker v3.0.0-beta.x
+<!--
+Release drafting notes:
+- Lead with changes QIconPicker users feel in their apps: component behavior, app-extension behavior, public API, styling, compatibility, install, and migration notes.
+- Include docs, CodePen, build tooling, dependency, or release-process changes only when they affect package consumers.
+- Fixes should include the short commit id.
+- Keep the summary short and concrete.
+-->
+
+# QIconPicker v3.x.x
+
+Release date: YYYY-MM-DD
+
+## Summary
+
+Short user-facing summary of what changed for QIconPicker component/app-extension users.
 
 ## What's Changed
 
 **Features:**
 
+- `commitid` Describe new component, app-extension, public API, styling, or integration behavior.
+
 **Fixes:**
 
----
+- `commitid` Describe the bug, who it affected, and what now works correctly.
 
-## Installing
+**Maintenance:**
 
+- `commitid` Include only consumer-relevant maintenance, such as package prep, compatibility updates, or dependency updates that users may notice.
+
+## Breaking Changes
+
+- None.
+
+## Compatibility
+
+- Node.js: `>=22.13`
+- Quasar: `^2.20.0`
+- Quasar App Vite target: `@quasar/app-vite@3.0.0-rc.3`
+- npm dist-tag: `latest`
+
+## Installation
+
+```bash
+pnpm add @quasar/quasar-ui-qiconpicker
+# or
+bun add @quasar/quasar-ui-qiconpicker
+# or
+yarn add @quasar/quasar-ui-qiconpicker
+# or
+npm install @quasar/quasar-ui-qiconpicker
+# or
+quasar ext add @quasar/qiconpicker
 ```
-pnpm add @quasar/quasar-ui-qiconpicker@beta
-# or
-bun add @quasar/quasar-ui-qiconpicker@beta
-# or
-yarn add @quasar/quasar-ui-qiconpicker@beta
-# or
-npm install @quasar/quasar-ui-qiconpicker@beta
-# or
-quasar ext add @quasar/qiconpicker@beta
-```
+
+Add the appropriate prerelease tag, such as `@beta`, only when publishing under that dist-tag.
 
 ## Documentation
 
-[QIconPicker documentation](https://qiconpicker.netlify.app/) is hosted by Netlify. Visit the documentation for installation, the Upgrade Guide, API details, and live examples.
+- Docs: https://qiconpicker.netlify.app/
+- Installation: https://qiconpicker.netlify.app/getting-started/installation
+- Upgrade Guide: https://qiconpicker.netlify.app/other/upgrade-guide
+
+## Full Changelog
+
+https://github.com/quasarframework/quasar-ui-qiconpicker/compare/PREVIOUS_TAG...CURRENT_TAG
 
 ## Donations
 
-QIconPicker is an open-source MIT licensed project that has been made possible due to the **generous contributions** by [sponsors and backers](https://github.com/sponsors/hawkeye64). If you are interested in supporting this project, please consider:
+If QIconPicker is useful in your workflow and you want to support ongoing maintenance:
 
-- [Becoming a sponsor on Github](https://github.com/users/hawkeye64/sponsorship)
-- [One-off donation via PayPal](https://paypal.me/hawkeye64)
+- GitHub Sponsors: https://github.com/sponsors/hawkeye64
+- PayPal: https://paypal.me/hawkeye64
