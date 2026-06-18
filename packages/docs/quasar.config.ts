@@ -4,10 +4,12 @@
 import { defineConfig } from '@quasar/app-vite'
 import { viteExamplesPlugin, viteManualChunks } from '@md-plugins/vite-examples-plugin'
 import { viteMdPlugin, type MenuItem } from '@md-plugins/vite-md-plugin'
+import { viteSearchPlugin } from '@md-plugins/vite-search-plugin'
 
 // Avoid duplicate Vite plugin type identities when optional peer sets resolve Vite differently.
 const viteMdPluginFactory = viteMdPlugin as unknown as (options?: any) => any
 const viteExamplesPluginFactory = viteExamplesPlugin as unknown as (options?: any) => any
+const viteSearchPluginFactory = viteSearchPlugin as unknown as (options?: any) => any
 
 export default defineConfig(async (ctx) => {
   const siteConfig = await import('./src/siteConfig')
@@ -111,6 +113,12 @@ export default defineConfig(async (ctx) => {
             path: ctx.appPaths.srcDir + '/examples',
           },
         ],
+        viteSearchPluginFactory({
+          markdown: {
+            root: ctx.appPaths.srcDir + '/markdown',
+            exclude: ['__*.md'],
+          },
+        }),
         [
           'vite-plugin-checker',
           {
