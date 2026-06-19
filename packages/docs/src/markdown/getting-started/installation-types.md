@@ -14,6 +14,23 @@ For Quasar CLI projects, the App Extension is the recommended path because it re
 
 If you are upgrading an existing app, read the [Upgrade Guide](/other/upgrade-guide) before changing packages.
 
+## Recommended Path
+
+::: steps
+
+## Use the App Extension in Quasar CLI apps
+
+Choose the App Extension when you want Quasar to register QIconPicker, add the stylesheet, and keep the setup aligned with Quasar CLI Vite 3.
+
+## Install Quasar Extras for built-in icon sets
+
+QIconPicker lazy loads icon-set data from `@quasar/extras`, so make sure your app includes `@quasar/extras@2` when you want the built-in sets.
+
+## Use direct imports for custom registration
+
+Install the UI package directly when you want to register the plugin yourself, import from source, or only import the `QIconPicker` component where it is needed.
+:::
+
 ## Quasar CLI
 
 ### App Extension
