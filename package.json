@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^4.1.9",
-    "npm-check-updates": "^22.2.3",
+    "npm-check-updates": "^22.2.7",
     "oxfmt": "^0.55.0",
     "oxlint": "^1.70.0",
     "typescript": "~6.0.3",
@@ -39,5 +39,5 @@
     "node": ">=22.13",
     "pnpm": ">=11.5.0"
   },
-  "packageManager": "pnpm@11.7.0"
+  "packageManager": "pnpm@11.8.0"
 }
