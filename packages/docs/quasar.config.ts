@@ -14,6 +14,7 @@ const viteSearchPluginFactory = viteSearchPlugin as unknown as (options?: any) =
 export default defineConfig(async (ctx) => {
   const siteConfig = await import('./src/siteConfig')
   const { sidebar } = siteConfig.default
+  const uiDir = ctx.appPaths.appDir + '/../ui'
 
   return {
     boot: [],
@@ -37,6 +38,9 @@ export default defineConfig(async (ctx) => {
           tsConfig.compilerOptions.paths['@quasar/quasar-ui-qiconpicker'] = [
             './../../ui/src/index.ts',
           ]
+          tsConfig.compilerOptions.paths['@quasar/quasar-ui-qiconpicker/dist/api/*'] = [
+            './../../ui/dist/api/*',
+          ]
         },
       },
 
@@ -52,7 +56,17 @@ export default defineConfig(async (ctx) => {
           // Consume workspace source in docs so examples track local UI edits.
           {
             find: /^@quasar\/quasar-ui-qiconpicker$/,
-            replacement: ctx.appPaths.appDir + '/../ui/src/index.ts',
+            replacement: uiDir + '/src/index.ts',
+          },
+          // Keep API docs in Vite's local module graph during development.
+          {
+            find: /^@quasar\/quasar-ui-qiconpicker\/dist\/api\/(.+)\.json$/,
+            replacement: uiDir + '/dist/api/$1.json',
+          },
+          // Consume source styles in docs so local UI style edits HMR.
+          {
+            find: /^@quasar\/quasar-ui-qiconpicker\/(?:dist\/)?index(?:\.rtl)?(?:\.min)?\.css$/,
+            replacement: uiDir + '/src/index.scss',
           },
         ]
 

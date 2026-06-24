@@ -10,40 +10,152 @@ import {
   nextTick,
   watch,
   Transition,
+  type PropType,
+  type SlotsType,
+  type VNode,
 } from 'vue'
 import { QBtn, QPagination, QResizeObserver, QScrollArea, QTooltip } from 'quasar'
 
 import { iconSetNames, loadIconSet as loadQuasarExtrasIconSet } from './icon-set-loader'
+import type { IconNameArray } from '../../types/types'
+
+export interface QIconPickerSlots {
+  /**
+   * Slot for changing the display of the icon.
+   *
+   * @param name The selected icon name.
+   * @param-type name String
+   * @param-ts-type name string
+   * @param-example name bolt
+   * @param-example name calendar
+   * @param-example name <template #icon="name"><q-btn :name="name" :label="name" no-caps /></template>
+   */
+  icon: (name: string) => VNode[]
+  /**
+   * Anything can go into this slot.
+   */
+  footer: (pagination: Record<string, any>) => VNode[]
+  /**
+   * Use if you want to provide your own pagination UI. You can control this with the data from the property `model-pagination`.
+   */
+  pagination: (pagination: Record<string, any>) => VNode[]
+}
 
 /**
  * QIconPicker Properties
  */
 const useIconPickerProps = {
+  /**
+   * `v-model`; the selected icon.
+   *
+   * @category model
+   * @example v-model="calendar_today"
+   * @example v-model="bolt"
+   */
   modelValue: String,
+  /**
+   * The name of a [Quasar Icon Set](https://quasar.dev/options/quasar-icon-sets). Built-in sets are lazy loaded from `@quasar/extras`.
+   *
+   * @category source
+   * @values material-icons | material-icons-outlined | material-icons-round | material-icons-sharp | material-symbols-outlined | material-symbols-rounded | material-symbols-sharp | ionicons-v8 | mdi-v7 | fontawesome-v7 | line-awesome | eva-icons | themify | bootstrap-icons
+   * @example icon-set="material-icons"
+   * @example icon-set="fontawesome-v7"
+   */
   iconSet: {
     type: String,
     validator: (v) => [...iconSetNames, ''].includes(v),
     default: '',
   },
-  icons: Array,
+  /**
+   * An array of objects containing icon information. The object must contain the key `name` with the value being the selected icon name. Use the optional `icon` key for SVG path data used for display, for example `{ name: 'bolt', icon: matBolt }`.
+   *
+   * @category source
+   * @tsType IconNameArray
+   * @example :icons="[{ name: 'calendar-today' }, { name: 'bolt' }]"
+   */
+  icons: Array as PropType<IconNameArray>,
+  /**
+   * Icons will be filtered by the passed string.
+   *
+   * @category source
+   * @example :filter="myFilter"
+   */
   filter: String,
+  /**
+   * Use less of a footprint for the component.
+   *
+   * @category style
+   */
   dense: Boolean,
+  /**
+   * Turns tooltips on for each displayed icon, showing the icon name.
+   *
+   * @category behavior
+   */
   tooltips: Boolean,
+  /**
+   * Hides the footer area when pagination is enabled.
+   *
+   * @category pagination
+   */
   noFooter: Boolean,
+  /**
+   * Size in CSS units, including unit name or standard size name (xs, sm, md, lg, xl).
+   *
+   * @category style
+   * @example size="3rem"
+   * @example size="24px"
+   * @example size="lg"
+   */
   size: {
     type: String,
     default: 'inherit',
   },
+  /**
+   * Any color from the [Quasar Color Palette](https://quasar.dev/style/color-palette).
+   *
+   * @category style
+   * @example color="orange-8"
+   * @example color="yellow-6"
+   */
   color: String,
+  /**
+   * Any text color from the [Quasar Color Palette](https://quasar.dev/style/color-palette).
+   *
+   * @category style
+   * @example text-color="orange-8"
+   * @example text-color="red-6"
+   */
   textColor: String,
+  /**
+   * Color used for the selected icon.
+   *
+   * @category style
+   * @example selected-color="orange-8"
+   * @example selected-color="#c8c8c8"
+   */
   selectedColor: {
     type: String,
     default: 'primary',
   },
+  /**
+   * Text color used for the selected icon.
+   *
+   * @category style
+   * @example selected-text-color="orange-8"
+   * @example selected-text-color="#c8c8c8"
+   */
   selectedTextColor: {
     type: String,
     default: 'grey-1',
   },
+  /**
+   * The properties to pass to the QPagination component.
+   *
+   * @category pagination
+   * @tsType PaginationProps
+   * @api-exemption examples
+   */
   paginationProps: {
     type: Object,
     default: () => ({
@@ -51,12 +163,36 @@ const useIconPickerProps = {
       input: true,
     }),
   },
+  /**
+   * For pagination purposes uses Quasar's pagination component. Use `v-model:model-pagination` to synchronize the data. You can use `page` and `itemsPerPage` to control the pagination. QIconPicker will set `totalPages` depending on `icon-set` or `icons` properties. If using a `filter` the page will automatically be reset to 1.
+   *
+   * @category pagination
+   * @tsType Pagination
+   * @example v-model:model-pagination="myPagination"
+   */
   modelPagination: Object,
+  /**
+   * Turns on animation.
+   *
+   * @category behavior
+   */
   animated: Boolean,
+  /**
+   * When animated property is true, transition to use for previous paginated view.
+   *
+   * @category behavior
+   * @example transition-prev="flip-right"
+   */
   transitionPrev: {
     type: String,
     default: 'slide-right',
   },
+  /**
+   * When animated property is true, transition to use for next paginated view.
+   *
+   * @category behavior
+   * @example transition-next="flip-left"
+   */
   transitionNext: {
     type: String,
     default: 'slide-left',
@@ -218,7 +354,6 @@ function useIconPickerIcons(data, props, computedFirstItemIndex, computedLastIte
  */
 function exposeIconPickerApi(
   data,
-  expose,
   computedPagination,
   setPagination,
   computedFirstItemIndex,
@@ -226,7 +361,9 @@ function exposeIconPickerApi(
   computedFilteredIcons,
   computedPagesNumber,
 ) {
-  // goes to previous page
+  /**
+   * If paginated, will go to previous page if not on 1st page.
+   */
   const prevPage = () => {
     const { page } = computedPagination.value
     if (page > 1) {
@@ -235,7 +372,9 @@ function exposeIconPickerApi(
     }
   }
 
-  // goes to next page
+  /**
+   * If paginated, will go to next page, if not on last page.
+   */
   const nextPage = () => {
     const { page, itemsPerPage } = computedPagination.value
     if (
@@ -247,46 +386,73 @@ function exposeIconPickerApi(
     }
   }
 
-  // goes to last page
+  /**
+   * If paginated, will go to the last page.
+   */
   const lastPage = () => {
     setPagination({ page: computedPagesNumber.value })
   }
 
-  // goes to first page
+  /**
+   * If paginated, will go to the first page.
+   */
   const firstPage = () => {
     setPagination({ page: 0 })
   }
 
-  // checks if we are on the last page
+  /**
+   * True if on last page otherwise false.
+   */
   const isLastPage = computed(() => {
     return computedLastItemIndex.value === 0
       ? true
       : computedPagination.value.page >= computedPagesNumber.value
   })
 
-  // checks if we are on the first page
+  /**
+   * True if on first page otherwise false.
+   */
   const isFirstPage = computed(() => {
     return computedPagination.value.page === 1
   })
 
-  expose({
+  return {
     prevPage,
     nextPage,
     lastPage,
     firstPage,
     isLastPage,
     isFirstPage,
-  })
+  }
 }
 
 export default defineComponent({
   name: 'QIconPicker',
 
+  slots: Object as SlotsType<QIconPickerSlots>,
+
   props: {
     ...useIconPickerProps,
   },
 
-  emits: ['update:model-value', 'update:model-pagination'],
+  emits: [
+    /**
+     * `v-model`; selected icon name, including the icon prefix when required.
+     *
+     * @param value Selected icon name.
+     * @param-type value String
+     * @param-ts-type value string
+     */
+    'update:model-value',
+    /**
+     * Emitted when the pagination state changes.
+     *
+     * @param pagination New pagination state.
+     * @param-type pagination Object
+     * @param-ts-type pagination Pagination
+     */
+    'update:model-pagination',
+  ],
 
   setup(props, { slots, emit, expose }) {
     const scrollAreaRef = ref(null)
@@ -329,9 +495,8 @@ export default defineComponent({
       computedPagesNumber,
     } = useIconPickerPagination(data, props, emit, computedFilteredIcons)
 
-    exposeIconPickerApi(
+    const iconPickerApi = exposeIconPickerApi(
       data,
-      expose,
       computedPagination,
       setPagination,
       computedFirstItemIndex,
@@ -339,6 +504,33 @@ export default defineComponent({
       computedFilteredIcons,
       computedPagesNumber,
     )
+
+    expose({
+      /**
+       * If paginated, will go to previous page if not on 1st page.
+       */
+      prevPage: iconPickerApi.prevPage,
+      /**
+       * If paginated, will go to next page, if not on last page.
+       */
+      nextPage: iconPickerApi.nextPage,
+      /**
+       * If paginated, will go to the last page.
+       */
+      lastPage: iconPickerApi.lastPage,
+      /**
+       * If paginated, will go to the first page.
+       */
+      firstPage: iconPickerApi.firstPage,
+      /**
+       * True if on last page otherwise false.
+       */
+      isLastPage: iconPickerApi.isLastPage,
+      /**
+       * True if on first page otherwise false.
+       */
+      isFirstPage: iconPickerApi.isFirstPage,
+    })
 
     onMounted(async () => {
       if (props.iconSet) {

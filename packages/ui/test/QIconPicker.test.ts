@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
 import { QIconPicker, version } from '../src'
-import QIconPickerApi from '../src/components/QIconPicker.json'
 import { loadIconSet } from '../src/components/icon-set-loader'
 
 describe('QIconPicker', () => {
@@ -18,8 +17,6 @@ describe('QIconPicker', () => {
   it('does not expose the removed tag/category API', () => {
     expect(QIconPicker.props).not.toHaveProperty('tags')
     expect(QIconPicker.emits).not.toContain('update:tags')
-    expect(QIconPickerApi.props).not.toHaveProperty('tags')
-    expect(QIconPickerApi.events).not.toHaveProperty('update:tags')
   })
 
   it('supports the current versioned icon-set families', () => {
