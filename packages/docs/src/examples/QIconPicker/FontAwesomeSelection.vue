@@ -1,6 +1,12 @@
 <template>
   <div class="row justify-center q-ma-md">
-    <div style="width: 700px">
+    <div style="width: min(700px, 100%)">
+      <q-banner rounded class="q-mb-md bg-grey-2 text-grey-9">
+        Use <code>icon-set="fontawesome-v7"</code> to lazy load the Quasar Extras Font Awesome set.
+        The filter narrows the large icon family, and the picker emits the selected Quasar icon
+        name.
+      </q-banner>
+
       <q-input
         v-model="filter"
         label="Filter Font Awesome v7"
@@ -34,9 +40,9 @@ import { QIconPicker } from '@quasar/quasar-ui-qiconpicker'
 defineOptions({ name: 'FontAwesomeSelection' })
 
 const value = ref('')
-const filter = ref('camera')
+const filter = ref('')
 const pagination = ref({
-  itemsPerPage: 48,
+  itemsPerPage: 72,
   page: 1,
 })
 </script>

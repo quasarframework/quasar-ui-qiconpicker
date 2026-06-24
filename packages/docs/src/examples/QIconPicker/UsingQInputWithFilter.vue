@@ -1,10 +1,16 @@
 <template>
   <div class="q-pa-lg flex flex-center">
-    <div style="width: 700px">
+    <div style="width: min(700px, 100%)">
       <q-input v-model="data.value" label="Icon" clearable>
         <template #append>
-          <q-icon name="extension" class="cursor-pointer">
-            <q-popup-proxy v-model="data.showIconPicker" class="column justify-center items-center">
+          <q-btn dense flat round icon="extension" aria-label="Choose icon">
+            <q-menu
+              v-model="data.showIconPicker"
+              anchor="bottom right"
+              self="top right"
+              :offset="[0, 8]"
+              class="column justify-center items-center"
+            >
               <q-input
                 v-model="data.filter"
                 label="Filter"
@@ -18,12 +24,12 @@
                 v-model="data.value"
                 v-model:model-pagination="data.pagination"
                 :filter="data.filter"
-                :icons="data.icons"
+                icon-set="material-icons"
                 tooltips
-                style="height: 300px; width: 300px"
+                style="height: 300px; width: min(300px, calc(100vw - 32px))"
               />
-            </q-popup-proxy>
-          </q-icon>
+            </q-menu>
+          </q-btn>
         </template>
       </q-input>
     </div>
@@ -40,26 +46,8 @@ const data = ref({
   value: '',
   filter: '',
   showIconPicker: false,
-  icons: [
-    { name: 'add' },
-    { name: 'alarm' },
-    { name: 'anchor' },
-    { name: 'apps' },
-    { name: 'archive' },
-    { name: 'bolt' },
-    { name: 'brush' },
-    { name: 'build' },
-    { name: 'camera_alt' },
-    { name: 'check_circle' },
-    { name: 'cloud' },
-    { name: 'code' },
-    { name: 'dashboard' },
-    { name: 'delete' },
-    { name: 'edit' },
-    { name: 'favorite' },
-  ],
   pagination: {
-    itemsPerPage: 8,
+    itemsPerPage: 30,
     page: 1,
   },
 })

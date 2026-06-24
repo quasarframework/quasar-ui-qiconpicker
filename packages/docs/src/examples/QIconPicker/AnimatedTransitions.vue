@@ -1,10 +1,10 @@
 <template>
   <div class="row justify-center q-ma-md">
-    <div style="width: 620px">
+    <div style="width: min(560px, 100%)">
       <q-icon-picker
         v-model="value"
         v-model:model-pagination="pagination"
-        :icons="icons"
+        icon-set="material-icons"
         animated
         transition-prev="jump-right"
         transition-next="jump-left"
@@ -15,7 +15,7 @@
           directionLinks: true,
           color: 'deep-orange-7',
         }"
-        style="height: 220px"
+        style="height: 240px"
       />
 
       <div class="q-mt-md text-center">
@@ -33,34 +33,7 @@ defineOptions({ name: 'AnimatedTransitions' })
 
 const value = ref('')
 const pagination = ref({
-  itemsPerPage: 8,
+  itemsPerPage: 48,
   page: 1,
 })
-
-const icons = [
-  { name: 'rocket_launch' },
-  { name: 'bolt' },
-  { name: 'auto_awesome' },
-  { name: 'flare' },
-  { name: 'flash_on' },
-  { name: 'tips_and_updates' },
-  { name: 'lightbulb' },
-  { name: 'stars' },
-  { name: 'public' },
-  { name: 'explore' },
-  { name: 'travel_explore' },
-  { name: 'map' },
-  { name: 'navigation' },
-  { name: 'near_me' },
-  { name: 'flag' },
-  { name: 'assistant_navigation' },
-  { name: 'settings' },
-  { name: 'tune' },
-  { name: 'dashboard' },
-  { name: 'widgets' },
-  { name: 'extension' },
-  { name: 'build' },
-  { name: 'construction' },
-  { name: 'handyman' },
-]
 </script>

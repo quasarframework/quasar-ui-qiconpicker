@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-center q-ma-md">
-    <div style="width: 700px">
+    <div style="width: min(700px, 100%)">
       <q-select
         v-model="iconSet"
         :options="iconSets"

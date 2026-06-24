@@ -1,10 +1,10 @@
 <template>
   <div class="row justify-center q-ma-md">
-    <div style="width: 700px">
+    <div style="width: min(640px, 100%)">
       <q-icon-picker
         v-model="value"
         v-model:model-pagination="pagination"
-        :icons="icons"
+        icon-set="material-icons"
         selected-color="teal-7"
         style="height: 260px"
       >
@@ -47,41 +47,9 @@ defineOptions({ name: 'FooterSlot' })
 
 const value = ref('')
 const pagination = ref({
-  itemsPerPage: 10,
+  itemsPerPage: 54,
   page: 1,
 })
-const icons = [
-  { name: 'add' },
-  { name: 'alarm' },
-  { name: 'anchor' },
-  { name: 'apps' },
-  { name: 'archive' },
-  { name: 'bolt' },
-  { name: 'brush' },
-  { name: 'build' },
-  { name: 'calendar_today' },
-  { name: 'camera_alt' },
-  { name: 'chat' },
-  { name: 'check_circle' },
-  { name: 'cloud' },
-  { name: 'code' },
-  { name: 'dashboard' },
-  { name: 'delete' },
-  { name: 'edit' },
-  { name: 'email' },
-  { name: 'favorite' },
-  { name: 'home' },
-  { name: 'image' },
-  { name: 'map' },
-  { name: 'notifications' },
-  { name: 'palette' },
-  { name: 'person' },
-  { name: 'photo_camera' },
-  { name: 'search' },
-  { name: 'settings' },
-  { name: 'star' },
-  { name: 'visibility' },
-]
 </script>
 
 <style lang="scss" scoped>

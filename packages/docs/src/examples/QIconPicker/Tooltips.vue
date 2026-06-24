@@ -1,10 +1,10 @@
 <template>
   <div class="q-pa-lg flex flex-center">
-    <div style="width: 700px">
+    <div style="width: min(420px, 100%)">
       <q-icon-picker
         v-model="data.value"
         v-model:model-pagination="data.pagination"
-        :icons="data.icons"
+        icon-set="material-icons"
         tooltips
         style="height: 220px"
       />
@@ -20,26 +20,8 @@ defineOptions({ name: 'Tooltips' })
 
 const data = ref({
   value: '',
-  icons: [
-    { name: 'add' },
-    { name: 'alarm' },
-    { name: 'anchor' },
-    { name: 'apps' },
-    { name: 'archive' },
-    { name: 'bolt' },
-    { name: 'brush' },
-    { name: 'build' },
-    { name: 'camera_alt' },
-    { name: 'check_circle' },
-    { name: 'cloud' },
-    { name: 'code' },
-    { name: 'dashboard' },
-    { name: 'delete' },
-    { name: 'edit' },
-    { name: 'favorite' },
-  ],
   pagination: {
-    itemsPerPage: 8,
+    itemsPerPage: 32,
     page: 1,
   },
 })

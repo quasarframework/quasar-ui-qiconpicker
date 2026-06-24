@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-lg flex flex-center">
-    <div style="width: 700px">
-      <q-icon-picker v-model="data.value" :icons="data.icons" style="height: 100px" tooltips />
+    <div style="width: min(420px, 100%)">
+      <q-icon-picker v-model="data.value" :icons="data.icons" style="height: 120px" tooltips />
     </div>
   </div>
 </template>
@@ -28,9 +28,5 @@ const data = ref({
     { name: 'flash_on' },
     { name: 'auto_awesome' },
   ],
-  pagination: {
-    itemsPerPage: 8,
-    page: 1,
-  },
 })
 </script>

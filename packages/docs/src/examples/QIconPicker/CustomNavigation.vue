@@ -1,11 +1,11 @@
 <template>
   <div class="row justify-center q-ma-md">
-    <div style="width: 700px" class="flex flex-center">
+    <div style="width: min(560px, 100%)" class="flex flex-center">
       <q-icon-picker
         ref="qIconPickerRef"
         v-model="value"
         v-model:model-pagination="pagination"
-        :icons="icons"
+        icon-set="material-icons"
         selected-color="yellow-8"
         selected-text-color="red-8"
         no-footer
@@ -58,42 +58,10 @@ import { QIconPicker } from '@quasar/quasar-ui-qiconpicker'
 defineOptions({ name: 'CustomNavigation' })
 
 const pagination = ref({
-  itemsPerPage: 10,
+  itemsPerPage: 50,
   page: 1,
 })
 
 const value = ref('')
 const qIconPickerRef = ref()
-const icons = [
-  { name: 'add' },
-  { name: 'alarm' },
-  { name: 'anchor' },
-  { name: 'apps' },
-  { name: 'archive' },
-  { name: 'bolt' },
-  { name: 'brush' },
-  { name: 'build' },
-  { name: 'calendar_today' },
-  { name: 'camera_alt' },
-  { name: 'chat' },
-  { name: 'check_circle' },
-  { name: 'cloud' },
-  { name: 'code' },
-  { name: 'dashboard' },
-  { name: 'delete' },
-  { name: 'edit' },
-  { name: 'email' },
-  { name: 'favorite' },
-  { name: 'home' },
-  { name: 'image' },
-  { name: 'map' },
-  { name: 'notifications' },
-  { name: 'palette' },
-  { name: 'person' },
-  { name: 'photo_camera' },
-  { name: 'search' },
-  { name: 'settings' },
-  { name: 'star' },
-  { name: 'visibility' },
-]
 </script>

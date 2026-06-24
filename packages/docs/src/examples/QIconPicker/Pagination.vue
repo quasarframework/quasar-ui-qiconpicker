@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-center q-ma-md">
-    <div style="width: 700px">
+    <div style="width: min(560px, 100%)">
       <q-select
         v-model="data.pagination.itemsPerPage"
         :options="data.options"
@@ -10,7 +10,7 @@
       <q-icon-picker
         v-model="data.value"
         v-model:model-pagination="data.pagination"
-        :icons="data.icons"
+        icon-set="material-icons"
         style="height: 220px"
       />
     </div>
@@ -25,42 +25,10 @@ defineOptions({ name: 'Pagination' })
 
 const data = ref({
   value: '',
-  icons: [
-    { name: 'add' },
-    { name: 'alarm' },
-    { name: 'anchor' },
-    { name: 'apps' },
-    { name: 'archive' },
-    { name: 'bolt' },
-    { name: 'brush' },
-    { name: 'build' },
-    { name: 'calendar_today' },
-    { name: 'camera_alt' },
-    { name: 'chat' },
-    { name: 'check_circle' },
-    { name: 'cloud' },
-    { name: 'code' },
-    { name: 'dashboard' },
-    { name: 'delete' },
-    { name: 'edit' },
-    { name: 'email' },
-    { name: 'favorite' },
-    { name: 'home' },
-    { name: 'image' },
-    { name: 'map' },
-    { name: 'notifications' },
-    { name: 'palette' },
-    { name: 'person' },
-    { name: 'photo_camera' },
-    { name: 'search' },
-    { name: 'settings' },
-    { name: 'star' },
-    { name: 'visibility' },
-  ],
   pagination: {
-    itemsPerPage: 10,
+    itemsPerPage: 48,
     page: 1,
   },
-  options: [6, 10, 15, 30],
+  options: [24, 36, 48, 60],
 })
 </script>
