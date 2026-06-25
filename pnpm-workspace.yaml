@@ -150,5 +150,3 @@ minimumReleaseAgeExclude:
   - '@napi-rs/wasm-runtime@1.1.6'
   - autoprefixer@10.5.1
 trustLockfile: true
-patchedDependencies:
-  '@md-plugins/quasar-app-extension-q-press@0.1.0-rc.15': patches/@md-plugins__quasar-app-extension-q-press@0.1.0-rc.15.patch
