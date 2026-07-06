@@ -1,0 +1,55 @@
+{
+  "name": "@quasar/quasar-app-extension-qiconpicker",
+  "version": "3.0.0-rc.1",
+  "description": "A Quasar App Extension for @quasar/quasar-ui-qiconpicker",
+  "keywords": [
+    "app",
+    "app extension",
+    "extension",
+    "icon picker",
+    "quasar",
+    "quasarframework"
+  ],
+  "homepage": "https://github.com/quasarframework/quasar-ui-qiconpicker",
+  "bugs": "https://github.com/quasarframework/quasar-ui-qiconpicker/issues",
+  "license": "MIT",
+  "author": "Jeff Galbraith <jeff@quasar.dev>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quasarframework/quasar-ui-qiconpicker.git"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/hawkeye64"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "imports": {
+    "#q-app": "@quasar/app-vite"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\" && tsc -p tsconfig.build.json",
+    "lint": "oxlint src",
+    "lint-fix": "oxlint src --fix",
+    "prepack": "pnpm build",
+    "release": "pnpm publish --tag latest"
+  },
+  "dependencies": {
+    "@quasar/quasar-ui-qiconpicker": "workspace:^"
+  },
+  "devDependencies": {
+    "@quasar/app-vite": "3.0.0",
+    "typescript": "~6.0.3",
+    "vue-router": "^5.1.0"
+  },
+  "peerDependencies": {
+    "@quasar/app-vite": ">=3.0.0"
+  },
+  "engines": {
+    "node": ">=22.13",
+    "pnpm": ">=11.5.0"
+  }
+}
