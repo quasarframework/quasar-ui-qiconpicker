@@ -35,8 +35,8 @@ Short user-facing summary of what changed for QIconPicker component/app-extensio
 ## Compatibility
 
 - Node.js: `>=22.13`
-- Quasar: `^2.21.0`
-- Quasar App Vite target: `@quasar/app-vite@3.0.0-rc.3`
+- Quasar: `^2.21.1`
+- Quasar App Vite target: `@quasar/app-vite@3.0.0`
 - npm dist-tag: `latest`
 
 ## Installation
@@ -53,12 +53,10 @@ npm install @quasar/quasar-ui-qiconpicker
 quasar ext add @quasar/qiconpicker
 ```
 
-Add the appropriate prerelease tag, such as `@beta`, only when publishing under that dist-tag.
-
 ## Documentation
 
 - Docs: https://qiconpicker.netlify.app/
-- Installation: https://qiconpicker.netlify.app/getting-started/installation
+- Installation: https://qiconpicker.netlify.app/getting-started/installation-types
 - Upgrade Guide: https://qiconpicker.netlify.app/other/upgrade-guide
 
 ## Full Changelog

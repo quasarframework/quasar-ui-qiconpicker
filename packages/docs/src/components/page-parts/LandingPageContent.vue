@@ -189,7 +189,7 @@ import siteConfig from '../../siteConfig'
 const productName = 'QIconPicker'
 const logoSrc = '/qiconpicker-logo.svg'
 const logoAlt = 'QIconPicker Logo'
-const githubTreeUrl = 'https://github.com/quasarframework/quasar-ui-qiconpicker/tree/v3-beta'
+const githubTreeUrl = 'https://github.com/quasarframework/quasar-ui-qiconpicker/tree/main'
 const githubRepoUrl = 'https://github.com/quasarframework/quasar-ui-qiconpicker'
 const heroEyebrow = 'Vue 3 + Quasar 2'
 const heroLede =
