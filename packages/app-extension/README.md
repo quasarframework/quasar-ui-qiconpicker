@@ -15,7 +15,7 @@ The **QIconPicker App Extension** adds the [QIconPicker](../ui) component to a Q
 
 ## QIconPicker v3.0.0 RC
 
-QIconPicker v3 prepares the app extension for Quasar CLI Vite 3. The app extension requires `@quasar/app-vite` >=3.0.0-rc.6 and no longer supports webpack-based Quasar apps. If your application is still using `@quasar/app-webpack`, migrate the application to Quasar CLI Vite before installing QIconPicker v3.
+QIconPicker v3 prepares the app extension for Quasar CLI Vite 3. The app extension requires `@quasar/app-vite` >=3.0.0 and no longer supports webpack-based Quasar apps. If your application is still using `@quasar/app-webpack`, migrate the application to Quasar CLI Vite before installing QIconPicker v3.
 
 ## Install
 
