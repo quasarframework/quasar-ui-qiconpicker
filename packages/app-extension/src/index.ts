@@ -16,6 +16,5 @@ export default defineIndexScript((api) => {
 
   api.extendQuasarConf(() => ({
     boot: ['~@quasar/quasar-app-extension-qiconpicker/dist/boot/vite-register.js'],
-    css: ['~@quasar/quasar-ui-qiconpicker/src/index.scss'],
   }))
 })

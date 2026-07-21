@@ -41,9 +41,9 @@
     "@quasar/quasar-ui-qiconpicker": "workspace:^"
   },
   "devDependencies": {
-    "@quasar/app-vite": "3.0.1",
+    "@quasar/app-vite": "^3.1.0",
     "typescript": "~6.0.3",
-    "vue-router": "^5.1.0"
+    "vue-router": "^5.2.0"
   },
   "peerDependencies": {
     "@quasar/app-vite": ">=3.0.0"
