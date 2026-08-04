@@ -51,6 +51,29 @@ css: [
 
 :::
 
+:::details Q. How do I type an App Extension-registered QIconPicker template ref?
+
+Keep runtime component registration in the App Extension and import only the component instance type in `<script setup>`:
+
+```ts
+import { useTemplateRef } from 'vue'
+import type { QIconPicker } from '@quasar/quasar-ui-qiconpicker'
+
+const iconPickerRef = useTemplateRef<QIconPicker>('iconPicker')
+```
+
+A normal value import of `QIconPicker` creates a local component binding in `<script setup>` and takes precedence over the globally registered component. Use a normal import only when you intend to use the UI component directly, and follow the manual boot file installation path instead of registering it through both paths.
+
+Because application source imports the type, add the UI package as a direct application dependency:
+
+```bash
+pnpm add @quasar/quasar-ui-qiconpicker
+```
+
+Applications that only use the globally registered component in templates do not need this extra direct dependency.
+
+:::
+
 ## Icon sets
 
 :::details Q. Where do built-in icon sets come from?

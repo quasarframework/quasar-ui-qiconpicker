@@ -31,9 +31,9 @@
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^4.1.10",
-    "npm-check-updates": "^22.2.9",
-    "oxfmt": "^0.59.0",
-    "oxlint": "^1.74.0",
+    "npm-check-updates": "^23.0.1",
+    "oxfmt": "^0.62.0",
+    "oxlint": "^1.77.0",
     "typescript": "~6.0.3",
     "vitest": "^4.1.10"
   },
@@ -41,5 +41,5 @@
     "node": ">=22.13",
     "pnpm": ">=11.5.0"
   },
-  "packageManager": "pnpm@11.13.0"
+  "packageManager": "pnpm@11.20.0"
 }

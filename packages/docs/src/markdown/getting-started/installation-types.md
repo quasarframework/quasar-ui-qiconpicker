@@ -43,6 +43,10 @@ quasar ext add @quasar/qiconpicker
 
 The QIconPicker v3 App Extension targets Quasar CLI Vite 3 and requires `@quasar/app-vite` >=3.0.0. It does not support webpack-based Quasar applications.
 
+::: tip
+The App Extension can register QIconPicker without an import from application source. If your application imports a component or type from `@quasar/quasar-ui-qiconpicker`, add the UI package as a direct application dependency (for example, `pnpm add @quasar/quasar-ui-qiconpicker`). Do not rely on the App Extension's transitive dependency, especially with strict package managers such as pnpm.
+:::
+
 ### Uninstall
 
 ```bash
