@@ -1,7 +1,7 @@
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file
 
-import { defineConfig } from '#q-app'
+import { defineConfig, type ConfigureCallback } from '#q-app'
 import { viteExamplesPlugin, viteManualChunks } from '@md-plugins/vite-examples-plugin'
 import { viteMdPlugin, type MenuItem } from '@md-plugins/vite-md-plugin'
 import { viteSearchPlugin } from '@md-plugins/vite-search-plugin'
@@ -11,7 +11,7 @@ const viteMdPluginFactory = viteMdPlugin as unknown as (options?: any) => any
 const viteExamplesPluginFactory = viteExamplesPlugin as unknown as (options?: any) => any
 const viteSearchPluginFactory = viteSearchPlugin as unknown as (options?: any) => any
 
-export default defineConfig(async (ctx) => {
+const configure: ConfigureCallback = async (ctx) => {
   const siteConfig = await import('./src/siteConfig')
   const { sidebar } = siteConfig.default
   const uiDir = ctx.appPaths.appDir + '/../ui'
@@ -170,5 +170,7 @@ export default defineConfig(async (ctx) => {
     },
 
     animations: [],
-  }
-})
+  } as Awaited<ReturnType<ConfigureCallback>>
+}
+
+export default defineConfig(configure)
