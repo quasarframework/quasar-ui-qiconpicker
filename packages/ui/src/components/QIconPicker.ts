@@ -679,6 +679,8 @@ export default defineComponent({
             textColor: textColor,
             color: color,
             icon: displayValue,
+            'aria-label': iconValue,
+            'aria-pressed': isSelected,
             onClick: () => emit('update:model-value', iconValue),
           },
           renderTooltip(iconValue),

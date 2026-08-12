@@ -27,6 +27,7 @@
           :disable="qIconPickerRef ? qIconPickerRef.isFirstPage : true"
           text-color="black"
           icon="navigate_before"
+          aria-label="Previous page"
           @click="qIconPickerRef.prevPage()"
         />
         <q-btn
@@ -35,6 +36,7 @@
           :disable="qIconPickerRef ? qIconPickerRef.isLastPage : true"
           text-color="black"
           icon="navigate_next"
+          aria-label="Next page"
           @click="qIconPickerRef.nextPage()"
         />
         <q-btn
