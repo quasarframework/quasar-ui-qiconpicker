@@ -12,6 +12,12 @@ export default defineIndexScript((api) => {
   api.compatibleWith('@quasar/app-vite', '>=3.0.0')
   api.compatibleWith('@quasar/extras', '>=2.0.0')
 
+  api.extendViteConf(() => ({
+    optimizeDeps: {
+      exclude: ['@quasar/quasar-ui-qiconpicker'],
+    },
+  }))
+
   api.registerDescribeApi('QIconPicker', '~@quasar/quasar-ui-qiconpicker/dist/api/QIconPicker.json')
 
   api.extendQuasarConf(() => ({
