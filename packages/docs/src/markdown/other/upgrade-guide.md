@@ -50,13 +50,13 @@ QIconPicker v3 is published on the `latest` dist tag.
 ```tabs
 <<| bash App Extension |>>
 quasar ext add @quasar/qiconpicker
-<<| bash pnpm |>>
+<<| bash [icon=pnpm] pnpm |>>
 pnpm add @quasar/quasar-ui-qiconpicker @quasar/extras@2
-<<| bash bun |>>
+<<| bash [icon=bun] bun |>>
 bun add @quasar/quasar-ui-qiconpicker @quasar/extras@2
-<<| bash yarn |>>
+<<| bash [icon=yarn] yarn |>>
 yarn add @quasar/quasar-ui-qiconpicker @quasar/extras@2
-<<| bash npm |>>
+<<| bash [icon=npm] npm |>>
 npm install @quasar/quasar-ui-qiconpicker @quasar/extras@2
 ```
 

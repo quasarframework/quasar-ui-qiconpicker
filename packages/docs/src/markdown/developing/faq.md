@@ -83,13 +83,13 @@ QIconPicker uses `@quasar/extras` as the source of truth for built-in icon set n
 Install `@quasar/extras` alongside QIconPicker when using built-in `icon-set` values:
 
 ```tabs
-<<| bash pnpm |>>
+<<| bash [icon=pnpm] pnpm |>>
 pnpm add @quasar/extras@2
 <<| bash Bun |>>
 bun add @quasar/extras@2
 <<| bash Yarn |>>
 yarn add @quasar/extras@2
-<<| bash npm |>>
+<<| bash [icon=npm] npm |>>
 npm install @quasar/extras@2
 ```
 
